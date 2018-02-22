@@ -27,9 +27,9 @@ class CreateStudentRequest extends FormRequest
             //'controlNumber' => ['required', 'max:8']
             'controlNumber' => 'unique:students,control_number|digits:8',
             'career' => 'required',
-            'firstNames' => 'required|alpha',
-            'fathersLastName' => 'required|alpha',
-            'mothersLastName' => 'required|alpha',
+            'firstNames' => 'required',
+            'fathersLastName' => 'required',
+            'mothersLastName' => 'required',
             'phoneNumber' => 'required|digits_between:0,30',
             'email' => 'required|email',
         ];

@@ -30,7 +30,7 @@ $faker = Factory::create('es_ES');
 	return [
 		'control_number' => $faker->ean8,
 		'career' => $faker->words(3, true),
-		'first_name' => $faker->firstName,
+		'first_names' => $faker->firstName,
 		'fathers_last_name' => $faker->lastName,
 		'mothers_last_name' => $faker->lastName,
 		'phone_number' => $faker->phoneNumber,

@@ -142,7 +142,11 @@
     </table>
 
     <!-- Botones de paginación -->
-    <div class="w-100">
+    <div class="mx-auto">
+        {{ $students->links('pagination::bootstrap-4') }}
+    </div>
+    
+    <!--<div class="w-100">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
@@ -156,9 +160,7 @@
                 </li>
             </ul>
         </nav>
-    </div>
-
-    <button onclick="$('#newStudentModal').modal('show');">PRUEBA</button>
+    </div>-->
 
     </div>
 
