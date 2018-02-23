@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Http\Controllers\StudentsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,19 +16,24 @@
 
 Route::get('/', function () {
 
-	//$appname = 'Departamento de Gestión Tecnológica y Vinculación';
-	/*$messages = [
-		['id' => 1, 'content' => 'Este es un mensaje de prueba', 'image' => 'http://lorempixel.com/600/338?1'],
-		['id' => 2, 'content' => 'Este es otro mensaje de prueba', 'image' => 'http://lorempixel.com/600/338?2'],
-		['id' => 3, 'content' => 'Este es otro mensaje de prueba', 'image' => 'http://lorempixel.com/600/338?3'],
-		['id' => 4, 'content' => 'Este es otro mensaje de prueba', 'image' => 'http://lorempixel.com/600/338?4']
-	];*/
+	//Si el usuario está autenticado redireccionarlo a una sección cualquiera
+	if(Auth::check()){ 
+		return redirect('/alumnos'); 
+	} 
+	else {
+		return view('auth/login'); 
+	}
 
-	return view('login'); 
 });
 
 Route::get('/about', function() { return 'Acerca de nosotros'; });
 
-Route::get('/alumnos', 'StudentsController@show');
+Route::get('/alumnos', 'StudentsController@show')->name('alumnos');
 
 Route::post('/alumnos/crear', 'StudentsController@create');
+
+Route::post('/alumnos/eliminar', 'StudentsController@delete');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

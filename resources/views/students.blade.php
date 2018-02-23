@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Bienvenido')
+@section('title', 'Alumnos')
 @section('section', 'Alumnos')
 @section('content')
 <div class="row">
@@ -28,8 +28,8 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="controlNumberControlInput">Número de control</label>
-                                    <input type="text" id="controlNumberControlInput" name="controlNumber" class="form-control @if($errors->has('controlNumber')) is-invalid @endif">
-                                    <div class="invalid-feedback">@if(sizeof($errors->get('controlNumber')) > 0){{ $errors->get('controlNumber')[0] }}@endif</div>
+                                    <input type="text" id="controlNumberControlInput" name="controlNumber" class="form-control {{ $errors->has('controlNumber') ? 'is-invalid' : '' }}">
+                                    <div class="invalid-feedback">{{ $errors->first('controlNumber') }}</div>
                                 </div>
                             </div>
                             <div class="col-7">
@@ -58,27 +58,32 @@
                         </div>
                         <div class="form-group">
                             <label for="firstNamesControlInput">Nombre(s)</label>
-                            <input type="text" class="form-control" id="firstNamesControlInput" name="firstNames">
+                            <input type="text" id="firstNamesControlInput" name="firstNames" class="form-control {{ $errors->has('firstNames') ? 'is-invalid' : ''}}">
+                            <div class="invalid-feedback">{{ $errors->first('firstNames') }}</div>
                         </div>
                         <div class="form-group">
                             <label for="fathersLastNameControlInput">Apellido paterno</label>
-                            <input type="text" class="form-control" id="fathersLastNameControlInput" name="fathersLastName">
+                            <input type="text" id="fathersLastNameControlInput" name="fathersLastName" class="form-control {{ $errors->has('fathersLastName') ? 'is-invalid' : ''}}">
+                            <div class="invalid-feedback">{{ $errors->first('fathersLastName') }}</div>
                         </div>
                         <div class="form-group">
                             <label for="mothersLastNameControlInput">Apellido materno</label>
-                            <input type="text" class="form-control" id="mothersLastNameControlInput" name="mothersLastName">
+                            <input type="text" id="mothersLastNameControlInput" name="mothersLastName" class="form-control {{ $errors->has('mothersLastName') ? 'is-invalid' : '' }}">
+                            <div class="invalid-feedback">{{ $errors->first('mothersLastName') }}</div>
                         </div>
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="phoneNumberControlInput">Número telefónico</label>
-                                    <input type="tel" class="form-control" id="phoneNumberControlInput" name="phoneNumber">
+                                    <input type="tel" id="phoneNumberControlInput" name="phoneNumber" class="form-control {{ $errors->has('phoneNumber') ? 'is-invalid' : '' }}">
+                                    <div class="invalid-feedback">{{ $errors->first('phoneNumber') }}</div>
                                 </div>
                             </div>
                             <div class="col-7">
                                 <div class="form-group">
                                     <label for="emailControlInput">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="emailControlInput" name="email">
+                                    <input type="email" id="emailControlInput" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
+                                    <div class="invalid-feedback">{{ $errors->first('email') }}</div>
                                 </div>
                             </div>
                         </div>
@@ -100,13 +105,23 @@
     </div>
 
     <!--Botones para manipular tabla de estudiantes-->
-    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
+    <div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
-            <button type="button" class="btn btn-outline-primary">Eliminar seleccionados</button>
+            <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('deleteStudentForm').submit();">Eliminar seleccionado</button>
         </div>
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Buscar..." aria-describedby="btnGroupAddon">
+
+        <!-- Formulario oculto para eliminar. Mucho cuidado aquí -->
+        <form class="form" action="/alumnos/eliminar" method="post" id="deleteStudentForm">
+                <input type="hidden" name="id" value="">
+                {{ csrf_field() }}
+            </form>
+
+        <div class="input-group col-auto mr-0 ml-auto">
+            <input type="text" class="form-control w-auto" placeholder="Escriba algo..." aria-describedby="btnGroupAddon">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Buscar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -128,7 +143,7 @@
         <!--Imprimir un renglón dentro de la tabla para cada estudiante-->
         @foreach($students as $student)
         <tr id="studentRow{{ $student->id }}">
-            <td><input type="checkbox" name="studentCheckbox{{ $student->id }}" onchange="selectStudentRow({{ $student->id }})"></td>
+            <td><input type="checkbox" name="studentCheckbox{{ $student->id }}" onchange="selectStudent({{ $student->id }})"></td>
             <td>{{ $student->id }}</td>
             <td>{{ $student->control_number }}</td>
             <td>{{ $student->first_names }}</td>
@@ -170,15 +185,36 @@
 
 <script type="text/javascript">
 
+    var selectedId;
+
     //Método para que cuando un renglón de la tabla esté seleccionado este cambie de color
-    function selectStudentRow(id) {
+    function selectStudent(id) {
         var row = document.getElementById("studentRow" + id);
         var chk = document.getElementsByName("studentCheckbox" + id);
         if (chk[0].checked) {
+
             row.className = "table-active";
+
+            //console.log(row);
+
+            //Obtener las otras rows y deseleccionarlas
+            if(selectedId != null){
+                var previousRow = document.getElementById("studentRow" + selectedId);
+                var previousChk = document.getElementsByName("studentCheckbox" + selectedId);
+                previousRow.className = "";
+                previousChk[0].checked = false;
+            }
+
+            //Establecer el ID como el seleccionado actual
+            selectedId = id;
+            document.forms['deleteStudentForm'].elements[0].value = selectedId;
+
         } else {
             row.className = "";
+            selectedId = null;
+            document.forms['deleteStudentForm'].elements[0].value = null;
         }
+
     }
 </script>
 

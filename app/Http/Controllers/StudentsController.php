@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Http\Requests\CreateStudentRequest;
+use App\Http\Requests\DeleteStudentRequest;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -38,6 +39,19 @@ class StudentsController extends Controller
     	//dd($student);
 
     	//return redirect('/alumnos/'.$messages->id);
-    	return redirect('/alumnos/');
+        //$request->session()->flash();
+    	return redirect()->back();
+    }
+
+    public function delete(DeleteStudentRequest $request){
+
+        //dd($request->all());
+        //dd($request->all());
+
+        $student = Student::find($request->input('id'));
+        $student->delete();
+
+        //return redirect('/alumnos/');
+        return redirect()->back();
     }
 }
