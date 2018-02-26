@@ -17,7 +17,7 @@
     <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
   </head>
 
-  <body class="row h-100 w-100">
+  <body class="row h-100 w-100 bg-dark">
 
     <div class="col align-self-center">
       <div class="card m-auto" style="width: 500px;">

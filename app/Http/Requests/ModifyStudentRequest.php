@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CreateStudentRequest extends FormRequest
+class ModifyStudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,7 @@ class CreateStudentRequest extends FormRequest
     {
         return [
             //'controlNumber' => ['required', 'max:8']
-            'controlNumber' => 'unique:students,control_number|digits:8',
+            'controlNumber' => 'digits:8|unique:students,control_number,'.$this->input('id'),
             'careerId' => 'required',
             'firstNames' => 'required',
             'lastNames' => 'required',

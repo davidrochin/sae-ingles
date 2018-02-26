@@ -3,20 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Career;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
+use App\Http\Requests\ModifyStudentRequest;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
-    public function show(){
 
-    	//$students = Student::all();
-    	$students = Student::paginate(13);
+    //public function showAll(){
+    public function showAll(Request $request){
+
+        //Revisar si hay una keyword en los parametros
+        $keyword = $request->get('keyword');
+
+        //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
+        //dd(Auth::user()->roles);
+        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
+            return view('auth.nopermission');
+        }
+
+        //Si hay una palabra clave de busqueda, buscar con ella
+        if($keyword){
+            $students = Student::search($keyword)->paginate(13);
+        } else {
+            $students = Student::orderBy('id', 'ASC')->paginate(13);
+        }
+
+        $careers = Career::all();
 
     	return view('students', [
-    		'students' => $students
+    		'students' => $students,
+            'careers' => $careers
     	]);
+    }
+
+    public function show($id){
+
+        $careers = Career::all();
+
+        return view('student', [
+            'student' => Student::find($id),
+            'careers' => $careers
+        ]);
     }
 
     public function create(CreateStudentRequest $request){
@@ -26,21 +57,23 @@ class StudentsController extends Controller
 
     	//$this->validate($request);
 
+        $user = $request->user();
+
     	$student = Student::create([
     		'control_number' => $request->input('controlNumber'),
-    		'career' => $request->input('career'),
+    		'career_id' => $request->input('careerId'),
     		'first_names' => $request->input('firstNames'),
-    		'fathers_last_name' => $request->input('fathersLastName'),
-    		'mothers_last_name' => $request->input('mothersLastName'),
+    		'last_names' => $request->input('lastNames'),
     		'phone_number' => $request->input('phoneNumber'),
     		'email' => $request->input('email')
     	]);
+        $careers = Career::all();
 
     	//dd($student);
 
     	//return redirect('/alumnos/'.$messages->id);
         //$request->session()->flash();
-    	return redirect()->back();
+    	return redirect()->back()->with('success', 'El alumno ha sido creado con éxito.');
     }
 
     public function delete(DeleteStudentRequest $request){
@@ -52,6 +85,25 @@ class StudentsController extends Controller
         $student->delete();
 
         //return redirect('/alumnos/');
+        return redirect('/alumnos')->with('success', 'El alumno ha sido eliminado con éxito.');
+    }
+
+    public function modify(ModifyStudentRequest $request){
+
+        //Buscar el alumno que se está modificando
+        $student = Student::find($request->input('id'));
+
+        //Reemplazar los datos del alumno
+        $student->control_number = $request->input('controlNumber');
+        $student->first_names = $request->input('firstNames');
+        $student->last_names = $request->input('lastNames');
+        $student->career_id = $request->input('careerId');
+        $student->phone_number = $request->input('phoneNumber');
+        $student->email = $request->input('email');
+
+        //Guardar los cambios
+        $student->save();
+
         return redirect()->back();
     }
 }

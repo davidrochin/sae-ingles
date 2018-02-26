@@ -14,13 +14,21 @@ use App\Http\Controllers\StudentsController;
 |
 */
 
+/*Route::any('/{route}', function($route) {
+    //
+    if(Auth::check()){
+    	return redirect('/'.$route);
+    } else {
+    	return redirect('/login');
+    }
+});*/
+
 Route::get('/', function () {
 
 	//Si el usuario está autenticado redireccionarlo a una sección cualquiera
 	if(Auth::check()){ 
-		return redirect('/alumnos'); 
-	} 
-	else {
+		return redirect('/home'); 
+	} else {
 		return view('auth/login'); 
 	}
 
@@ -28,12 +36,16 @@ Route::get('/', function () {
 
 Route::get('/about', function() { return 'Acerca de nosotros'; });
 
-Route::get('/alumnos', 'StudentsController@show')->name('alumnos');
+Route::get('/alumnos/', 'StudentsController@showAll')->name('alumnos');
 
-Route::post('/alumnos/crear', 'StudentsController@create');
+Route::get('/alumnos/{id}', 'StudentsController@show');
 
-Route::post('/alumnos/eliminar', 'StudentsController@delete');
+Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
+
+Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');
+
+Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PagesController@home')->name('home');

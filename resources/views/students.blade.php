@@ -2,7 +2,7 @@
 @section('title', 'Alumnos')
 @section('section', 'Alumnos')
 @section('content')
-<div class="row">
+<div class="">
 
     <!-- Modal para agregar un estudiante -->
     <div class="modal fade in" id="newStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -32,26 +32,14 @@
                                     <div class="invalid-feedback">{{ $errors->first('controlNumber') }}</div>
                                 </div>
                             </div>
-                            <div class="col-7">
+                            <div class="col-8">
                                 <div class="form-group">
                                     <label for="careerControlInput">Carrera</label>
-                                    <select class="form-control" id="careerControlInput" name="career">
-                                        <option>Lic. Administración</option>
-                                        <option>Contador Público</option>
-                                        <option>Ing. Industrial</option>
-                                        <option>Ing. Informática</option>
-                                        <option>Lic. Biología</option>
-                                        <option>Ing. Bioquímica</option>
-                                        <option>Ing. Química</option>
-                                        <option>Ing. Gest. Empresarial</option>
-                                        <option>Ing. Mecatrónica</option>
-                                        <option>Ing. Electrónica</option>
-                                        <option>Ing. Electromecánica</option>
-                                        <option>Arquitectura</option>
-                                        <option>Ing. Ind. Alimentarias</option>
-                                        <option>Ing. Innovación Agrícola S.</option>
-                                        <option>Carrera no registrada</option>
-                                        <option>Alumno externo</option>
+                                    <select class="form-control" id="careerControlInput" name="careerId">
+                                        <!-- Llenar el select con las carreras de la base de datos -->
+                                        @foreach($careers as $career)
+                                        <option value="{{$career->id}}">{{ $career->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -62,14 +50,9 @@
                             <div class="invalid-feedback">{{ $errors->first('firstNames') }}</div>
                         </div>
                         <div class="form-group">
-                            <label for="fathersLastNameControlInput">Apellido paterno</label>
-                            <input type="text" id="fathersLastNameControlInput" name="fathersLastName" class="form-control {{ $errors->has('fathersLastName') ? 'is-invalid' : ''}}">
-                            <div class="invalid-feedback">{{ $errors->first('fathersLastName') }}</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="mothersLastNameControlInput">Apellido materno</label>
-                            <input type="text" id="mothersLastNameControlInput" name="mothersLastName" class="form-control {{ $errors->has('mothersLastName') ? 'is-invalid' : '' }}">
-                            <div class="invalid-feedback">{{ $errors->first('mothersLastName') }}</div>
+                            <label for="lastNamesControlInput">Apellido(s)</label>
+                            <input type="text" id="lastNamesControlInput" name="lastNames" class="form-control {{ $errors->has('lastNames') ? 'is-invalid' : ''}}">
+                            <div class="invalid-feedback">{{ $errors->first('lastNames') }}</div>
                         </div>
                         <div class="form-row">
                             <div class="col">
@@ -87,13 +70,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!--Revisar si este formulario regresó un error -->
-                        @if($errors->any())
-                            @foreach($errors as $error)
-                            @endforeach
-                        @endif
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -104,61 +80,70 @@
         </div>
     </div>
 
-    <!--Botones para manipular tabla de estudiantes-->
+    <!-- Alerta de éxito -->
+    @if(session()->get('success'))
+    <div class="alert alert-success">{{ session()->get('success') }}</div>
+    @endif
+
+    <!--Botones para manipular tabla de estudiantes y buscador-->
     <div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
-            <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('deleteStudentForm').submit();">Eliminar seleccionado</button>
         </div>
 
-        <!-- Formulario oculto para eliminar. Mucho cuidado aquí -->
-        <form class="form" action="/alumnos/eliminar" method="post" id="deleteStudentForm">
-                <input type="hidden" name="id" value="">
-                {{ csrf_field() }}
-            </form>
-
-        <div class="input-group col-auto mr-0 ml-auto">
-            <input type="text" class="form-control w-auto" placeholder="Escriba algo..." aria-describedby="btnGroupAddon">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Buscar</button>
+        <!-- Formulario para buscar -->
+        <form class="form col-auto mr-0 ml-auto" action="/alumnos/" method="get">
+            <div class="input-group ">
+                <input type="text" class="form-control w-auto" placeholder="Escriba algo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary" type="button">Buscar</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-<div class="row">
+<div class="">
     
     <!--Tabla de estudiantes-->
     <table class="table table-hover">
-        <tr>
-            <th></th>
-            <th>ID</th>
-            <th>Número de control</th>
-            <th>Nombre(s)</th>
-            <th>Apellido paterno</th>
-            <th>Apellido materno</th>
-            <th>Carrera</th>
-            <th>Teléfono</th>
-            <th>Correo electrónico</th>
-        </tr>
+        <thead class="thead-light">
+            <tr>
+                <!--<th></th>-->
+                <th>ID</th>
+                <th>Número de control</th>
+                <th>Nombre(s)</th>
+                <th>Apellido(s)</th>
+                <th>Carrera</th>
+                <th>Teléfono</th>
+                <th>Correo electrónico</th>
+                <th></th>
+            </tr>
+        </thead>
+
         <!--Imprimir un renglón dentro de la tabla para cada estudiante-->
+        <tbody>
         @foreach($students as $student)
-        <tr id="studentRow{{ $student->id }}">
-            <td><input type="checkbox" name="studentCheckbox{{ $student->id }}" onchange="selectStudent({{ $student->id }})"></td>
-            <td>{{ $student->id }}</td>
-            <td>{{ $student->control_number }}</td>
-            <td>{{ $student->first_names }}</td>
-            <td>{{ $student->fathers_last_name }}</td>
-            <td>{{ $student->mothers_last_name }}</td>
-            <td>{{ $student->career }}</td>
-            <td>{{ $student->phone_number }}</td>
-            <td>{{ $student->email }}</td>
-        </tr>
+            <tr id="studentRow{{ $student->id }}" class="clickable-row">
+                <!--<td><input type="checkbox" name="studentCheckbox{{ $student->id }}" onchange="selectStudent({{ $student->id }})"></td>-->
+                <td>{{ $student->id }}</td>
+                <td>{{ $student->control_number }}</td>
+                <td>{{ $student->first_names }}</td>
+                <td>{{ $student->last_names }}</td>
+                <td>{{ $student->career->short_name }}</td>
+                <td>{{ $student->phone_number }}</td>
+                <td>{{ $student->email }}</td>
+                <td><a href="{{ route('alumnos') }}/{{ $student->id }}">Ver alumno</a></td>
+            </tr>
         @endforeach
+        </tbody>
+        
     </table>
 
     <!-- Botones de paginación -->
-    <div class="mx-auto">
-        {{ $students->links('pagination::bootstrap-4') }}
+    <div class="row">
+        <div class="mx-auto">
+            {{ $students->appends($_GET)->links('pagination::bootstrap-4') }}
+        </div>
     </div>
     
     <!--<div class="w-100">
@@ -216,12 +201,13 @@
         }
 
     }
+
 </script>
 
 <!-- Si hubo un error en el formulario de nuevo estudiante, abrir modal automaticamente -->
 @if($errors->any())
     <script type="text/javascript">
-        var $errorMessage = 'Error al crear el alumno.';
+        var $errorMessage = '';
         @foreach($errors->all() as $error)
             $errorMessage = $errorMessage + ' {{ $error }}';
         @endforeach

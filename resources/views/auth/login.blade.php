@@ -8,7 +8,7 @@
 
     <!-- Email input -->
     <div class="form-group">
-        <label for="email" >E-Mail Address</label>
+        <label for="email" >Correo electrónico</label>
         <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
         @if ($errors->has('email')) <div class="invalid-feedback">{{ $errors->first('email') }}</div> @endif
     </div>
@@ -28,9 +28,8 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-        <a class="btn btn-link" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
-    </div>
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    <a class="btn btn-link" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
+        
 </form>
 @endsection

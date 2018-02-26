@@ -1,5 +1,6 @@
 <?php
 
+use App\Career;
 use Faker\Generator as Faker;
 use Faker\Factory as Factory;
 
@@ -25,15 +26,14 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Student::class, function (Faker $faker) {
 
-$faker = Factory::create('es_ES');
+	$faker = Factory::create('es_ES');
 
 	return [
 		'control_number' => $faker->ean8,
-		'career' => $faker->words(3, true),
+		'career_id' => Career::inRandomOrder()->get()[0]->id,
 		'first_names' => $faker->firstName,
-		'fathers_last_name' => $faker->lastName,
-		'mothers_last_name' => $faker->lastName,
-		'phone_number' => $faker->phoneNumber,
+		'last_names' => $faker->lastName.' '.$faker->lastName,
+		'phone_number' => $faker->ean8,
 		'email' => $faker->email
 	];
 

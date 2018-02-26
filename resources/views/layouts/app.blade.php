@@ -26,9 +26,9 @@
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{{ config('app.name', 'ERROR') }}</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Bienvenido(a) {{ Auth::user()->name }}" aria-label="Search">
-      
+
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ route('home') }}">{{ config('app.name', 'ERROR') }}</a>
+      <div class="form-control form-control-dark text-light text-center w-100">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->roles[0]->description }}</div>
 
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -117,7 +117,7 @@
             <h1 class="h2">
               @yield('section', 'Sección desconocida')
             </h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
+            <!--<div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Share</button>
                 <button class="btn btn-sm btn-outline-secondary">Export</button>
@@ -126,7 +126,7 @@
                 <span data-feather="calendar"></span>
                 Semanal
               </button>
-            </div>
+            </div>-->
           </div>
 
           @yield('content', 'No hay contenido que mostrar...')
