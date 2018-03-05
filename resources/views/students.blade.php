@@ -28,7 +28,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="controlNumberControlInput">Número de control</label>
-                                    <input type="text" id="controlNumberControlInput" name="controlNumber" class="form-control {{ $errors->has('controlNumber') ? 'is-invalid' : '' }}">
+                                    <input type="text" id="controlNumberControlInput" name="controlNumber" class="form-control {{ $errors->has('controlNumber') ? 'is-invalid' : '' }}" value="{{ old('controlNumber') }}">
                                     <div class="invalid-feedback">{{ $errors->first('controlNumber') }}</div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                     <select class="form-control" id="careerControlInput" name="careerId">
                                         <!-- Llenar el select con las carreras de la base de datos -->
                                         @foreach($careers as $career)
-                                        <option value="{{$career->id}}">{{ $career->name }}</option>
+                                        <option value="{{$career->id}}" {{ old('careerId') == $career->id ? 'selected' : '' }}>{{ $career->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -46,26 +46,26 @@
                         </div>
                         <div class="form-group">
                             <label for="firstNamesControlInput">Nombre(s)</label>
-                            <input type="text" id="firstNamesControlInput" name="firstNames" class="form-control {{ $errors->has('firstNames') ? 'is-invalid' : ''}}">
+                            <input type="text" id="firstNamesControlInput" name="firstNames" class="form-control {{ $errors->has('firstNames') ? 'is-invalid' : ''}}" value="{{ old('firstNames') }}">
                             <div class="invalid-feedback">{{ $errors->first('firstNames') }}</div>
                         </div>
                         <div class="form-group">
                             <label for="lastNamesControlInput">Apellido(s)</label>
-                            <input type="text" id="lastNamesControlInput" name="lastNames" class="form-control {{ $errors->has('lastNames') ? 'is-invalid' : ''}}">
+                            <input type="text" id="lastNamesControlInput" name="lastNames" class="form-control {{ $errors->has('lastNames') ? 'is-invalid' : ''}}" value="{{ old('lastNames') }}">
                             <div class="invalid-feedback">{{ $errors->first('lastNames') }}</div>
                         </div>
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="phoneNumberControlInput">Número telefónico</label>
-                                    <input type="tel" id="phoneNumberControlInput" name="phoneNumber" class="form-control {{ $errors->has('phoneNumber') ? 'is-invalid' : '' }}">
+                                    <input type="tel" id="phoneNumberControlInput" name="phoneNumber" class="form-control {{ $errors->has('phoneNumber') ? 'is-invalid' : '' }}" value="{{ old('phoneNumber') }}">
                                     <div class="invalid-feedback">{{ $errors->first('phoneNumber') }}</div>
                                 </div>
                             </div>
                             <div class="col-7">
                                 <div class="form-group">
                                     <label for="emailControlInput">Correo electrónico</label>
-                                    <input type="email" id="emailControlInput" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
+                                    <input type="email" id="emailControlInput" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}">
                                     <div class="invalid-feedback">{{ $errors->first('email') }}</div>
                                 </div>
                             </div>

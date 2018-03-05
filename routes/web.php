@@ -25,7 +25,7 @@ use App\Http\Controllers\StudentsController;
 
 Route::get('/', function () {
 
-	//Si el usuario está autenticado redireccionarlo a una sección cualquiera
+	//Si el usuario está autenticado redireccionarlo a la home
 	if(Auth::check()){ 
 		return redirect('/home'); 
 	} else {
@@ -36,16 +36,32 @@ Route::get('/', function () {
 
 Route::get('/about', function() { return 'Acerca de nosotros'; });
 
-Route::get('/alumnos/', 'StudentsController@showAll')->name('alumnos');
+//ALUMNOS
 
-Route::get('/alumnos/{id}', 'StudentsController@show');
+Route::get('/alumnos/', 'StudentsController@showAll')->name('alumnos')->middleware('auth');;
+Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');;
 
 Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
-
 Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');
-
 Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth');
+
+//PROFESORES
+
+Route::get('/profesores/', 'ProfessorsController@showAll')->name('profesores')->middleware('auth');
+Route::get('/profesores/{id}', 'ProfessorsController@show')->middleware('auth');
+
+Route::post('/profesores/crear', 'ProfessorsController@create')->middleware('auth');
+Route::post('/profesores/eliminar', 'ProfessorsController@delete')->middleware('auth');
+Route::post('/profesores/modificar', 'ProfessorsController@modify')->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', 'PagesController@home')->name('home');
+
+/*Route::group(['middleware' => 'auth'], function () {
+
+    // All my routes that needs a logged in user
+
+}
+
+// All my routes that need no authentication*/

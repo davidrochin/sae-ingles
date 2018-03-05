@@ -13,7 +13,7 @@
             <div class="form-row">
                 <div class="form-group col">
                     <label for="id">ID</label>
-                    <input type="text" name="id" class="form-control" value="{{ $student->id }}" readonly>
+                    <input type="text" name="id" class="form-control" value="{{ $student->id }}" readonly>   
                 </div>
                 <div class="form-group col">
                     <label for="controlNumber">Número de control</label>

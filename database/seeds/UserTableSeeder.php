@@ -43,23 +43,23 @@ class UserTableSeeder extends Seeder
 
         //Profesores por defecto ================================
         $user = new User();
-        $user->name = 'Profesor A';
-        $user->email = 'profesor_a@profesor_a.com';
-        $user->password = bcrypt('profesor a');
+        $user->name = 'Luis López';
+        $user->email = 'profesor_a@dgtv.com';
+        $user->password = bcrypt('profesor');
         $user->save();
         $user->roles()->attach($role_professor);
 
         $user = new User();
-        $user->name = 'Profesor B';
-        $user->email = 'profesor_b@profesor_b.com';
-        $user->password = bcrypt('profesor b');
+        $user->name = 'John Smith';
+        $user->email = 'profesor_b@dgtv.com';
+        $user->password = bcrypt('profesor');
         $user->save();
         $user->roles()->attach($role_professor);
 
         //Alumnos por defecto ===================================
         $user = new User();
-        $user->name = 'Alumno A';
-        $user->email = 'alumno@alumno.com';
+        $user->name = 'Pepito';
+        $user->email = 'alumno@dgtv.com';
         $user->password = bcrypt('alumno');
         $user->save();
         $user->roles()->attach($role_student);

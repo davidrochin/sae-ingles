@@ -17,7 +17,7 @@ class CareerTableSeeder extends Seeder
         $career = new Career(); $career->short_name = 'Ing. Industrial'; $career->name = 'Ingeniería Industrial'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Informática'; $career->name = 'Ingeniería en Informática'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Electrónica'; $career->name = 'Ingeniería en Electrónica'; $career->save();
-        $career = new Career(); $career->short_name = 'Ing. Electromecánica'; $career->name = 'Ingeniería en Mecatrónica'; $career->save();
+        $career = new Career(); $career->short_name = 'Ing. Electromecánica'; $career->name = 'Ingeniería en Electromecánica'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Ind. Alimentarias'; $career->name = 'Ingeniería en Industrias Alimentarias'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Innovación Agrícola S.'; $career->name = 'Ingeniería en Innovación Agrícola Sustentable'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Bioquímica'; $career->name = 'Ingeniería en Bioquímica'; $career->save();

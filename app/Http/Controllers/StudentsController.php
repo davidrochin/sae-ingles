@@ -43,10 +43,13 @@ class StudentsController extends Controller
     public function show($id){
 
         $careers = Career::all();
+        $student = Student::findOrFail($id);
+
+        //if(!$student){abort(404);}
 
         return view('student', [
-            'student' => Student::find($id),
-            'careers' => $careers
+            'student' => $student,
+            'careers' => $careers,
         ]);
     }
 
@@ -72,7 +75,8 @@ class StudentsController extends Controller
     	//dd($student);
 
     	//return redirect('/alumnos/'.$messages->id);
-        //$request->session()->flash();
+        $request->flash();
+
     	return redirect()->back()->with('success', 'El alumno ha sido creado con éxito.');
     }
 

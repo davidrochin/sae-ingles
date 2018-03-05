@@ -6,6 +6,6 @@
 
 @section('content')
 
-<p>Bienvenido. Puede navegar por las diferentes secciones del sistema usando el menú de la izquierda.</p>
+<p>Bienvenido(a) {{ Auth::user()->name }}. Puede navegar por las diferentes secciones del sistema usando el menú de la izquierda.</p>
 
 @endsection
