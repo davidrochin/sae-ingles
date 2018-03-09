@@ -45,19 +45,21 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
 
+            @if(Auth::user()->hasAnyRole(['admin', 'coordinator'])) {{-- Sección solo para administradores y coordinadores --}}
+
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Coordinación</span>
             </h6>
 
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('alumnos') }}">
+                <a class="nav-link active" href="{{ route('students') }}">
                   <span data-feather="users"></span>
                   Alumnos <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('profesores') }}">
+                <a class="nav-link" href="{{ route('professors') }}">
                   <span data-feather="users"></span>
                   Profesores
                 </a>
@@ -68,47 +70,44 @@
                   Grupos
                 </a>
               </li>
+            </ul>
 
-              <!--<li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="home"></span>
-                  Pagos
-                </a>
-              </li>
+            @endif
+
+            @if(Auth::user()->hasRole('professor')) {{-- Sección solo para profesores --}}
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Calificaciones</span>
+            </h6>
+
+            <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reportes
+                <a class="nav-link" href="">
+                  <span data-feather="users"></span>
+                  Administrar calificaciones
                 </a>
               </li>
             </ul>
-            
-            <ul class="nav flex-column mb-2">
+
+            @endif
+
+            @if(Auth::user()->hasRole('admin')) {{-- Sección solo para administradores --}}
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Sistema</span>
+            </h6>
+
+            <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
+                <a class="nav-link" href="{{ route('users') }}">
+                  <span data-feather="users"></span>
+                  Usuarios
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>-->
             </ul>
+
+            @endif
+
           </div>
         </nav>
 

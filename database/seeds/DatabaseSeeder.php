@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Student;
+use App\Professor;
 use App\Role;
 use App\User;
 
@@ -19,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
 
         // $this->call(UsersTableSeeder::class);
-        factory(App\Student::class)->times(50)->create();
+        factory(App\Student::class)->times(70)->create();
+        factory(App\Professor::class)->times(20)->create();
 
     }
 }

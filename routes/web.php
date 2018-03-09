@@ -36,23 +36,27 @@ Route::get('/', function () {
 
 Route::get('/about', function() { return 'Acerca de nosotros'; });
 
-//ALUMNOS
+//Alumnos
 
-Route::get('/alumnos/', 'StudentsController@showAll')->name('alumnos')->middleware('auth');;
+Route::get('/alumnos/', 'StudentsController@showAll')->name('students')->middleware('auth');;
 Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');;
 
 Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
 Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');
 Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth');
 
-//PROFESORES
+//Profesores
 
-Route::get('/profesores/', 'ProfessorsController@showAll')->name('profesores')->middleware('auth');
+Route::get('/profesores/', 'ProfessorsController@showAll')->name('professors')->middleware('auth');
 Route::get('/profesores/{id}', 'ProfessorsController@show')->middleware('auth');
 
 Route::post('/profesores/crear', 'ProfessorsController@create')->middleware('auth');
 Route::post('/profesores/eliminar', 'ProfessorsController@delete')->middleware('auth');
 Route::post('/profesores/modificar', 'ProfessorsController@modify')->middleware('auth');
+
+//Usuarios
+
+Route::get('/usuarios/', 'UsersController@showAll')->name('users')->middleware('auth');
 
 Auth::routes();
 

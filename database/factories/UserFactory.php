@@ -38,3 +38,17 @@ $factory->define(App\Student::class, function (Faker $faker) {
 	];
 
 });
+
+$factory->define(App\Professor::class, function (Faker $faker) {
+
+	$faker = Factory::create('es_ES');
+
+	return [
+		'first_names' => $faker->firstName,
+		'last_names' => $faker->lastName.' '.$faker->lastName,
+		'phone_number' => $faker->ean8,
+		'email' => $faker->email,
+		'level' => $faker->numberBetween(1, 5),
+	];
+
+});

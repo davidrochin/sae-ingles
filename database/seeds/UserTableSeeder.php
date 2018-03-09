@@ -44,7 +44,7 @@ class UserTableSeeder extends Seeder
         //Profesores por defecto ================================
         $user = new User();
         $user->name = 'Luis López';
-        $user->email = 'profesor_a@dgtv.com';
+        $user->email = 'profesor@hotmail.com';
         $user->password = bcrypt('profesor');
         $user->save();
         $user->roles()->attach($role_professor);
