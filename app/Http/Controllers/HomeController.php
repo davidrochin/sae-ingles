@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    const DEFAULT_PARENT_ROUTE = 'home';
+
     /**
      * Create a new controller instance.
      *

@@ -28,7 +28,7 @@
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
 
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ route('home') }}">{{ config('app.name', 'ERROR') }}</a>
-      <div class="form-control form-control-dark text-light text-center w-100">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->roles[0]->description }}</div>
+      <div class="form-control form-control-dark text-light text-center w-100">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->role->description }}</div>
 
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -53,19 +53,19 @@
 
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('students') }}">
+                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'students' ? 'active' : '' }}" href="{{ route('students') }}">
                   <span data-feather="users"></span>
-                  Alumnos <span class="sr-only">(current)</span>
+                  Alumnos
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('professors') }}">
+                <a class="nav-link " href="{{ route('professors') }}">
                   <span data-feather="users"></span>
                   Profesores
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link " href="#">
                   <span data-feather="calendar"></span>
                   Grupos
                 </a>
@@ -99,7 +99,7 @@
 
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('users') }}">
+                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'users' ? 'active' : '' }}" href="{{ route('users') }}">
                   <span data-feather="users"></span>
                   Usuarios
                 </a>

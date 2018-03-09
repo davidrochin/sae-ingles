@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 class StudentsController extends Controller
 {
 
+    const DEFAULT_PARENT_ROUTE = 'students';
+
     //public function showAll(){
     public function showAll(Request $request){
 
@@ -36,7 +38,8 @@ class StudentsController extends Controller
 
     	return view('students', [
     		'students' => $students,
-            'careers' => $careers
+            'careers' => $careers,
+            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
     	]);
     }
 
@@ -50,6 +53,7 @@ class StudentsController extends Controller
         return view('student', [
             'student' => $student,
             'careers' => $careers,
+            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
 

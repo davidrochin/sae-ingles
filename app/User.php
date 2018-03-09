@@ -54,13 +54,13 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        if ($this->roles()->where('name', $role)->first()) {
+        if ($this->role()->where('name', $role)->first()) {
             return true;
         }
         return false;
     }
 
-    public function roles(){
-        return $this->belongsToMany(Role::class)->withTimestamps();
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 }

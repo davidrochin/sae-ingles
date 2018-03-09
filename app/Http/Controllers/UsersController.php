@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     
+    const DEFAULT_PARENT_ROUTE = 'users';
+
 	public function showAll(Request $request){
 
         //Revisar si hay una keyword en los parametros
@@ -27,7 +29,8 @@ class UsersController extends Controller
         }
 
     	return view('users', [
-    		'users' => $users
+    		'users' => $users,
+            'parentRoute' => UsersController::DEFAULT_PARENT_ROUTE,
     	]);
     }
 

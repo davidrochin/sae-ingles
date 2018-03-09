@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class ProfessorsController extends Controller
 {
+
+    const DEFAULT_PARENT_ROUTE = 'professors';
+
     public function showAll(){
 
     }
