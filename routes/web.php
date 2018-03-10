@@ -45,14 +45,14 @@ Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
 Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');
 Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth');
 
-//Profesores
+//Grupos
 
-Route::get('/profesores/', 'ProfessorsController@showAll')->name('professors')->middleware('auth');
-Route::get('/profesores/{id}', 'ProfessorsController@show')->middleware('auth');
+Route::get('/grupos/', 'GroupsController@showAll')->name('groups')->middleware('auth');
+Route::get('/grupos/{id}', 'GroupsController@show')->middleware('auth');
 
-Route::post('/profesores/crear', 'ProfessorsController@create')->middleware('auth');
-Route::post('/profesores/eliminar', 'ProfessorsController@delete')->middleware('auth');
-Route::post('/profesores/modificar', 'ProfessorsController@modify')->middleware('auth');
+Route::post('/grupos/crear', 'GroupsController@create')->middleware('auth');
+Route::post('/grupos/eliminar', 'GroupsController@delete')->middleware('auth');
+Route::post('/grupos/modificar', 'GroupsController@modify')->middleware('auth');
 
 //Usuarios
 

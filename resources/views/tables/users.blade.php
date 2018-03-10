@@ -16,7 +16,10 @@
         @foreach($users as $user)
             <tr id="tableRow{{ $user->id }}" class="clickable-row">
                 <td>{{ $user->id }}</td>
-                <td>{{ $user->role->description }}</td>
+                <td>
+                    @component('components.role-badge', ['role' => $user->role])
+                    @endcomponent
+                </td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>

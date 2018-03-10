@@ -13,7 +13,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $role_student = Role::where('name', 'student')->first();
         $role_professor = Role::where('name', 'professor')->first();
         $role_coordinator = Role::where('name', 'coordinator')->first();
         $role_admin = Role::where('name', 'admin')->first();
@@ -35,33 +34,10 @@ class UserTableSeeder extends Seeder
 
         //Coordinadores por defecto =============================
         $user = new User();
-        $user->name = 'Coordinador';
-        $user->email = 'coordinador@dgtv.com';
-        $user->password = bcrypt('coordinador');
+        $user->name = 'Leticia García';
+        $user->email = 'letigarcia@gmail.com';
+        $user->password = bcrypt('leticia');
         $user->role_id = Role::where('name', 'coordinator')->first()->id;
-        $user->save();
-
-        //Profesores por defecto ================================
-        $user = new User();
-        $user->name = 'Luis López';
-        $user->email = 'profesor@hotmail.com';
-        $user->password = bcrypt('profesor');
-        $user->role_id = Role::where('name', 'professor')->first()->id;
-        $user->save();
-
-        $user = new User();
-        $user->name = 'John Smith';
-        $user->email = 'profesor_b@dgtv.com';
-        $user->password = bcrypt('profesor');
-        $user->role_id = Role::where('name', 'professor')->first()->id;
-        $user->save();
-
-        //Alumnos por defecto ===================================
-        $user = new User();
-        $user->name = 'Pepito';
-        $user->email = 'alumno@dgtv.com';
-        $user->password = bcrypt('alumno');
-        $user->role_id = Role::where('name', 'student')->first()->id;
         $user->save();
     }
 }

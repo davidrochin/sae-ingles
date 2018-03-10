@@ -1,89 +1,78 @@
 @extends('layouts.app')
 @section('title', 'Alumnos')
 @section('section', 'Alumnos')
+
 @section('content')
+
 <div class="">
 
     <!-- Modal para agregar un estudiante -->
-    <div class="modal fade in" id="newStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Nuevo estudiante</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+    @component('components.modal')
+        @slot('id', 'newStudentModal')
+        @slot('title', 'Nuevo estudiante')
+        @slot('dismiss', 'Cancelar')
+        
+        @slot('body')
 
-                <!-- Cuerpo del Modal -->
-                <div class="modal-body">
+            <!-- Formulario de nuevo alumno -->
+            <form class="form" action="/alumnos/crear" method="post" id="createStudentForm">
 
-                    <!-- Formulario de nuevo alumno -->
-                    <form class="form" action="/alumnos/crear" method="post" id="createStudentForm">
+                <!-- Crear el token de seguridad -->
+                {{ csrf_field() }}
 
-                        <!-- Crear el token de seguridad -->
-                        {{ csrf_field() }}
-
-                        <div class="form-row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="controlNumberControlInput">Número de control</label>
-                                    <input type="text" id="controlNumberControlInput" name="controlNumber" class="form-control {{ $errors->has('controlNumber') ? 'is-invalid' : '' }}" value="{{ old('controlNumber') }}">
-                                    <div class="invalid-feedback">{{ $errors->first('controlNumber') }}</div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="form-group">
-                                    <label for="careerControlInput">Carrera</label>
-                                    <select class="form-control" id="careerControlInput" name="careerId">
-                                        <!-- Llenar el select con las carreras de la base de datos -->
-                                        @foreach($careers as $career)
-                                        <option value="{{$career->id}}" {{ old('careerId') == $career->id ? 'selected' : '' }}>{{ $career->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                <div class="form-row">
+                    <div class="col">
+                        @component('components.form-input')
+                            @slot('tag', 'Número de control')
+                            @slot('name', 'controlNumber')
+                         @endcomponent
+                    </div>
+                    <div class="col-8">
                         <div class="form-group">
-                            <label for="firstNamesControlInput">Nombre(s)</label>
-                            <input type="text" id="firstNamesControlInput" name="firstNames" class="form-control {{ $errors->has('firstNames') ? 'is-invalid' : ''}}" value="{{ old('firstNames') }}">
-                            <div class="invalid-feedback">{{ $errors->first('firstNames') }}</div>
+                            <label for="careerControlInput">Carrera</label>
+                            <select class="form-control" id="careerControlInput" name="careerId">
+                                <!-- Llenar el select con las carreras de la base de datos -->
+                                @foreach($careers as $career)
+                                <option value="{{$career->id}}" {{ old('careerId') == $career->id ? 'selected' : '' }}>{{ $career->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="lastNamesControlInput">Apellido(s)</label>
-                            <input type="text" id="lastNamesControlInput" name="lastNames" class="form-control {{ $errors->has('lastNames') ? 'is-invalid' : ''}}" value="{{ old('lastNames') }}">
-                            <div class="invalid-feedback">{{ $errors->first('lastNames') }}</div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="phoneNumberControlInput">Número telefónico</label>
-                                    <input type="tel" id="phoneNumberControlInput" name="phoneNumber" class="form-control {{ $errors->has('phoneNumber') ? 'is-invalid' : '' }}" value="{{ old('phoneNumber') }}">
-                                    <div class="invalid-feedback">{{ $errors->first('phoneNumber') }}</div>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="form-group">
-                                    <label for="emailControlInput">Correo electrónico</label>
-                                    <input type="email" id="emailControlInput" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}">
-                                    <div class="invalid-feedback">{{ $errors->first('email') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <input type="submit" class="btn btn-primary" value="Crear" form="createStudentForm">
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Alerta de éxito -->
-    @if(session()->get('success'))
-    <div class="alert alert-success">{{ session()->get('success') }}</div>
-    @endif
+                @component('components.form-input')
+                    @slot('tag', 'Nombre(s)')
+                    @slot('name', 'firstNames')
+                @endcomponent
+
+                @component('components.form-input')
+                    @slot('tag', 'Apellidos')
+                    @slot('name', 'lastNames')
+                @endcomponent
+
+                <div class="form-row">
+                    <div class="col">
+                        @component('components.form-input')
+                            @slot('tag', 'Teléfono')
+                            @slot('name', 'phoneNumber')
+                            @slot('type', 'tel')
+                        @endcomponent
+                    </div>
+                    <div class="col-7">
+                        @component('components.form-input')
+                            @slot('tag', 'Correo electrónico')
+                            @slot('name', 'email')
+                            @slot('type', 'email')
+                        @endcomponent
+                    </div>
+                </div>
+            </form>
+        @endslot
+
+        @slot('footer')
+            <input type="submit" class="btn btn-primary" value="Crear" form="createStudentForm">
+        @endslot
+    @endcomponent
 
     <!--Botones para manipular tabla de estudiantes y buscador-->
     <div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
@@ -101,7 +90,9 @@
             </div>
         </form>
     </div>
+
 </div>
+
 <div class="">
 
     <!-- Tabla de estudiantes -->
@@ -113,24 +104,8 @@
             {{ $students->appends($_GET)->links('pagination::bootstrap-4') }}
         </div>
     </div>
-    
-    <!--<div class="w-100">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Siguiente</a>
-                </li>
-            </ul>
-        </nav>
-    </div>-->
 
-    </div>
+</div>
 
 @endsection
 

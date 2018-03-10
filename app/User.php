@@ -63,4 +63,9 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public static function professors(){
+        $professorRoleId = Role::where('name', 'professor')->first()->id;
+        return User::where('role_id', $professorRoleId);
+    }
 }

@@ -4,4 +4,11 @@
 
 @section('content')
 	@include('tables.users')
+
+<div class="row">
+    <div class="mx-auto">
+        {{ $users->appends($_GET)->links('pagination::bootstrap-4') }}
+    </div>
+</div>
+
 @endsection

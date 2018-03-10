@@ -59,13 +59,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="{{ route('professors') }}">
-                  <span data-feather="users"></span>
-                  Profesores
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'groups' ? 'active' : '' }}" href="{{ route('groups') }}">
                   <span data-feather="calendar"></span>
                   Grupos
                 </a>
@@ -127,6 +121,9 @@
               </button>
             </div>-->
           </div>
+
+          <!-- Alerta de éxito. Solo se muestra si es necesario -->
+          @include('components.success-alert')
 
           @yield('content', 'No hay contenido que mostrar...')
 

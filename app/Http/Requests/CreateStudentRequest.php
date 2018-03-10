@@ -29,7 +29,7 @@ class CreateStudentRequest extends FormRequest
             'careerId' => 'required',
             'firstNames' => 'required',
             'lastNames' => 'required',
-            'phoneNumber' => 'digits_between:0,30',
+            'phoneNumber' => 'required|digits_between:0,30',
             'email' => 'email',
         ];
     }
@@ -41,6 +41,7 @@ class CreateStudentRequest extends FormRequest
             'controlNumber.digits' => 'El número de control necesita tener 8 dígitos.',
             'firstNames.required' => 'Es necesario proporcionar un nombre.',
             'lastNames.required' => 'Es necesario proporcionar los apellidos.',
+            'phoneNumber.required' => 'Es necesario especificar un número de telefono.',
             'phoneNumber.digits_between' => 'Necesita ser un número de entre 0 y 30 dígitos.',
             'email.email' => 'No es un correo electrónico válido.'
         ];
