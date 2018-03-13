@@ -23,10 +23,10 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    @if(Auth::user()->hasRole('admin'))
-                        <a href="#">Generar nueva contraseña</a>
+                    @if($user->role->name == 'professor')
+                        <a href="#">Nueva contraseña</a>
                     @else
-                        Privada
+                        
                     @endif
                 </td>
                 <td><a href="{{ route('users') }}/{{ $user->id }}">Ver usuario</a></td>

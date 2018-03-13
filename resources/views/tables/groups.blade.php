@@ -8,7 +8,7 @@
                 <th>Horario</th>
                 <th>Dias</th>
                 <th>Código</th>
-                <th>Grupo</th>
+                <th>Nombre</th>
                 <th>Nivel</th>
                 <th></th>
             </tr>
@@ -20,9 +20,13 @@
                 <td>{{ $group->id }}</td>
                 <td>{{ $group->user->name }}</td>
                 <td>{{ $group->schedule_start }} - {{ $group->schedule_end }}</td>
-                <td>{{ $group->days }}</td>
+                <td>{{-- $group->days --}}
+                    @component('components.days-badges')
+                        @slot('days', $group->days)
+                    @endcomponent
+                </td>
                 <td>{{ $group->code }}</td>
-                <td>{{ $group->group }}</td>
+                <td>{{ $group->name }}</td>
                 <td>{{ $group->level }}</td>
                 <td><a href="{{ route('groups') }}/{{ $group->id }}">Ver grupo</a></td>
             </tr>

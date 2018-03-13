@@ -25,7 +25,7 @@ class CreateGroupsTable extends Migration
             $table->text('days');
 
             $table->text('code');
-            $table->text('group');
+            $table->text('name');
         });
     }
 

@@ -154,7 +154,7 @@
         @foreach($errors->all() as $error)
             $errorMessage = $errorMessage + ' {{ $error }}';
         @endforeach
-        alert($errorMessage);
+        //alert($errorMessage);
         
         //Abrir modal de estudiante
         $( document ).ready(function() {

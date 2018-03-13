@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\User;
 use App\Role;
+use App\Http\Requests\CreateGroupRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -41,8 +42,19 @@ class GroupsController extends Controller
 
     }
 
-    public function create(){
+    public function create(CreateGroupRequest $request){
 
+        Group::create([
+            'name' => $request->input('name'),
+            'code' => $request->input('code'),
+            'level' => $request->input('level'),
+            'user_id' => $request->input('professorId'),
+            'schedule_start' => $request->input('scheduleStart'),
+            'schedule_end' => $request->input('scheduleEnd'),
+            'days' => implode($request->input('days')),
+        ]);
+
+        return redirect()->back()->with('success', 'El grupo ha sido creado con éxito.');
     }
     
     public function delete(){

@@ -67,7 +67,15 @@
 					</div>
 				</div>
 
-				@include('parts.days-checkboxes')
+				<div class="form-group has-error">
+					<label for="mondayCheckbox">Días de la semana</label>
+						<div class="card" style="{{ $errors->has('days') ? 'border-color: red;' : ''}}">
+							<div class="card-body">
+							@include('parts.days-checkboxes')
+							</div>
+						</div>
+						<div style=" color: #dc3545; font-size: 80%; margin-top: .25rem;">{{ $errors->first('days') }}</div>
+				</div>
 
 			</form>
 		@endslot
