@@ -74,7 +74,7 @@
 
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('grades') }}">
                   <span data-feather="users"></span>
                   Administrar calificaciones
                 </a>

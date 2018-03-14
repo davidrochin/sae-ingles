@@ -59,6 +59,9 @@ Route::post('/grupos/modificar', 'GroupsController@modify')->middleware('auth');
 Route::get('/usuarios/', 'UsersController@showAll')->name('users')->middleware('auth');
 Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 
+//Calificaciones
+Route::get('/calificaciones/', 'GradesController@showOwnedGroups')->name('grades')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'PagesController@home')->name('home');

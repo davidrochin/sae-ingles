@@ -21,7 +21,9 @@ class GroupsController extends Controller
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
         if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
-            return view('auth.nopermission');
+            return view('auth.nopermission', [
+                'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
+            ]);
         }
 
         //Si hay una palabra clave de busqueda, buscar con ella
@@ -45,6 +47,7 @@ class GroupsController extends Controller
         return view('group', [
             'group' => $group,
             'professors' => User::professors()->get(),
+            'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
 
