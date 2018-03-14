@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Página principal')
-
 @section('section', 'Página principal')
 
 @section('content')

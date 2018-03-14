@@ -1,3 +1,5 @@
+{{-- Esta part es para ser usada para llenarse por primera vez. Si necesita que los valores estén pre-llenados, use el que está en componentes --}}
+
 <div class="mx-auto text-center">
 	<div class="form-check form-check-inline">
 	  <input class="form-check-input" type="checkbox" id="mondayCheckbox" name="days[]" value="1" {{ old('days') ? in_array('1', old('days')) ? 'checked' : '' : '' }}>

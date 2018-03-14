@@ -25,6 +25,7 @@
                         @component('components.form-input')
                             @slot('tag', 'Número de control')
                             @slot('name', 'controlNumber')
+                            @slot('value', old('controlNumber'))
                          @endcomponent
                     </div>
                     <div class="col-8">
@@ -43,11 +44,13 @@
                 @component('components.form-input')
                     @slot('tag', 'Nombre(s)')
                     @slot('name', 'firstNames')
+                    @slot('value', old('firstNames'))
                 @endcomponent
 
                 @component('components.form-input')
                     @slot('tag', 'Apellidos')
                     @slot('name', 'lastNames')
+                    @slot('value', old('lastNames'))
                 @endcomponent
 
                 <div class="form-row">
@@ -56,6 +59,7 @@
                             @slot('tag', 'Teléfono')
                             @slot('name', 'phoneNumber')
                             @slot('type', 'tel')
+                            @slot('value', old('phoneNumber'))
                         @endcomponent
                     </div>
                     <div class="col-7">
@@ -63,6 +67,7 @@
                             @slot('tag', 'Correo electrónico')
                             @slot('name', 'email')
                             @slot('type', 'email')
+                            @slot('value', old('email'))
                         @endcomponent
                     </div>
                 </div>

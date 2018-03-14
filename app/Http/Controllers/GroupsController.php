@@ -40,6 +40,12 @@ class GroupsController extends Controller
 
     public function show($id){
 
+        $group = Group::where('id', $id)->first();
+
+        return view('group', [
+            'group' => $group,
+            'professors' => User::professors()->get(),
+        ]);
     }
 
     public function create(CreateGroupRequest $request){

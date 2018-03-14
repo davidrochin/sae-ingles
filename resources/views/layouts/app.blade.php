@@ -8,20 +8,18 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <!-- Si no hay una section 'title', poner el nombre de la App-->
     <title>
-      @if (trim($__env->yieldContent('title')))
-        @yield('title')
-      @else
-        {{ config('app.name', 'ERROR') }}
-      @endif
+      @yield('title', config('app.name', 'ERROR'))
     </title>
-
+    
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Hola de estilos propia para hacer ajustes -->
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-adjustments.css') }}" />
   </head>
 
   <body>

@@ -57,6 +57,7 @@ Route::post('/grupos/modificar', 'GroupsController@modify')->middleware('auth');
 //Usuarios
 
 Route::get('/usuarios/', 'UsersController@showAll')->name('users')->middleware('auth');
+Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 
 Auth::routes();
 
