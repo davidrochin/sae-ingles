@@ -40,11 +40,11 @@ class StudentsController extends Controller
     		'students' => $students,
             'careers' => $careers,
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+            //'modalMessage' => 'Prueba de modal de mensajes',
     	]);
     }
 
     public function show($id){
-
         $careers = Career::all();
         $student = Student::findOrFail($id);
 
@@ -82,6 +82,7 @@ class StudentsController extends Controller
         $request->flash();
 
     	return redirect()->back()->with('success', 'El alumno ha sido creado con éxito.');
+        //return redirect('alumnos/'.$student->id.'/');
     }
 
     public function delete(DeleteStudentRequest $request){

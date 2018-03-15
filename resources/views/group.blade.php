@@ -90,8 +90,11 @@
 		@component('components.card')
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
-			Alumno 1
-			Alumno 2
+	
+			@component('components.group-students')
+				@slot('group', $group)
+			@endcomponent
+
 		@endcomponent
 	</div>
 </div>

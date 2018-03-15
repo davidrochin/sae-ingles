@@ -1,5 +1,5 @@
 
-<span class="badge 
+<span class="badge badge-pill
 @if($role->name == 'admin')
 badge-dark
 @elseif($role->name == 'coordinator')

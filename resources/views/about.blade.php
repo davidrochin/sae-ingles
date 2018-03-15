@@ -1,0 +1,28 @@
+@extends('layouts.auth')
+
+@section('title', 'Acerca de')
+
+@section('content')
+
+<p class="text-center">Desarrollado por</p>
+
+<div class="row">
+	<div class="col">
+		<img src="https://avatars.githubusercontent.com/davidrochin" class="rounded-circle img-fluid p-4">
+		<p class="text-center">José David Rochín Cerecer<br><a href="https://github.com/davidrochin">github/davidrochin</a></p>
+	</div>	
+	<div class="col">
+		<img src="https://avatars.githubusercontent.com/christianLugo5" class="rounded-circle img-fluid p-4">
+		<p class="text-center">Christian Ricardo Lugo Arellano<br><a href="https://github.com/christianLugo5">github/christianLugo5</a></p>
+	</div>	
+</div>
+
+<hr>
+
+<p class="text-center">Hecho con Laravel 5.5, Bootstrap 4 y AJAX.</p>
+
+<div class="text-center">
+	<button class="btn btn-primary" onclick="window.history.back();">Volver</button>
+</div>
+
+@endsection

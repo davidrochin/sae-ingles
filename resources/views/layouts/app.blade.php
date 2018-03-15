@@ -23,6 +23,16 @@
   </head>
 
   <body>
+
+    <!-- Modal default. Para usar este modal mande un mensaje en la variable $modalMessage -->
+    @component('components.modal')
+      @slot('id', 'defaultModal')
+      @slot('title', 'Mensaje del sistema')
+      @slot('body')
+        {{ $modalMessage or '' }}
+      @endslot
+    @endcomponent
+
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
 
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ route('home') }}">{{ config('app.name', 'ERROR') }}</a>
@@ -100,6 +110,19 @@
 
             @endif
 
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Información</span>
+            </h6>
+
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'about' ? 'active' : '' }}" href="{{ route('about') }}">
+                  <span data-feather="tag"></span>
+                  Acerca de
+                </a>
+              </li>
+            </ul>
+
           </div>
         </nav>
 
@@ -129,6 +152,7 @@
       </div>
     </div>
 
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -150,5 +174,14 @@
   </body>
 
   @yield('scripts')
+
+  <!-- Abrir el modal que muestra mensajes del sistema si es necesario -->
+  @if(isset($modalMessage))
+  <script type="text/javascript">
+    $( document ).ready(function() {
+          $('#defaultModal').modal('show');
+      });
+  </script>
+  @endif
 
 </html>

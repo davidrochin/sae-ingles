@@ -30,7 +30,7 @@ class GroupsController extends Controller
         if($keyword){
             $groups = Group::search($keyword)->paginate(13);
         } else {
-            $groups = Group::orderBy('id', 'ASC')->paginate(13);
+            $groups = Group::orderBy('active', 'DESC')->paginate(13);
         }
 
         return view('groups', [

@@ -15,6 +15,10 @@ class Student extends Model
         return $this->belongsTo(Career::class);
     }
 
+    public function groups(){
+        return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
+    }
+
     //Falta probar esta función con Student::like('control_number', '14440590')->get();
     public function scopeLike($query, $field, $value){
     	return $query->where($field, 'LIKE', "%$value%");

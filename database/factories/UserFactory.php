@@ -61,6 +61,8 @@ $factory->define(App\Group::class, function (Faker $faker) {
 		'code' => $faker->numberBetween(1000, 9999),
 		'name' => $faker->numberBetween(1000, 9999),
 		'user_id' => User::where('role_id', $professorRoleId)->inRandomOrder()->first()->id,
+		'active' => $faker->numberBetween(0, 1),
 	];
 
 });
+
