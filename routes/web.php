@@ -60,6 +60,8 @@ Route::post('/grupos/modificar', 'GroupsController@modify')->middleware('auth');
 Route::get('/usuarios/', 'UsersController@showAll')->name('users')->middleware('auth');
 Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 
+Route::post('/usuarios/crear','UsersController@create')->middleware('auth');
+
 //Calificaciones
 Route::get('/calificaciones/', 'GradesController@showOwnedGroups')->name('grades')->middleware('auth');
 

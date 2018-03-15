@@ -93,7 +93,7 @@
 
             @endif
 
-            @if(Auth::user()->hasRole('admin')) {{-- Sección solo para administradores --}}
+            @if(Auth::user()->hasAnyRole(['admin','coordinator'])) {{-- Sección solo para administradores --}}
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Sistema</span>
