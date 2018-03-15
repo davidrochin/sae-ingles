@@ -58,7 +58,11 @@ class UsersController extends Controller
             'role_id' => $request->input('roleId'),
         ]);
 
-        return redirect()->back()->with('success', 'El grupo ha sido creado con éxito.');
+        //Esta linea es para que se manden los datos de vuelta a la view y se puedan volver a poner en sus respectivos Inputs.
+        //(Así el usuario no tiene que volver a ingresar los datos que sí estaban bien).
+        $request->flash();
+
+        return redirect()->back()->with('success', 'El usuario ha sido creado con éxito.');
     }
 
 }
