@@ -52,7 +52,6 @@ class GroupsController extends Controller
     }
 
     public function create(CreateGroupRequest $request){
-
         Group::create([
             'name' => $request->input('name'),
             'code' => $request->input('code'),
@@ -61,6 +60,8 @@ class GroupsController extends Controller
             'schedule_start' => $request->input('scheduleStart'),
             'schedule_end' => $request->input('scheduleEnd'),
             'days' => implode($request->input('days')),
+            'year' => $request->input('year'),
+            'period_id' => $request->input('periodId'),
         ]);
 
         return redirect()->back()->with('success', 'El grupo ha sido creado con éxito.');

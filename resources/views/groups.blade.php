@@ -24,12 +24,14 @@
 						@component('components.form-input')
 							@slot('tag', 'Nombre')
 							@slot('name', 'name')
+							@slot('value', old('name'))
 						@endcomponent
 					</div>
 					<div class="col">
 						@component('components.form-input')
 							@slot('tag', 'Código')
 							@slot('name', 'code')
+							@slot('value', old('code'))
 						@endcomponent
 					</div>
 					<div class="col">
@@ -37,6 +39,7 @@
 							@slot('tag', 'Nivel')
 							@slot('name', 'level')
 							@slot('type', 'number')
+							@slot('value', old('level'))
 						@endcomponent
 					</div>
 				</div>
@@ -50,6 +53,7 @@
 		                        <option value="{{$period->id}}" {{ old('periodId') == $period->id ? 'selected' : '' }}>{{ $period->name }}</option>
 		                        @endforeach
 		                    </select>
+		                    <div class="invalid-feedback">{{ $errors->first('periodId') }}</div>
 		                </div>
 					</div>
 					<div class="col">
@@ -57,7 +61,7 @@
 							@slot('tag', 'Año')
 							@slot('name', 'year')
 							@slot('type', 'number')
-							@slot('value', date('Y'))
+							@slot('value', old('year') != null ? old('year') : date('Y'))
 						@endcomponent
 					</div>
 				</div>
@@ -77,6 +81,7 @@
 							@slot('tag', 'Hora de inicio')
 							@slot('name', 'scheduleStart')
 							@slot('type', 'time')
+							@slot('value', old('scheduleStart'))
 						@endcomponent
 					</div>
 					<div class="col">
@@ -84,6 +89,7 @@
 							@slot('tag', 'Hora de fin')
 							@slot('name', 'scheduleEnd')
 							@slot('type', 'time')
+							@slot('value', old('scheduleEnd'))
 						@endcomponent
 					</div>
 				</div>

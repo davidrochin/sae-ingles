@@ -30,7 +30,7 @@ class CreateGroupsTable extends Migration
             $table->text('code');
             $table->text('name');
 
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
         });
     }
 

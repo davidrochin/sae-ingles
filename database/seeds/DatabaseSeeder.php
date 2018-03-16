@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Student;
 use App\Role;
 use App\User;
+use App\Period;
 use App\Group;
 
 class DatabaseSeeder extends Seeder
