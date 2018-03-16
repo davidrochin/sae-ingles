@@ -29,7 +29,7 @@
       @slot('id', 'defaultModal')
       @slot('title', 'Mensaje del sistema')
       @slot('body')
-        {{ $modalMessage or '' }}
+        {{ session('message') }}
       @endslot
     @endcomponent
 
@@ -176,7 +176,7 @@
   @yield('scripts')
 
   <!-- Abrir el modal que muestra mensajes del sistema si es necesario -->
-  @if(isset($modalMessage))
+  @if(session('message'))
   <script type="text/javascript">
     $( document ).ready(function() {
           $('#defaultModal').modal('show');

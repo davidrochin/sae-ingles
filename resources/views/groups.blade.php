@@ -41,6 +41,27 @@
 					</div>
 				</div>
 
+				<div class="form-row">
+					<div class="col">
+						<div class="form-group">
+		                    <label for="periodControlInput">Periodo</label>
+		                    <select class="form-control" id="periodControlInput" name="periodId">
+		                        @foreach(App\Period::all() as $period)
+		                        <option value="{{$period->id}}" {{ old('periodId') == $period->id ? 'selected' : '' }}>{{ $period->name }}</option>
+		                        @endforeach
+		                    </select>
+		                </div>
+					</div>
+					<div class="col">
+						@component('components.form-input')
+							@slot('tag', 'Año')
+							@slot('name', 'year')
+							@slot('type', 'number')
+							@slot('value', date('Y'))
+						@endcomponent
+					</div>
+				</div>
+
 				<div class="form-group">
                     <label for="professorControlInput">Profesor</label>
                     <select class="form-control" id="professorControlInput" name="professorId">

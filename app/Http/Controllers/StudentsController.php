@@ -36,6 +36,9 @@ class StudentsController extends Controller
 
         $careers = Career::all();
 
+        //Para mandar un mensaje al usuario
+        //$request->session()->now('message', 'Prueba de mensaje');
+
     	return view('students', [
     		'students' => $students,
             'careers' => $careers,

@@ -20,6 +20,9 @@ class CreateGroupsTable extends Migration
 
             $table->integer('level');
 
+            $table->unsignedInteger('period_id');
+            $table->unsignedInteger('year');
+
             $table->time('schedule_start');
             $table->time('schedule_end');
             $table->text('days');

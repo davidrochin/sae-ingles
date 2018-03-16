@@ -10,6 +10,8 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Nivel</th>
+                <th>Año</th>
+                <th>Periodo</th>
                 <th>Estado</th>
                 <th></th>
             </tr>
@@ -29,6 +31,8 @@
                 <td>{{ $group->code }}</td>
                 <td>{{ $group->name }}</td>
                 <td>{{ $group->level }}</td>
+                <td>{{ $group->year }}</td>
+                <td>{{ $group->period->short_name }}</td>
                 <td>
                     @component('components.group-state-badge')
                         @slot('group', $group)
