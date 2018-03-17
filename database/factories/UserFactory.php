@@ -51,10 +51,14 @@ $factory->define(App\Group::class, function (Faker $faker) {
 	$faker = Factory::create('es_ES');
 	$professorRoleId = Role::where('name', 'professor')->first()->id;
 
+	$scheduleStartHour = $faker->numberBetween(7,22);
+	$scheduleStart = $scheduleStartHour.':00:00';
+	$scheduleEnd = ($scheduleStartHour + 1).':00:00'; 
+
 	return [
 		'level' => $faker->numberBetween(1, 5),
-		'schedule_start' => $faker->time('H:i', 'now'),
-		'schedule_end' => $faker->time('H:i', 'now'),
+		'schedule_start' => $scheduleStart,
+		'schedule_end' => $scheduleEnd,
 		'days' => $faker->randomElement([12345, 6]),
 		'code' => $faker->numberBetween(1000, 9999),
 		'name' => $faker->randomElement(['A', 'B']),

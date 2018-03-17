@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('section', 'Información del grupo')
+
 @section('content')
 
 <div class="row">
@@ -81,7 +83,26 @@
 					</div>
 					<div style=" color: #dc3545; font-size: 80%; margin-top: .25rem;">{{ $errors->first('days') }}</div>
 			</div>
+		@endcomponent
 
+		{{-- Card que muestra los controles para agregar alumnos al grupo --}}
+		@component('components.card')
+			@slot('header', 'Agregar alumnos al grupo')
+
+			{{-- Input para agregar un nuevo alumno --}}
+			<form action="/grupos/agregar" method="post">
+				<div class="input-group mb-3">
+				  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="Escriba el ID de un alumno para agregarlo a este grupo...">
+				  <div class="input-group-append">
+				    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+				  </div>
+				</div>
+			</form>
+
+			@component('components.alert')
+				@slot('id', 'studentInfoAlert')
+				Si usted presiona agregar, se agregará a <span id="studentToAdd" class="font-weight-bold">...</span> a este grupo.
+			@endcomponent
 		@endcomponent
 	</div>
 		
@@ -90,7 +111,8 @@
 		@component('components.card')
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
-	
+
+			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.group-students')
 				@slot('group', $group)
 			@endcomponent
@@ -98,5 +120,41 @@
 		@endcomponent
 	</div>
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+
+	//Este script es para hacer la búsqueda en vivo del nombre del alumno,
+	//deacuerdo al ID escrito en el input para agregar nuevos alumnos.
+
+	// Buscar el input por su ID y establecer su evento
+	$('#studentAddInput').on('input',function(){
+
+		//Obtener el valor del input
+		$value=$(this).val();
+
+		//Si no hay valor, establecerlo como un -1 para no obtener una URL indeseada
+		if(!$value){ $value = -1; }
+
+		//Iniciar la petición con AJAX
+		$.ajax({
+			type : 'get',
+			url : '{{ route('students') }}/' + $value,
+			data:{ 'json':1, },
+
+			//Poner el nombre del alumno en el span
+			success:function(data){ $('#studentToAdd').html(data['last_names'] + ' ' + data['first_names']); },
+			error:function(data){ $('#studentToAdd').html('...'); }
+		});
+	})
+</script>
+
+<script type="text/javascript">
+
+	$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 
 @endsection

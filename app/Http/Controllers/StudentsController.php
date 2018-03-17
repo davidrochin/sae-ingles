@@ -47,9 +47,14 @@ class StudentsController extends Controller
     	]);
     }
 
-    public function show($id){
+    public function show(Request $request, $id){
         $careers = Career::all();
         $student = Student::findOrFail($id);
+
+        //Revisar si se pidió en JSON
+        if($request->get('json') == 1){
+            return response()->json($student);
+        }
 
         //if(!$student){abort(404);}
 

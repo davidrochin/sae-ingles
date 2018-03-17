@@ -1,6 +1,8 @@
 @if(session()->get('success'))
 	@component('components.alert')
-		@slot('message', session()->get('success'))
 		@slot('type', 'success')
+
+		{{ session()->get('success') }}
+
 	@endcomponent
 @endif
