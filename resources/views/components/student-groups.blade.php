@@ -1,7 +1,7 @@
-<table class="table table-hover">
+<table class="table table-hover table-bordered">
 
 	@if(!isset($hideHead))
-	<thead class="thead-light">
+	<thead>
 		<tr>
 			<th>Nombre</th>
 			<th>Horario</th>

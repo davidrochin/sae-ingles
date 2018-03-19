@@ -80,13 +80,25 @@
     @endcomponent
 
     <!--Botones para manipular tabla de estudiantes y buscador-->
-    <div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group" role="group" aria-label="First group">
+    <div class="btn-toolbar mb-3 w-100 form-inline" role="toolbar" aria-label="Toolbar with button groups">
+
+        {{-- Botón de Nuevo --}}
+        <div class="btn-group mr-2" role="group" aria-label="First group">
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
         </div>
 
+        
+
         <!-- Formulario para buscar -->
-        <form class="form col-auto mr-0 ml-auto" action="/alumnos/" method="get">
+        <form class="form col-auto mr-0 ml-auto form-inline" action="/alumnos/" method="get">
+
+            {{-- Filtros --}}
+            <select class="form-control mr-3 ml-auto">
+                <option>Todos los alumnos</option>
+                <option>Alumnos sin grupo activo</option>
+            </select>
+
+            {{-- Buscador --}}
             <div class="input-group ">
                 <input type="text" class="form-control w-auto" placeholder="Escriba algo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
                 <div class="input-group-append">

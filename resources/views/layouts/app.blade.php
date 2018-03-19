@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-{{ $background or '' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,23 +76,6 @@
 
             @endif
 
-            @if(Auth::user()->hasRole('professor')) {{-- Sección solo para profesores --}}
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Calificaciones</span>
-            </h6>
-
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('grades') }}">
-                  <span data-feather="users"></span>
-                  Administrar calificaciones
-                </a>
-              </li>
-            </ul>
-
-            @endif
-
             @if(Auth::user()->hasAnyRole(['admin','coordinator'])) {{-- Sección solo para administradores --}}
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -110,6 +93,23 @@
 
             @endif
 
+            {{--@if(Auth::user()->hasRole('professor'))--}} {{-- Sección solo para profesores --}}
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Para profesores</span>
+            </h6>
+
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('grades') }}">
+                  <span data-feather="users"></span>
+                  Mis grupos
+                </a>
+              </li>
+            </ul>
+
+            {{--@endif--}}
+
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Información</span>
             </h6>
@@ -126,9 +126,9 @@
           </div>
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 bg-{{ $background or '' }}">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">
+            <h1 class="h2 {{ isset($background) && ($background == 'dark' || $background == 'secondary') ? 'text-white' : '' }}{{ isset($background) && $background == 'gray' ? 'text-secondary' : ''}}">
               @yield('section', 'Sección desconocida')
             </h1>
             <!--<div class="btn-toolbar mb-2 mb-md-0">

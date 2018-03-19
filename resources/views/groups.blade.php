@@ -119,7 +119,19 @@
 		</div>
 
 		<!-- Formulario para buscar -->
-		<form class="form col-auto mr-0 ml-auto" action="/alumnos/" method="get">
+		<form class="form col-auto mr-0 ml-auto form-inline" action="/alumnos/" method="get">
+
+			{{-- Filtros --}}
+            <select class="form-control mr-3 ml-auto">
+                <option>Todos los grupos</option>
+                <option>Grupos activos</option>
+                <option>Grupos inactivos</option>
+                <option>Grupos sin profesor</option>
+                <option>Grupos con cupo disponible</option>
+                <option>Grupos llenos</option>
+            </select>
+
+			{{-- Buscador --}}
 			<div class="input-group ">
 				<input type="text" class="form-control w-auto" placeholder="Escriba algo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
 				<div class="input-group-append">
