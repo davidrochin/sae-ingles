@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Student;
+use App\Group;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RemoveStudentFromGroupRequest extends FormRequest
@@ -13,7 +15,7 @@ class RemoveStudentFromGroupRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +25,20 @@ class RemoveStudentFromGroupRequest extends FormRequest
      */
     public function rules()
     {
+
+        $rules = [
+            'studentId' => 'required|exists:students,id',
+            'groupId' => 'required|exists:groups,id'
+        ];
+
+        //Queda pendiente revisar si el alumno si está asignado a ese grupo
+
+        return $rules;
+    }
+
+    public function messages(){
         return [
-            //
+            
         ];
     }
 }

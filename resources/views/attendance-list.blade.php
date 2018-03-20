@@ -1,0 +1,71 @@
+@extends('layouts.blank')
+@section('title', 'Lista de asistencia')
+@section('content')
+
+<div class="row mb-5 mt-2 text-center">
+	<div class="col">
+		<h4>Formato oficial de listas de asistencia</h4>
+		<h4>Departamento de Gestión Tecnológica y Vinculación</h4>
+		<h4>Programa CLE-ITLM</h4>
+	</div>
+</div>
+
+<table class="table table-bordered text-nowrap table-attendance">
+	<tbody>
+		<td>Nivel <b>{{ $group->level }}</b></td>
+		<td>Horario de <b>{{ $group->schedule_start }} - {{ $group->schedule_end }}</b></td>
+		<td>Profesor <b>{{ $group->user->name }}</b></td>
+		<td>Aula <b>{{2}}</b></td>
+		<td>Periodo <b>{{ $group->period->name }}</b></td>
+	</tbody>
+</table>
+
+<table class="table table-bordered table-attendance text-nowrap">
+	<thead>
+		<th>No.</th>
+		<th>Nombre completo</th>
+		<th>No. control</th>
+		<th>Carrera</th>
+		@for($i = 0 ; $i < $attendanceSlots ; $i++)
+			<th></th>
+		@endfor
+	</thead>
+	<tbody>
+		@foreach($students as $key => $student)
+			<tr>
+				<td>{{ $key + 1 }}</td>
+				<td>{{ $student->last_names}} {{ $student->first_names }}</td>
+				<td>{{ $student->control_number }}</td>
+				<td>{{ $student->career->short_name }}</td>
+				@for($i = 0 ; $i < $attendanceSlots ; $i++)
+					<th></th>
+				@endfor
+			</tr>
+		@endforeach
+	</tbody>
+</table>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+
+	//Abrir el documento en modo de impresión
+	$(document).ready( function(){
+		window.print();
+	});
+</script>
+
+<style type="text/css">
+	.table-attendance th {
+		font-size: 1.2rem;
+	}
+	.table-attendance td {
+		padding-bottom: 0.3rem;
+		padding-top: 0.3rem;
+		font-size: 1.2rem;
+	}
+</style>
+
+@endsection

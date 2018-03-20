@@ -27,6 +27,9 @@ class CreateGroupsTable extends Migration
             $table->time('schedule_end');
             $table->text('days');
 
+            $table->text('classroom')->nullable();
+            $table->unsignedInteger('capacity')->default(40);
+
             $table->text('code');
             $table->text('name');
 

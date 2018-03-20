@@ -87,15 +87,13 @@
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
         </div>
 
-        
-
         <!-- Formulario para buscar -->
         <form class="form col-auto mr-0 ml-auto form-inline" action="/alumnos/" method="get">
 
             {{-- Filtros --}}
-            <select class="form-control mr-3 ml-auto">
-                <option>Todos los alumnos</option>
-                <option>Alumnos sin grupo activo</option>
+            <select class="form-control mr-3 ml-auto" name="filter" onchange="this.form.submit()">
+                <option value="1">Todos los alumnos</option>
+                <option value="2" {{ app('request')->input('filter') == 2 ? 'selected' : '' }}>Alumnos sin grupo activo</option>
             </select>
 
             {{-- Buscador --}}

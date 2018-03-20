@@ -29,8 +29,8 @@ class CreateStudentRequest extends FormRequest
             'careerId' => 'required',
             'firstNames' => 'required',
             'lastNames' => 'required',
-            'phoneNumber' => 'required|digits_between:0,30',
-            'email' => 'email',
+            'phoneNumber' => 'sometimes|digits_between:0,30',
+            'email' => 'sometimes|nullable|email',
         ];
     }
 

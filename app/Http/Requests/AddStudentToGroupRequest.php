@@ -13,7 +13,7 @@ class AddStudentToGroupRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class AddStudentToGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'groupId' => 'required|exists:groups,id',
+            'studentId' => 'required|exists:students,id',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'groupId.required' => 'Es necesario especificar el grupo al cual se añadirá el alumno.',
+            'groupId.exists' => 'No existe un grupo con ese ID.',
+            'studentId.required' => 'Es necesario especificar el alumno a añadir.',
+            'studentId.exists' => 'No existe un alumno con ese ID.',
         ];
     }
 }

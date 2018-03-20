@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $groups = Group::all();
         foreach ($groups as $group) {
             $students = Student::inRandomOrder()->get();
-            for ($i=0; $i < 30; $i++) { 
+            for ($i=0; $i < 40; $i++) { 
                 $group->students()->attach($students[$i]->id);
             }
         }

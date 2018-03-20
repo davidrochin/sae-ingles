@@ -20,6 +20,7 @@ class StudentsController extends Controller
 
         //Revisar si hay una keyword en los parametros
         $keyword = $request->get('keyword');
+        $filter = $request->get('filter');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
         //dd(Auth::user()->roles);
@@ -29,9 +30,21 @@ class StudentsController extends Controller
 
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
-            $students = Student::search($keyword)->paginate(13);
+            $students = Student::search($keyword);
         } else {
-            $students = Student::orderBy('id', 'ASC')->paginate(13);
+            $students = Student::orderBy('id', 'ASC');
+        }
+
+        //Filtrar si es necesario
+        switch ($filter) {
+            case 1:
+                
+                break;
+            case 2:
+                $students->whereDoesntHave('groups', function($query){
+                    $query->where('active', 1);
+                });
+                break;
         }
 
         $careers = Career::all();
@@ -40,7 +53,7 @@ class StudentsController extends Controller
         //$request->session()->now('message', 'Prueba de mensaje');
 
     	return view('students', [
-    		'students' => $students,
+    		'students' => $students->paginate(13),
             'careers' => $careers,
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
             //'modalMessage' => 'Prueba de modal de mensajes',

@@ -12,104 +12,106 @@
 			@slot('header', 'Información básica')
 			@slot('class', 'mb-4')
 			
-			{{-- Información del grupo --}}
-
-			<div class="form-row">
-				<div class="col">
-					@component('components.form-input')
+			<form action="{{ route('groups') }}/editar" method="post" name="editGroupForm">
+				<div class="form-row">
+					<div class="col">
+						@component('components.form-input')
 						@slot('tag', 'Nombre')
 						@slot('name', 'name')
 						@slot('disabled', 'true')
 						@slot('class', 'bg-white')
 						@slot('value', $group->name)
-					@endcomponent
-				</div>
-				<div class="col">
-					@component('components.form-input')
+						@endcomponent
+					</div>
+					<div class="col">
+						@component('components.form-input')
 						@slot('tag', 'Código')
 						@slot('name', 'code')
 						@slot('disabled', 'true')
 						@slot('class', 'bg-white')
 						@slot('value', $group->code)
-					@endcomponent
-				</div>
-				<div class="col">
-					@component('components.form-input')
+						@endcomponent
+					</div>
+					<div class="col">
+						@component('components.form-input')
 						@slot('tag', 'Nivel')
 						@slot('name', 'level')
 						@slot('disabled', 'true')
 						@slot('class', 'bg-white')
 						@slot('value', $group->level)
-					@endcomponent
+						@endcomponent
+					</div>
 				</div>
-			</div>
 
-			<div class="form-row">
-				<div class="col">
-					<div class="form-group">
-		                <label for="periodControlInput">Periodo</label>
-		                <select class="form-control bg-white" id="periodControlInput" name="periodId" disabled>
-		                    @foreach(App\Period::all() as $period)
-		                    <option value="{{$period->id}}" {{ $group->period->id == $period->id ? 'selected' : '' }}>{{ $period->name }}</option>
-		                    @endforeach
-		                </select>
-		            </div>
-				</div>
-				<div class="col">
-					@component('components.form-input')
+				<div class="form-row">
+					<div class="col">
+						<div class="form-group">
+							<label for="periodControlInput">Periodo</label>
+							<select class="form-control bg-white" id="periodControlInput" name="periodId" disabled>
+								@foreach(App\Period::all() as $period)
+								<option value="{{$period->id}}" {{ $group->period->id == $period->id ? 'selected' : '' }}>{{ $period->name }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						@component('components.form-input')
 						@slot('tag', 'Año')
 						@slot('name', 'year')
 						@slot('disabled', 'true')
 						@slot('class', 'bg-white')
 						@slot('value', $group->year)
-					@endcomponent
+						@endcomponent
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-                <label for="professorControlInput">Profesor</label>
-                <select class="form-control bg-white" id="professorControlInput" name="professorId" disabled>
-                    @foreach($professors as $professor)
-                    <option value="{{$professor->id}}" {{ $group->user->id == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+				<div class="form-group">
+					<label for="professorControlInput">Profesor</label>
+					<select class="form-control bg-white" id="professorControlInput" name="professorId" disabled>
+						@foreach($professors as $professor)
+						<option value="{{$professor->id}}" {{ $group->user->id == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
+						@endforeach
+					</select>
+				</div>
 
-            <div class="form-row">
-            	<div class="col">
-            		@component('components.form-input')
-            			@slot('tag', 'Hora de inicio')
+				<div class="form-row">
+					<div class="col">
+						@component('components.form-input')
+						@slot('tag', 'Hora de inicio')
 						@slot('name', 'scheduleStart')
 						@slot('disabled', 'true')
 						@slot('type', 'time')
 						@slot('class', 'bg-white')
 						@slot('value', $group->schedule_start)
-            		@endcomponent
-            	</div>
-            	<div class="col">
-            		@component('components.form-input')
-            			@slot('tag', 'Hora de fin')
+						@endcomponent
+					</div>
+					<div class="col">
+						@component('components.form-input')
+						@slot('tag', 'Hora de fin')
 						@slot('name', 'scheduleEnd')
 						@slot('disabled', 'true')
 						@slot('type', 'time')
 						@slot('class', 'bg-white')
 						@slot('value', $group->schedule_end)
-            		@endcomponent
-            	</div>
-            </div>
+						@endcomponent
+					</div>
+				</div>
 
-            <div class="form-group">
-				<label for="mondayCheckbox">Días de la semana</label>
+				<div class="form-group">
+					<label for="mondayCheckbox">Días de la semana</label>
 					<div class="card" style="{{ $errors->has('days') ? 'border-color: red;' : ''}}">
 						<div class="card-body">
-						@component('components.days-checkboxes')
+							@component('components.days-checkboxes')
 							@slot('group', $group)
 							@slot('disabled', 'true')
-						@endcomponent
+							@endcomponent
 						</div>
 					</div>
 					<div style=" color: #dc3545; font-size: 80%; margin-top: .25rem;">{{ $errors->first('days') }}</div>
-			</div>
+				</div>
+				<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
+			</form>
+
 		@endcomponent
 
 		{{-- Card que muestra las acciones para el grupo --}}
@@ -120,7 +122,8 @@
 			<div class="form-row">
 				<div class="col-auto"><button class="btn btn-danger">Eliminar grupo</button></div>
 				<!--<div class="col-auto"><button class="btn btn-danger">Vaciar grupo</button></div>-->
-				<div class="col-auto"><button class="btn btn-secondary">Editar grupo</button></div>
+				<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
+				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}">Imprimir lista de asistencia</a></div>
 			</div>
 		@endcomponent
 		
@@ -135,8 +138,10 @@
 
 			{{-- Input para agregar un nuevo alumno --}}
 			<form action="/grupos/agregar" method="post">
+				{{ csrf_field() }}
+				<input type="hidden" name="groupId" value="{{ $group->id }}">
 				<div class="input-group mb-3">
-				  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="Escriba el ID de un alumno para agregarlo a este grupo...">
+				  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="Escriba el ID de un alumno para agregarlo a este grupo..." autocomplete="off">
 				  <div class="input-group-append">
 				    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
 				  </div>
@@ -167,8 +172,6 @@
 
 	//Este script es para hacer la búsqueda en vivo del nombre del alumno,
 	//deacuerdo al ID escrito en el input para agregar nuevos alumnos.
-
-	// Buscar el input por su ID y establecer su evento
 	$('#studentAddInput').on('input',function(){
 
 		//Obtener el valor del input
@@ -188,6 +191,8 @@
 			error:function(data){ $('#studentToAdd').html('...'); }
 		});
 	})
+
+
 </script>
 
 <script type="text/javascript">

@@ -50,10 +50,14 @@ Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth
 
 Route::get('/grupos/', 'GroupsController@showAll')->name('groups')->middleware('auth');
 Route::get('/grupos/{id}', 'GroupsController@show')->middleware('auth');
+Route::get('/grupos/listas/{id}', 'GroupsController@attendanceList')->middleware('auth')->name('attendanceLists');
 
 Route::post('/grupos/crear', 'GroupsController@create')->middleware('auth');
 Route::post('/grupos/eliminar', 'GroupsController@delete')->middleware('auth');
 Route::post('/grupos/modificar', 'GroupsController@modify')->middleware('auth');
+
+Route::post('/grupos/agregar', 'GroupsController@addStudent')->middleware('auth');
+Route::post('/grupos/remover', 'GroupsController@removeStudent')->middleware('auth');
 
 //Usuarios
 
