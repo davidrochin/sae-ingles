@@ -24,7 +24,7 @@ class Student extends Model
     	return $query->where($field, 'LIKE', "%$value%");
     }
 
-    public static function search($keyword){
+    public static function scopeSearch($query, $keyword){
         $students = null;
 
         //Revisar que la palabra clave no esté vacía
@@ -38,7 +38,7 @@ class Student extends Model
             }
 
             //Hacer la query
-            $students = Student::whereIn('career_id', $careersIds)
+            $students = $query->whereIn('career_id', $careersIds)
                 ->orWhere('id', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('first_names', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('last_names', 'LIKE', '%'.$keyword.'%')
@@ -48,6 +48,6 @@ class Student extends Model
 
                 //dd($students->get());
         }
-        return $students;
+        return $query;
     }
 }

@@ -19,7 +19,7 @@
 
 <hr>
 
-<p class="text-center">Hecho con Laravel 5.5, Bootstrap 4 y AJAX.</p>
+<p class="text-center">Hecho con Laravel 5.5, Bootstrap 4 y jQuery.</p>
 
 <div class="text-center">
 	<button class="btn btn-primary" onclick="window.history.back();">Volver</button>

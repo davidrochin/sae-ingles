@@ -123,7 +123,7 @@
 				<div class="col-auto"><button class="btn btn-danger">Eliminar grupo</button></div>
 				<!--<div class="col-auto"><button class="btn btn-danger">Vaciar grupo</button></div>-->
 				<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
-				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}">Imprimir lista de asistencia</a></div>
+				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 			</div>
 		@endcomponent
 		

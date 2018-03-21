@@ -28,23 +28,29 @@ class StudentsController extends Controller
             return view('auth.nopermission');
         }
 
-        //Si hay una palabra clave de busqueda, buscar con ella
-        if($keyword){
-            $students = Student::search($keyword);
-        } else {
-            $students = Student::orderBy('id', 'ASC');
-        }
+        $students = Student::orderBy('id', 'DESC');
 
         //Filtrar si es necesario
         switch ($filter) {
             case 1:
-                
+                //$students = $students->orderBy('id', 'DESC');
                 break;
             case 2:
-                $students->whereDoesntHave('groups', function($query){
+                //Mandar solo alumnos sin grupos activos
+                $students = $students->whereDoesntHave('groups', function($query){
                     $query->where('active', 1);
                 });
                 break;
+            default:
+                //$students = $students->orderBy('id', 'DESC');
+                break;
+        }
+
+        //Si hay una palabra clave de busqueda, buscar con ella
+        if($keyword){
+            $students = $students->search($keyword);
+        } else {
+            $students = $students->orderBy('id', 'DESC');
         }
 
         $careers = Career::all();
