@@ -1,4 +1,4 @@
-<div class="card {{ $class or '' }}" style="width: {{ $width or '' }}px;">
+<div class="card {{ $class or '' }} border-{{ $border or 'default' }}" style="width: {{ $width or '' }}px;">
 
     @if(isset($header))
     <div class="card-header">{{ $header }}</div>

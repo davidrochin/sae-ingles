@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Period;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
@@ -17,5 +18,9 @@ class Group extends Model
 
     public function students(){
     	return $this->belongsToMany(Student::class, 'student_group')->orderBy('last_names');
+    }
+
+    public function period(){
+    	return $this->belongsTo(Period::class);
     }
 }

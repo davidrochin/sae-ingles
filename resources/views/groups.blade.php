@@ -24,12 +24,14 @@
 						@component('components.form-input')
 							@slot('tag', 'Nombre')
 							@slot('name', 'name')
+							@slot('value', old('name'))
 						@endcomponent
 					</div>
 					<div class="col">
 						@component('components.form-input')
 							@slot('tag', 'Código')
 							@slot('name', 'code')
+							@slot('value', old('code'))
 						@endcomponent
 					</div>
 					<div class="col">
@@ -37,6 +39,29 @@
 							@slot('tag', 'Nivel')
 							@slot('name', 'level')
 							@slot('type', 'number')
+							@slot('value', old('level'))
+						@endcomponent
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="col">
+						<div class="form-group">
+		                    <label for="periodControlInput">Periodo</label>
+		                    <select class="form-control" id="periodControlInput" name="periodId">
+		                        @foreach(App\Period::all() as $period)
+		                        <option value="{{$period->id}}" {{ old('periodId') == $period->id ? 'selected' : '' }}>{{ $period->name }}</option>
+		                        @endforeach
+		                    </select>
+		                    <div class="invalid-feedback">{{ $errors->first('periodId') }}</div>
+		                </div>
+					</div>
+					<div class="col">
+						@component('components.form-input')
+							@slot('tag', 'Año')
+							@slot('name', 'year')
+							@slot('type', 'number')
+							@slot('value', old('year') != null ? old('year') : date('Y'))
 						@endcomponent
 					</div>
 				</div>
@@ -56,6 +81,7 @@
 							@slot('tag', 'Hora de inicio')
 							@slot('name', 'scheduleStart')
 							@slot('type', 'time')
+							@slot('value', old('scheduleStart'))
 						@endcomponent
 					</div>
 					<div class="col">
@@ -63,6 +89,7 @@
 							@slot('tag', 'Hora de fin')
 							@slot('name', 'scheduleEnd')
 							@slot('type', 'time')
+							@slot('value', old('scheduleEnd'))
 						@endcomponent
 					</div>
 				</div>
@@ -92,7 +119,19 @@
 		</div>
 
 		<!-- Formulario para buscar -->
-		<form class="form col-auto mr-0 ml-auto" action="/alumnos/" method="get">
+		<form class="form col-auto mr-0 ml-auto form-inline" action="/alumnos/" method="get">
+
+			{{-- Filtros --}}
+            <select class="form-control mr-3 ml-auto">
+                <option>Todos los grupos</option>
+                <option>Grupos activos</option>
+                <option>Grupos inactivos</option>
+                <option>Grupos sin profesor</option>
+                <option>Grupos con cupo disponible</option>
+                <option>Grupos llenos</option>
+            </select>
+
+			{{-- Buscador --}}
 			<div class="input-group ">
 				<input type="text" class="form-control w-auto" placeholder="Escriba algo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
 				<div class="input-group-append">

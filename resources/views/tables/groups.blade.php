@@ -10,6 +10,8 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Nivel</th>
+                <th>Año</th>
+                <th>Periodo</th>
                 <th>Estado</th>
                 <th></th>
             </tr>
@@ -20,7 +22,7 @@
             <tr id="tableRow{{ $group->id }}" class="clickable-row">
                 <td>{{ $group->id }}</td>
                 <td>{{ $group->user->name }}</td>
-                <td>{{ $group->schedule_start }} - {{ $group->schedule_end }}</td>
+                <td>{{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i') }}</td>
                 <td>{{-- $group->days --}}
                     @component('components.days-badges')
                         @slot('days', $group->days)
@@ -29,6 +31,8 @@
                 <td>{{ $group->code }}</td>
                 <td>{{ $group->name }}</td>
                 <td>{{ $group->level }}</td>
+                <td>{{ $group->year }}</td>
+                <td>{{ $group->period->short_name }}</td>
                 <td>
                     @component('components.group-state-badge')
                         @slot('group', $group)

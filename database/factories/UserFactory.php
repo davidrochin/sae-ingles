@@ -3,6 +3,7 @@
 use App\Career;
 use App\User;
 use App\Role;
+use App\Period;
 use Faker\Generator as Faker;
 use Faker\Factory as Factory;
 
@@ -50,18 +51,21 @@ $factory->define(App\Group::class, function (Faker $faker) {
 	$faker = Factory::create('es_ES');
 	$professorRoleId = Role::where('name', 'professor')->first()->id;
 
-	$daysCombinations = [123, 135, 6, 246, 12345];
-	$daysCombinationKey = array_rand($daysCombinations);
+	$scheduleStartHour = $faker->numberBetween(7,22);
+	$scheduleStart = $scheduleStartHour.':00:00';
+	$scheduleEnd = ($scheduleStartHour + 1).':00:00'; 
 
 	return [
 		'level' => $faker->numberBetween(1, 5),
-		'schedule_start' => $faker->time('H:i', 'now'),
-		'schedule_end' => $faker->time('H:i', 'now'),
-		'days' => $daysCombinations[$daysCombinationKey],
+		'schedule_start' => $scheduleStart,
+		'schedule_end' => $scheduleEnd,
+		'days' => $faker->randomElement([12345, 6]),
 		'code' => $faker->numberBetween(1000, 9999),
-		'name' => $faker->numberBetween(1000, 9999),
+		'name' => $faker->randomElement(['A', 'B']),
 		'user_id' => User::where('role_id', $professorRoleId)->inRandomOrder()->first()->id,
 		'active' => $faker->numberBetween(0, 1),
+		'period_id' => Period::inRandomOrder()->first()->id,
+		'year' => $faker->numberBetween(2000, 2018),
 	];
 
 });

@@ -27,10 +27,12 @@ class CreateGroupRequest extends FormRequest
             'name' => 'required',
             'code' => 'required',
             'level' => 'required',
-            'professorId' => 'required',
+            'professorId' => 'required|exists:users,id',
             'scheduleStart' => 'required',
             'scheduleEnd' => 'required',
             'days' => 'required',
+            'year' => 'required',
+            'periodId' => 'required|exists:periods,id'
         ];
     }
 

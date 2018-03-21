@@ -8,30 +8,38 @@
 		6 = Sábado
 		7 = Domingo (no se usa) --}}
 
-@if(strpos($days, '1') !== false)
-Lun
-@endif
+@if($days == 12345)
+Lunes a Viernes
+@elseif($days == 6)
+Sábados
+@else
 
-@if(strpos($days, '2') !== false)
-Mar
-@endif
+	@if(strpos($days, '1') !== false)
+	Lun
+	@endif
 
-@if(strpos($days, '3') !== false)
-Mie
-@endif
+	@if(strpos($days, '2') !== false)
+	Mar
+	@endif
 
-@if(strpos($days, '4') !== false)
-Jue
-@endif
+	@if(strpos($days, '3') !== false)
+	Mie
+	@endif
 
-@if(strpos($days, '5') !== false)
-Vie
-@endif
+	@if(strpos($days, '4') !== false)
+	Jue
+	@endif
 
-@if(strpos($days, '6') !== false)
-Sab
-@endif
+	@if(strpos($days, '5') !== false)
+	Vie
+	@endif
 
-@if(strpos($days, '7') !== false)
-Dom
+	@if(strpos($days, '6') !== false)
+	Sab
+	@endif
+
+	@if(strpos($days, '7') !== false)
+	Dom
+	@endif
+
 @endif

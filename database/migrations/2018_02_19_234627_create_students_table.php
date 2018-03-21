@@ -24,8 +24,8 @@ class CreateStudentsTable extends Migration
             $table->text('first_names');
             $table->text('last_names');
 
-            $table->text('phone_number');
-            $table->text('email');
+            $table->text('phone_number')->nullable();
+            $table->text('email')->nullable();
 
             //Faltan otros datos
 
