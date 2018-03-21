@@ -25,16 +25,22 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
+<<<<<<< HEAD
+            'email' => 'unique:users,email|email',
+            'password' => 'required|max:30',
+=======
             'email' => 'required|email',
             'password' => 'required',
+>>>>>>> a933df183ea73776138f5cd58e7938e03db50561
             'roleId' => 'required',            
         ];
     }
     public function messages(){
         return [
             'name.required' => 'Es necesario proporcionar un nombre.',
-            'email.unique' => 'No puede estar vacío.',
-            'password.digits' => 'No puede estar vacío.',
+            'email.unique' => 'Este correo electronico ya existe.',
+            'email.required' => 'No puede estar vacio',
+            'password.digits' => 'Solo puede contener 30 dígitos maximo.',
             'roleId.required' => 'No puede estar vacío.',
         ];
     }

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
-use App\Role;
+
 
 class UsersController extends Controller
 {
@@ -54,7 +55,7 @@ class UsersController extends Controller
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'password' => bcrypt($request->input('password_new')),
             'role_id' => $request->input('roleId'),
         ]);
 
