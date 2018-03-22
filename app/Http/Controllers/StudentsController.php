@@ -28,7 +28,7 @@ class StudentsController extends Controller
             return view('auth.nopermission');
         }
 
-        $students = Student::orderBy('id', 'DESC');
+        $students = Student::orderBy('id', 'ASC');
 
         //Filtrar si es necesario
         switch ($filter) {
@@ -50,7 +50,7 @@ class StudentsController extends Controller
         if($keyword){
             $students = $students->search($keyword);
         } else {
-            $students = $students->orderBy('id', 'DESC');
+            $students = $students->orderBy('id', 'ASC');
         }
 
         $careers = Career::all();

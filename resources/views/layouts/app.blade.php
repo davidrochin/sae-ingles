@@ -1,5 +1,4 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="bg-{{ $background or '' }}">
   <head>
     <meta charset="utf-8">

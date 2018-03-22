@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="">
+<div>
 
     <!-- Modal para agregar un estudiante -->
     @component('components.modal')
@@ -159,7 +159,6 @@
         }
 
     }
-
 </script>
 
 <!-- Si hubo un error en el formulario de nuevo estudiante, abrir modal automaticamente -->

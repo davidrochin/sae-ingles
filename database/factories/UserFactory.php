@@ -4,6 +4,7 @@ use App\Career;
 use App\User;
 use App\Role;
 use App\Period;
+use App\Classroom;
 use Faker\Generator as Faker;
 use Faker\Factory as Factory;
 
@@ -25,8 +26,8 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+        'password' => bcrypt('secreto'), // secreto
+        //'remember_token' => str_random(10),
         'role_id' => Role::where('name', 'professor')->first()->id,
     ];
 });
@@ -62,10 +63,11 @@ $factory->define(App\Group::class, function (Faker $faker) {
 		'days' => $faker->randomElement([12345, 6]),
 		'code' => $faker->numberBetween(1000, 9999),
 		'name' => $faker->randomElement(['A', 'B']),
-		'user_id' => User::where('role_id', $professorRoleId)->inRandomOrder()->first()->id,
+		'user_id' => User::inRandomOrder()->first()->id,
 		'active' => $faker->numberBetween(0, 1),
 		'period_id' => Period::inRandomOrder()->first()->id,
 		'year' => $faker->numberBetween(2000, 2018),
+		'classroom_id' => Classroom::inRandomOrder()->first()->id,
 	];
 
 });

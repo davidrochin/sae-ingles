@@ -141,7 +141,7 @@
 				{{ csrf_field() }}
 				<input type="hidden" name="groupId" value="{{ $group->id }}">
 				<div class="input-group mb-3">
-				  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="Escriba el ID de un alumno para agregarlo a este grupo..." autocomplete="off">
+				  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="ID del alumno..." autocomplete="off">
 				  <div class="input-group-append">
 				    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
 				  </div>

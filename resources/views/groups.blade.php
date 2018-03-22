@@ -92,6 +92,16 @@
 							@slot('value', old('scheduleEnd'))
 						@endcomponent
 					</div>
+					<div class="col">
+						<div class="form-group">
+		                    <label for="classroomControlInput">Aula</label>
+		                    <select class="form-control" id="classroomControlInput" name="classroomId">
+		                        @foreach(App\Classroom::all() as $classroom)
+		                        <option value="{{$classroom->id}}" {{ old('classroomId') == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
+		                        @endforeach
+		                    </select>
+		                </div>
+					</div>
 				</div>
 
 				<div class="form-group has-error">

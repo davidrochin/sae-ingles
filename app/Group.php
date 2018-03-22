@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\Period;
+use App\Classroom;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
@@ -22,5 +23,9 @@ class Group extends Model
 
     public function period(){
     	return $this->belongsTo(Period::class);
+    }
+
+    public function classroom(){
+        return $this->belongsTo(Classroom::class);
     }
 }

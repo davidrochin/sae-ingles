@@ -1,11 +1,8 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 @extends('layouts.app')
 @section('title', 'Usuarios del sistema')
 @section('section', 'Usuarios del sistema')
 
 @section('content')
-
-<div class="">
 
 	<!--Modal-->
 	@component('components.modal')
@@ -30,36 +27,36 @@
 				</div>				
 				<div class="form-group">
 					<label for="roleId">Carrera</label>
-                        <select name="roleId" class="form-control">
-                            @foreach($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->description }}</option>
-                            @endforeach
-                        </select>
+	                    <select name="roleId" class="form-control">
+	                        @foreach($roles as $role)
+	                            <option value="{{ $role->id }}">{{ $role->description }}</option>
+	                        @endforeach
+	                    </select>
 				</div>
 				<div class="form-row">
 					<div class="col">
 						@component('components.form-input')
 							@slot('tag', 'Correo electrónico')
 							@slot('name', 'email')
-                            @slot('type','email')
+	                        @slot('type','email')
 						@endcomponent
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="col">
-                        @component('components.form-input')
-                            @slot('tag', 'Contraseña')
-                            @slot('name', 'password_new')
-                            @slot('type','password')
-                        @endcomponent
+	                    @component('components.form-input')
+	                        @slot('tag', 'Contraseña')
+	                        @slot('name', 'password_new')
+	                        @slot('type','password')
+	                    @endcomponent
 					</div>
 				</div>
 
-                <script type="text/javascript">
-                    document.getElementById('password_newControlInput').setAttribute("autocomplete","new-password");
-                    document.getElementById('nameControlInput').setAttribute("autocomplete","nope");
-                    document.getElementById('emailControlInput').setAttribute("autocomplete","nope");
-                </script>
+	            <script type="text/javascript">
+	                document.getElementById('password_newControlInput').setAttribute("autocomplete","new-password");
+	                document.getElementById('nameControlInput').setAttribute("autocomplete","nope");
+	                document.getElementById('emailControlInput').setAttribute("autocomplete","nope");
+	            </script>
 
 			</form>
 
@@ -77,12 +74,13 @@
 		</div>
 	</div>
 
-</div>
+	<div>
+		@include('tables.users')
 
-	@include('tables.users')
-	<div class="row">
-		<div class="mx-auto">
-			{{ $users->appends($_GET)->links('pagination::bootstrap-4') }}
+		<div class="row">
+			<div class="mx-auto">
+				{{ $users->appends($_GET)->links('pagination::bootstrap-4') }}
+			</div>
 		</div>
 	</div>
 

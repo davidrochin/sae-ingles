@@ -32,7 +32,8 @@ class CreateGroupRequest extends FormRequest
             'scheduleEnd' => 'required',
             'days' => 'required',
             'year' => 'required',
-            'periodId' => 'required|exists:periods,id'
+            'periodId' => 'required|exists:periods,id',
+            'classroomId' => 'required|exists:classrooms,id',
         ];
     }
 

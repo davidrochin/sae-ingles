@@ -50,7 +50,7 @@ class GroupsController extends Controller
 
         return view('group', [
             'group' => $group,
-            'professors' => User::professors()->get(),
+            'professors' => User::all(),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
@@ -66,6 +66,7 @@ class GroupsController extends Controller
             'days' => implode($request->input('days')),
             'year' => $request->input('year'),
             'period_id' => $request->input('periodId'),
+            'classroom_id' => $request->input('classroomId'),
         ]);
 
         return redirect()->back()->with('success', 'El grupo ha sido creado con éxito.');
@@ -103,7 +104,7 @@ class GroupsController extends Controller
         //Agregar el alumno al grupo
         $group->students()->attach($student);
 
-        return redirect()->back()->with('success', 'El alumno fue agregado con éxito al grupo.');
+        return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
     }
 
     public function removeStudent(RemoveStudentFromGroupRequest $request){
