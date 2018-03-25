@@ -53,7 +53,7 @@
 				</div>
 
 	            <script type="text/javascript">
-	                document.getElementById('password_newControlInput').setAttribute("autocomplete","new-password");
+	                document.getElementById('passwordControlInput').setAttribute("autocomplete","new-password");
 	                document.getElementById('nameControlInput').setAttribute("autocomplete","nope");
 	                document.getElementById('emailControlInput').setAttribute("autocomplete","nope");
 	            </script>
@@ -85,8 +85,8 @@
 						@component('components.form-input')
 							@slot('tag','Contraseña')
 							@slot('name','newPassword')
-							@slot('type','password')
-							@slot('autocomplete,','new-password')
+							@slot('type','text')
+							@slot('autocomplete,','off')
 						@endcomponent
 					</div>
 				</div>
@@ -134,12 +134,10 @@
             changeUserPasswordForm.newPasswordControlInput.value = randPassword;
         }
         function copiarAPortapapeles() {
-            changeUserPasswordForm.newPasswordControlInput.setAttribute('type','text');
 		    var textoCopiado = changeUserPasswordForm.newPasswordControlInput;
 		    textoCopiado.select();
 
             document.execCommand("Copy");
-            changeUserPasswordForm.newPasswordControlInput.setAttribute('type','password');
         }
         function agregaDatos() {
             $('#usersTable').find('tr').click( function(){

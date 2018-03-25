@@ -24,7 +24,7 @@
                 <td>{{ $user->email }}</td>
                 <td>
                     @if($user->role->name == 'professor')
-                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newPasswordUserModal" onclick="agregaDatos()">Nueva contraseña</button>
+                        <button type="button" class="btn badge badge-pill badge-primary" data-toggle="modal" data-target="#newPasswordUserModal" onclick="agregaDatos()">Nueva contraseña</button>
 
                     @else
                         
