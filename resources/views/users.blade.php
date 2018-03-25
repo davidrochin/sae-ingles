@@ -46,7 +46,7 @@
 					<div class="col">
 	                    @component('components.form-input')
 	                        @slot('tag', 'Contraseña')
-	                        @slot('name', 'password_new')
+	                        @slot('name', 'password')
 	                        @slot('type','password')
 	                    @endcomponent
 					</div>
@@ -66,6 +66,45 @@
 			<input type="submit" class="btn btn-primary" value="Crear" form="registerUserForm">
 		@endslot
 	@endcomponent
+
+	<!-- Modal para cambiar contraseña -->
+    @component('components.modal')
+		@slot('id','newPasswordUserModal')
+		@slot('title','Nueva contraseña')
+		@slot('dismiss','Cancelar')
+
+		@slot('body')
+
+			<!-- Formulario para cambiar de contraseña -->
+			<form action="/usuario/modificarContraseña" class="form" method="post" id="changeUserPasswordForm" autocomplete="new-password">
+
+                {{ csrf_field() }}
+
+				<div class="form-row">
+					<div class="col">
+						@component('components.form-input')
+							@slot('tag','Contraseña')
+							@slot('name','newPassword')
+							@slot('type','password')
+							@slot('autocomplete,','new-password')
+						@endcomponent
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col">
+						<button type="button" class="btn btn-outline-primary" onclick="generarPassword()">Generar</button>
+						<button type="button" class="btn btn-outline-primary" onclick="copiarAPortapapeles()">Copiar</button>
+					</div>
+				</div>
+
+			</form>
+		@endslot
+
+		@slot('footer')
+			<input type="submit" class="btn btn-primary" value="Cambiar"  form="changeUserPasswordForm">
+		@endslot
+	@endcomponent
+
 
 	<!--Botones para manipular tabla y buscador-->
 	<div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
@@ -87,15 +126,53 @@
 @endsection
 
 @section('scripts')
-	<!-- Si hubo un error en el formulario de nuevo usuario, abrir modal automaticamente -->
-	@if($errors->any())
-		<script type="text/javascript">
+	<script type="text/javascript">
+		function generarPassword() {
+            var pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            var pwdLen = 6;
+            var randPassword = Array(pwdLen).fill(pwdChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+            changeUserPasswordForm.newPasswordControlInput.value = randPassword;
+        }
+        function copiarAPortapapeles() {
+            changeUserPasswordForm.newPasswordControlInput.setAttribute('type','text');
+		    var textoCopiado = changeUserPasswordForm.newPasswordControlInput;
+		    textoCopiado.select();
 
-            //Abrir modal de estudiante
-            $( document ).ready(function() {
-                $('#newUserModal').modal('show');
+            document.execCommand("Copy");
+            changeUserPasswordForm.newPasswordControlInput.setAttribute('type','password');
+        }
+        function agregaDatos() {
+            $('#usersTable').find('tr').click( function(){
+                var row = $(this).find('td:first').text();
+                var id = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "id").val(row);
+                $('#changeUserPasswordForm').append($(id));
             });
+        }
 
+	</script>
+	<!-- Verificar si hubo un error en algun formulario, verificar en cual y reabrirlo -->
+	@if($errors->first('newPassword'))
+		<script type="text/javascript">
+            //Abrir modal de nueva contraseña
+            $( document ).ready(function() {
+                $('#newPasswordUserModal').modal('show');
+            });
 		</script>
+		@else
+			@if($errors->any())
+				<script type="text/javascript">
+                    var $errorMessage = '';
+					@foreach($errors->createUser->all() as $error)
+                        $errorMessage = $errorMessage + ' {{ $error }}';
+					@endforeach
+                    //alert($errorMessage);
+                    //Abrir modal de crear nuevo usuario
+                    $( document ).ready(function() {
+                        $('#newUserModal').modal('show');
+                    });
+				</script>
+			@endif
 	@endif
 @endsection

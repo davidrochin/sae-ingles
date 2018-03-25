@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ModifyUserPasswordRequest;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,7 @@ class UsersController extends Controller
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password_new')),
+            'password' => bcrypt($request->input('password')),
             'role_id' => $request->input('roleId'),
         ]);
 
@@ -64,6 +65,14 @@ class UsersController extends Controller
         $request->flash();
 
         return redirect()->back()->with('success', 'El usuario ha sido creado con éxito.');
+    }
+
+    public function changePassword(ModifyUserPasswordRequest $request){
+	    User::where('id',$request->input('id'))
+            ->update(['password' => bcrypt($request->input('newPassword'))]);
+
+	    return redirect()->back()->with('success','La contraseña ha sido modificada con éxito');
+
     }
 
 }

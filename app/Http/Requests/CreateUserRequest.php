@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateUserRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,23 +26,21 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-<<<<<<< HEAD
             'email' => 'unique:users,email|email',
-            'password' => 'required|max:30',
-=======
-            'email' => 'required|email',
-            'password' => 'required',
->>>>>>> a933df183ea73776138f5cd58e7938e03db50561
+            'password' => 'required|max:30|min:6',
             'roleId' => 'required',            
         ];
     }
     public function messages(){
         return [
             'name.required' => 'Es necesario proporcionar un nombre.',
-            'email.unique' => 'Este correo electronico ya existe.',
-            'email.required' => 'No puede estar vacio',
-            'password.digits' => 'Solo puede contener 30 dígitos maximo.',
-            'roleId.required' => 'No puede estar vacío.',
+            'email.unique' => 'Este correo electrónico ya existe.',
+            'email.required' => 'Es necesario proporcionar un correo electrónico.',
+            'email.email' => 'Debe ingresar un correo electrónico valido.',
+            'password.max' => 'La contraseña solo puede contener 30 caracteres como máximo.',
+            'password.min' => 'La contraseña debe ser mayor a 5 caracteres.',
+            'password.required' => 'Es necesario ingresar una contraseña.',
+            'roleId.required' => 'Es necesario seleccionar una carrera.',
         ];
     }
 }

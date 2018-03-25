@@ -65,6 +65,7 @@ Route::get('/usuarios/', 'UsersController@showAll')->name('users')->middleware('
 Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 
 Route::post('/usuarios/crear','UsersController@create')->middleware('auth');
+Route::post('/usuario/modificarContraseña','UsersController@changePassword')->middleware('auth');
 
 //Calificaciones
 
