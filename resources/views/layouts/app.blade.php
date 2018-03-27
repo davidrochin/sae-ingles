@@ -5,25 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="{{ URL::asset('favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" crossorigin="anonymous">
+    <link href="{{ URL::asset('css/dashboard.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-adjustments.css') }}" />
 
     <title>
-      @yield('title', config('app.name', 'ERROR'))
+      @yield('title', config('app.name', 'NOT SET'))
     </title>
-    
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ URL::asset('css/dashboard.css') }}" rel="stylesheet">
-
-    <!-- Hola de estilos propia para hacer ajustes -->
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-adjustments.css') }}" />
   </head>
 
   <body>
 
-    <!-- Modal default. Para usar este modal mande un mensaje en la variable $modalMessage -->
+    <!-- Modal default. -->
     @component('components.modal')
       @slot('id', 'defaultModal')
       @slot('title', 'Mensaje del sistema')
@@ -151,25 +146,13 @@
       </div>
     </div>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-    <!--<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>-->
-
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
+    <script>feather.replace()</script>
 
     <!-- jQuery -->
-    {{--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
-    <script src="{{ URL::asset('js/jquery-3.3.1.min.js') }}" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{ URL::asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ URL::asset('js/sae.js') }}"></script>
 
   </body>
