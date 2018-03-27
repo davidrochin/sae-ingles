@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 	//Si el usuario está autenticado redireccionarlo a la home
 	if(Auth::check()){ 
-		return redirect('/home'); 
+		return redirect('/inicio'); 
 	} else {
 		return view('auth/login'); 
 	}
@@ -73,7 +73,7 @@ Route::get('/calificaciones/', 'GradesController@showOwnedGroups')->name('grades
 
 Auth::routes();
 
-Route::get('/home', 'PagesController@home')->name('home');
+Route::get('/inicio', 'PagesController@home')->name('home');
 
 /*Route::group(['middleware' => 'auth'], function () {
 
