@@ -18,7 +18,9 @@ class PagesController extends Controller
     }*/
 
     public function home(){
-    	return view('home');
+    	return view('home', [
+            'parentRoute' => 'home',
+        ]);
     }
 
     public function about(){

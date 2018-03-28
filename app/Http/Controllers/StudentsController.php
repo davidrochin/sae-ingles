@@ -59,7 +59,7 @@ class StudentsController extends Controller
         //$request->session()->now('message', 'Prueba de mensaje');
 
     	return view('students', [
-    		'students' => $students->paginate(13),
+    		'students' => $students->paginate(12),
             'careers' => $careers,
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
             //'modalMessage' => 'Prueba de modal de mensajes',

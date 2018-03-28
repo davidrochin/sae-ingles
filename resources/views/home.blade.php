@@ -2,6 +2,8 @@
 
 @section('section', 'Página principal')
 
+@section('title', 'Inicio')
+
 @section('content')
 
 @component('components.card')

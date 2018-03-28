@@ -27,9 +27,9 @@ class UsersController extends Controller
 
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
-            $users = User::search($keyword)->paginate(13);
+            $users = User::search($keyword)->paginate(12);
         } else {
-            $users = User::orderBy('id', 'ASC')->paginate(13);
+            $users = User::orderBy('id', 'ASC')->paginate(12);
         }
 
         if (Auth::user()->hasRole('admin')) {

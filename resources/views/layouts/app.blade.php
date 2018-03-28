@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-{{ $background or '' }}">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,9 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}">
 
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}" crossorigin="anonymous">
-    <link href="{{ URL::asset('css/dashboard.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-adjustments.css') }}" />
+    @include('parts.styles')
 
     <title>
       @yield('title', config('app.name', 'NOT SET'))
@@ -27,136 +25,85 @@
       @endslot
     @endcomponent
 
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ route('home') }}">{{ config('app.name', 'ERROR') }}</a>
-      <div class="form-control form-control-dark text-light text-center w-100">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->role->description }}</div>
-
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-        </li>
-      </ul>
-    </nav>
-
+    <!-- Container principal -->
     <div class="container-fluid">
 
-        <!--Barra de navegación lateral-->
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
+      <div class="row">
 
-            @if(Auth::user()->hasAnyRole(['admin', 'coordinator'])) {{-- Sección solo para administradores y coordinadores --}}
+        <!-- Barra lateral -->
+        <div class="col-md-12 col-xl-2 p-0 sidebar">
+          <span class="d-block p-3 bg-dark text-white text-center">S.A.E.</span>    
+          <div class="p-0" style="">
+              <span class="sidebar-section text-muted">General</span>
+              <a href="{{ route('home') }}" class="{{ $parentRoute == 'home' ? 'selected' : '' }}"><i data-feather="home"></i>Inicio</a>
+              <hr>
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Coordinación</span>
-            </h6>
+              <span class="sidebar-section text-muted">Coordinación</span>
+              <a href="{{ route('students') }}" class="{{ $parentRoute == 'students' ? 'selected' : '' }}"><i data-feather="users"></i>Alumnos</a>
+              <a href="{{ route('groups') }}" class="{{ $parentRoute == 'groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Grupos</a>
+              <hr>
 
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'students' ? 'active' : '' }}" href="{{ route('students') }}">
-                  <span data-feather="users"></span>
-                  Alumnos
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'groups' ? 'active' : '' }}" href="{{ route('groups') }}">
-                  <span data-feather="calendar"></span>
-                  Grupos
-                </a>
-              </li>
-            </ul>
+              <span class="sidebar-section text-muted">Sistema</span>
+              <a href="{{ route('users') }}" class="{{ $parentRoute == 'users' ? 'selected' : '' }}"><i data-feather="users"></i>Usuarios</a>
+              <hr>
 
-            @endif
+              <span class="sidebar-section text-muted">Para maestros</span>
+              <a href="{{ route('grades') }}" class="{{ $parentRoute == 'grades' ? 'selected' : '' }}"><i data-feather="calendar"></i>Mis grupos</a>
+              <hr>
 
-            @if(Auth::user()->hasAnyRole(['admin','coordinator'])) {{-- Sección solo para administradores --}}
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Sistema</span>
-            </h6>
-
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'users' ? 'active' : '' }}" href="{{ route('users') }}">
-                  <span data-feather="users"></span>
-                  Usuarios
-                </a>
-              </li>
-            </ul>
-
-            @endif
-
-            {{--@if(Auth::user()->hasRole('professor'))--}} {{-- Sección solo para profesores --}}
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Para profesores</span>
-            </h6>
-
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('grades') }}">
-                  <span data-feather="users"></span>
-                  Mis grupos
-                </a>
-              </li>
-            </ul>
-
-            {{--@endif--}}
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Información</span>
-            </h6>
-
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link {{ isset($parentRoute) && $parentRoute == 'about' ? 'active' : '' }}" href="{{ route('about') }}">
-                  <span data-feather="tag"></span>
-                  Acerca de
-                </a>
-              </li>
-            </ul>
-
+              <span class="sidebar-section text-muted">Sistema</span>
+              <a href="{{ route('about') }}" class="{{ $parentRoute == 'about' ? 'selected' : '' }}"><i data-feather="tag"></i>Acerca de</a>
           </div>
-        </nav>
+        </div>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 bg-{{ $background or '' }}">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2 {{ isset($background) && ($background == 'dark' || $background == 'secondary') ? 'text-white' : '' }}{{ isset($background) && $background == 'gray' ? 'text-secondary' : ''}}">
-              @yield('section', 'Sección desconocida')
-            </h1>
-            <!--<div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                Semanal
-              </button>
-            </div>-->
+        <!-- Columna que ocupa el espacio de la barra -->
+        <div class="d-none d-xl-block col-xl-2 p-0" style="height: 100px;">
+          
+        </div>
+
+        <!-- Barra de arriba y contenido -->
+        <div class="col-xl-10">
+          <div class="row p-0">
+            <div class="col p-3 text-white text-center" style="background-color: rgba(0, 0, 0, 0.65);">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->role->description }}</div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+            <a class="col-auto p-3 bg-dark text-center text-white" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+          </div>
+          
+          <div class="content py-4 px-2">
+            <h1 class="h2">
+              @yield('title', 'Título indefinido')
+            </h1><hr>
+
+            @yield('content', 'No hay contenido para mostrar.')
           </div>
 
-          <!-- Alerta de éxito. Solo se muestra si es necesario -->
-          @include('components.success-alert')
-
-          @yield('content', 'No hay contenido que mostrar...')
-
-        </main>
+        </div>
       </div>
     </div>
 
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>feather.replace()</script>
-
-    <!-- jQuery -->
-    <script src="{{ URL::asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ URL::asset('js/sae.js') }}"></script>
+    @include('parts.scripts')
 
   </body>
 
   @yield('scripts')
+
+  <!-- Para hacer la barra Fixed en pantallas grandes -->
+  <script type="text/javascript">
+
+    function setSidebarPos(){
+      var dummy = document.querySelector('.sidebar');
+      console.log(window.innerWidth);
+      if(window.innerWidth >= 1200){
+        dummy.style.position = 'fixed';
+      } else {
+        dummy.style.position = 'relative';
+      }
+    }
+
+    $(window).resize(function() { setSidebarPos(); });
+    $(document).ready(function() { setSidebarPos(); });
+
+  </script>
 
   <!-- Abrir el modal que muestra mensajes del sistema si es necesario -->
   @if(session('message'))

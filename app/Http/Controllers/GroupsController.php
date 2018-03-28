@@ -32,9 +32,9 @@ class GroupsController extends Controller
 
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
-            $groups = Group::search($keyword)->paginate(13);
+            $groups = Group::search($keyword)->paginate(12);
         } else {
-            $groups = Group::orderBy('active', 'DESC')->paginate(13);
+            $groups = Group::orderBy('active', 'DESC')->paginate(12);
         }
 
         return view('groups', [

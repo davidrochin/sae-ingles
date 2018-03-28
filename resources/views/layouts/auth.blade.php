@@ -12,11 +12,8 @@
       @yield('title', config('app.name', 'ERROR'))
     </title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    @include('parts.styles')
 
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
   </head>
 
   <body class="row h-100 w-100 bg-dark">
@@ -36,6 +33,8 @@
         </div>
       </div>
     </div>
+
+    @include('parts.scripts')
 
   </body>
 
