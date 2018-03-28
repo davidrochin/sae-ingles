@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -22,5 +23,11 @@ class PagesController extends Controller
 
     public function about(){
         return view('about');
+    }
+
+    public function test(){
+        return view('test', [
+            'students' => Student::paginate(13),
+        ]);
     }
 }

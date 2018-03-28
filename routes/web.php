@@ -74,6 +74,7 @@ Route::get('/calificaciones/', 'GradesController@showOwnedGroups')->name('grades
 Auth::routes();
 
 Route::get('/inicio', 'PagesController@home')->name('home');
+Route::get('/test', 'PagesController@test')->name('test');
 
 /*Route::group(['middleware' => 'auth'], function () {
 
