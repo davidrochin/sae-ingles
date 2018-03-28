@@ -22,7 +22,7 @@
 
       <h4 class="text-center my-5 text-light mx-auto" style="width: 300px;">Sistema de Administración Escolar</h4>
 
-      <div class="card m-auto" style="width: 500px;">
+      <div class="card m-auto" style="width: 35em;">
         <div class="card-header">
           @yield('title')
         </div>
