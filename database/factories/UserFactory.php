@@ -68,6 +68,7 @@ $factory->define(App\Group::class, function (Faker $faker) {
 		'period_id' => Period::inRandomOrder()->first()->id,
 		'year' => $faker->numberBetween(2000, 2018),
 		'classroom_id' => Classroom::inRandomOrder()->first()->id,
+		'capacity' => $faker->randomElement([35, 40, 45]),
 	];
 
 });
