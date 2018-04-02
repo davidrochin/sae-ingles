@@ -9,9 +9,13 @@ use App\Student;
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PDF;
+use function Sodium\add;
 
 class GroupsController extends Controller
 {
@@ -22,6 +26,7 @@ class GroupsController extends Controller
 
         //Revisar si hay una keyword en los parametros
         $keyword = $request->get('keyword');
+        $filter = $request->get('filter');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
         if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
@@ -30,15 +35,48 @@ class GroupsController extends Controller
             ]);
         }
 
+        $groups = Group::orderBy('id', 'ASC');
+
+        //Filtrar
+        switch ($filter){
+            case 1:
+
+                break;
+            case 2:
+                //Mandar solo grupos activos
+                $groups = $groups->where('active',1);
+                break;
+            case 3:
+                //Mandar solo grupos inactivo
+                $groups = $groups->where('active',0);
+                break;
+            case 4:
+                //Grupos que no tienen profesor asignado.
+                $groups = $groups->where('user_id',4);
+                break;
+            case 5:
+                //Grupos con cupo disponible.
+                $groups = Group::has('students','<',function($query){
+                    $query->select('capacity');
+                });;
+                break;
+            case 6:
+                //Grupos llenos.
+                $groups = Group::has('students','>=',function($query){
+                    $query->select('capacity');
+                });;
+                break;
+        }
+
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
-            $groups = Group::search($keyword)->paginate(12);
+            $groups = $groups->search($keyword);
         } else {
-            $groups = Group::orderBy('active', 'DESC')->paginate(12);
+            $groups = $groups->orderBy('id', 'ASC');
         }
 
         return view('groups', [
-            'groups' => $groups,
+            'groups' => $groups->paginate(12),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
             'professors' => User::professors()->get(),
         ]);

@@ -129,16 +129,16 @@
 		</div>
 
 		<!-- Formulario para buscar -->
-		<form class="form col-auto mr-0 ml-auto form-inline" action="/alumnos/" method="get">
+		<form class="form col-auto mr-0 ml-auto form-inline" action="/grupos/" method="get">
 
 			{{-- Filtros --}}
-            <select class="form-control mr-3 ml-auto">
-                <option>Todos los grupos</option>
-                <option>Grupos activos</option>
-                <option>Grupos inactivos</option>
-                <option>Grupos sin profesor</option>
-                <option>Grupos con cupo disponible</option>
-                <option>Grupos llenos</option>
+            <select class="form-control mr-3 ml-auto" name="filter" onchange="this.form.submit()">
+                <option value="1" >Todos los grupos</option>
+                <option value="2" {{ app('request')->input('filter') == 2 ? 'selected' : '' }}>Grupos activos</option>
+                <option value="3"  {{ app('request')->input('filter') == 3 ? 'selected' : '' }}>Grupos inactivos</option>
+                <option value="4"  {{ app('request')->input('filter') == 4 ? 'selected' : '' }}>Grupos sin profesor</option>
+                <option value="5"  {{ app('request')->input('filter') == 5 ? 'selected' : '' }}>Grupos con cupo disponible</option>
+                <option value="6"  {{ app('request')->input('filter') == 6 ? 'selected' : '' }}>Grupos llenos</option>
             </select>
 
 			{{-- Buscador --}}

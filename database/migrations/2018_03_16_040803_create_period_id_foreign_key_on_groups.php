@@ -25,6 +25,8 @@ class CreatePeriodIdForeignKeyOnGroups extends Migration
      */
     public function down()
     {
-        $table->dropForeign('groups_period_id_foreign');
+        Schema::table('groups', function (Blueprint $table) {
+            $table->dropForeign('groups_period_id_foreign');
+        });
     }
 }
