@@ -9,9 +9,7 @@
 
     @include('parts.styles')
 
-    <title>
-      @yield('title', config('app.name', 'NOT SET'))
-    </title>
+    <title>{{ config('app.name', 'NOT SET') }}</title>
   </head>
 
   <body>
@@ -47,7 +45,7 @@
               <a href="{{ route('users') }}" class="{{ $parentRoute == 'users' ? 'selected' : '' }}"><i data-feather="users"></i>Usuarios</a>
               <hr>
 
-              <span class="sidebar-section text-muted">Para maestros</span>
+              <span class="sidebar-section text-muted">Para profesores</span>
               <a href="{{ route('grades') }}" class="{{ $parentRoute == 'grades' ? 'selected' : '' }}"><i data-feather="calendar"></i>Mis grupos</a>
               <hr>
 
@@ -92,7 +90,7 @@
 
     function setSidebarPos(){
       var dummy = document.querySelector('.sidebar');
-      console.log(window.innerWidth);
+      //console.log(window.innerWidth);
       if(window.innerWidth >= 1200){
         dummy.style.position = 'fixed';
       } else {
