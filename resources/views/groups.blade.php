@@ -179,6 +179,19 @@
                 periodo.value = 3;
 			}
         }
-
 	</script>
+
+	@if($errors->any())
+		<script type="text/javascript">
+            var $errorMessage = '';
+			@foreach($errors->createUser->all() as $error)
+                $errorMessage = $errorMessage + ' {{ $error }}';
+			@endforeach
+            //alert($errorMessage);
+            //Abrir modal de crear nuevo usuario
+            $( document ).ready(function() {
+                $('#newGroupModal').modal('show');
+            });
+		</script>
+	@endif
 @endsection

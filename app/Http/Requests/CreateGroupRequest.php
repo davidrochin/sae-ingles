@@ -41,6 +41,10 @@ class CreateGroupRequest extends FormRequest
         return [
             'name.required' => 'No puede estar vacío.',
             'days.required' => 'Es necesario especificar al menos un día.',
+            'code.required' => 'No puede estar vacío.',
+            'level.required' => 'No puede estar vacío.',
+            'scheduleStart.required' => 'No puede estar vacío.',
+            'scheduleEnd.required' => 'No puede estar vacío.',
         ];
     }
 }
