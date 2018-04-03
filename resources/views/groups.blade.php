@@ -125,7 +125,7 @@
 	<!--Botones para manipular tabla y buscador-->
 	<div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
 		<div class="btn-group" role="group" aria-label="First group">
-			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newGroupModal">Nuevo</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newGroupModal" onclick="ajustaFechas()">Nuevo</button>
 		</div>
 
 		<!-- Formulario para buscar -->
@@ -163,4 +163,22 @@
 	</div>
 </div>
 
+@endsection
+
+@section('scripts')
+	<script type="text/javascript">
+		function ajustaFechas() {
+            var periodo = createGroupForm.periodControlInput;
+            var currentdate = new Date();
+            var mes = currentdate.getMonth()+1;
+            if(mes >= 1 && mes <=6){
+                periodo.value = 1;
+			}else if(mes == 7){
+                periodo.value = 2;
+			}else if(mes >= 8 && mes <= 12){
+                periodo.value = 3;
+			}
+        }
+
+	</script>
 @endsection
