@@ -35,7 +35,7 @@ class GroupsController extends Controller
             ]);
         }
 
-        $groups = Group::orderBy('id', 'ASC');
+        $groups = Group::orderBy('active', 'DESC');
 
         //Filtrar
         switch ($filter){
@@ -72,7 +72,7 @@ class GroupsController extends Controller
         if($keyword){
             $groups = $groups->search($keyword);
         } else {
-            $groups = $groups->orderBy('id', 'ASC');
+            $groups = $groups->orderBy('active', 'DESC');
         }
 
         return view('groups', [
@@ -133,6 +133,11 @@ class GroupsController extends Controller
         //dd($request);
         $group = Group::findOrFail($request->input('groupId'));
         $student = Student::findOrFail($request->input('studentId'));
+
+        //Revisar que el grupo tenga capacidad para un nuevo alumno
+        if(count($group->students)>=$group->capacity){
+            return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
+        }
 
         //Revisar si el alumno ya está en el grupo
         if($student->groups->find($group->id) != null){
