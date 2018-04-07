@@ -1,6 +1,6 @@
 @extends('layouts.app', ['background' => 'gray'])
 
-@section('section', 'Información del grupo')
+@section('title', 'Grupo')
 
 @section('content')
 

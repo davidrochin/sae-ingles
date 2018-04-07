@@ -3,7 +3,7 @@
             <tr>
                 <!--<th></th>-->
                 <th>ID</th>
-                <th>Número de control</th>
+                <th>No. control</th>
                 <th>Nombre(s)</th>
                 <th>Apellido(s)</th>
                 <th>Carrera</th>

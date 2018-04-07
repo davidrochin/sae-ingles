@@ -1,5 +1,5 @@
 @extends('layouts.app', ['background' => 'gray'])
-@section('title', 'Alumno '.$student->id)
+@section('title', 'Alumno')
 @section('section', 'Información del alumno')
 
 @section('content')
