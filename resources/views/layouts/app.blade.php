@@ -67,6 +67,15 @@
             <a class="col-auto p-3 bg-dark text-center text-white" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
           </div>
           
+          {{-- Mostrar alerta de éxito de ser necesario --}}
+          @if(session('success'))
+            @component('components.alert')
+              @slot('class', 'mb-0 mt-3')
+              @slot('type', 'success')
+              {{ session('success') }}
+            @endcomponent
+          @endif
+
           <div class="content py-4 px-2">
             <h1 class="h2">
               @yield('title', 'Título indefinido')

@@ -6,6 +6,7 @@
                 <th>ID</th>
                 <th>Profesor</th>
                 <th>Horario</th>
+                <th>Aula</th>
                 <th>Dias</th>
                 <th>Código</th>
                 <th>Nombre</th>
@@ -23,6 +24,7 @@
                 <td>{{ $group->id }}</td>
                 <td>{{ $group->user->name }}</td>
                 <td>{{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i') }}</td>
+                <td>{{ $group->classroom->name }}</td>
                 <td>{{-- $group->days --}}
                     @component('components.days-badges')
                         @slot('days', $group->days)

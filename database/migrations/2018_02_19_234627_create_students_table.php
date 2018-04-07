@@ -27,6 +27,8 @@ class CreateStudentsTable extends Migration
             $table->text('phone_number')->nullable();
             $table->text('email')->nullable();
 
+            $table->boolean('active')->default(true);
+
             //Faltan otros datos
 
         });
