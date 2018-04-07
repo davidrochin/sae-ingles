@@ -131,6 +131,16 @@
 		<!-- Formulario para buscar -->
 		<form class="form col-auto mr-0 ml-auto form-inline" action="/grupos/" method="get">
 
+			{{-- Orden --}}
+            <select class="form-control mr-3 ml-auto" name="order" onchange="this.form.submit()">
+                <option value="1">Ordenar por ID</option>
+                <option value="2">Ordenar por estado</option>
+                <option value="3">Ordenar por nombre</option>
+                <option value="4">Ordenar por nivel</option>
+                <option value="5">Ordenar por año</option>
+                <option value="6">Ordenar por periodo</option>
+            </select>
+
 			{{-- Filtros --}}
             <select class="form-control mr-3 ml-auto" name="filter" onchange="this.form.submit()">
                 <option value="1" >Todos los grupos</option>

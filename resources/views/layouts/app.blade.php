@@ -121,4 +121,11 @@
   </script>
   @endif
 
+  <!-- Activar tooltips en toda la página -->
+  <script type="text/javascript">
+    $(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+
 </html>
