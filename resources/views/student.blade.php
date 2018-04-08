@@ -97,7 +97,8 @@
                     <form action="/alumnos/eliminar" method="post" name="deleteStudentForm">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $student->id }}">
-                        <button type="submit" class="btn btn-danger">Eliminar alumno</button>
+                        <!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
+                        <button type="submit" class="btn btn-danger" data-toggle="confirmation">Eliminar alumno</button>
                     </form>
                 </div>
                 <div class="col-auto">

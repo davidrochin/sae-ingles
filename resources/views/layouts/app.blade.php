@@ -121,10 +121,11 @@
   </script>
   @endif
 
-  <!-- Activar tooltips en toda la página -->
+  <!-- Activar confirmaciones -->
   <script type="text/javascript">
-    $(function(){
-      $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle=confirmation]').confirmation({
+      rootSelector: '[data-toggle=confirmation]',
+      // other options
     });
   </script>
 
