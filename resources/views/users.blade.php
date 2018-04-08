@@ -80,22 +80,15 @@
 
                 {{ csrf_field() }}
 
-				<div class="form-row">
-					<div class="col">
-						@component('components.form-input')
-							@slot('tag','Contraseña')
-							@slot('name','newPassword')
-							@slot('type','text')
-							@slot('autocomplete,','off')
-						@endcomponent
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="col">
-						<button type="button" class="btn btn-outline-primary" onclick="generarPassword()">Generar</button>
-						<button type="button" class="btn btn-outline-primary" onclick="copiarAPortapapeles()">Copiar</button>
-					</div>
-				</div>
+                <div class="form-group">
+                	<label>Contraseña</label>
+                	<div class="input-group">
+	                	<input type="text" name="new-password" class="form-control">
+						<div class="input-group-append">
+							<button type="button" class="btn btn-outline-primary" onclick="generarPassword()">Generar</button>
+						</div>
+	                </div>
+                </div>
 
 			</form>
 		@endslot
@@ -127,18 +120,20 @@
 
 @section('scripts')
 	<script type="text/javascript">
-		function generarPassword() {
-            var pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            var pwdLen = 6;
-            var randPassword = Array(pwdLen).fill(pwdChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
-            changeUserPasswordForm.newPasswordControlInput.value = randPassword;
-        }
-        function copiarAPortapapeles() {
-		    var textoCopiado = changeUserPasswordForm.newPasswordControlInput;
-		    textoCopiado.select();
 
-            document.execCommand("Copy");
+		//Método para generar una contraseña de 3 letras y 3 números
+		function generarPassword() {
+            var letters = 'qwertyuiopasdfghjklzxcvbnm'; var numbers = '1234567890';
+            var passLength = 6;
+            var randPassword = '';
+            for(var i = 0; i < passLength; i++){
+            	if(i < 3) { randPassword = randPassword + letters.charAt(Math.random() * letters.length); } 
+            	else { randPassword = randPassword + numbers.charAt(Math.random() * numbers.length); }
+            }
+            document.querySelector('#changeUserPasswordForm input.form-control').value = randPassword;
         }
+
+        //No sirve para nada esto. Favor de eliminar.
         function agregaDatos() {
             $('#usersTable').find('tr').click( function(){
                 var row = $(this).find('td:first').text();
