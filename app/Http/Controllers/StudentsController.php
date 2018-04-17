@@ -30,7 +30,7 @@ class StudentsController extends Controller
             return view('auth.nopermission');
         }
 
-        $students = Student::orderBy('id', 'ASC');
+        $students = Student::orderBy('active', 'DESC');
 
         //Ordenar si es necesario
         switch ($order){
