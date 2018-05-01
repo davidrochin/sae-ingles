@@ -27,6 +27,7 @@ class GroupsController extends Controller
         //Revisar si hay una keyword en los parametros
         $keyword = $request->get('keyword');
         $filter = $request->get('filter');
+        $order = $request->get('order');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
         if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
@@ -35,7 +36,36 @@ class GroupsController extends Controller
             ]);
         }
 
-        $groups = Group::orderBy('active', 'DESC');
+        //$groups = Group::orderBy('active', 'DESC');
+        $groups = Group::orderBy('id', 'ASC');
+
+        //Ordenar si es necesario
+        switch ($order){
+            case 1:
+                //Ordenar por ID
+                //$groups = Group::orderBy('id', 'ASC');
+                break;
+            case 2:
+                //Ordenar por estado
+                $groups = Group::orderBy('active', 'DESC');
+                break;
+            case 3:
+                //Ordenar por nombre
+                $groups = Group::orderBy('name', 'ASC');
+                break;
+            case 4:
+                //Ordenar por nivel
+                $groups = Group::orderBy('level', 'DESC');
+                break;
+            case 5:
+                //Ordenar por año
+                $groups = Group::orderBy('year', 'DESC');
+                break;
+            case 6:
+                //Ordenar por periodos
+                $groups = Group::orderBy('period_id', 'ASC');
+                break;
+        }
 
         //Filtrar
         switch ($filter){
@@ -58,22 +88,22 @@ class GroupsController extends Controller
                 //Grupos con cupo disponible.
                 $groups = Group::has('students','<',function($query){
                     $query->select('capacity');
-                });;
+                });
                 break;
             case 6:
                 //Grupos llenos.
                 $groups = Group::has('students','>=',function($query){
                     $query->select('capacity');
-                });;
+                });
                 break;
         }
 
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
             $groups = $groups->search($keyword);
-        } else {
+        } /*else {
             $groups = $groups->orderBy('active', 'DESC');
-        }
+        }*/
 
         return view('groups', [
             'groups' => $groups->paginate(12),

@@ -26,7 +26,7 @@
 					</div>	
 				</div>				
 				<div class="form-group">
-					<label for="roleId">Carrera</label>
+					<label for="roleId">Rol</label>
 	                    <select name="roleId" class="form-control">
 	                        @foreach($roles as $role)
 	                            <option value="{{ $role->id }}">{{ $role->description }}</option>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Career;
+use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
@@ -21,6 +22,7 @@ class StudentsController extends Controller
         //Revisar si hay una keyword en los parametros
         $keyword = $request->get('keyword');
         $filter = $request->get('filter');
+        $order = $request->get('order');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
         //dd(Auth::user()->roles);
@@ -28,7 +30,27 @@ class StudentsController extends Controller
             return view('auth.nopermission');
         }
 
-        $students = Student::orderBy('id', 'ASC');
+        $students = Student::orderBy('active', 'DESC');
+
+        //Ordenar si es necesario
+        switch ($order){
+            case 1:
+                //Ordenar por estado
+                
+                break;
+            case 2:
+                //Ordenar por ID
+                $students = Student::orderBy('id', 'ASC');
+                break;
+            case 3:
+                //Ordenar por apellidos
+                $students = Student::orderBy('last_names', 'ASC');
+                break;
+            case 4:
+                //Ordenar por Carrera
+                $students = Student::join('careers', 'students.career_id', '=', 'careers.id')->orderBy('students.career_id', 'DESC');
+                break;
+        }
 
         //Filtrar si es necesario
         switch ($filter) {
@@ -46,11 +68,10 @@ class StudentsController extends Controller
                 break;
         }
 
+
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
             $students = $students->search($keyword);
-        } else {
-            $students = $students->orderBy('id', 'ASC');
         }
 
         $careers = Career::all();
