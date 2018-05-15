@@ -46,7 +46,7 @@
               <hr>
 
               <span class="sidebar-section text-muted">Para profesores</span>
-              <a href="{{ route('grades') }}" class="{{ $parentRoute == 'grades' ? 'selected' : '' }}"><i data-feather="calendar"></i>Mis grupos</a>
+              <a href="{{ route('my-groups') }}" class="{{ $parentRoute == 'my-groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Mis grupos</a>
               <hr>
 
               <span class="sidebar-section text-muted">Sistema</span>

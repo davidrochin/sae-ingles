@@ -123,6 +123,17 @@ class GroupsController extends Controller
         ]);
     }
 
+    public function showOwnedGroups(Request $request){
+        $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
+        //dd($groups->get());
+
+        return view('my-groups', [
+            'groups' => $groups->paginate(12),
+            'parentRoute' => 'my-groups',
+            'professors' => User::professors()->get()
+        ]);
+    }
+
     public function create(CreateGroupRequest $request){
         Group::create([
             'name' => $request->input('name'),

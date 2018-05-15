@@ -67,9 +67,9 @@ Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 Route::post('/usuarios/crear','UsersController@create')->middleware('auth');
 Route::post('/usuario/modificarContraseña','UsersController@changePassword')->middleware('auth');
 
-//Calificaciones
+//Grupos para maestros
 
-Route::get('/calificaciones/', 'GradesController@showOwnedGroups')->name('grades')->middleware('auth');
+Route::get('/mis-grupos/', 'GroupsController@showOwnedGroups')->name('my-groups')->middleware('auth');
 
 Auth::routes();
 

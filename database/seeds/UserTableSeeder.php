@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Role;
+use App\Setting;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -47,5 +48,21 @@ class UserTableSeeder extends Seeder
         $user->password = bcrypt('profesor');
         $user->role_id = Role::where('name', 'professor')->first()->id;
         $user->save();
+
+        $user = new User();
+        $user->name = 'Luis López';
+        $user->email = 'luis@hotmail.com';
+        $user->password = bcrypt('luis');
+        $user->role_id = Role::where('name', 'professor')->first()->id;
+        $user->save();
+
+        //Ajustes por defecto
+        Setting::create([
+            'name' => 'partial_count',
+            'value' => '4',
+            'display_name' => 'Cantidad de parciales',
+            'description' => 'Define la cantidad de parciales que el profesor debe calificar en un grupo.'
+        ]);
+
     }
 }
