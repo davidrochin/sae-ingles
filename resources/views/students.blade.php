@@ -88,7 +88,7 @@
         </div>
 
         <!-- Formulario para buscar -->
-        <form class="form col-auto mr-0 ml-auto form-inline" action="/alumnos/" method="get">
+        <form class="form col-auto mr-0 ml-auto form-inline" action="{{ route('students') }}" method="get">
 
             {{-- Orden --}}
             <select class="form-control mr-3 ml-auto" name="order" onchange="this.form.submit()">
