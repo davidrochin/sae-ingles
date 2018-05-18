@@ -4,8 +4,8 @@
                 <!--<th></th>-->
                 <th>ID</th>
                 <th>No. control</th>
-                <th>Nombre(s)</th>
                 <th>Apellido(s)</th>
+                <th>Nombre(s)</th>
                 <th>Carrera</th>
                 <th>Teléfono</th>
                 <th>Correo electrónico</th>
@@ -20,8 +20,8 @@
             <tr id="studentRow{{ $student->id }}" class="clickable-row">
                 <td>{{ $student->id }}</td>
                 <td>{{ $student->control_number }}</td>
-                <td>{{ $student->first_names }}</td>
                 <td>{{ $student->last_names }}</td>
+                <td>{{ $student->first_names }}</td>
                 <td>{{ $student->career->short_name }}</td>
                 <td>{{ $student->phone_number }}</td>
                 <td>{{ $student->email }}</td>
