@@ -70,6 +70,8 @@ Route::post('/usuario/modificarContraseña','UsersController@changePassword')->m
 //Grupos para maestros
 
 Route::get('/mis-grupos/', 'GroupsController@showOwnedGroups')->name('my-groups')->middleware('auth');
+Route::get('/mis-grupos/{id}', 'GroupsController@showOwnedGroup')->middleware('auth');
+Route::post('/mis-grupos/actualizar', 'GradesController@updateGrades')->middleware('auth');
 
 Auth::routes();
 

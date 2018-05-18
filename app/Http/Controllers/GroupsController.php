@@ -6,6 +6,8 @@ use App\Group;
 use App\User;
 use App\Role;
 use App\Student;
+use App\Grade;
+
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
@@ -131,6 +133,42 @@ class GroupsController extends Controller
             'groups' => $groups->paginate(12),
             'parentRoute' => 'my-groups',
             'professors' => User::professors()->get()
+        ]);
+    }
+
+    public function showOwnedGroup(Request $request, $id){
+
+        $group = Group::where('id', $id)->first();
+        $grades = Grade::where('group_id', $id)->get(); 
+        $grades->sortBy(function($group){ return $group->student->last_names; });
+
+        $gradesTable = array();
+
+        foreach ($grades as $key => $grade) {
+
+            //Si no existe un renglon para ese estudiante, crearlo
+            if(!array_key_exists($grade->student_id, $gradesTable)){
+                $gradesTable[$grade->student_id] = array();
+            }
+
+            //Insertar el score del estudiante
+            $gradesTable[$grade->student_id][$grade->partial] = $grade->score;
+
+        }
+        //dd($gradesTable);
+
+        //Preparar los promedios
+        $averages = array();
+        foreach ($gradesTable as $key => $value) {
+            $averages[$key] = Student::find($key)->getAverage($group->id);
+        }
+
+        return view('my-group', [
+            'group' => $group,
+            'professors' => User::all(),
+            'parentRoute' => 'my-groups',
+            'gradesTable' => $gradesTable,
+            'averages' => $averages,
         ]);
     }
 

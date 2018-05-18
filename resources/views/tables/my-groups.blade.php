@@ -28,7 +28,7 @@
                 <td>{{ $group->code }}</td>
                 <td>{{ $group->name }}</td>
                 <td>{{ $group->level }}</td>
-                <td><a href="{{ route('groups') }}/{{ $group->id }}">Ver grupo</a></td>
+                <td><a href="{{ route('my-groups') }}/{{ $group->id }}">Ver grupo</a></td>
             </tr>
         @endforeach
         </tbody>

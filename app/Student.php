@@ -3,6 +3,9 @@
 namespace App;
 
 use App\Career;
+use App\Grade;
+use App\Group;
+use App\Setting;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
@@ -17,6 +20,17 @@ class Student extends Model
 
     public function groups(){
         return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
+    }
+
+    public function getAverage($groupId){
+        $grades = Grade::where('student_id', $this->id)->where('group_id', $groupId)->get();
+        $partialCount = (int)Setting::where('name', 'partial_count')->first()->value;
+
+        $sum = 0;
+        for ($i=0; $i < sizeof($grades); $i++) { 
+            $sum = $sum + $grades[$i]->score;
+        }
+        return $sum / $partialCount;
     }
 
     //Falta probar esta función con Student::like('control_number', '14440590')->get();
@@ -50,4 +64,5 @@ class Student extends Model
         }
         return $query;
     }
+
 }

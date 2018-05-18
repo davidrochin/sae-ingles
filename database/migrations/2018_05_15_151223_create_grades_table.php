@@ -18,7 +18,8 @@ class CreateGradesTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('group_id');
-            $table->float('score', 4, 2);
+            $table->unsignedInteger('partial');
+            $table->float('score');
         });
     }
 
