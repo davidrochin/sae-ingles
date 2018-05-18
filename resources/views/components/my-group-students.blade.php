@@ -20,11 +20,11 @@
 					@for($i = 0; $i < ((int)App\Setting::where('name', 'partial_count')->first()->value); $i++)
 						<td>
 							<input type="hidden" name="studentIds[]" value="{{ $student->id }}">
-							<input type="number" name="scores[]" min="0" max="100" value="{{ $gradesTable[$student->id][$i + 1] }}">
+							<input type="number" name="scores[]" min="0" max="100" value="{{ array_key_exists($student->id, $gradesTable) ? $gradesTable[$student->id][$i + 1] : 0}}">
 							<input type="hidden" name="partials[]" value="{{ $i + 1 }}">
 						</td>
 					@endfor
-					<td>{{ $averages[$student->id] }}</td>
+					<td>{{ array_key_exists($student->id, $averages) ? $averages[$student->id] : 'Indefinido' }}</td>
 				</tr>
 			@empty
 				<tr>
