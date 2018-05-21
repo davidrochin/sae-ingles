@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Http\Requests\DeleteGroupRequest;
+use App\Http\Requests\ModifyGroupRequest;
 use App\User;
 use App\Role;
 use App\Student;
@@ -189,11 +191,38 @@ class GroupsController extends Controller
         return redirect()->back()->with('success', 'El grupo ha sido creado con éxito.');
     }
     
-    public function delete(){
+    public function delete(DeleteGroupRequest $request){
 
+        // Eliminamos los alumnos relacionados al grupo seleccionado para poder eliminarlo
+        $group = Group::findOrFail($request->input('idGroup'));
+        $students = $group->students;
+
+        foreach ($students as $student){
+            $group->students()->detach($student);
+        }
+        $group->delete();
+
+        return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
     }
 
-    public function modify(){
+    public function modify(ModifyGroupRequest $request){
+        /*dd("id: ",$request->input('idGroup')," name: ",$request->input('name'), " code ",$request->input('code')," level: ",$request->input('level'),
+        " period_id: ",$request->input('periodId')," year: ",$request->input('year')," user_id: ",$request->input('professorId')," schedule_start: ",$request->input('scheduleStart'),
+        " schedule_end: ",$request->input('scheduleEnd')," days: ",implode($request->input('days')));*/
+        Group::where('id',$request->input('idGroup'))
+            ->update(['name' => $request->input('name'),
+            'code' => $request->input('code'),
+            'level' => $request->input('level'),
+            'period_id' => $request->input('periodId'),
+            'year' => $request->input('year'),
+            'user_id' => $request->input('professorId'),
+            'schedule_start' => $request->input('scheduleStart'),
+            'schedule_end' => $request->input('scheduleEnd'),
+            'days' => implode($request->input('days'))
+            ]);
+
+
+        return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
     	
     }
 

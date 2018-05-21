@@ -12,7 +12,10 @@
 			@slot('header', 'Información básica')
 			@slot('class', 'mb-4')
 			
-			<form action="{{ route('groups') }}/editar" method="post" name="editGroupForm">
+			<form action="{{ route('groups') }}/modificar" method="post" name="editGroupForm">
+
+				{{csrf_field()}}
+
 				<div class="form-row">
 					<div class="col">
 						@component('components.form-input')
@@ -109,6 +112,9 @@
 					</div>
 					<div style=" color: #dc3545; font-size: 80%; margin-top: .25rem;">{{ $errors->first('days') }}</div>
 				</div>
+
+				<input  name="idGroup" value={{$group->id}} hidden>
+
 				<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
 			</form>
 
@@ -120,7 +126,15 @@
 			@slot('class', 'mb-3')
 
 			<div class="form-row">
-				<div class="col-auto"><button class="btn btn-danger">Eliminar grupo</button></div>
+				<div class="col-auto">
+					<form action="/grupos/eliminar" method="post" name="deleteGroupForm">
+						{{ csrf_field() }}
+						<input type="hidden" name="idGroup" value="{{ $group->id }}">
+						<!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
+						<button class="btn btn-danger" data-toggle="confirmation">Eliminar grupo</button>
+					</form>
+				</div>
+
 				<!--<div class="col-auto"><button class="btn btn-danger">Vaciar grupo</button></div>-->
 				<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
 				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>

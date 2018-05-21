@@ -13,7 +13,7 @@ class ModifyGroupRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,27 @@ class ModifyGroupRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required',
+            'code' => 'required',
+            'level' => 'required',
+            'professorId' => 'required|exists:users,id',
+            'scheduleStart' => 'required',
+            'scheduleEnd' => 'required',
+            'days' => 'required',
+            'year' => 'required',
+            'periodId' => 'required|exists:periods,id',
+           // 'classroomId' => 'required|exists:classrooms,id',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'name.required' => 'No puede estar vacío.',
+            'days.required' => 'Es necesario especificar al menos un día.',
+            'code.required' => 'No puede estar vacío.',
+            'level.required' => 'No puede estar vacío.',
+            'scheduleStart.required' => 'No puede estar vacío.',
+            'scheduleEnd.required' => 'No puede estar vacío.',
         ];
     }
 }
