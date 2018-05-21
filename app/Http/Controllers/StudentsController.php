@@ -48,7 +48,8 @@ class StudentsController extends Controller
                 break;
             case 4:
                 //Ordenar por Carrera
-                $students = Student::join('careers', 'students.career_id', '=', 'careers.id')->orderBy('students.career_id', 'DESC');
+                //$students = Student::join('careers', 'students.career_id', '=', 'careers.id')->orderBy('students.career_id', 'DESC');
+                $students = Student::orderBy('students.career_id', 'DESC');
                 break;
         }
 

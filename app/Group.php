@@ -49,18 +49,45 @@ class Group extends Model
                 array_push($periodsIds,$period->id);
             }
 
-            //Hacer la query
-            $groups = $query->whereIn('user_id', $usersIds)
-                ->orWhere('id', 'LIKE', '%'.$keyword.'%')
-                ->orWhere('level', 'LIKE', '%'.$keyword.'%')
-                ->orWhereIn('period_id', $periodsIds)
-                ->orWhere('year', 'LIKE', '%'.$keyword.'%')
-                //No se implementó, porque no mostramos en que aula se toma la clase
-                //->orWhere('classroom', 'LIKE', '%'.$keyword.'%')
-                ->orWhere('code', 'LIKE', '%'.$keyword.'%')
-                ->orWhere('name', 'LIKE', '%'.$keyword.'%');
+            if($keyword == 'lunes' or $keyword == 'Lunes' or $keyword == 'martes' or $keyword == 'Martes' or $keyword == 'miercoles' or $keyword == 'Miercoles' or $keyword == 'miércoles' or $keyword == 'Miércoles' or $keyword == 'jueves' or $keyword == 'Jueves' or $keyword == 'viernes' or $keyword == 'Viernes' or $keyword == 'sabado' or $keyword == 'Sabado' or $keyword == 'sábado' or $keyword == 'Sábado'){
+                if($keyword == 'lunes' or $keyword == 'Lunes'){
+                    $keyword = '1';
+                }
+                if($keyword == 'martes' or $keyword == 'Martes'){
+                    $keyword = '2';
+                }
+                if($keyword == 'miercoles' or $keyword == 'Miercoles' or $keyword == 'miércoles' or $keyword == 'Miércoles'){
+                    $keyword = '3';
+                }
+                if($keyword == 'jueves' or $keyword == 'Jueves'){
+                    $keyword = '4';
+                }
+                if($keyword == 'viernes' or $keyword == 'Viernes'){
+                    $keyword = '5';
+                }
+                if($keyword == 'sabado' or $keyword == 'Sabado' or $keyword == 'sábado' or $keyword == 'Sábado'){
+                    $keyword = '6';
+                }
 
-            //dd($groups->get());
+                //dd($keyword);
+
+                //Hacer la query
+                $groups = $query->where('days', 'LIKE', '%'.$keyword.'%');
+            }else{
+                //Hacer la query
+                $groups = $query->whereIn('user_id', $usersIds)
+                    ->orWhere('id', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('level', 'LIKE', '%'.$keyword.'%')
+                    ->orWhereIn('period_id', $periodsIds)
+                    ->orWhere('year', 'LIKE', '%'.$keyword.'%')
+                    //No se implementó, porque no mostramos en que aula se toma la clase
+                    //->orWhere('classroom', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('code', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('name', 'LIKE', '%'.$keyword.'%');
+
+                //dd($groups->get());
+            }
+
         }
         return $query;
     }
