@@ -55,7 +55,7 @@
 		                    </select>
 		                    <div class="invalid-feedback">{{ $errors->first('periodId') }}</div>
 		                </div>
-					</div>
+					</div>					
 					<div class="col">
 						@component('components.form-input')
 							@slot('tag', 'Año')
@@ -65,15 +65,22 @@
 						@endcomponent
 					</div>
 				</div>
-
-				<div class="form-group">
+				<div class="form-row">
+					<div class="form-group col">
                     <label for="professorControlInput">Profesor</label>
                     <select class="form-control" id="professorControlInput" name="professorId">
                         @foreach($professors as $professor)
                         <option value="{{$professor->id}}" {{ old('professorId') == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
                         @endforeach
                     </select>
-                </div>
+               		</div>
+					<div class="form-group col-4">						
+							<label for="capacityControlInput">Capacidad</label>
+							<input id="capacityControlInput" name="capacity" type="number" class="form-control  " min="1" max="50" value={{old('capacity') != null ? old('capacity') : '40'}}>
+							<div class="invalid-feedback"></div>						
+					</div>
+				</div>
+				
 
 				<div class="form-row">
 					<div class="col">

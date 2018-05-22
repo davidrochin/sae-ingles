@@ -68,14 +68,25 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="professorControlInput">Profesor</label>
-					<select class="form-control bg-white" id="professorControlInput" name="professorId" disabled>
-						@foreach($professors as $professor)
-						<option value="{{$professor->id}}" {{ $group->user->id == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
-						@endforeach
-					</select>
+				<div class="form-row">
+					<div class="col">
+						<div class="form-group">
+							<label for="professorControlInput">Profesor</label>
+							<select class="form-control bg-white" id="professorControlInput" name="professorId" disabled>
+								@foreach($professors as $professor)
+								<option value="{{$professor->id}}" {{ $group->user->id == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-3">			
+							<label for="capacityControlInput">Capacidad</label>
+							<input id="capacityControlInput" name="capacity" type="number" class="form-control bg-white" min="1" max="50" disabled value={{$group->capacity}}>
+							<div class="invalid-feedback"></div>
+					</div>
 				</div>
+
+				
 
 				<div class="form-row">
 					<div class="col">

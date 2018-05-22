@@ -212,6 +212,7 @@ class GroupsController extends Controller
         Group::where('id',$request->input('idGroup'))
             ->update(['name' => $request->input('name'),
             'code' => $request->input('code'),
+            'capacity' => $request->input('capacity'),
             'level' => $request->input('level'),
             'period_id' => $request->input('periodId'),
             'year' => $request->input('year'),
