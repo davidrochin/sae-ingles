@@ -15,7 +15,7 @@
         </thead>
 
         <tbody>
-        @foreach($groups as $group)
+        @forelse($groups as $group)
             <tr id="tableRow{{ $group->id }}" class="clickable-row">
                 <td>{{ $group->id }}</td>
                 <td>{{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i') }}</td>
@@ -30,7 +30,9 @@
                 <td>{{ $group->level }}</td>
                 <td><a href="{{ route('my-groups') }}/{{ $group->id }}">Ver grupo</a></td>
             </tr>
-        @endforeach
+        @empty
+            <tr><td colspan="99" class="text-center text-muted">Usted no tiene ningun grupo asignado. Si piensa que esto es un error, por favor comuníqueselo a Coordinación.</td></tr>
+        @endforelse
         </tbody>
 
     </table>

@@ -88,24 +88,26 @@
         @endcomponent
 
         <!-- Tarjeta de acciones -->
-        @component('components.card')
-            @slot('header', 'Acciones')
-            @slot('class', 'mt-3')
+        @if(Auth::user()->hasAnyRole('admin', 'coordinator'))
+            @component('components.card')
+                @slot('header', 'Acciones')
+                @slot('class', 'mt-3')
 
-            <div class="form-row">
-                <div class="col-auto">
-                    <form action="/alumnos/eliminar" method="post" name="deleteStudentForm">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="id" value="{{ $student->id }}">
-                        <!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
-                        <button type="submit" class="btn btn-danger" data-toggle="confirmation">Eliminar alumno</button>
-                    </form>
+                <div class="form-row">
+                    <div class="col-auto">
+                        <form action="/alumnos/eliminar" method="post" name="deleteStudentForm">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{ $student->id }}">
+                            <!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
+                            <button type="submit" class="btn btn-danger" data-toggle="confirmation">Eliminar alumno</button>
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <button id="editStudentButton" class="btn btn-secondary" onclick="formEditMode('editStudentForm'); deleteById('editStudentButton')">Modificar datos</button>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <button id="editStudentButton" class="btn btn-secondary" onclick="formEditMode('editStudentForm'); deleteById('editStudentButton')">Modificar datos</button>
-                </div>
-            </div>
-        @endcomponent
+            @endcomponent
+        @endif
 
     </div>
 

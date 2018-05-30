@@ -5,7 +5,9 @@
 			<th>No.</th>
 			<th>Nombre</th>
 			<th>No. control</th>
-			<th>Acciones</th>
+			@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+				<th>Acciones</th>
+			@endif
 		</tr>
 	</thead>
 
@@ -18,7 +20,9 @@
 			<form action="/grupos/remover" method="post" id="removeForm{{ $student->id }}">
 				{{ csrf_field() }}
 				<input type="hidden" name="studentId" value="{{ $student->id }}"><input type="hidden" name="groupId" value="{{ $group->id }}">
-				<td><a class="badge badge-danger" href="javascript:;" onclick=" document.getElementById('removeForm{{ $student->id }}').submit();">Remover</a></td>
+				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+					<td><a class="badge badge-danger" href="javascript:;" onclick=" document.getElementById('removeForm{{ $student->id }}').submit();">Remover</a></td>
+				@endif
 			</form>
 		</tr>
 		@empty

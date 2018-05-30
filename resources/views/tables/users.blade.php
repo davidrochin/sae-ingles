@@ -7,8 +7,10 @@
                 <th>Rol</th>
                 <th>Nombre</th>
                 <th>Correo electrónico</th>
-                <th>Contraseña</th>
-                <th></th>
+                @if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+                    <th>Contraseña</th>
+                    {{--<th></th>--}}
+                @endif
             </tr>
         </thead>
 
@@ -22,15 +24,12 @@
                 </td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>
-                    @if($user->role->name == 'professor')
-                        <a data-toggle="modal" href="#" data-target="#newPasswordUserModal" onclick="agregaDatos()">Nueva contraseña</a>
 
-                    @else
-                        
-                    @endif
-                </td>
-                <td><a href="{{ route('users') }}/{{ $user->id }}">Ver usuario</a></td>
+                @if($user->role->name == 'professor' && Auth::user()->hasAnyRole(['admin', 'coordinator']))
+                    <td><a data-toggle="modal" href="#" data-target="#newPasswordUserModal" onclick="agregaDatos()">Nueva contraseña</a></td>
+                    {{--<td><a href="{{ route('users') }}/{{ $user->id }}">Ver usuario</a></td>--}}
+                @endif
+
             </tr>
         @endforeach
         </tbody>

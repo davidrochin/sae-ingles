@@ -137,17 +137,24 @@
 			@slot('class', 'mb-3')
 
 			<div class="form-row">
-				<div class="col-auto">
-					<form action="/grupos/eliminar" method="post" name="deleteGroupForm">
-						{{ csrf_field() }}
-						<input type="hidden" name="idGroup" value="{{ $group->id }}">
-						<!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
-						<button class="btn btn-danger" data-toggle="confirmation">Eliminar grupo</button>
-					</form>
-				</div>
 
-				<!--<div class="col-auto"><button class="btn btn-danger">Vaciar grupo</button></div>-->
-				<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
+				{{-- Botón para eliminar el grupo --}}
+				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+					<div class="col-auto">
+						<form action="/grupos/eliminar" method="post" name="deleteGroupForm">
+							{{ csrf_field() }}
+							<input type="hidden" name="idGroup" value="{{ $group->id }}">
+							<!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
+							<button class="btn btn-danger" data-toggle="confirmation">Eliminar grupo</button>
+						</form>
+					</div>
+				@endif
+
+				{{-- Botón para modificar el grupo --}}
+				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+					<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
+				@endif
+
 				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 			</div>
 		@endcomponent
@@ -157,24 +164,26 @@
 	<div class="col">
 
 		{{-- Card que muestra los controles para agregar alumnos al grupo --}}
-		@component('components.card')
-			@slot('header', 'Agregar alumnos al grupo')
-			@slot('class', 'mb-4')
+		@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+			@component('components.card')
+				@slot('header', 'Agregar alumnos al grupo')
+				@slot('class', 'mb-4')
 
-			{{-- Input para agregar un nuevo alumno --}}
-			<form action="/grupos/agregar" method="post">
-				{{ csrf_field() }}
-				<input type="hidden" name="groupId" value="{{ $group->id }}">
-				<div class="input-group mb-3">
-				  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="ID del alumno..." autocomplete="off">
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
-				  </div>
-				</div>
-			</form>
+				{{-- Input para agregar un nuevo alumno --}}
+				<form action="/grupos/agregar" method="post">
+					{{ csrf_field() }}
+					<input type="hidden" name="groupId" value="{{ $group->id }}">
+					<div class="input-group mb-3">
+					  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="ID del alumno..." autocomplete="off">
+					  <div class="input-group-append">
+					    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+					  </div>
+					</div>
+				</form>
 
-			<p class="text-center">Si usted presiona agregar, se agregará a <span id="studentToAdd" class="font-weight-bold">...</span> a este grupo.</p>
-		@endcomponent
+				<p class="text-center">Si usted presiona agregar, se agregará a <span id="studentToAdd" class="font-weight-bold">...</span> a este grupo.</p>
+			@endcomponent
+		@endif
 
 		{{-- Card que muestra los alumnos que están en el grupo --}}
 		@component('components.card')

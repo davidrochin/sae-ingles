@@ -102,7 +102,15 @@
 	<!--Botones para manipular tabla y buscador-->
 	<div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
 		<div class="btn-group" role="group" aria-label="First group">
-			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newUserModal">Nuevo</button>
+
+			{{-- Boton para crear un nuevo usuario --}}
+			@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+				<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newUserModal">Nuevo</button>
+			@endif
+
+			{{-- Botón invisible para conservar el espacio superior a la tabla --}}
+			<button type="button" class="btn btn-outline-primary" style="background:transparent; border:none; color:transparent;">Este boton no deberia de estar aquí</button>
+
 		</div>
 	</div>
 
