@@ -181,6 +181,13 @@
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
 
+			@if(count($group->students) > $group->capacity)
+				@component('components.alert')
+					@slot('type', 'danger')
+					El número de alumnos de este grupo es de {{ count($group->students) }} pero su capacidad es de {{ $group->capacity }}. Por favor, para evitar errores en el sistema, elimine al menos {{ count($group->students) - $group->capacity }} alumnos del grupo.
+				@endcomponent
+			@endif
+
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.group-students')
 				@slot('group', $group)
