@@ -83,9 +83,11 @@
     <div class="btn-toolbar mb-3 w-100 form-inline" role="toolbar" aria-label="Toolbar with button groups">
 
         {{-- Botón de Nuevo --}}
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
-        </div>
+        @if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
+            </div>
+        @endif
 
         <!-- Formulario para buscar -->
         <form class="form col-auto mr-0 ml-auto form-inline" action="{{ route('students') }}" method="get">
