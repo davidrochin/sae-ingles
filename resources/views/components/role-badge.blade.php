@@ -4,6 +4,8 @@
 badge-dark
 @elseif($role->name == 'coordinator')
 badge-success
+@elseif($role->name == 'schoolserv')
+badge-info
 @else
 badge-light
 @endif

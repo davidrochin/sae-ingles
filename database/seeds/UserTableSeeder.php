@@ -17,6 +17,7 @@ class UserTableSeeder extends Seeder
         $role_professor = Role::where('name', 'professor')->first();
         $role_coordinator = Role::where('name', 'coordinator')->first();
         $role_admin = Role::where('name', 'admin')->first();
+        $role_schoolserv = Role::where('name', 'schoolserv')->first();
 
         //Administradores por defecto ===========================
         User::create([
@@ -33,11 +34,19 @@ class UserTableSeeder extends Seeder
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
 
+        //Servicios Escolares por defecto
+        User::create([
+            'name' => 'Servicios Escolares',
+            'email' => 'serviciosescolares@gmail.com',
+            'password' => bcrypt('sae'),
+            'role_id' => $role_schoolserv->id
+        ]);
+
         //Coordinadores por defecto =============================
         $user = new User();
         $user->name = 'Leticia García';
         $user->email = 'letigarcia@gmail.com';
-        $user->password = bcrypt('leticia');
+        $user->password = bcrypt('sae');
         $user->role_id = Role::where('name', 'coordinator')->first()->id;
         $user->save();
 
@@ -45,14 +54,14 @@ class UserTableSeeder extends Seeder
         $user = new User();
         $user->name = 'Profesor no registrado';
         $user->email = 'profesor@hotmail.com';
-        $user->password = bcrypt('profesor');
+        $user->password = bcrypt('sae');
         $user->role_id = Role::where('name', 'professor')->first()->id;
         $user->save();
 
         $user = new User();
         $user->name = 'Luis López';
         $user->email = 'luis@hotmail.com';
-        $user->password = bcrypt('luis');
+        $user->password = bcrypt('sae');
         $user->role_id = Role::where('name', 'professor')->first()->id;
         $user->save();
 

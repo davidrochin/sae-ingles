@@ -34,7 +34,7 @@ class GroupsController extends Controller
         $order = $request->get('order');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
+        if(!Auth::user()->hasAnyRole(['admin', 'coordinator', 'schoolserv'])){
             return view('auth.nopermission', [
                 'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
             ]);
