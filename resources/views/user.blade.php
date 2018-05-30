@@ -28,7 +28,7 @@
                         </div>
                         <div class="col">
                             @component('components.form-input')
-                                @slot('tag', 'Número de control')
+                                @slot('tag', 'Nombre')
                                 @slot('name', 'name')
                                 @slot('disabled', 'true')
                                 @slot('class', 'bg-white')
