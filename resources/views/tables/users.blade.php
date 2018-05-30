@@ -9,8 +9,8 @@
                 <th>Correo electrónico</th>
                 @if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
                     <th>Contraseña</th>
-                    {{--<th></th>--}}
                 @endif
+                <th></th>
             </tr>
         </thead>
 
@@ -27,8 +27,8 @@
 
                 @if($user->role->name == 'professor' && Auth::user()->hasAnyRole(['admin', 'coordinator']))
                     <td><a data-toggle="modal" href="#" data-target="#newPasswordUserModal" onclick="agregaDatos()">Nueva contraseña</a></td>
-                    {{--<td><a href="{{ route('users') }}/{{ $user->id }}">Ver usuario</a></td>--}}
                 @endif
+                <td><a href="{{ route('users') }}/{{ $user->id }}">Ver usuario</a></td>
 
             </tr>
         @endforeach

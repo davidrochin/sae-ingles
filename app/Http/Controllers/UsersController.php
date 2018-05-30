@@ -48,7 +48,14 @@ class UsersController extends Controller
     }
 
     public function show($id){
-        dd(User::where('id', $id)->first());
+        //dd(User::where('id', $id)->first());
+
+        $user = User::findOrFail($id);
+
+        return view('user', [
+            'user' => $user,
+            'parentRoute' => UsersController::DEFAULT_PARENT_ROUTE,
+        ]);
     }
 
     public function create(CreateUserRequest $request){
