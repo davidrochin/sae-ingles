@@ -35,12 +35,12 @@ class StudentsController extends Controller
         //Ordenar si es necesario
         switch ($order){
             case 1:
-                //Ordenar por estado
-                
+                //Ordenar por ID
+                $students = Student::orderBy('id', 'DESC');
                 break;
             case 2:
-                //Ordenar por ID
-                $students = Student::orderBy('id', 'ASC');
+                //Ordenar por estado
+                $students = Student::orderBy('active', 'DESC');
                 break;
             case 3:
                 //Ordenar por apellidos

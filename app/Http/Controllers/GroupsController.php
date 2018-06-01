@@ -41,17 +41,17 @@ class GroupsController extends Controller
         }
 
         //$groups = Group::orderBy('active', 'DESC');
-        $groups = Group::orderBy('id', 'ASC');
+        $groups = Group::orderBy('active', 'DESC')->orderBy('id', 'DESC');
 
         //Ordenar si es necesario
         switch ($order){
             case 1:
-                //Ordenar por ID
-                //$groups = Group::orderBy('id', 'ASC');
+                //Ordenar por estado
+                $groups = Group::orderBy('active', 'DESC')->orderBy('id', 'DESC');
                 break;
             case 2:
-                //Ordenar por estado
-                $groups = Group::orderBy('active', 'DESC');
+                //Ordenar por ID
+                $groups = Group::orderBy('id', 'DESC');
                 break;
             case 3:
                 //Ordenar por nombre
@@ -140,7 +140,17 @@ class GroupsController extends Controller
 
     public function showOwnedGroup(Request $request, $id){
 
+        
+        $user = Auth::user();
         $group = Group::where('id', $id)->first();
+
+        //Revisar si el usuario es profesor del grupo
+        if($group->user->id != $user->id){
+            return view('auth.nopermission', [
+                'permissionMessage' => 'Usted no está registrado como profesor de este grupo.'
+            ]);
+        }
+
         $grades = Grade::where('group_id', $id)->get(); 
         $grades->sortBy(function($group){ return $group->student->last_names; });
 

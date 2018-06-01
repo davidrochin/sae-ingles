@@ -144,8 +144,8 @@
 
 			{{-- Orden --}}
             <select class="form-control mr-3 ml-auto" name="order" onchange="this.form.submit()">
-                <option value="1">Ordenar por ID</option>
-                <option value="2" {{ app('request')->input('order') == 2 ? 'selected' : '' }}>Ordenar por estado</option>
+                <option value="1">Ordenar por estado</option>
+                <option value="2" {{ app('request')->input('order') == 2 ? 'selected' : '' }}>Ordenar por ID</option>
                 <option value="3" {{ app('request')->input('order') == 3 ? 'selected' : '' }}>Ordenar por nombre</option>
                 <option value="4" {{ app('request')->input('order') == 4 ? 'selected' : '' }}>Ordenar por nivel</option>
                 <option value="5" {{ app('request')->input('order') == 5 ? 'selected' : '' }}>Ordenar por año</option>

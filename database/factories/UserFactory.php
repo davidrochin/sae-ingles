@@ -42,7 +42,8 @@ $factory->define(App\Student::class, function (Faker $faker) {
 		'first_names' => $faker->firstName,
 		'last_names' => $faker->lastName.' '.$faker->lastName,
 		'phone_number' => $faker->ean8,
-		'email' => $faker->email
+		'email' => $faker->email,
+		'active' => $faker->randomElement([0,1])
 	];
 
 });

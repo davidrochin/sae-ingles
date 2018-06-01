@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(UsersTableSeeder::class);
         factory(App\User::class)->times(30)->create();
-        factory(App\Student::class)->times(300)->create();
-        factory(App\Group::class)->times(20)->create();
+        factory(App\Student::class)->times(1000)->create();
+        factory(App\Group::class)->times(50)->create();
 
         //Para cada grupo, asignarle alumnos aleatorios
         $groups = Group::all();
