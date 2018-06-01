@@ -67,12 +67,14 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col">
-                    <label for="professorControlInput">Profesor</label>
-                    <select class="form-control" id="professorControlInput" name="professorId">
-                        @foreach($professors as $professor)
-                        <option value="{{$professor->id}}" {{ old('professorId') == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
-                        @endforeach
-                    </select>
+	                    <label for="professorControlInput">Profesor</label>
+	                    <select class="form-control" id="professorControlInput" name="professorId">
+	                    	<option value="" {{ old('professorId') == 0 ? 'selected' : '' }}></option>
+	                        @foreach($professors as $professor)
+	                        <option value="{{$professor->id}}" {{ old('professorId') == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
+	                        @endforeach
+	                    </select>
+	                    <div class="invalid-feedback">{{ $errors->first('professorId') }}</div>
                		</div>
 					<div class="form-group col-4">						
 							<label for="capacityControlInput">Capacidad</label>
@@ -103,10 +105,12 @@
 						<div class="form-group">
 		                    <label for="classroomControlInput">Aula</label>
 		                    <select class="form-control" id="classroomControlInput" name="classroomId">
+		                    	<option value="" {{ old('classroomId') }}></option>
 		                        @foreach(App\Classroom::all() as $classroom)
 		                        <option value="{{$classroom->id}}" {{ old('classroomId') == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
 		                        @endforeach
 		                    </select>
+		                    <div class="invalid-feedback">{{ $errors->first('classroomId') }}</div>
 		                </div>
 					</div>
 				</div>

@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label for="careerId">Carrera</label>
                         <select name="careerId" class="form-control bg-white" disabled>
-                            <option value="0" {{ old('careerId') == 0 ? 'selected' : '' }}>Carrera no registrada</option>
+                            <option value="">Carrera no registrada</option>
                             @foreach($careers as $career)
                                 <option {{ $student->career_id == $career->id ? 'selected' : '' }} value="{{ $career->id }}">{{ $career->name }}</option>
                             @endforeach

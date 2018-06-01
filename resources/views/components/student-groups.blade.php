@@ -17,7 +17,7 @@
 		<tr>
 			<td>{{ $group->name }}</td>
 			<td>{{ Carbon\Carbon::parse($group->schedule_start)->format('g:i A') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('g:i A') }}</td>
-			<td>{{ $group->user->name }}</td>
+			<td>{{ !is_null($group->user) ? $group->user->name : '' }}</td>
 			<td>
 				@component('components.group-state-badge', ['group' => $group])
 				@endcomponent

@@ -28,12 +28,12 @@ class ModifyGroupRequest extends FormRequest
             'name' => 'required',
             'code' => 'required',
             'level' => 'required',
-            'professorId' => 'required|exists:users,id',
+            'professorId' => 'sometimes|nullable|exists:users,id',
             'scheduleStart' => 'required',
             'scheduleEnd' => 'required',
             'days' => 'required',
             'year' => 'required',
-            'periodId' => 'required|exists:periods,id',
+            'periodId' => 'sometimes|nullable|exists:periods,id',
            // 'classroomId' => 'required|exists:classrooms,id',
         ];
     }

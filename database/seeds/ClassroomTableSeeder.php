@@ -13,9 +13,9 @@ class ClassroomTableSeeder extends Seeder
     public function run()
     {
 
-        Classroom::create([
+        /*Classroom::create([
             'name' => 'No asignada',
-        ]);
+        ]);*/
 
     	//Crear las aulas del 1 al 10
     	for ($i=0; $i < 10; $i++) { 

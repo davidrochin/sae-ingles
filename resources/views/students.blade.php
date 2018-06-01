@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="careerControlInput">Carrera</label>
                             <select class="form-control" id="careerControlInput" name="careerId">
-                                <option value="0" {{ old('careerId') == 0 ? 'selected' : '' }}></option>
+                                <option value=""></option>
                                 <!-- Llenar el select con las carreras de la base de datos -->
                                 @foreach($careers as $career)
                                 <option value="{{$career->id}}" {{ old('careerId') == $career->id ? 'selected' : '' }}>{{ $career->name }}</option>

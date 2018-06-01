@@ -73,8 +73,9 @@
 						<div class="form-group">
 							<label for="professorControlInput">Profesor</label>
 							<select class="form-control bg-white" id="professorControlInput" name="professorId" disabled>
+								<option value="0" {{ is_null($group->user) ? 'selected' : '' }}>Profesor no asignado</option>
 								@foreach($professors as $professor)
-								<option value="{{$professor->id}}" {{ $group->user->id == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
+								<option value="{{$professor->id}}" {{ !is_null($group->user) && $group->user->id == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
 								@endforeach
 							</select>
 						</div>
