@@ -38,11 +38,11 @@ $factory->define(App\Student::class, function (Faker $faker) {
 
 	return [
 		'control_number' => $faker->numberBetween(14000000, 20000000),
-		'career_id' => $faker->boolean(90) ? Career::inRandomOrder()->get()[0]->id : NULL,
+		'career_id' => $faker->boolean(95) ? Career::inRandomOrder()->get()[0]->id : NULL,
 		'first_names' => $faker->firstName,
 		'last_names' => $faker->lastName.' '.$faker->lastName,
-		'phone_number' => $faker->boolean(90) ? $faker->ean8 : NULL,
-		'email' => $faker->boolean(90) ? $faker->email : NULL,
+		'phone_number' => $faker->boolean(95) ? $faker->ean8 : NULL,
+		'email' => $faker->boolean(95) ? $faker->email : NULL,
 		'active' => $faker->randomElement([0,1])
 	];
 
@@ -64,7 +64,7 @@ $factory->define(App\Group::class, function (Faker $faker) {
 		'days' => $faker->randomElement([12345, 6, 135, 24]),
 		'code' => $faker->numberBetween(1000, 9999),
 		'name' => $faker->randomElement(['A', 'B']),
-		'user_id' => $faker->boolean(90) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
+		'user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
 		'active' => $faker->numberBetween(0, 1),
 		'period_id' => Period::inRandomOrder()->first()->id,
 		'year' => $faker->numberBetween(2000, 2018),

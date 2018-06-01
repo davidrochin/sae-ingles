@@ -129,8 +129,11 @@
 
 				<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
 			</form>
-
 		@endcomponent
+		
+	</div>
+
+	<div class="col-12 col-xl-6">
 
 		{{-- Card que muestra las acciones para el grupo --}}
 		@component('components.card')
@@ -159,10 +162,6 @@
 				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 			</div>
 		@endcomponent
-		
-	</div>
-		
-	<div class="col">
 
 		{{-- Card que muestra los controles para agregar alumnos al grupo --}}
 		@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
@@ -185,6 +184,9 @@
 				<p class="text-center">Si usted presiona agregar, se agregará a <span id="studentToAdd" class="font-weight-bold">...</span> a este grupo.</p>
 			@endcomponent
 		@endif
+	</div>
+		
+	<div class="col-12">
 
 		{{-- Card que muestra los alumnos que están en el grupo --}}
 		@component('components.card')
@@ -194,13 +196,15 @@
 			@if(count($group->students) > $group->capacity)
 				@component('components.alert')
 					@slot('type', 'danger')
-					El número de alumnos de este grupo es de {{ count($group->students) }} pero su capacidad es de {{ $group->capacity }}. Por favor, para evitar errores en el sistema, elimine al menos {{ count($group->students) - $group->capacity }} alumnos del grupo.
+					El número de alumnos de este grupo es de {{ count($group->students) }} pero su capacidad es de {{ $group->capacity }}. Por favor, para evitar errores en el sistema, elimine al menos {{ count($group->students) - $group->capacity }} alumno(s) del grupo.
 				@endcomponent
 			@endif
 
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.group-students')
 				@slot('group', $group)
+				@slot('grades', $grades)
+				@slot('averages', $averages)
 			@endcomponent
 		@endcomponent
 	</div>

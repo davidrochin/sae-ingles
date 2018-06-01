@@ -5,6 +5,8 @@ namespace App;
 use App\User;
 use App\Period;
 use App\Classroom;
+use App\Grade;
+use App\Setting;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
@@ -27,6 +29,36 @@ class Group extends Model
 
     public function classroom(){
         return $this->belongsTo(Classroom::class);
+    }
+
+    public function getGrades(){
+        $groupGrades = Grade::where('group_id', $this->id)->get();
+        $gradesStructure = array();
+
+        foreach ($groupGrades as $key => $grade) {
+            $gradesStructure[$grade->student_id][$grade->partial] = $grade->score;
+        }
+
+        return $gradesStructure;
+    }
+
+    public function getAverages(){
+
+        $partialCount = (int)Setting::where('name', 'partial_count')->first()->value;
+
+        $students = $this->students;
+        $averagesStructure = array();
+
+        foreach ($students as $key => $student) {
+            $average = 0;
+            $studentGrades = Grade::where('group_id', $this->id)->where('student_id', $student->id)->get();
+            foreach ($studentGrades as $grade) {
+                $average = $average + $grade->score;
+            }
+            $averagesStructure[$student->id] = $average / $partialCount;
+        }
+
+        return $averagesStructure;
     }
 
     public static function scopeSearch($query, $keyword){

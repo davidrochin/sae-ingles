@@ -20,7 +20,7 @@
 					@for($i = 0; $i < ((int)App\Setting::where('name', 'partial_count')->first()->value); $i++)
 						<td>
 							<input type="hidden" name="studentIds[]" value="{{ $student->id }}">
-							<input type="number" name="scores[]" min="0" max="100" value="{{ array_key_exists($student->id, $gradesTable) ? $gradesTable[$student->id][$i + 1] : 0}}">
+							<input type="number" name="scores[]" min="0" max="100" value="{{ isset($gradesTable[$student->id][$i + 1]) ? $gradesTable[$student->id][$i + 1] : ""}}">
 							<input type="hidden" name="partials[]" value="{{ $i + 1 }}">
 						</td>
 					@endfor

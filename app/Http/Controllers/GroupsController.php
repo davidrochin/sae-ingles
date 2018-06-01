@@ -119,9 +119,15 @@ class GroupsController extends Controller
     public function show(Request $request, $id){
 
         $group = Group::where('id', $id)->first();
+        $grades = $group->getGrades();
+        $averages = $group->getAverages();
+
+        //dd($grades);
 
         return view('group', [
             'group' => $group,
+            'grades' => $grades,
+            'averages' => $averages,
             'professors' => User::all(),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
         ]);
