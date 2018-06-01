@@ -64,7 +64,7 @@ $factory->define(App\Group::class, function (Faker $faker) {
 		'days' => $faker->randomElement([12345, 6]),
 		'code' => $faker->numberBetween(1000, 9999),
 		'name' => $faker->randomElement(['A', 'B']),
-		'user_id' => User::inRandomOrder()->first()->id,
+		'user_id' => User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id,
 		'active' => $faker->numberBetween(0, 1),
 		'period_id' => Period::inRandomOrder()->first()->id,
 		'year' => $faker->numberBetween(2000, 2018),

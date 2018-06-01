@@ -12,8 +12,8 @@ class CareerTableSeeder extends Seeder
      */
     public function run()
     {
-        $career = new Career(); $career->short_name = 'No regist.'; $career->name = 'Carrera no registrada'; $career->save();
-        $career = new Career(); $career->short_name = 'Externo'; $career->name = 'Alumno externo'; $career->save();
+        //$career = new Career(); $career->short_name = 'No regist.'; $career->name = 'Carrera no registrada'; $career->save();
+        //$career = new Career(); $career->short_name = 'Externo'; $career->name = 'Alumno externo'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Industrial'; $career->name = 'Ingeniería Industrial'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Informática'; $career->name = 'Ingeniería en Informática'; $career->save();
         $career = new Career(); $career->short_name = 'Ing. Electrónica'; $career->name = 'Ingeniería en Electrónica'; $career->save();

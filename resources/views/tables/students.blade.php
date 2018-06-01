@@ -22,7 +22,7 @@
                 <td>{{ $student->control_number }}</td>
                 <td>{{ $student->last_names }}</td>
                 <td>{{ $student->first_names }}</td>
-                <td>{{ $student->career->short_name }}</td>
+                <td>{{ !is_null($student->career) ? $student->career->short_name : '' }}</td>
                 <td>{{ $student->phone_number }}</td>
                 <td>{{ $student->email }}</td>
                 <td><span class="badge badge-pill badge-{{ $student->active ? 'primary' : 'secondary' }}">{{ $student->active ? 'Activo' : 'Inactivo' }}</span></td>

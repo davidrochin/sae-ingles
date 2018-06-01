@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
 
-        //Servicios Escolares por defecto
+        //Servicios Escolares por defecto =======================
         User::create([
             'name' => 'Servicios Escolares',
             'email' => 'serviciosescolares@gmail.com',
@@ -44,18 +44,18 @@ class UserTableSeeder extends Seeder
 
         //Coordinadores por defecto =============================
         User::create([
-            'name' => 'Leticia García',
-            'email' => 'blgarciaa@hotmail.com',
-            'password' => bcrypt('leticia'),
-            'role_id' => $role_coordinator->id
-        ]);
-
-        User::create([
             'name' => 'Nombre pendiente',
             'email' => 'sacleitlm@gmail.com',
             'password' => bcrypt('ingles2018'),
             'role_id' => $role_coordinator->id
         ]);
+
+        User::create([
+            'name' => 'Leticia García',
+            'email' => 'blgarciaa@hotmail.com',
+            'password' => bcrypt('leticia'),
+            'role_id' => $role_coordinator->id
+        ]); 
 
         //Profesores por defecto =============================
         $user = new User();

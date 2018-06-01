@@ -36,7 +36,7 @@
 				<td>{{ $key + 1 }}</td>
 				<td>{{ $student->last_names}} {{ $student->first_names }}</td>
 				<td>{{ $student->control_number }}</td>
-				<td>{{ $student->career->short_name }}</td>
+				<td>{{ !is_null($student->career) ? $student->career->short_name : 'Carrera no registrada' }}</td>
 				@for($i = 0 ; $i < $attendanceSlots ; $i++)
 					<th></th>
 				@endfor

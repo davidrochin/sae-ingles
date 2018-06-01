@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
 
             $table->text('control_number');
 
-            $table->unsignedInteger('career_id');
+            $table->unsignedInteger('career_id')->nullable();
 
             $table->text('first_names');
             $table->text('last_names');

@@ -108,16 +108,11 @@ class StudentsController extends Controller
 
     public function create(CreateStudentRequest $request){
 
-    	//Vardump de los datos del request
-    	//dd($request->all());
-
-    	//$this->validate($request);
-
         $user = $request->user();
 
     	$student = Student::create([
     		'control_number' => $request->input('controlNumber'),
-    		'career_id' => $request->input('careerId'),
+    		'career_id' => $request->input('careerId') == 0 ? NULL : $request->input('careerId'),
     		'first_names' => $request->input('firstNames'),
     		'last_names' => $request->input('lastNames'),
     		'phone_number' => $request->input('phoneNumber'),
