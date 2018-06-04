@@ -239,7 +239,7 @@
 			},
 			error:function(data){ 
 				$('#studentToAdd').html('...');
-				 }
+			}
 		});
 	})
 

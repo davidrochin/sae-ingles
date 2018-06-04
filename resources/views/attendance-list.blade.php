@@ -13,9 +13,9 @@
 <table class="table table-bordered text-nowrap table-attendance">
 	<tbody>
 		<td>Nivel <b>{{ $group->level }}</b></td>
-		<td>Horario de <b>{{ $group->schedule_start }} - {{ $group->schedule_end }}</b></td>
+		<td>Horario de <b>{{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i') }}</b></td>
 		<td>Profesor <b>{{ $group->user->name }}</b></td>
-		<td>Aula <b>{{2}}</b></td>
+		<td>{{ $group->classroom->name }}</b></td>
 		<td>Periodo <b>{{ $group->period->name }}</b></td>
 	</tbody>
 </table>
@@ -26,9 +26,7 @@
 		<th>Nombre completo</th>
 		<th>No. control</th>
 		<th>Carrera</th>
-		@for($i = 0 ; $i < $attendanceSlots ; $i++)
-			<th></th>
-		@endfor
+		<th colspan="999">Asistencia</th>
 	</thead>
 	<tbody>
 		@foreach($students as $key => $student)
