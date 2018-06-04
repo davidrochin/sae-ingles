@@ -234,8 +234,12 @@
 			data:{ 'json':1, },
 
 			//Poner el nombre del alumno en el span
-			success:function(data){ $('#studentToAdd').html(data['last_names'] + ' ' + data['first_names']); },
-			error:function(data){ $('#studentToAdd').html('...'); }
+			success:function(data){ 
+				$('#studentToAdd').html(data['last_names'] + ' ' + data['first_names'] + ' (' + data['id'] + ')'); 
+			},
+			error:function(data){ 
+				$('#studentToAdd').html('...');
+				 }
 		});
 	})
 
