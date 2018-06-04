@@ -240,7 +240,6 @@ class GroupsController extends Controller
 
 
         return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
-    	
     }
 
     public function attendanceList(Request $request, $id){
@@ -256,8 +255,8 @@ class GroupsController extends Controller
 
     public function addStudent(AddStudentToGroupRequest $request){
         //dd($request);
-        $group = Group::findOrFail($request->input('groupId'));
-        $student = Student::findOrFail($request->input('studentId'));
+        $group = Group::find($request->input('groupId'));
+        $student = Student::find($request->input('studentId'));
 
         //Revisar que el grupo tenga capacidad para un nuevo alumno
         if(count($group->students)>=$group->capacity){

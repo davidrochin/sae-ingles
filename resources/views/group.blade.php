@@ -173,15 +173,16 @@
 				<form action="/grupos/agregar" method="post">
 					{{ csrf_field() }}
 					<input type="hidden" name="groupId" value="{{ $group->id }}">
-					<div class="input-group mb-3">
+					<div class="input-group">
 					  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="ID del alumno..." autocomplete="off">
 					  <div class="input-group-append">
 					    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
 					  </div>
 					</div>
+					<div style="color: #dc3545; font-size: 80%;">{{ $errors->first('studentId') ? $errors->first('studentId') : '' }}</div>
 				</form>
 
-				<p class="text-center">Si usted presiona agregar, se agregará a <span id="studentToAdd" class="font-weight-bold">...</span> a este grupo.</p>
+				<p class="text-center mt-3">Si usted presiona agregar, se agregará a <span id="studentToAdd" class="font-weight-bold">...</span> a este grupo.</p>
 			@endcomponent
 		@endif
 	</div>
