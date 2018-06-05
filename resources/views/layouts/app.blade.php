@@ -30,8 +30,12 @@
 
         <!-- Barra lateral -->
         <div class="col-md-12 col-xl-2 p-0 sidebar">
-          <span class="d-block p-3 bg-dark text-white text-center">S.A.E.</span>    
-          <div class="p-0" style="">
+          <span class="d-block p-3 bg-dark text-white text-center">S.A.E.</span>  
+
+          {{-- Botón para abrir el menú --}} 
+          {{--<div class="d-block d-xl-none p-3 bg-gray text-center" onclick="toggleMenu();">Abrir menú</div>--}}
+
+          <div class="p-0 d-none d-xl-block" style="" id="menu">
               <span class="sidebar-section text-muted">General</span>
               <a href="{{ route('home') }}" class="{{ $parentRoute == 'home' ? 'selected' : '' }}"><i data-feather="home"></i>Inicio</a>
               <hr>
@@ -56,12 +60,15 @@
 
         <!-- Columna que ocupa el espacio de la barra -->
         <div class="d-none d-xl-block col-xl-2 p-0" style="height: 100px;">
-          
         </div>
 
         <!-- Barra de arriba y contenido -->
         <div class="col-xl-10">
           <div class="row p-0">
+
+            {{-- Botón para abrir el menú --}} 
+            <div id="toggleMenuButton" class="col-auto d-block d-xl-none p-3 bg-primary text-white text-center" onclick="toggleMenu();">Abrir menú</div> 
+
             <div class="col p-3 text-white text-center" style="background-color: rgba(0, 0, 0, 0.65);">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->role->description }}</div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
             <a class="col-auto p-3 bg-dark text-center text-white" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
@@ -105,6 +112,16 @@
       } else {
         dummy.style.position = 'relative';
       }
+    }
+
+    function toggleMenu(){
+      if($('#menu').hasClass('d-none')) {
+        $('#menu').removeClass('d-none');
+        $('#toggleMenuButton').remove();
+      } else {
+        $('#menu').addClass('d-none');
+      }
+      
     }
 
     $(window).resize(function() { setSidebarPos(); });
