@@ -12,7 +12,7 @@
 
 		@slot('body')
 
-			<!-- Formulario de nuevo grupo -->
+			<!-- Formulario de nuevo usuario -->
 			<form action="/usuarios/crear" class="form"  method="post" id="registerUserForm" autocomplete="off">
 
 				{{ csrf_field() }}
@@ -83,11 +83,12 @@
                 <div class="form-group">
                 	<label>Contraseña</label>
                 	<div class="input-group">
-	                	<input type="text" name="new-password" class="form-control">
+	                	<input type="text" name="newPassword" class="form-control">
 						<div class="input-group-append">
 							<button type="button" class="btn btn-outline-primary" onclick="generarPassword()">Generar</button>
 						</div>
 	                </div>
+	                <div style=" color: #dc3545; font-size: 80%; margin-top: .25rem;">{{ $errors->first() }}</div>
                 </div>
 
 			</form>
@@ -112,6 +113,8 @@
 	</div>
 
 	<div>
+
+		{{-- Tabla de Usuarios --}}
 		@include('tables.users')
 
 		<div class="row">

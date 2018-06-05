@@ -28,16 +28,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function authorizeRoles($roles)
-    {
+    public function authorizeRoles($roles) {
         if ($this->hasAnyRole($roles)) {
             return true;
         }
         abort(401, 'Esta acción no está autorizada.');
     }
 
-    public function hasAnyRole($roles)
-    {
+    public function hasAnyRole($roles) {
         if (is_array($roles)) {
             foreach ($roles as $role) {
                 if ($this->hasRole($role)) {
@@ -52,15 +50,39 @@ class User extends Authenticatable
         return false;
     }
 
-    public function hasRole($role)
-    {
+    public function hasRole($role) {
         if ($this->role()->where('name', $role)->first()) {
             return true;
         }
         return false;
     }
 
-    public function role(){
+    public function isRoleSuperiorThan($role){
+
+        $userRole = $this->role->name;
+
+        if(is_string($role)){
+            if($userRole == 'admin' && $role != 'admin'){
+                return true;
+            }
+            if($userRole == 'coordinator' && ($role == 'professor')){
+                return true;
+            }
+            if($userRole == 'schoolserv'){
+                return false;
+            }
+            if($userRole == 'professor'){
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public function isSuperiorThan($user){
+        return $this->isRoleSuperiorThan($user->role->name);
+    }
+
+    public function role() {
         return $this->belongsTo(Role::class);
     }
 

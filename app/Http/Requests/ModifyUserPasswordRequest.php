@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ModifyUserPasswordRequest extends FormRequest
@@ -14,7 +16,16 @@ class ModifyUserPasswordRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $user = Auth::user();
+        $userToModify = User::find($this->input('id'));
+        //dd($this);
+
+        if($user->isSuperiorThan($userToModify)){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /**
@@ -25,12 +36,13 @@ class ModifyUserPasswordRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required|exists:users',
             'newPassword' => 'required|min:6|max:30'
         ];
     }
     public function messages(){
         return [
-            'newPassword.required' => 'No puede dejar este campo vacío.',
+            'newPassword.required' => 'No puede dejar la contraseña vacía.',
             'newPassword.min' => 'La nueva contraseña debe ser mayor a 5 caracteres.',
             'newPassword.max' => 'La nueva contraseña solo puede contener 30 caracteres como máximo.',
         ];
