@@ -83,7 +83,8 @@
                 <div class="form-group">
                 	<label>Contraseña</label>
                 	<div class="input-group">
-	                	<input type="text" name="newPassword" class="form-control">
+                		<input type="text" name="userId" id="userId" class="form-control" hidden="" value={{old('userId')}}>
+	                	<input type="text" name="newPassword" id="newPassword" class="form-control">
 						<div class="input-group-append">
 							<button type="button" class="btn btn-outline-primary" onclick="generarPassword()">Generar</button>
 						</div>
@@ -138,17 +139,20 @@
             	if(i < 3) { randPassword = randPassword + letters.charAt(Math.random() * letters.length); } 
             	else { randPassword = randPassword + numbers.charAt(Math.random() * numbers.length); }
             }
-            document.querySelector('#changeUserPasswordForm input.form-control').value = randPassword;
+            //document.querySelector('#changeUserPasswordForm input.form-control').value = randPassword;
+            document.getElementById("newPassword").value = randPassword;
         }
 
         //No sirve para nada esto. Favor de eliminar.
         function agregaDatos() {
             $('#usersTable').find('tr').click( function(){
                 var row = $(this).find('td:first').text();
-                var id = $("<input>")
-                    .attr("type", "hidden")
-                    .attr("name", "id").val(row);
-                $('#changeUserPasswordForm').append($(id));
+                //var id = $("<input>")
+                //    .attr("type", "hidden")
+                //    .attr("name", "id").val(row);
+                //$('#changeUserPasswordForm').append($(id));
+
+                document.getElementById("userId").value = row;
             });
         }
 

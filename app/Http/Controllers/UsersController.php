@@ -75,7 +75,7 @@ class UsersController extends Controller
     }
 
     public function changePassword(ModifyUserPasswordRequest $request){
-	    User::where('id',$request->input('id'))
+	    User::where('id',$request->input('userId'))
             ->update(['password' => bcrypt($request->input('newPassword'))]);
 
 	    return redirect()->back()->with('success','La contraseña ha sido modificada con éxito');

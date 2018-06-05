@@ -29,7 +29,7 @@
                     <td>
                         {{--@if($user->role->name == 'professor' || )--}}
                         @if(Auth::user()->isRoleSuperiorThan($user->role->name))
-                            <a data-toggle="modal" href="#" data-target="#newPasswordUserModal" onclick="agregaDatos()">Nueva contraseña</a>
+                            <a data-toggle="modal" href="#" data-target="#newPasswordUserModal" onclick="agregaDatos();">Nueva contraseña</a>
                         @endif
                     </td>
                 @endif

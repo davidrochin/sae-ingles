@@ -17,7 +17,7 @@ class ModifyUserPasswordRequest extends FormRequest
     public function authorize()
     {
         $user = Auth::user();
-        $userToModify = User::find($this->input('id'));
+        $userToModify = User::find($this->input('userId'));
         //dd($this);
 
         if($user->isSuperiorThan($userToModify)){
@@ -36,13 +36,13 @@ class ModifyUserPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:users',
+            'userId' => 'required|exists:users,id',
             'newPassword' => 'required|min:6|max:30'
         ];
     }
     public function messages(){
         return [
-            'id.required' => 'No se ha mandado usuario.',
+            'userId.required' => 'No se ha mandado usuario.',
             'newPassword.required' => 'No puede dejar la contraseña vacía.',
             'newPassword.min' => 'La nueva contraseña debe ser mayor a 5 caracteres.',
             'newPassword.max' => 'La nueva contraseña solo puede contener 30 caracteres como máximo.',
