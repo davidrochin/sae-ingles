@@ -221,6 +221,9 @@
 	//deacuerdo al ID escrito en el input para agregar nuevos alumnos.
 	$('#studentAddInput').on('input',function(){
 
+		//Borrar el texto actual
+		$('#studentToAdd').html('...');
+
 		//Obtener el valor del input
 		$value=$(this).val();
 
@@ -238,7 +241,7 @@
 				$('#studentToAdd').html(data['last_names'] + ' ' + data['first_names'] + ' (' + data['id'] + ')'); 
 			},
 			error:function(data){ 
-				$('#studentToAdd').html('...');
+				$('#studentToAdd').html('[alumno no encontrado]');
 			}
 		});
 	})

@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="row mb-4">
-	<div class="col-8">
+<div class="row">
+	<div class="col-12 col-xl-8 mb-4">
 
 		{{-- Card que muestra la información del grupo --}}
 		@component('components.card')
@@ -74,12 +74,11 @@
 				<div style=" color: #dc3545; font-size: 80%; margin-top: .25rem;">{{ $errors->first('days') }}</div>
 			</div>
 			<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
-
 		@endcomponent
 		
 	</div>
 		
-	<div class="col-4">
+	<div class="col-12 col-xl-4 mb-4">
 		{{-- Card que muestra las acciones para el grupo --}}
 		@component('components.card')
 			@slot('header', 'Acciones')
