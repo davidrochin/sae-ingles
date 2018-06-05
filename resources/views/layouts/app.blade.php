@@ -67,10 +67,12 @@
           <div class="row p-0">
 
             {{-- Botón para abrir el menú --}} 
-            <div id="toggleMenuButton" class="col-auto d-block d-xl-none p-3 bg-primary text-white text-center" onclick="toggleMenu();">Abrir menú</div> 
+            <a id="toggleMenuButton" class="col-auto d-block d-xl-none p-3 bg-primary text-white text-center" href="#" onclick="toggleMenu();event.preventDefault(); ">Abrir menú</a> 
 
             <div class="col p-3 text-white text-center" style="background-color: rgba(0, 0, 0, 0.65);">Autenticado como {{ Auth::user()->name }} - {{ Auth::user()->role->description }}</div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+            
+            {{-- Boton para cerrar sesión --}}
             <a class="col-auto p-3 bg-dark text-center text-white" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
           </div>
           
