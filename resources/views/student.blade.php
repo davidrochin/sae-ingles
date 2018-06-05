@@ -18,13 +18,11 @@
 
                     <div class="form-row">
                         <div class="col">
-                             @component('components.form-input')
-                                @slot('tag', 'ID')
-                                @slot('name', 'id')
-                                @slot('disabled', 'true')
-                                @slot('class', 'bg-white')
-                                @slot('value', $student->id)
-                            @endcomponent
+                             <div class="form-group">
+                                 <label for="idControlInput">ID</label>
+                                 <input id="idControlInput" name="id" type="text" class="form-control  bg-white" value={{$student->id}} readonly="readonly">
+                                 <div class="invalid-feedback"></div>
+                             </div>
                         </div>
                         <div class="col">
                             @component('components.form-input')

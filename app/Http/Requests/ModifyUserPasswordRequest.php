@@ -42,6 +42,7 @@ class ModifyUserPasswordRequest extends FormRequest
     }
     public function messages(){
         return [
+            'id.required' => 'No se ha mandado usuario.',
             'newPassword.required' => 'No puede dejar la contraseña vacía.',
             'newPassword.min' => 'La nueva contraseña debe ser mayor a 5 caracteres.',
             'newPassword.max' => 'La nueva contraseña solo puede contener 30 caracteres como máximo.',

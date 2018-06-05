@@ -30,13 +30,13 @@ class StudentsController extends Controller
             return view('auth.nopermission');
         }
 
-        $students = Student::orderBy('id', 'DESC');
+        $students = Student::orderBy('id', 'ASC');
 
         //Ordenar si es necesario
         switch ($order){
             case 1:
                 //Ordenar por ID
-                $students = Student::orderBy('id', 'DESC');
+                $students = Student::orderBy('id', 'ASC');
                 break;
             case 2:
                 //Ordenar por estado
@@ -143,11 +143,12 @@ class StudentsController extends Controller
 
     public function modify(ModifyStudentRequest $request){
 
+        //dd($request->firstNames);
         //Buscar el alumno que se está modificando
-        $student = Student::find($request->input('id'));
+        /*$student = Student::find($request->input('id'));
 
         //Reemplazar los datos del alumno
-        $student->control_number = $request->input('controlNumber');
+        //$student->control_number = $request->input('controlNumber');
         $student->first_names = $request->input('firstNames');
         $student->last_names = $request->input('lastNames');
         $student->career_id = $request->input('careerId');
@@ -157,6 +158,20 @@ class StudentsController extends Controller
         //Guardar los cambios
         $student->save();
 
-        return redirect()->back();
+        return redirect()->back();*/
+        //dd($request->input('id'),$request->input('firstNames'),$request->input('lastNames'),$request->input('careerId'),$request->input('phoneNumber'),$request->input('email'));
+
+        Student::where('id',$request->input('id'))
+            ->update(['first_names' => $request->input('firstNames'),
+                'last_names' => $request->input('lastNames'),
+                'career_id' => $request->input('careerId'),
+                'phone_number' => $request->input('phoneNumber'),
+                'email' => $request->input('email')
+            ]);
+
+
+        return redirect()->back()->with('success','El alumno ha sido modificado con éxito');
+
+
     }
 }
