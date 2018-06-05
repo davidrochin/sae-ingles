@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Group;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddStudentToGroupRequest extends FormRequest
@@ -13,7 +16,14 @@ class AddStudentToGroupRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $user = Auth::user();
+
+        //Revisar si el usuario es administrador o coordinador
+        if($user->hasAnyRole(['admin', 'coordinator'])){
+            return true;
+        }
+
+        return false;
     }
 
     /**

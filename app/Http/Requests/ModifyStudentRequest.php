@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +16,12 @@ class ModifyStudentRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        //Revisar si el usuario es administrador o coordinador
+        if(Auth::user()->hasAnyRole(['admin', 'coordinator'])){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
