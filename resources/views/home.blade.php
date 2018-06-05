@@ -7,8 +7,9 @@
 @section('content')
 
 @component('components.card')
-	<p>Bienvenido(a) <b>{{ Auth::user()->name }}</b>. Puede navegar por las diferentes secciones del sistema usando el menú de la izquierda.</p>
-
+	<div class="d-none d-xl-block"><p>Bienvenido(a) <b>{{ Auth::user()->name }}</b>. Puede navegar por las diferentes secciones del sistema usando el menú de la izquierda.</p></div>
+	<div class="d-block d-xl-none"><p>Bienvenido(a) <b>{{ Auth::user()->name }}</b>. Puede navegar por las diferentes secciones del sistema usando el menú, el cual puede abrir haciendo clic en el botón "Abrir menú".</p></div>
+	
 	@component('components.alert')
 	@slot('type', 'warning')
 	@slot('style', 'mb-0')
