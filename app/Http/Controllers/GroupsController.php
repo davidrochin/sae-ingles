@@ -209,13 +209,20 @@ class GroupsController extends Controller
     
     public function delete(DeleteGroupRequest $request){
 
-        // Eliminamos los alumnos relacionados al grupo seleccionado para poder eliminarlo
         $group = Group::findOrFail($request->input('idGroup'));
         $students = $group->students;
+        $grades = $group->grades;
 
+        //Borrar todas las calificaciones de este grupo
+        foreach ($grades as $grade) {
+            $grade->delete();
+        }
+
+        //Desasignar todos los alumnos de este grupo
         foreach ($students as $student){
             $group->students()->detach($student);
         }
+
         $group->delete();
 
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');

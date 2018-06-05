@@ -31,6 +31,10 @@ class Group extends Model
         return $this->belongsTo(Classroom::class);
     }
 
+    public function grades(){
+        return $this->hasMany(Grade::class);
+    }
+
     public function getGrades(){
         $groupGrades = Grade::where('group_id', $this->id)->get();
         $gradesStructure = array();
