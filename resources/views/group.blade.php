@@ -110,6 +110,16 @@
 						@slot('value', $group->schedule_end)
 						@endcomponent
 					</div>
+					<div class="col">
+						@component('components.form-input')
+						@slot('tag', 'Estado')
+						@slot('name', '')
+						@slot('disabled', 'true')
+						@slot('type', 'text')
+						@slot('class', 'bg-white '.($group->active ? 'text-primary' : ''))
+						@slot('value', $group->active ? 'Activo' : 'Inactivo')
+						@endcomponent
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -147,7 +157,7 @@
 					<form action="/grupos/alternar" method="post" name="toggleGroupForm">
 						{{ csrf_field() }}
 						<input type="hidden" name="groupId" value="{{ $group->id }}">
-						<button class="btn btn-{{ $group->active ? 'primary' : 'secondary' }}">{{ $group->active ? 'Desactivar' : 'Activar' }} grupo</button>
+						<button class="btn btn-secondary">{{ $group->active ? 'Desactivar' : 'Activar' }} grupo</button>
 					</form>
 				</div>
 
@@ -155,6 +165,9 @@
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
 					<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
 				@endif
+
+				{{-- Botón para imprimir la lista de asistencia del grupo --}}
+				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 
 				{{-- Botón para eliminar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
@@ -167,8 +180,6 @@
 						</form>
 					</div>
 				@endif
-
-				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 			</div>
 		@endcomponent
 

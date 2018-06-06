@@ -42,17 +42,17 @@ class GroupsController extends Controller
         }
 
         //$groups = Group::orderBy('active', 'DESC');
-        $groups = Group::orderBy('active', 'DESC')->orderBy('id', 'ASC');
+        $groups = Group::orderBy('id', 'DESC');
 
         //Ordenar si es necesario
         switch ($order){
             case 1:
-                //Ordenar por estado
-                $groups = Group::orderBy('active', 'DESC')->orderBy('id', 'ASC');
+                //Ordenar por ID
+                $groups = Group::orderBy('id', 'DESC');
                 break;
             case 2:
-                //Ordenar por ID
-                $groups = Group::orderBy('id', 'ASC');
+                //Ordenar por estado
+                $groups = Group::orderBy('active', 'DESC')->orderBy('id', 'ASC');
                 break;
             case 3:
                 //Ordenar por nombre
