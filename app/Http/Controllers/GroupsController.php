@@ -13,6 +13,7 @@ use App\Grade;
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
+use App\Http\Requests\ToggleGroupStateRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
@@ -247,6 +248,22 @@ class GroupsController extends Controller
 
 
         return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
+    }
+
+    public function toggle(ToggleGroupStateRequest $request){
+        $group = Group::find($request->input('groupId'));
+        $successMessage = '';
+
+        if($group->active == 1){
+            $group->active = 0;
+            $successMessage = 'El grupo se ha desactivado con éxito.';
+        } else {
+            $group->active = 1;
+            $successMessage = 'El grupo se ha activado con éxito.';
+        }
+        $group->save();
+
+        return redirect()->back()->with('success', $successMessage);
     }
 
     public function attendanceList(Request $request, $id){

@@ -98,7 +98,7 @@
             {{-- Orden --}}
             <select class="form-control mr-3 ml-auto" name="order" onchange="this.form.submit()">
                 <option value="1" {{ app('request')->input('order') == 1 ? 'selected' : '' }}>Ordenar por ID</option>
-                <option value="2" {{ app('request')->input('order') == 2 ? 'selected' : '' }}>Ordenar por estado</option>
+                {{--<option value="2" {{ app('request')->input('order') == 2 ? 'selected' : '' }}>Ordenar por estado</option>--}}
                 <option value="3" {{ app('request')->input('order') == 3 ? 'selected' : '' }}>Ordenar por apellidos</option>
                 <option value="4" {{ app('request')->input('order') == 4 ? 'selected' : '' }}>Ordenar por carrera</option>
             </select>
@@ -106,7 +106,7 @@
             {{-- Filtros --}}
             <select class="form-control mr-3 ml-auto" name="filter" onchange="this.form.submit()">
                 <option value="1">Todos los alumnos</option>
-                <option value="2" {{ app('request')->input('filter') == 2 ? 'selected' : '' }}>Alumnos sin grupo activo</option>
+                <option value="2" {{ app('request')->input('filter') == 2 ? 'selected' : '' }}>Alumnos activos</option>
             </select>
 
             {{-- Buscador --}}

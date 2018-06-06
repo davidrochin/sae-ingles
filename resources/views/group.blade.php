@@ -142,6 +142,20 @@
 
 			<div class="form-row">
 
+				{{-- Boton para alternar el grupo --}}
+				<div class="col-auto">
+					<form action="/grupos/alternar" method="post" name="toggleGroupForm">
+						{{ csrf_field() }}
+						<input type="hidden" name="groupId" value="{{ $group->id }}">
+						<button class="btn btn-{{ $group->active ? 'primary' : 'secondary' }}">{{ $group->active ? 'Desactivar' : 'Activar' }} grupo</button>
+					</form>
+				</div>
+
+				{{-- Botón para modificar el grupo --}}
+				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+					<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
+				@endif
+
 				{{-- Botón para eliminar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
 					<div class="col-auto">
@@ -152,11 +166,6 @@
 							<button class="btn btn-danger" data-toggle="confirmation">Eliminar grupo</button>
 						</form>
 					</div>
-				@endif
-
-				{{-- Botón para modificar el grupo --}}
-				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
-					<div class="col-auto"><button id="editGroupButton" class="btn btn-secondary" onclick="formEditMode('editGroupForm'); deleteById('editGroupButton');">Editar grupo</button></div>
 				@endif
 
 				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>

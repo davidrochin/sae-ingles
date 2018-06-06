@@ -26,11 +26,12 @@ class Student extends Model
         $groups = $this->groups;
         $isActive = false;
         foreach ($groups as $group) {
-            if($group->active = true){
+            if($group->active == 1){
                 $isActive = true;
                 break;
             }
         }
+
         return $isActive;
     }
 

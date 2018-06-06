@@ -25,7 +25,7 @@
                 <td>{{ !is_null($student->career) ? $student->career->short_name : '' }}</td>
                 <td>{{ $student->phone_number }}</td>
                 <td>{{ $student->email }}</td>
-                <td><span class="badge badge-pill badge-{{ $student->active ? 'primary' : 'secondary' }}">{{ $student->active ? 'Activo' : 'Inactivo' }}</span></td>
+                <td><span class="badge badge-pill badge-{{ $student->isActive() ? 'primary' : 'secondary' }}">{{ $student->isActive() ? 'Activo' : 'Inactivo' }}</span></td>
                 <td><a href="{{ route('students') }}/{{ $student->id }}">Ver alumno</a></td>
             </tr>
         @endforeach

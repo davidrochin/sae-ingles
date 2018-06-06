@@ -40,7 +40,9 @@ class StudentsController extends Controller
                 break;
             case 2:
                 //Ordenar por estado
-                $students = Student::orderBy('active', 'DESC');
+                /*$students = Student::with(['student_group' => function($query){
+                    $query
+                }]]);*/
                 break;
             case 3:
                 //Ordenar por apellidos
@@ -60,7 +62,7 @@ class StudentsController extends Controller
                 break;
             case 2:
                 //Mandar solo alumnos sin grupos activos
-                $students = $students->whereDoesntHave('groups', function($query){
+                $students = $students->whereHas('groups', function($query){
                     $query->where('active', 1);
                 });
                 break;
