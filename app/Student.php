@@ -22,6 +22,18 @@ class Student extends Model
         return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
     }
 
+    public function isActive(){
+        $groups = $this->groups;
+        $isActive = false;
+        foreach ($groups as $group) {
+            if($group->active = true){
+                $isActive = true;
+                break;
+            }
+        }
+        return $isActive;
+    }
+
     public function getAverage($groupId){
         $grades = Grade::where('student_id', $this->id)->where('group_id', $groupId)->get();
         $partialCount = (int)Setting::where('name', 'partial_count')->first()->value;

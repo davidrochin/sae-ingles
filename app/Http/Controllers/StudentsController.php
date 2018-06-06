@@ -131,13 +131,16 @@ class StudentsController extends Controller
 
     public function delete(DeleteStudentRequest $request){
 
-        //dd($request->all());
-        //dd($request->all());
-
         $student = Student::find($request->input('id'));
+        $groups = $student->groups;
+
+        //Desasignar el alumno de todos los grupos
+        foreach ($groups as $group) {
+            $student->groups()->detach($group);
+        }
+
         $student->delete();
 
-        //return redirect('/alumnos/');
         return redirect('/alumnos')->with('success', 'El alumno ha sido eliminado con éxito.');
     }
 
@@ -171,7 +174,5 @@ class StudentsController extends Controller
 
 
         return redirect()->back()->with('success','El alumno ha sido modificado con éxito');
-
-
     }
 }
