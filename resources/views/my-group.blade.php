@@ -161,7 +161,7 @@
 	})
 
 	function setAllTo(val){
-		var inputs = document.getElementsByName('scores[]');
+		var inputs = document.getElementsByClassName('score-data');
 		for (var i = 0; i < inputs.length; i++) {
 			inputs[i].value = val;
 		}

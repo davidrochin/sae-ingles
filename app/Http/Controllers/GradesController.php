@@ -20,36 +20,36 @@ class GradesController extends Controller
 
     public function updateGrades(UpdateGradesRequest $request){
 
-    	//dd($request);
-    	//dd(Grade::where('student_id', 257)->where('group_id', 10)->first());
-
-    	$studentIds = $request->input('studentIds');
-    	$scores = $request->input('scores');
-    	$partials = $request->input('partials');
+        $grades_table = $request->input('grades');
     	$groupId = $request->input('groupId');
 
-    	$partialCount = Setting::where('name', 'partial_count')->first()->value;
+    	$partial_count = Setting::where('name', 'partial_count')->first()->value;
 
-    	for ($i=0; $i < sizeof($scores); $i++) { 
-    		$grade = Grade::where('student_id', $studentIds[$i])->where('group_id', $groupId)->where('partial', $partials[$i])->first();
+        foreach ($grades_table as $key => $grade_data) {
+            for ($i=1; $i <= $partial_count; $i++) { 
 
-    		//Si no existe crearlo
-    		if(is_null($grade)){
-    			$grade = Grade::firstOrNew([
-	    			'student_id' => $studentIds[$i],
-	    			'group_id' => $groupId,
-	    			'partial' => $partials[$i],
-	    			'score' => (is_null($scores[$i]) ? 0 : $scores[$i])
-	    		]);
-	    		$grade->save();
-    		} 
+                //Buscar un grade que cumpla
+                $grade = Grade::where('student_id', $key)->where('group_id', $groupId)->where('partial', $i)->first();
 
-    		//Si ya existe, actualizarlo
-    		else {
-    			$grade->score = (is_null($scores[$i]) ? 0 : $scores[$i]);
-    			$grade->save();
-    		}
-    	}
+                //Si no existe crearlo
+                if(is_null($grade)){
+                    $grade = Grade::firstOrNew([
+                        'student_id' => $key,
+                        'group_id' => $groupId,
+                        'partial' => $i,
+                        'score' => (!isset($grades_table[$key][$i]) ? 0 : $grades_table[$key][$i])
+                    ]);
+                    $grade->save();
+                } 
+
+                //Si ya existe, actualizarlo
+                else {
+                    $grade->score = (!isset($grades_table[$key][$i]) ? 0 : $grades_table[$key][$i]);
+                    $grade->save();
+                }
+            }
+        }
+
     	return redirect()->back()->with('success', 'Calificaciones aplicadas con éxito.');
     }
 }
