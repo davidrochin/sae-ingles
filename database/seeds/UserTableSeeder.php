@@ -21,6 +21,13 @@ class UserTableSeeder extends Seeder
 
         //Administradores por defecto ===========================
         User::create([
+            'name' => 'Administrador por defecto',
+            'email' => 'admin@saeingles.com',
+            'password' => bcrypt('admin'),
+            'role_id' => Role::where('name', 'admin')->first()->id,
+        ]);
+
+        User::create([
             'name' => 'David Rochín',
             'email' => 'jdrc8@hotmail.com',
             'password' => '$2y$10$oi8KHrjGhmZ8qWAMizspMOwBm2WurYBV3sqQTBuLgWfz8JCg1R.9m',
