@@ -41,6 +41,12 @@ class UserTableSeeder extends Seeder
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
 
+        User::create([
+            'name' => 'Oswaldo Guevara',
+            'email' => 'oswaldoguevaras@hotmail.com',
+            'password' => bcrypt('1234567890'),
+            'role_id' => Role::where('name', 'admin')->first()->id,
+        ]);
         //Servicios Escolares por defecto =======================
         User::create([
             'name' => 'Servicios Escolares',
