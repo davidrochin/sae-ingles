@@ -13,11 +13,15 @@
 <table class="table table-bordered text-nowrap table-attendance">
 	<tbody>
 		<td>Nivel <b>{{ $group->level }}</b></td>
-		<td>Horario de <b>{{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i') }}</b></td>
+		<td>Horario <b>@component('components.days-badges')
+                        @slot('days', $group->days)
+                    @endcomponent {{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i')}}</b></td> 
 		<td>Profesor <b>{{ $group->user->name }}</b></td>
 		<td>{{ $group->classroom->name }}</b></td>
 		<td>Periodo <b>{{ $group->period->name }}</b></td>
 		<td>Año <b>{{ $group->year }}</b></td>
+
+	
 	</tbody>
 </table>
 
