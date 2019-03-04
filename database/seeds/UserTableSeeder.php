@@ -33,6 +33,12 @@ class UserTableSeeder extends Seeder
             'password' => '$2y$10$oi8KHrjGhmZ8qWAMizspMOwBm2WurYBV3sqQTBuLgWfz8JCg1R.9m',
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
+                User::create([
+            'name' => 'Oswaldo Guevara',
+            'email' => 'oswaldoguevaras@hotmail.com',
+            'password' => bcrypt('1234567890'),
+            'role_id' => Role::where('name', 'admin')->first()->id,
+        ]);
 
         User::create([
             'name' => 'Christian Lugo',
@@ -41,12 +47,6 @@ class UserTableSeeder extends Seeder
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
 
-        User::create([
-            'name' => 'Oswaldo Guevara',
-            'email' => 'oswaldoguevaras@hotmail.com',
-            'password' => bcrypt('1234567890'),
-            'role_id' => Role::where('name', 'admin')->first()->id,
-        ]);
         //Servicios Escolares por defecto =======================
         User::create([
             'name' => 'Servicios Escolares',

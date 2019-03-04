@@ -20,10 +20,9 @@
     <!-- Hola de estilos propia para hacer ajustes -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-adjustments.css') }}" />
   </head>
-  <body>
+    <body class="row h-100 w-100 bg-dark">
 
-    {{-- Contenido --}}
-    @yield('content', 'Sin contenido')
+   
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
