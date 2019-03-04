@@ -16,16 +16,15 @@
 
   </head>
 
-  <body class="row h-100 w-100 bg-dark">
+  <body class="bg-dark">
 
     <div class="col align-self-center">
 
-      <h4 class="text-center my-5 text-light mx-auto" style="width: 300px;">Sistema de Administración Escolar</h4>
+      <h1 class="text-center my-2 text-light mx-auto" >Departamento de Gestión Tecnológica y Vinculación</h1>
+      <h3 class="text-center my-1 text-light mx-auto">Programa CLE-ITLM</h3>
 
-      <div class="card m-auto" style="width: 60em;">
-        <div class="card-header">
-          @yield('title')
-        </div>
+      <div>
+       
         <div class="card-body">
 
           @yield('content', 'Error de plantilla.')
@@ -33,7 +32,7 @@
         </div>
       </div>
     </div>
-
+  <h6 class="text-center my-5 text-light mx-auto" style="width: 300px;">INSTITUTO TECNOLÓGICO DE LOS MOCHIS</h6>
     @include('parts.scripts')
 
   </body>

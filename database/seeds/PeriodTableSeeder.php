@@ -15,22 +15,34 @@ class PeriodTableSeeder extends Seeder
         Period::create([
         	'name' => 'Enero-Junio',
         	'short_name' => 'Ene-Jun',
-        	'start_date' => '2018-01-01',
-        	'end_date' => '2018-06-30',
+        	'start_date' => '2019-01-01',
+        	'end_date' => '2019-06-30',
         ]);
 
         Period::create([
         	'name' => 'Verano',
         	'short_name' => 'Verano',
-        	'start_date' => '2018-07-01',
-        	'end_date' => '2018-07-31',
+        	'start_date' => '2019-07-01',
+        	'end_date' => '2019-07-31',
         ]);
 
         Period::create([
         	'name' => 'Agosto-Diciembre',
         	'short_name' => 'Ago-Dic',
-        	'start_date' => '2018-08-01',
-        	'end_date' => '2018-12-31',
+        	'start_date' => '2019-08-01',
+        	'end_date' => '2019-12-31',
+        ]);
+        Period::create([
+            'name' => 'Invierno',
+            'short_name' => 'Invierno',
+            'start_date' => '2019-12-01',
+            'end_date' => '2019-12-31',
+        ]);
+        Period::create([
+            'name' => 'TOEFL',
+            'short_name' => 'TOEFL',
+            'start_date' => '2019-01-01',
+            'end_date' => '2019-12-31',
         ]);
     }
 }

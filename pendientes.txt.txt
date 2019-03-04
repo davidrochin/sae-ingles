@@ -1,0 +1,3 @@
+Titulos del navegador(@section)
+Base de datos(modificar para alumnos)
+algunos seed se llenan con solo el año 2018, deben actualizarse automatico la fecha

@@ -1,9 +1,9 @@
-@extends('layouts.blank')
+@extends('layouts.blanco')
+@section('title', 'Iniciar sesión')
 
+@section('content')
 
-
-      <h1 class="text-center my-5 text-light mx-auto" style="width: 1000px;">Sistema de Administración Escolar</h1>
-
+  
 <div class="container login-container">
 
 
@@ -54,4 +54,5 @@
                 </div>
             </div>
         </div>
-         <h6 class="text-center my-5 text-light mx-auto" style="width: 300px;">INSTITUTO TECNOLÓGICO DE LOS MOCHIS</h6>
+       
+@endsection

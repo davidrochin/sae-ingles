@@ -17,6 +17,7 @@
 		<td>Profesor <b>{{ $group->user->name }}</b></td>
 		<td>{{ $group->classroom->name }}</b></td>
 		<td>Periodo <b>{{ $group->period->name }}</b></td>
+		<td>Año <b>{{ $group->year }}</b></td>
 	</tbody>
 </table>
 
