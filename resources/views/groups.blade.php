@@ -35,7 +35,7 @@
 						@endcomponent
 					</div>
 					<div class="col">
-				{{--	@component('components.form-input')
+				{{--		@component('components.form-input')
 							@slot('tag', 'Nivel')
 							@slot('name', 'level')
 							@slot('type', 'number')
@@ -43,8 +43,8 @@
 						@endcomponent --}}
 
 					
-							<label for="levelControlInput">Nivel</label>
-							<input id="capacityControlInput" name="level" type="number" class="form-control  " min="1" max="10" value={{old('level')}}/>
+						<label for="levelControlInput">Nivel</label>
+							<input id="nivelControlInput" name="level" type="number" class="form-control  " min="1" max="10" value={{old('level')}}/>
 							<div class="invalid-feedback"></div>		
 					</div>
 				</div>

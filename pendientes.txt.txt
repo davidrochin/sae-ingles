@@ -4,6 +4,8 @@ Algunos seed se llenan con solo el año 2018, deben actualizarse automatico la f
 Lista de asistencia con los dias de clases
 Ajustar tamaño de layout blank porque afecta y recorta el encabezado y pie de pagina de las listas de asist
 En el filtro de grupo sin profesor aparecen grupos que el profesor es el christian(admin) quitar ese filtro o corregirlo
+Login de alumno le falta opcion de registrarse (boton/link)
+Que el campo de profesor en el grupo sea obligatorio desde BD y en el Codigo
 
 
 
@@ -11,7 +13,5 @@ En el filtro de grupo sin profesor aparecen grupos que el profesor es el christi
 En la tabla de groups el campo 'days' contiene numeros cada digito es un dia de la semana
 se necesita convertir esos numeros a texto, y ya ahi un metodo que lo hace.
 
-En la lista de asist. el campo Horario el contenido concatenar los dias de clases .
 
-Puede que TOEFL en vez de periodo sea un nivel
 

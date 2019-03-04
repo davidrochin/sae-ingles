@@ -97,8 +97,20 @@ body {
     font-weight: 600;
     text-decoration: none;
 }
+.login-form-2 .Registrarse{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
 .login-form-1 .ForgetPwd{
     color: #0062cc;
     font-weight: 600;
     text-decoration: none;
+}
+hr { 
+  display: block;
+  margin-left: 200px;
+  margin-right: 200px;
+  border-style: inset;
+  border-width: 1px;
 }
