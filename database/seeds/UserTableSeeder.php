@@ -48,12 +48,12 @@ class UserTableSeeder extends Seeder
         ]);
 
         //Servicios Escolares por defecto =======================
-        User::create([
+        /*User::create([
             'name' => 'Servicios Escolares',
             'email' => 'serviciosescolares@gmail.com',
             'password' => bcrypt('sae'),
             'role_id' => $role_schoolserv->id
-        ]);
+        ]);*/
 
         //Coordinadores por defecto =============================
         User::create([
