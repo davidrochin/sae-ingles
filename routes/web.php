@@ -34,7 +34,6 @@ Route::get('/', function () {
 
 });
 
-//Route::get('/acercade', function() { return 'Desarrollado por David Rochín.'; });
 Route::get('/acercade', 'PagesController@about')->name('about');
 
 //Alumnos

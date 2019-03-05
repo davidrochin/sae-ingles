@@ -87,7 +87,7 @@ class GroupsController extends Controller
                 break;
             case 4:
                 //Grupos que no tienen profesor asignado.
-                $groups = $groups->where('user_id',4);
+                $groups = $groups->where('user_id', null);
                 break;
             case 5:
                 //Grupos con cupo disponible.
