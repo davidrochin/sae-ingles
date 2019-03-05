@@ -5,6 +5,7 @@ use App\User;
 use App\Role;
 use App\Period;
 use App\Classroom;
+use App\ToeflGroup;
 use Faker\Generator as Faker;
 use Faker\Factory as Factory;
 
@@ -69,6 +70,18 @@ $factory->define(App\Group::class, function (Faker $faker) {
 		'year' => $faker->numberBetween(2000, 2018),
 		'classroom_id' => $faker->boolean(90) ? Classroom::inRandomOrder()->first()->id : NULL,
 		'capacity' => $faker->randomElement([35, 40, 45]),
+	];
+
+});
+
+$factory->define(App\ToeflGroup::class, function (Faker $faker) {
+
+	$faker = Factory::create('es_ES');
+
+	return [
+		'date' => $faker->date(),
+		'responsable_user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
+		'applicator_user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
 	];
 
 });

@@ -11,7 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
 	//Propiedad "guarded" para evitar MassAsignmentException
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id', 
+        'user_id'
+    ];
 
     public function career(){
     	//return Career::find($this->career_id);
