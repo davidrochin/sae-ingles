@@ -6,6 +6,7 @@ use App\Role;
 use App\User;
 use App\Period;
 use App\Group;
+use App\ToeflGroup;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,11 +39,11 @@ class DatabaseSeeder extends Seeder
         }
 
         //Para cada grupo de TOEFL, asignarle alumnos aleatorios
-        $toelf_groups = Group::all();
-        foreach ($toelf_groups as $toelf_group) {
+        $toefl_groups = ToeflGroup::all();
+        foreach ($toefl_groups as $toefl_group) {
             $students = Student::inRandomOrder()->get();
-            for ($i=0; $i < $toelf_group->capacity; $i++) { 
-                $toelf_group->students()->attach($students[$i]->id);
+            for ($i=0; $i < $toefl_group->capacity; $i++) { 
+                $toefl_group->students()->attach($students[$i]->id);
             }
         }
 

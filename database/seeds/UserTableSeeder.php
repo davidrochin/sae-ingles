@@ -17,7 +17,6 @@ class UserTableSeeder extends Seeder
         $role_professor = Role::where('name', 'professor')->first();
         $role_coordinator = Role::where('name', 'coordinator')->first();
         $role_admin = Role::where('name', 'admin')->first();
-        $role_schoolserv = Role::where('name', 'schoolserv')->first();
 
         //Administradores por defecto ===========================
         User::create([
