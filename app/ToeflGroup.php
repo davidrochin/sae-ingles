@@ -18,6 +18,6 @@ class ToeflGroup extends Model
     }
 
     public function students(){
-    	return $this->belongsToMany(Student::class, 'student_toelf_group')->orderBy('last_names');
+    	return $this->belongsToMany(Student::class, 'student_toefl_group')->orderBy('last_names');
     }
 }

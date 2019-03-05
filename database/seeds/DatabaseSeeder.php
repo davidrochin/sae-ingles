@@ -40,12 +40,13 @@ class DatabaseSeeder extends Seeder
 
         //Para cada grupo de TOEFL, asignarle alumnos aleatorios
         $toefl_groups = ToeflGroup::all();
+
         foreach ($toefl_groups as $toefl_group) {
             $students = Student::inRandomOrder()->get();
-            for ($i=0; $i < $toefl_group->capacity; $i++) { 
+            for ($i=0; $i < 50; $i++) { 
                 $toefl_group->students()->attach($students[$i]->id);
             }
         }
-
+        
     }
 }
