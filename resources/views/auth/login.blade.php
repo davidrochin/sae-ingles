@@ -118,7 +118,7 @@
                             </div>
                                <div class="form-group">
 
-                                <a href="{{ route('password.request') }}" class="Registrarse" value="Login">Registrarse</a>
+                               
                             </div>
                         </form>
                     </div>
