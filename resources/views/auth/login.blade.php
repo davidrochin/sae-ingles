@@ -71,7 +71,7 @@
         </label>
     </div>
     <div class="row">
-          <div class="form-group">
+          <div class="form-group col-md-6">
              <input type="email" name="email" id="email" class="form-control input-sm" placeholder="No. Control">
            </div>
                  <div class="form-group col-md-6">
