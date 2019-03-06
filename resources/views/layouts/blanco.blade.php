@@ -22,7 +22,6 @@
 
       <h1 class="text-center my-2 text-light mx-auto" >Departamento de Gestión Tecnológica y Vinculación</h1>
       <h3 class="text-center my-1 text-light mx-auto">Programa CLE-ITLM</h3>
-<hr>
       <div>
        
         <div class="card-body">
