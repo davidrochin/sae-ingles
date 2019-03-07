@@ -85,12 +85,12 @@ function ocultar(){
                                
             <label class="form-check form-check-inline">
           <input class="form-check-input" onclick="ocultar()" type="radio" name="gender" value="option1">
-          <span class="form-check-label">Interno</span>
+          <span class="form-check-label">Externo</span>
         </label>
         <div > 
             <label class="form-check form-check-inline ">
           <input onclick="aparecer()" href="#info4" class="form-check-input"   type="radio" name="gender" value="option2">
-          <span class="form-check-label">Externo</span>
+          <span class="form-check-label">Interno</span>
         </label>
     </div>
       
@@ -100,6 +100,7 @@ function ocultar(){
     </div>
     <div class="row well oculto" id="info4">
           <div  class="form-group col-md-6"">
+            <p>LLena los campos con la carrera que cursas en ITLM y tu No. Control de estudiante.</p>
              <input type="email" name="email" id="email" class="form-control input-sm" placeholder="No. Control">
            </div>
                  <div class="form-group col-md-6">   
