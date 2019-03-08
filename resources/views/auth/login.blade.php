@@ -78,7 +78,7 @@ function ocultar(){
                          
                             </div>
          <div class="form-group">
-                                <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Teléfono">
+                                <input type="number" name="phone"  min="0" class="form-control input-sm" placeholder="Teléfono" pattern="[0-9]">
                             </div>
                             <div class="form-group">
                                 <p>Selecciona la opción de acuerdo sí eres estudiante del ITLM</p>
@@ -101,7 +101,7 @@ function ocultar(){
     <div class="row well oculto" id="info4">
           <div  class="form-group col-md-6"">
             <p>LLena los campos con la carrera que cursas en ITLM y tu No. Control de estudiante.</p>
-             <input type="email" name="email" id="email" class="form-control input-sm" placeholder="No. Control">
+             <input type="text" name="numeroControl"  min="0" maxlength="8" class="form-control input-sm" placeholder="No. Control"  >
            </div>
                  <div class="form-group col-md-6">   
           <select id="inputState" class="form-control">
