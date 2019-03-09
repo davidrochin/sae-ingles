@@ -1,158 +1,186 @@
-    @extends('layouts.blanco')
-    @section('title', 'Iniciar sesión')
+<!doctype html>
+<html lang="en" class="h-100 w-100">
 
-    @section('content')
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <title>
+        Iniciar sesión </title>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-   
-<script src="jquery-1.3.2.min.js" type="text/javascript"></script>   
-<script>
-jQuery(document).ready(function(){
-  $(".oculto").hide();              
-    $(".inf").click(function(){
-          var nodo = $(this).attr("href");  
- 
-          if ($(nodo).is(":visible")){
-               $(nodo).hide();
-               return false;
-          }else{
-        $(".oculto").hide("slow");                             
-        $(nodo).fadeToggle("slow");
-        return false;
-          }
-    });
-}); 
-function aparecer(){
-    document.getElementById('info4').style.display = "block";
+    <link rel="stylesheet" href="http://localhost:8000/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost:8000/css/bootstrap-adjustments.css" />
+</head>
 
-}
-function ocultar(){
-    document.getElementById('info4').style.display = "none";
+<body class="bg-dark h-100"></body>
 
-}
-</script>
-<div class="row">
-                    <div class="col-md-6 login-form-1">
-                        <h3>Registrarse</h3>
-                        <form class="form" method="POST" action="{{ route('login') }}">
-        {{ csrf_field() }}
-                                <div class="form-group">
-                                <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Nombre">
-                            </div>
-                           <div class="row">
-                            
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="Apellido paterno">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Apellido materno">
-                                    </div>
-                                </div>
-                            </div>
+    <div class="container d-flex flex-column">
 
-                            <div class="form-group">
-                                <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Correo electrónico">
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Contraseña">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirmar contraseña">
-                                    </div>
-                                </div>
-                         
-                            </div>
-         <div class="form-group">
-                                <input type="number" name="phone"  min="0" class="form-control input-sm" placeholder="Teléfono" pattern="[0-9]">
-                            </div>
-                            <div class="form-group">
-                                <p>Selecciona la opción de acuerdo sí eres estudiante del ITLM</p>
-                               
-            <label class="form-check form-check-inline">
-          <input class="form-check-input" onclick="ocultar()" type="radio" name="gender" value="option1">
-          <span class="form-check-label">Externo</span>
-        </label>
-        <div > 
-            <label class="form-check form-check-inline ">
-          <input onclick="aparecer()" href="#info4" class="form-check-input"   type="radio" name="gender" value="option2">
-          <span class="form-check-label">Interno</span>
-        </label>
-    </div>
-      
-
-        
-
-    </div>
-    <div class="row well oculto" id="info4">
-          <div  class="form-group col-md-6"">
-            <p>LLena los campos con la carrera que cursas en ITLM y tu No. Control de estudiante.</p>
-             <input type="text" name="numeroControl"  min="0" maxlength="8" class="form-control input-sm" placeholder="No. Control"  >
-           </div>
-                 <div class="form-group col-md-6">   
-          <select id="inputState" class="form-control">
-            <option>BD1</option>
-              <option>BD2</option>
-              <option>BD3</option>
-              <option selected="">Ing. Industrial</option>
-              <option>BD4</option>
-              <option>BD5</option>
-          </select>
+        <!-- Título y subtítulo -->
+        <div class="row mt-3">
+            <h2 class="col-12 text-center my-2 text-light mx-auto">Departamento de Gestión Tecnológica y Vinculación</h1>
+            <h3 class="col-12 text-center my-1 text-light mx-auto">Programa CLE-ITLM</h3>
         </div>
-    </div>
-        <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">Registrar</button>
-    </div>
-                        </form>
+
+        <!-- Cuerpo -->
+        <div class="row my-5 justify-content-center">
+
+            <!-- Panel de inicio de sesión -->
+            <div id="login-panel" class="col-8 col-lg-4 login-form-2 p-4">
+                <h3 class="mb-4">Iniciar Sesión</h3>
+                <form class="form" method="POST" action="{{ route('login') }}">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <input id="email" type="email" name="email" placeholder="Correo electrónico"
+                            value="{{ old('email') }}" required autofocus
+                            class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
+                        @if ($errors->has('email')) <div class="invalid-feedback">{{ $errors->first('email') }}
+                        </div> @endif
+                    </div>
+                    <div class="form-group">
+                        <input id="password" type="password" name="password" placeholder="Contraseña" required
+                            class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}">
+                        @if ($errors->has('password')) <div class="invalid-feedback">
+                            {{ $errors->first('password') }}</div>
+                        @endif
                     </div>
 
-
-                    <div class="col-md-6 login-form-2">
-                        <h3>Iniciar Sesión</h3>
-                        <form class="form" method="POST" action="{{ route('login') }}">
-        {{ csrf_field() }}
-                            <div class="form-group">
-                                <input id="email" type="email" name="email" placeholder="Correo electrónico" value="{{ old('email') }}" required autofocus class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
-             @if ($errors->has('email')) <div class="invalid-feedback">{{ $errors->first('email') }}</div> @endif
-                            </div>
-                            <div class="form-group">
-                                <input id="password" type="password" name="password" placeholder="Contraseña" required class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}">
-            @if ($errors->has('password')) <div class="invalid-feedback">{{ $errors->first('password') }}</div> @endif
-                            </div>
-                          <div class="row">
-                              
-                          </div>
-                                <div class="form-group">
-                                <input type="submit" class="btnSubmit" value="Iniciar Sesión" />
-                            </div>
-                            
-                           
-                            <div class="form-group">
-
-                                <a href="{{ route('password.request') }}" class="ForgetPwd" value="Login">¿Olvidaste la contraseña?</a>
-                            </div>
-                               <div class="form-group">
-
-                               
-                            </div>
-                        </form>
+                    <!-- Botón para iniciar sesión -->
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Iniciar Sesión" />
                     </div>
-                </div>
+
+                    <!-- Link para reestablecer la contraseña -->
+                    <!--<div class="form-group">
+                        <a href="{{ route('password.request') }}" class="ForgetPwd" value="Login">¿Olvidaste la
+                            contraseña?</a>
+                    </div>-->
+
+                    <!-- Botón para mostrar el formulario de registro -->
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd" value="SignUp" onclick="showSignupForm()">Registrarse</a>
+                    </div>
+                </form>
             </div>
-          
 
-    @endsection
+            <!-- Panel de registro -->
+            <div id="signin-panel" class="col-12 col-lg-6 login-form-1 p-4 d-none">
+                <h3>Registrarse</h3>
+                <form class="form" method="POST" action="{{ route('login') }}">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Nombre">
+                    </div>
+                    <div class="row">
+
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="first_name" id="first_name" class="form-control input-sm"
+                                    placeholder="Apellido paterno">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="last_name" id="last_name" class="form-control input-sm"
+                                    placeholder="Apellido materno">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control input-sm"
+                            placeholder="Correo electrónico">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" class="form-control input-sm"
+                                    placeholder="Contraseña">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                    class="form-control input-sm" placeholder="Confirmar contraseña">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="phone" min="0" class="form-control input-sm" placeholder="Teléfono"
+                            pattern="[0-9]">
+                    </div>
+                    <div class="form-group">
+                        <p>Selecciona la opción de acuerdo sí eres estudiante del ITLM</p>
+
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" onclick="ocultar()" type="radio" name="gender"
+                                value="option1">
+                            <span class="form-check-label">Externo</span>
+                        </label>
+                        <div>
+                            <label class="form-check form-check-inline ">
+                                <input onclick="aparecer()" href="#info4" class="form-check-input" type="radio"
+                                    name="gender" value="option2">
+                                <span class="form-check-label">Interno</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row well oculto" id="info4">
+                        <div class="form-group col-md-6"">
+                                <p>LLena los campos con la carrera que cursas en ITLM y tu No. Control de estudiante.</p>
+                                 <input type=" text" name="numeroControl" min="0" maxlength="8"
+                            class="form-control input-sm" placeholder="No. Control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select id="inputState" class="form-control">
+                                <option>BD1</option>
+                                <option>BD2</option>
+                                <option>BD3</option>
+                                <option selected="">Ing. Industrial</option>
+                                <option>BD4</option>
+                                <option>BD5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Pié de página -->
+        <div class="row">
+            <h6 class="text-center text-light mx-auto mb-4" style="width: 200px;">Instituto Tecnológico de Los Mochis
+            </h6>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    <script>
+    
+    function showSignupForm(){
+        $("#signin-panel").removeClass("d-none");
+        $("#login-panel").addClass("d-none");
+    }
+    
+    </script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>feather.replace()</script>
+
+    <!-- jQuery -->
+    <script src="http://localhost:8000/js/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:8000/js/bootstrap.bundle.min.js"></script>
+    <script src="http://localhost:8000/js/sae.js"></script>
+    <script src="http://localhost:8000/js/bootstrap-confirmation.min.js"></script>
+</body>
+
+</html>
