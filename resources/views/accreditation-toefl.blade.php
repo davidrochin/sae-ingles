@@ -1,92 +1,99 @@
 		@extends('layouts.blank')
 		@section('title', 'Carta de acreditación TOEFL')
 		@section('content')
+{{--VARIABLES
+*NOMBRE
+*NO CONTROL
+*CARRERA
+    fecha
+ *int DIA
+ *str MES
+ *str AÑO
 
-		<div id="contenido" >
-<div id="encabezado" class="text-right">
-	{{--aqui van las imagenes tambien--}}
-<p>Instituto Tecnológico de Los Mochis</p>
+
+	--}}	
+
+
+	<div class="contenido">
+
+
+	<div class="d-flex justify-content-between encabezado">
+<img height="200px" src="img/sep.jpg">
+<div class="col">
+	<img height="100px" src="img/tecnm.png">	
+	<p>Instituto Tecnológico de Los Mochis</p>
 </div>
-						<p>A QUIEN CORRESPONDA: </p>
-				<div id="texto">
+
+</div>
+
+
+	
+
+
+<p class="saludo"><b>A QUIEN CORRESPONDA: </b></p>
+				<div class="info-text">
 					<p>La que suscribe Jefa del Departamento de Gestión Tecnológica y Vinculación de este Instituto, hace constar que el (la) alumno (a):</p>
 
 				</div>
 
-				<div id="datosalumnotabla">
+				<div class="info-alumno">
 					
-					<table >
+					<table class="tabla-alumno">
 	 <tr>
-	  <td>NOMBRE:</td> <td>GUEVARA SÁNCHEZ OSWALDO</td>
+	  <td><b>NOMBRE:</b></td> <td><b>GUEVARA SÁNCHEZ OSWALDO</b></td>
 	 </tr>
 	 <tr>
-	  <td>No. DE CONTROL:</td> <td>14440600</td>
+	  <td><b>No. DE CONTROL:</b></td> <td><b>14440600</b></td>
 	 </tr>
-	   <td>CARRERA:</td> <td>INF. INFORMATICA</td>
-	</table>
+	 <tr>
+	  <td><b>CARRERA:</b></td> <td><b>INF. INFORMATICA</b></td>
+	 </tr>
 
-				</div>
+	  			</table> 
 
-				<div id="texto2">
+				</div>{{--fin del div de tabla--}}
+
+				<div class="info-text">
 				
 				<p>Acreditó la comprensión de artículos técnicos científicos en el idioma Inglés para efectos de titulación.</p>
 				<p>A petición del interesado y para los fines legales que mejor le convengan, se extiende la presente en la Ciudad de Los Mochis, Sinaloa, a los 29 días del mes de octubre del año Dos Mil Dieciocho. </p>	
 				</div>
 				
-				<div id="atentamente" class="text-center" " >
-					<p>	A T E N T A M E N T E</p>
-					<p>Excelencia en Educación Tecnológica®</p>
-					<p>“EL PROGRESO COMO META, LOS PRINCIPIOS COMO GUÍA”</p>
+				<div class="despedida">
+					<p><b>	A T E N T A M E N T E</b></p>
+					<p class="d2"><b><em>Excelencia en Educación Tecnológica®</em></b></p>
+					<p class="d3"><em>“EL PROGRESO COMO META, LOS PRINCIPIOS COMO GUÍA”</em></p>
 
 				</div>
 
-				<div id="autoridades">
+				<div class="autoridades">
 				
 					<table >
 				    <tr>
-	                <td>M. en C. CLAUDIA ALARCÓN VALDEZ</td> <td>Vo.Bo. MC. MARIO FLORES LÓPEZ</td>
+	                <td><b>M. en C. CLAUDIA ALARCÓN VALDEZ</b></td> <td><b>Vo.Bo. MC. MARIO FLORES LÓPEZ</b></td>
 	                </tr>
 	                <tr>
-	                <td>JEFA DEL DEPARTAMENTO DE GESTIÓN</td> <td>SUBDIRECTOR DE PLANEACIÓN Y</td>
+	                <td>JEFA DEL DEPARTAMENTO DE GESTIÓN TECNOLÓGICA Y VINCULACIÓN</td> 
+	                <td>SUBDIRECTOR DE PLANEACIÓN Y VINCULACIÓN</td>
 	                </tr>
-	                <td> TECNOLÓGICA Y VINCULACIÓN</td> <td>VINCULACIÓN</td>
 	                </table>
 				</div>
-<p>MFL/CAV/blga</p>
+<p class="codigo">MFL/CAV/blga</p>
 
-<div id="piedepagina" class="text-center">
+
+
+<div class="d-flex justify-content-between piedepagina">
+<img  class="imagenes-pie" src="img/logo.png">
+<div>
+	<strong>
 	<p>Blvd. Juan de Dios Batiz y 20 de Noviembre</p>
-	<p>C.P. 81259  Los Mochis, Sin.Teléfonos:  (01-668) 812-58-58, 812-59-59 e-mail: dir_mochis@tecnm.mx </p>
+	<p>C.P. 81259  Los Mochis, Sin.Teléfonos:  (01-668) 812-58-58, 812-59-59 e-mail: <em class="correo">dir_mochis@tecnm.mx</em></p>
 	<p> www.itmochis.edu.mx</p>
-
-{{--aqui van las imagenes tambien--}}
+</strong>
+</div>
+<img class="imagenes-pie" src="img/toefl.png">	
+</div>
 
 </div>
-</div>
-
-
-
-
 		@endsection
-		{{--@section('scripts')
-
-		<script type="text/javascript">
-
-			//Abrir el documento en modo de impresión
-			$(document).ready( function(){
-				window.print();
-			});
-		</script>
-
-		<style type="text/css">
-			.table-attendance th {
-				font-size: 1.2rem;
-			}
-			.table-attendance td {
-				padding-bottom: 0.3rem;
-				padding-top: 0.3rem;
-				font-size: 1.2rem;
-			}
-		</style>
-
-		@endsection--}}
+		

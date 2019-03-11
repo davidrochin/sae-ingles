@@ -54,10 +54,11 @@
                     </div>
 
                     <!-- Link para reestablecer la contraseña -->
-                    <!--<div class="form-group">
+                    {{-- <div class="form-group">
                         <a href="{{ route('password.request') }}" class="ForgetPwd" value="Login">¿Olvidaste la
                             contraseña?</a>
-                    </div>-->
+                    </div>--}}
+                  
 
                     <!-- Botón para mostrar el formulario de registro -->
                     <div class="form-group">
