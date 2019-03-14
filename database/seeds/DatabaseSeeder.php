@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         //Para cada grupo, asignarle alumnos aleatorios
         $groups = Group::all();
         foreach ($groups as $group) {
-            $students = Student::inRandomOrder()->get();
+            $students = Student::inRandomOrder()->limit($group->capacity)->get();
             for ($i=0; $i < $group->capacity; $i++) { 
                 $group->students()->attach($students[$i]->id);
             }
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         $toefl_groups = ToeflGroup::all();
 
         foreach ($toefl_groups as $toefl_group) {
-            $students = Student::inRandomOrder()->get();
+            $students = Student::inRandomOrder()->limit($toefl_group->capacity)->get();
             for ($i=0; $i < 50; $i++) { 
                 $toefl_group->students()->attach($students[$i]->id);
             }

@@ -38,11 +38,5 @@ class PeriodTableSeeder extends Seeder
             'start_date' => '2019-12-01',
             'end_date' => '2019-12-31',
         ]);
-        Period::create([
-            'name' => 'TOEFL',
-            'short_name' => 'TOEFL',
-            'start_date' => '2019-01-01',
-            'end_date' => '2019-12-31',
-        ]);
     }
 }
