@@ -1,0 +1,89 @@
+
+.contenido{
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
+    font-size: 2em;  
+}
+.encabezado{
+  opacity: 0.5;
+    text-align: right;
+    color: #6D6D6D;
+    line-height: 90%; 
+    height: 10%;
+   
+}
+.piedepagina {
+	opacity: 0.5;
+    text-align: center;
+    color: #6D6D6D;
+    line-height: 80%; 
+    font-size: 15pt;
+    padding-top: 1%;   
+ }
+
+  .saludo {
+ 	padding-top: 18%;
+    text-align: left;
+ 
+
+   }
+   .autoridades {
+ 	padding-top: 15%;
+    text-align: center;
+    line-height: 150%; 
+   
+   }
+
+  .despedida {
+ 	padding-top: 20%;
+    text-align: center;
+    line-height: 90%; 
+
+   }
+ 
+    .d2 {
+ 	font-size: 90%; 
+   }
+    .d3 {
+ 	font-size: 70%;
+ 	color: #6D6D6D;; 
+   }
+
+  .info-text {
+  	padding-top: 10%;
+    text-align: justify;
+   }
+     .codigo{
+ 	padding-top: 2%;
+ 	font-size: 70%;
+    text-align: justify;
+    
+ 
+   }
+   .correo{
+    color: #7493A2;
+
+   }
+  .info-alumno {
+ 	 	padding-top: 10%;
+    text-align: justify;
+    
+   }
+
+  table {
+   width: 90%;
+   }
+   th, td {
+   width: 1%;
+   }
+.imagenes-pie{
+    width: 8%;
+    height: 10%;
+}
+
+
+
+/**/

@@ -1,10 +1,9 @@
 .bg-gray {
-	background-color: rgba(0,0,0,.125);
+   background-color: rgba(0,0,0,.125);
+  
 }
 
-body {
-	/*font-size: 0.9rem;*/
-}
+
 
 .sidebar {
 	position: fixed;
@@ -50,8 +49,8 @@ body {
 /*estilos del dual-login*/
 
 .login-container{
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 .login-form-1{
     padding: 5%;
@@ -103,14 +102,8 @@ body {
     text-decoration: none;
 }
 .login-form-1 .ForgetPwd{
-    color: #0062cc;
+    color: #0062dd;
     font-weight: 600;
     text-decoration: none;
 }
-hr { 
-  display: block;
-  margin-left: 200px;
-  margin-right: 200px;
-  border-style: inset;
-  border-width: 1px;
-}
+

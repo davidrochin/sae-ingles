@@ -26,6 +26,12 @@ class GroupsController extends Controller
 {
 
     const DEFAULT_PARENT_ROUTE = 'groups';
+   
+   public function accreditationTOEFL(){
+
+ 
+        return view('accreditation-toefl'); 
+    }
 
     public function showAll(Request $request){
 

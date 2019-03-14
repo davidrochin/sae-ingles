@@ -17,6 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="{{ URL::asset('css/dashboard.css') }}" rel="stylesheet">
 
+   <!-- Hola de estilos para carta liberacion toefl -->
+    <link rel="stylesheet" href="{{ URL::asset('css/toefl-accreditation.css') }}" />
+
     <!-- Hola de estilos propia para hacer ajustes -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-adjustments.css') }}" />
   </head>

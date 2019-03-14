@@ -78,6 +78,8 @@ Auth::routes();
 Route::get('/inicio', 'PagesController@home')->name('home');
 Route::get('/test', 'PagesController@test')->name('test');
 
+Route::get('/toefl', 'GroupsController@accreditationTOEFL')->name('toefl');
+
 /*Route::group(['middleware' => 'auth'], function () {
 
     // All my routes that needs a logged in user
