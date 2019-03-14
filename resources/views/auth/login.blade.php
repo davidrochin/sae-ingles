@@ -71,7 +71,7 @@
                 <div id="signin-panel" class="col-12 col-lg-6 login-form-1 p-4 d-none">
                   
                     <h3>Registrarse</h3>
-                     <form class="form" action="/alumnos/crear" method="post" id="createStudentForm">
+                     <form class="form" action="/alumnos/solicitar-registro" method="post" id="createStudentForm">
                         {{ csrf_field() }}
                         <div class="form-group">
 
@@ -89,7 +89,7 @@
                             
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="lastNames" id="last_name" class="form-control input-sm"
+                                    <input type="text"  class="form-control input-sm"
                                         placeholder="Apellido materno">
                                 </div>
                             </div>
@@ -152,17 +152,17 @@
                                      <input type=" text" name="controlNumber" min="0" maxlength="8"
                                       class="form-control input-sm" placeholder="No. Control">
 
-                              <div class="form-group">
-                                <select id="careerControlInput" name="careerId" class="form-control" >
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option selected="">Ing. Industrial</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
-
-                            </div>
+                                      {{-- Selector de carrera --}}
+                        <div class="form-group">
+                            <label for="careerControlInput">Carrera</label>
+                            <select class="form-control" id="careerControlInput" name="careerId">
+                                <option value=""></option>
+                                <!-- Llenar el select con las carreras de la base de datos -->
+                                @foreach($careers as $career)
+                                <option value="{{$career->id}}" {{ old('careerId') == $career->id ? 'selected' : '' }}>{{ $career->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                           
 
                            

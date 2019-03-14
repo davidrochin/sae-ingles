@@ -29,10 +29,11 @@ Route::get('/', function () {
 	if(Auth::check()){ 
 		return redirect('/inicio'); 
 	} else {
-		return view('auth/login'); 
+		return view('auth/login', [
+			'careers' => App\Career::all()
+		]);
 	}
-
-});
+}); // Ya cala eso, debe funcionar ya pa irme a dormir alv
 
 Route::get('/acercade', 'PagesController@about')->name('about');
 
@@ -44,6 +45,12 @@ Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');;
 Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
 Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');
 Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth');
+
+// Alumnos - auto-registro
+
+// A esta URL se enviaran los datos mediante POST para que se inicie la solicitud de registro.
+// Aquí tiene que caer la logica de registro. Osea, el "action" del <form> en el que te registras tiene que decir "alumnos/solicitar-registro"
+Route::post('/alumnos/solicitar-registro', 'StudentsController@requestRegistry');
 
 //Grupos
 
