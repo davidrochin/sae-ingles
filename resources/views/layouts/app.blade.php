@@ -38,23 +38,23 @@
           <div class="p-0 d-none d-xl-block" style="" id="menu">
               <span class="sidebar-section text-muted">General</span>
               <a href="{{ route('home') }}" class="{{ $parentRoute == 'home' ? 'selected' : '' }}"><i data-feather="home"></i>Inicio</a>
+              <a href="{{ route('my-groups') }}" class="{{ $parentRoute == 'my-groups' ? 'selected' : '' }}"><i data-feather="grid"></i>Mis grupos</a>
               <hr>
 
               <span class="sidebar-section text-muted">Coordinación</span>
+              <a href="{{ route('students') }}" class="{{ $parentRoute == 'applications' ? 'selected' : '' }}"><i data-feather="bookmark"></i>Solicitudes</a>
               <a href="{{ route('students') }}" class="{{ $parentRoute == 'students' ? 'selected' : '' }}"><i data-feather="users"></i>Alumnos</a>
               <a href="{{ route('groups') }}" class="{{ $parentRoute == 'groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Grupos</a>
+              <a href="{{ route('groups') }}" class="{{ $parentRoute == 'toefl-groups' ? 'selected' : '' }}"><i data-feather="file-text"></i>TOEFL</a>
               <hr>
 
               <span class="sidebar-section text-muted">Sistema</span>
               <a href="{{ route('users') }}" class="{{ $parentRoute == 'users' ? 'selected' : '' }}"><i data-feather="users"></i>Usuarios</a>
-              <hr>
-
-              <span class="sidebar-section text-muted">Para profesores</span>
-              <a href="{{ route('my-groups') }}" class="{{ $parentRoute == 'my-groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Mis grupos</a>
-              <hr>
-
-              <span class="sidebar-section text-muted">Sistema</span>
+              <a href="{{ route('users') }}" class="{{ $parentRoute == 'settings' ? 'selected' : '' }}"><i data-feather="settings"></i>Configuración</a>
+              <a href="{{ route('about') }}" class="{{ $parentRoute == 'history' ? 'selected' : '' }}"><i data-feather="book"></i>Historial</a>
               <a href="{{ route('about') }}" class="{{ $parentRoute == 'about' ? 'selected' : '' }}"><i data-feather="tag"></i>Acerca de</a>
+              <hr>
+              
           </div>
         </div>
 

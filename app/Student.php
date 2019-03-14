@@ -6,6 +6,7 @@ use App\Career;
 use App\Grade;
 use App\Group;
 use App\Setting;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
@@ -19,6 +20,10 @@ class Student extends Model
     public function career(){
     	//return Career::find($this->career_id);
         return $this->belongsTo(Career::class);
+    }
+
+    public function user() {
+        return $this->hasOne(User::class);
     }
 
     public function groups(){
