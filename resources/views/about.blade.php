@@ -8,13 +8,15 @@
 
 <div class="row">
 	<div class="col">
-		<img src="https://avatars.githubusercontent.com/davidrochin" class="rounded-circle img-fluid p-4">
-		<p class="text-center">José David Rochín Cerecer<br><a href="https://github.com/davidrochin">github/davidrochin</a></p>
-	</div>	
-	<div class="col">
 		<img src="https://avatars.githubusercontent.com/oswaldoguevara" class="rounded-circle img-fluid p-4">
 		<p class="text-center">Oswaldo Guevara Sánchez<br><a href="https://github.com/oswaldoguevara">github.com/oswaldoguevara</a></p>
 	</div>
+
+	<div class="col">
+		<img src="https://avatars.githubusercontent.com/davidrochin" class="rounded-circle img-fluid p-4">
+		<p class="text-center">José David Rochín Cerecer<br><a href="https://github.com/davidrochin">github/davidrochin</a></p>
+	</div>	
+
 	<div class="col">
 		<img src="https://avatars.githubusercontent.com/christianLugo5" class="rounded-circle img-fluid p-4">
 		<p class="text-center">Christian Ricardo Lugo Arellano<br><a href="https://github.com/christianLugo5">github/christianLugo5</a></p>

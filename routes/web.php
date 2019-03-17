@@ -85,12 +85,10 @@ Auth::routes();
 Route::get('/inicio', 'PagesController@home')->name('home');
 Route::get('/test', 'PagesController@test')->name('test');
 
-Route::get('/toefl', 'GroupsController@accreditationTOEFL')->name('toefl');
+//seccion de toefl
+Route::get('/carta-liberacion-toefl/', 'GroupsController@accreditationTOEFL')->name('toefl-accreditation');
 
-/*Route::group(['middleware' => 'auth'], function () {
 
-    // All my routes that needs a logged in user
 
-}
-
-// All my routes that need no authentication*/
+//seccion de solicitudes de alumnos
+Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes');

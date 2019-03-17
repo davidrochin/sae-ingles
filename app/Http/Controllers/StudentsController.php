@@ -82,12 +82,12 @@ class StudentsController extends Controller
         //Para mandar un mensaje al usuario
         //$request->session()->now('message', 'Prueba de mensaje');
 
-    	return view('students', [
-    		'students' => $students->paginate(12),
+        return view('students', [
+            'students' => $students->paginate(12),
             'careers' => $careers,
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
             //'modalMessage' => 'Prueba de modal de mensajes',
-    	]);
+        ]);
     }
 
     public function show(Request $request, $id){
@@ -148,24 +148,6 @@ class StudentsController extends Controller
 
     public function modify(ModifyStudentRequest $request){
 
-        //dd($request->firstNames);
-        //Buscar el alumno que se está modificando
-        /*$student = Student::find($request->input('id'));
-
-        //Reemplazar los datos del alumno
-        //$student->control_number = $request->input('controlNumber');
-        $student->first_names = $request->input('firstNames');
-        $student->last_names = $request->input('lastNames');
-        $student->career_id = $request->input('careerId');
-        $student->phone_number = $request->input('phoneNumber');
-        $student->email = $request->input('email');
-
-        //Guardar los cambios
-        $student->save();
-
-        return redirect()->back();*/
-        //dd($request->input('id'),$request->input('firstNames'),$request->input('lastNames'),$request->input('careerId'),$request->input('phoneNumber'),$request->input('email'));
-
         Student::where('id',$request->input('id'))
             ->update(['first_names' => $request->input('firstNames'),
                 'last_names' => $request->input('lastNames'),
@@ -201,4 +183,16 @@ class StudentsController extends Controller
 
         return redirect()->back()->with('success', 'La solicitud ha sido enviada con éxito.');
     }
+
+//muestra los alumnos con solicitud para ingresar al sistema
+       public function showStudentsRequests(Request $request){
+
+       
+        return view('students-requests', [
+          
+            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+        ]);
+    }
+
+
 }

@@ -42,7 +42,7 @@
               <hr>
 
               <span class="sidebar-section text-muted">Coordinación</span>
-              <a href="{{ route('students') }}" class="{{ $parentRoute == 'applications' ? 'selected' : '' }}"><i data-feather="bookmark"></i>Solicitudes</a>
+              <a href="{{ route('solicitudes') }}" class="{{ $parentRoute == 'solicitudes' ? 'selected' : '' }}"><i data-feather="bookmark"></i>Solicitudes</a>
               <a href="{{ route('students') }}" class="{{ $parentRoute == 'students' ? 'selected' : '' }}"><i data-feather="users"></i>Alumnos</a>
               <a href="{{ route('groups') }}" class="{{ $parentRoute == 'groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Grupos</a>
               <a href="{{ route('groups') }}" class="{{ $parentRoute == 'toefl-groups' ? 'selected' : '' }}"><i data-feather="file-text"></i>TOEFL</a>
