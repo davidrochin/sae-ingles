@@ -84,6 +84,7 @@ Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
 //seccion de solicitudes de alumnos
 Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes')->middleware('auth');
 
+
 //seccion de configuración del sistema
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
 

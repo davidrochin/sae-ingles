@@ -30,8 +30,7 @@ class StudentsController extends Controller
         $order = $request->get('order');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        //dd(Auth::user()->roles);
-        if(!Auth::user()->hasAnyRole(['admin', 'coordinator', 'schoolserv'])){
+        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
             return view('auth.nopermission');
         }
 
@@ -199,6 +198,10 @@ class StudentsController extends Controller
  
 //muestra los alumnos con solicitud para ingresar al sistema
        public function showStudentsRequests(Request $request){
+                //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
+        if(!Auth::user()->hasAnyRole(['admin', 'coordinator', 'schoolserv'])){
+            return view('auth.nopermission');
+        }
 
        //este metodo va en otro controlador que sea Solicitudescontroller
         return view('students-requests', [
