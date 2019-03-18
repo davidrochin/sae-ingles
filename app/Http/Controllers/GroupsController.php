@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+  
 use App\Group;
 use App\Http\Requests\DeleteGroupRequest;
 use App\Http\Requests\ModifyGroupRequest;
@@ -27,11 +27,7 @@ class GroupsController extends Controller
 
     const DEFAULT_PARENT_ROUTE = 'groups';
    
-   public function accreditationTOEFL(){
 
- 
-        return view('accreditation-toefl'); 
-    }
 
     public function showAll(Request $request){
 
@@ -41,7 +37,7 @@ class GroupsController extends Controller
         $order = $request->get('order');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        if(!Auth::user()->hasAnyRole(['admin', 'coordinator', 'schoolserv'])){
+        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
             return view('auth.nopermission', [
                 'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
             ]);
@@ -313,4 +309,5 @@ class GroupsController extends Controller
 
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
     }
+
 }

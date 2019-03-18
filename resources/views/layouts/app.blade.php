@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}">
 
     @include('parts.styles')
-
+ 
     <title>{{ config('app.name', 'NOT SET') }}</title>
   </head>
 
@@ -45,12 +45,12 @@
               <a href="{{ route('solicitudes') }}" class="{{ $parentRoute == 'solicitudes' ? 'selected' : '' }}"><i data-feather="bookmark"></i>Solicitudes</a>
               <a href="{{ route('students') }}" class="{{ $parentRoute == 'students' ? 'selected' : '' }}"><i data-feather="users"></i>Alumnos</a>
               <a href="{{ route('groups') }}" class="{{ $parentRoute == 'groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Grupos</a>
-              <a href="{{ route('groups') }}" class="{{ $parentRoute == 'toefl-groups' ? 'selected' : '' }}"><i data-feather="file-text"></i>TOEFL</a>
+              <a href="{{ route('toefl') }}" class="{{ $parentRoute == 'toefl' ? 'selected' : '' }}"><i data-feather="file-text"></i>TOEFL</a>
               <hr>
 
               <span class="sidebar-section text-muted">Sistema</span>
               <a href="{{ route('users') }}" class="{{ $parentRoute == 'users' ? 'selected' : '' }}"><i data-feather="users"></i>Usuarios</a>
-              <a href="{{ route('users') }}" class="{{ $parentRoute == 'settings' ? 'selected' : '' }}"><i data-feather="settings"></i>Configuración</a>
+              <a href="{{ route('settings') }}" class="{{ $parentRoute == 'settings' ? 'selected' : '' }}"><i data-feather="settings"></i>Configuración</a>
               <a href="{{ route('about') }}" class="{{ $parentRoute == 'history' ? 'selected' : '' }}"><i data-feather="book"></i>Historial</a>
               <a href="{{ route('about') }}" class="{{ $parentRoute == 'about' ? 'selected' : '' }}"><i data-feather="tag"></i>Acerca de</a>
               <hr>

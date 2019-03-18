@@ -1,5 +1,5 @@
 <?php
-
+ 
 
 use App\Http\Controllers\StudentsController;
 
@@ -14,14 +14,6 @@ use App\Http\Controllers\StudentsController;
 |
 */
 
-/*Route::any('/{route}', function($route) {
-    //
-    if(Auth::check()){
-    	return redirect('/'.$route);
-    } else {
-    	return redirect('/login');
-    }
-});*/
 
 Route::get('/', function () {
 
@@ -86,9 +78,12 @@ Route::get('/inicio', 'PagesController@home')->name('home');
 Route::get('/test', 'PagesController@test')->name('test');
 
 //seccion de toefl
-Route::get('/carta-liberacion-toefl/', 'GroupsController@accreditationTOEFL')->name('toefl-accreditation');
-
-
+Route::get('/carta-liberacion-toefl/', 'ToeflController@accreditationTOEFL')->name('toefl-accreditation');
+Route::get('/toefl/', 'ToeflController@showAll')->name('toefl');
 
 //seccion de solicitudes de alumnos
 Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes');
+
+//seccion de configuración del sistema
+Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings');
+

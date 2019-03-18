@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('title', 'TOEFL')
 @section('section', 'TOEFL')
-
+ 
 @section('content')
 
 <div class="">
