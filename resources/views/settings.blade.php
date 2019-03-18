@@ -12,7 +12,7 @@
 
 @slot('body')
 
-<!-- Formulario de nuevo alumno -->
+<!-- Formulario de nueva carrera -->
 <form class="form" action="/carreras/crear" method="post" id="createCareerForm">
 
   <!-- Crear el token de seguridad -->
