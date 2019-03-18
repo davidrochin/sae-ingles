@@ -11,7 +11,7 @@ use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use Illuminate\Http\Request;
 
-class ToeflController extends Controller
+class ToeflGroupController extends Controller
 {
 
     const DEFAULT_PARENT_ROUTE = 'toefl';

@@ -78,12 +78,12 @@ Route::get('/inicio', 'PagesController@home')->name('home');
 Route::get('/test', 'PagesController@test')->name('test');
 
 //seccion de toefl
-Route::get('/carta-liberacion-toefl/', 'ToeflController@accreditationTOEFL')->name('toefl-accreditation');
-Route::get('/toefl/', 'ToeflController@showAll')->name('toefl');
+Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
+Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
 
 //seccion de solicitudes de alumnos
-Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes');
+Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes')->middleware('auth');
 
 //seccion de configuración del sistema
-Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings');
+Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
 
