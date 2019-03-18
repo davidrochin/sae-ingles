@@ -11,6 +11,11 @@ use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Role;
+use App\Http\Requests\CreateUserRequest;
+
+
 class StudentsController extends Controller
 {
 
@@ -171,23 +176,31 @@ class StudentsController extends Controller
     		'first_names' => $request->input('firstNames'),
     		'last_names' => $request->input('lastNames'),
     		'phone_number' => $request->input('phoneNumber'),
-    		'email' => $request->input('email')
+    		'email' => $request->input('email'),
+            
+           
     	]);
+
+         User::create([
+            'name' => $request->input('firstNames'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'role_id' => 1,
+         
+        ]);
+
         $careers = Career::all();
 
-    	//dd($student);
-
-    	//return redirect('/alumnos/'.$messages->id);
         $request->flash();
-
+ 
 
         return redirect()->back()->with('success', 'La solicitud ha sido enviada con éxito.');
     }
-
+ 
 //muestra los alumnos con solicitud para ingresar al sistema
        public function showStudentsRequests(Request $request){
 
-       
+       //este metodo va en otro controlador que sea Solicitudescontroller
         return view('students-requests', [
           
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
@@ -196,3 +209,11 @@ class StudentsController extends Controller
 
 
 }
+
+
+
+
+ 
+
+       
+
