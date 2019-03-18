@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Role;
+use App\Student;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -74,6 +75,10 @@ class User extends Authenticatable
 
     public function isSuperiorThan($user){
         return $this->isRoleSuperiorThan($user->role->name);
+    }
+
+    public function student(){
+        return $this->hasOne(Student::class);
     }
 
     public function role() {
