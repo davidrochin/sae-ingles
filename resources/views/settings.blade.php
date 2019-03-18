@@ -1,19 +1,31 @@
-
 @extends('layouts.app')
 @section('title', 'Configuración')
 @section('section', 'Configuración')
- 
+
 @section('content')
 
-<div class="">
+<div class="card text-center">
 
+  <!-- Header -->
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Carreras</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Aulas</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Otros</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    @include('tables.careers')
+  </div>
 </div>
-
-<div class="">
-
-  <h1>Configuración</h1>
-<p>AQUI SE CONFIGURARÁ EL REGISTRO DE LAS NUEVAS CARRERAS</p>
-<p>NUMERO DE PARCIALES</p>
-<p>NUMERO DE CREDITOS(TOEFL) POR GENERACION</p>
-
 @endsection

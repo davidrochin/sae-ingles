@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
+use App\Career;
 use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\ModifyStudentRequest;
@@ -20,8 +21,8 @@ class SettingsController extends Controller
 
        
         return view('settings', [
-          
-            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+            'careers' => Career::all(),
+            'parentRoute' => SettingsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
 
