@@ -39,7 +39,7 @@ $factory->define(App\Student::class, function (Faker $faker) {
 
 	return [
 		'control_number' => $faker->numberBetween(14000000, 20000000),
-		'career_id' => $faker->boolean(95) ? Career::inRandomOrder()->get()[0]->id : NULL,
+		'career_id' => $faker->boolean(95) ? Career::inRandomOrder()->first()->id : NULL,
 		'first_names' => $faker->firstName,
 		'last_names' => $faker->lastName.' '.$faker->lastName,
 		'phone_number' => $faker->boolean(95) ? $faker->ean8 : NULL,

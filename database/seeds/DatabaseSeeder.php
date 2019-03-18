@@ -23,10 +23,16 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
 
-        // $this->call(UsersTableSeeder::class);
+        $this->command->info('Creating sample users...');
         factory(App\User::class)->times(30)->create();
+
+        $this->command->info('Creating sample students...');
         factory(App\Student::class)->times(1000)->create();
+
+        $this->command->info('Creating sample groups...');
         factory(App\Group::class)->times(50)->create();
+
+        $this->command->info('Creating sample TOEFL groups...');
         factory(App\ToeflGroup::class)->times(50)->create();
 
         //Para cada grupo, asignarle alumnos aleatorios
