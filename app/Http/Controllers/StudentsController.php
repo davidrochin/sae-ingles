@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Career;
+use App\History;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateStudentRequest;
@@ -126,7 +127,11 @@ class StudentsController extends Controller
     	]);
         $careers = Career::all();
 
-    	//dd($student);
+        // Registrar la acción en el historial
+    	History::create([
+            'user_id' => $user->id,
+            'description' => 'ha registrado al estudiante '.$student->id
+        ]);
 
     	//return redirect('/alumnos/'.$messages->id);
         $request->flash();
@@ -147,19 +152,30 @@ class StudentsController extends Controller
 
         $student->delete();
 
+        // Registrar la acción en el historial
+    	History::create([
+            'user_id' => $user->id,
+            'description' => 'ha eliminado al estudiante '.$student->id
+        ]);
+
         return redirect('/alumnos')->with('success', 'El alumno ha sido eliminado con éxito.');
     }
 
     public function modify(ModifyStudentRequest $request){
 
-        Student::where('id',$request->input('id'))
-            ->update(['first_names' => $request->input('firstNames'),
-                'last_names' => $request->input('lastNames'),
-                'career_id' => $request->input('careerId'),
-                'phone_number' => $request->input('phoneNumber'),
-                'email' => $request->input('email')
-            ]);
+        $student = Student::where('id', $request->input('id'));
+        $student->update(['first_names' => $request->input('firstNames'),
+            'last_names' => $request->input('lastNames'),
+            'career_id' => $request->input('careerId'),
+            'phone_number' => $request->input('phoneNumber'),
+            'email' => $request->input('email')
+        ]);
 
+        // Registrar la acción en el historial
+    	History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha modificado la información del estudiante '.$request->input('id')
+        ]);
 
         return redirect()->back()->with('success','El alumno ha sido modificado con éxito');
     }
@@ -196,16 +212,16 @@ class StudentsController extends Controller
         return redirect()->back()->with('success', 'La solicitud ha sido enviada con éxito.');
     }
  
-//muestra los alumnos con solicitud para ingresar al sistema
-       public function showStudentsRequests(Request $request){
-                //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
+    // Muestra los alumnos con solicitud para ingresar al sistema
+    public function showStudentsRequests(Request $request){
+
+        //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
         if(!Auth::user()->hasAnyRole(['admin', 'coordinator', 'schoolserv'])){
             return view('auth.nopermission');
         }
 
-       //este metodo va en otro controlador que sea Solicitudescontroller
+        // Este metodo va en otro controlador que sea Solicitudescontroller
         return view('students-requests', [
-          
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
         ]);
     }

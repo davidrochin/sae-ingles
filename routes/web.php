@@ -66,7 +66,7 @@ Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 Route::post('/usuarios/crear','UsersController@create')->middleware('auth');
 Route::post('/usuario/modificarContraseña','UsersController@changePassword')->middleware('auth');
 
-//Grupos para maestros
+// Grupos para maestros
 
 Route::get('/mis-grupos/', 'GroupsController@showOwnedGroups')->name('my-groups')->middleware('auth');
 Route::get('/mis-grupos/{id}', 'GroupsController@showOwnedGroup')->middleware('auth');
@@ -77,14 +77,16 @@ Auth::routes();
 Route::get('/inicio', 'PagesController@home')->name('home');
 Route::get('/test', 'PagesController@test')->name('test');
 
-//seccion de toefl
+// TOEFL
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
 Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
 
-//seccion de solicitudes de alumnos
+// Solicitudes de alumnos
 Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes')->middleware('auth');
 
+// Historial
+Route::get('/historial/', 'HistoryController@showAll')->name('history')->middleware('auth');
 
-//seccion de configuración del sistema
+// Configuración
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
 

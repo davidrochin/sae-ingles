@@ -51,7 +51,7 @@
               <span class="sidebar-section text-muted">Sistema</span>
               <a href="{{ route('users') }}" class="{{ $parentRoute == 'users' ? 'selected' : '' }}"><i data-feather="users"></i>Usuarios</a>
               <a href="{{ route('settings') }}" class="{{ $parentRoute == 'settings' ? 'selected' : '' }}"><i data-feather="settings"></i>Configuración</a>
-              <a href="{{ route('about') }}" class="{{ $parentRoute == 'history' ? 'selected' : '' }}"><i data-feather="book"></i>Historial</a>
+              <a href="{{ route('history') }}" class="{{ $parentRoute == 'history' ? 'selected' : '' }}"><i data-feather="book"></i>Historial</a>
               <a href="{{ route('about') }}" class="{{ $parentRoute == 'about' ? 'selected' : '' }}"><i data-feather="tag"></i>Acerca de</a>
               <hr>
               
