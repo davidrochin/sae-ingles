@@ -11,8 +11,7 @@
         <title>
             Iniciar sesión </title>
 
-        <link rel="stylesheet" href="http://localhost:8000/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="http://localhost:8000/css/bootstrap-adjustments.css" />
+        @include('parts.styles')
     </head>
 
     <body class="bg-dark h-100"></body>
