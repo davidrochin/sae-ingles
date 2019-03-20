@@ -2,6 +2,7 @@
  
 
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\RequestsRegistryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,11 +39,6 @@ Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
 Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');
 Route::post('/alumnos/modificar', 'StudentsController@modify')->middleware('auth');
 
-// Alumnos - auto-registro
-
-// A esta URL se enviaran los datos mediante POST para que se inicie la solicitud de registro.
-// Aquí tiene que caer la logica de registro. Osea, el "action" del <form> en el que te registras tiene que decir "alumnos/solicitar-registro"
-Route::post('/alumnos/solicitar-registro', 'StudentsController@requestRegistry');
 
 //Grupos
 
@@ -81,8 +77,6 @@ Route::get('/test', 'PagesController@test')->name('test');
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
 Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
 
-// Solicitudes de alumnos
-Route::get('/solicitudes/', 'StudentsController@showStudentsRequests')->name('solicitudes')->middleware('auth');
 
 // Historial
 Route::get('/historial/', 'HistoryController@showAll')->name('history')->middleware('auth');
@@ -90,3 +84,9 @@ Route::get('/historial/', 'HistoryController@showAll')->name('history')->middlew
 // Configuración
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
 
+
+// A esta URL se enviaran los datos mediante POST para que se inicie la solicitud de registro.
+// Aquí tiene que caer la logica de registro. Osea, el "action" del <form> en el que te registras tiene que decir "alumnos/solicitar-registro"
+Route::post('/alumnos/solicitar-registro', 'RequestsRegistryController@requestRegistry');
+// Solicitudes de alumnos
+Route::get('/solicitudes/', 'RequestsRegistryController@showStudentsRequests')->name('solicitudes')->middleware('auth');

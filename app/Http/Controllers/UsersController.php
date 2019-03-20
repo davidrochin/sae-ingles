@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ModifyUserPasswordRequest;
 use App\User;
 use App\Role;
+use App\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
@@ -21,7 +22,7 @@ class UsersController extends Controller
         $keyword = $request->get('keyword');
 
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        if(!Auth::user()->hasAnyRole(['admin','coordinator', 'schoolserv'])){
+        if(!Auth::user()->hasAnyRole(['admin','coordinator'])){
             return view('auth.nopermission');
         }
 
@@ -66,6 +67,12 @@ class UsersController extends Controller
             'password' => bcrypt($request->input('password')),
             'role_id' => $request->input('roleId'),
         ]);
+           
+        // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha registrado a un usario'
+        ]);
 
         //Esta linea es para que se manden los datos de vuelta a la view y se puedan volver a poner en sus respectivos Inputs.
         //(Así el usuario no tiene que volver a ingresar los datos que sí estaban bien).
@@ -78,6 +85,11 @@ class UsersController extends Controller
 	    User::where('id',$request->input('userId'))
             ->update(['password' => bcrypt($request->input('newPassword'))]);
 
+        // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha cambiado la contraseña a un usuario'
+        ]);
 	    return redirect()->back()->with('success','La contraseña ha sido modificada con éxito');
 
     }
