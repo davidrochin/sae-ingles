@@ -25,7 +25,7 @@ class ToeflGroupController extends Controller
 
         return view('toefl', [
           
-            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+            'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
         ]);
     }
 

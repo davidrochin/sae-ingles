@@ -63,7 +63,7 @@ class RequestsRegistryController extends Controller
 
         // Este metodo va en otro controlador que sea Solicitudescontroller
         return view('students-requests', [
-            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+            'parentRoute' => RequestsRegistryController::DEFAULT_PARENT_ROUTE,
         ]);
     }
 
