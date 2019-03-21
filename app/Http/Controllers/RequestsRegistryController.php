@@ -26,10 +26,10 @@ class RequestsRegistryController extends Controller
 
         $user = $request->user();
 
-    
-        $yeardate=date('Y');
-        $year=substr($yeardate, 2);
-        $folio= 0600; //CONSULTA EL ULTIMO FOLIO+1
+        
+        $now=date('Y');
+        $year=substr($now, 2);
+        $folio= 0600; //CONSULTA  ultimo id de tabla  students +1
 
         $numcontrol=$year.'00'.$folio;
 

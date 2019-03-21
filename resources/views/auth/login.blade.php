@@ -61,7 +61,7 @@
 
                         <!-- Botón para mostrar el formulario de registro -->
                         <div class="form-group">
-                            <a href="#" class="ForgetPwd" value="SignUp" onclick="showSignupForm()">Registro para estudiantes</a>
+                            <a href="#" class="ForgetPwd" value="SignUp" onclick="showSignupForm()">Inscribirse</a>
                         </div>
                     </form>
                 </div>
@@ -69,7 +69,7 @@
                 <!-- Panel de registro -->
                 <div id="signin-panel" class="col-12 col-lg-6 login-form-1 p-4 d-none">
                   
-                    <h3>Registrarse</h3>
+                    <h3>Registro para alumnos</h3>
                      <form class="form" action="/alumnos/solicitar-registro" method="post" id="createStudentForm">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -150,7 +150,7 @@
 
                                      <input type=" text" name="controlNumber" min="0" maxlength="8"
                                       class="form-control input-sm" placeholder="No. Control" >
-
+                            </div>
                                       {{-- Selector de carrera --}}
                         <div class="form-group">
                            
@@ -166,7 +166,7 @@
 
                            
 
-                        </div> <!-- FIN CONTENEDOR DE NO.CONTROL Y CARRERAS -->
+                       
 
                         
  <input type="submit" class="btn btn-primary btn-block form-group" value="Crear" form="createStudentForm">

@@ -59,6 +59,8 @@ class UsersController extends Controller
         ]);
     }
 
+    
+
     public function create(CreateUserRequest $request){
 
         User::create([
@@ -71,7 +73,7 @@ class UsersController extends Controller
         // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha registrado a un usario'
+            'description' => 'ha registrado al usario '.$request->input('name')
         ]);
 
         //Esta linea es para que se manden los datos de vuelta a la view y se puedan volver a poner en sus respectivos Inputs.
@@ -84,11 +86,11 @@ class UsersController extends Controller
     public function changePassword(ModifyUserPasswordRequest $request){
 	    User::where('id',$request->input('userId'))
             ->update(['password' => bcrypt($request->input('newPassword'))]);
-
+       
         // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha cambiado la contraseña a un usuario'
+            'description' => 'ha cambiado la contraseña al usuario ID: '.$request->input('userId')
         ]);
 	    return redirect()->back()->with('success','La contraseña ha sido modificada con éxito');
 
