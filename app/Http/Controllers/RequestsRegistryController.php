@@ -37,7 +37,7 @@ class RequestsRegistryController extends Controller
 
     
         $student = Student::create([
-            'control_number' => $numcontrol,//$request->input('controlNumber'),
+            'control_number' => $numcontrol,//$request->input('controlNumber'), //aqui solo guarda el num control que se genera para externos falta validar que cuando se seleccione internos se guarde el que se ingreso en el inputtext como estaba anteriormente
             'career_id' => $request->input('careerId') == 0 ? NULL : $request->input('careerId'),
             'first_names' => $request->input('firstNames'),
             'last_names' => $request->input('lastNames'),
