@@ -29,9 +29,11 @@ class RequestsRegistryController extends Controller
         
         $now=date('Y');
         $year=substr($now, 2);
-        $folio= 0600; //CONSULTA  ultimo id de tabla  students +1
+        $folioanterior= User::select('id')->orderby('created_at','DESC')->first(); //CONSULTA  ultimo id de tabla users 
+        $folio=substr($folioanterior, -3, 2)+1; //extrae solo el numero de {"id":51} +1 lo correcto es no recortarlo ya que cuando sean mas de 100 habra problemas que se repitan
+        $foliocompleto = str_pad($folio, 4, "0", STR_PAD_LEFT);
+                $numcontrol=$year.'00'.$foliocompleto;
 
-        $numcontrol=$year.'00'.$folio;
 
     
         $student = Student::create([
