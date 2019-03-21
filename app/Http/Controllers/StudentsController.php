@@ -149,7 +149,7 @@ class StudentsController extends Controller
         foreach ($groups as $group) {
             $student->groups()->detach($group);
         }
-
+ 
         $student->delete();
 
         // Registrar la acción en el historial
@@ -180,6 +180,7 @@ class StudentsController extends Controller
         return redirect()->back()->with('success','El alumno ha sido modificado con éxito');
     }
 
+    
  
 }
 

@@ -149,11 +149,11 @@
                                     <p><strong>LLena los campos con la carrera que cursas en ITLM y tu No. Control de estudiante.</strong></p>
 
                                      <input type=" text" name="controlNumber" min="0" maxlength="8"
-                                      class="form-control input-sm" placeholder="No. Control">
+                                      class="form-control input-sm" placeholder="No. Control" >
 
                                       {{-- Selector de carrera --}}
                         <div class="form-group">
-                            <label for="careerControlInput">Carrera</label>
+                           
                             <select class="form-control" id="careerControlInput" name="careerId">
                                 <option value=""></option>
                                 <!-- Llenar el select con las carreras de la base de datos -->
