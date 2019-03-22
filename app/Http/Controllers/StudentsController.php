@@ -123,15 +123,17 @@ class StudentsController extends Controller
     		'first_names' => $request->input('firstNames'),
     		'last_names' => $request->input('lastNames'),
     		'phone_number' => $request->input('phoneNumber'),
-    		'email' => $request->input('email')
+    		'email' => $request->input('email'),
+            'active' => true,
     	]);
         $careers = Career::all();
 
-        // Registrar la acción en el historial
-    	History::create([
-            'user_id' => $user->id,
-            'description' => 'ha registrado al estudiante '.$student->id
+         // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha registrado al estudiante ID: '.$student->id
         ]);
+    	
 
     	//return redirect('/alumnos/'.$messages->id);
         $request->flash();
@@ -149,14 +151,15 @@ class StudentsController extends Controller
         foreach ($groups as $group) {
             $student->groups()->detach($group);
         }
- 
+       // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha eliminado al estudiante ID: '.$student->id
+        ]);
+
         $student->delete();
 
-        // Registrar la acción en el historial
-    	History::create([
-            'user_id' => $user->id,
-            'description' => 'ha eliminado al estudiante '.$student->id
-        ]);
+      
 
         return redirect('/alumnos')->with('success', 'El alumno ha sido eliminado con éxito.');
     }
