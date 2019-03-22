@@ -43,6 +43,7 @@ class RequestsRegistryController extends Controller
             'last_names' => $request->input('lastNames'),
             'phone_number' => $request->input('phoneNumber'),
             'email' => $request->input('email'),
+            'active' => false,
             
            
         ]);
