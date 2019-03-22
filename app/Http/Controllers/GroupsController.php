@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use App\Student;
 use App\Grade;
+use App\History;
 
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
@@ -192,7 +193,7 @@ class GroupsController extends Controller
             'averages' => $averages,
         ]);
     }
-
+ 
     public function create(CreateGroupRequest $request){
         Group::create([
             'name' => $request->input('name'),
@@ -205,6 +206,11 @@ class GroupsController extends Controller
             'year' => $request->input('year'),
             'period_id' => $request->input('periodId'),
             'classroom_id' => $request->input('classroomId'),
+        ]);
+          // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha creado el grupo '.$request->input('code')
         ]);
 
         return redirect()->back()->with('success', 'El grupo ha sido creado con éxito.');
@@ -227,6 +233,11 @@ class GroupsController extends Controller
         }
 
         $group->delete();
+          // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha eliminado el grupo ID: '.$request->input('idGroup')
+        ]);
 
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
     }
@@ -247,7 +258,11 @@ class GroupsController extends Controller
             'schedule_end' => $request->input('scheduleEnd'),
             'days' => implode($request->input('days'))
             ]);
-
+  // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha modificado el grupo '.$request->input('code')
+        ]);
 
         return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
     }
@@ -259,9 +274,19 @@ class GroupsController extends Controller
         if($group->active == 1){
             $group->active = 0;
             $successMessage = 'El grupo se ha desactivado con éxito.';
+              // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha desactivado el grupo '.$request->input('groupId')
+        ]);
         } else {
             $group->active = 1;
             $successMessage = 'El grupo se ha activado con éxito.';
+              // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha activado al grupo '.$request->input('groupId')
+        ]);
         }
         $group->save();
 
