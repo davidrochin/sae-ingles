@@ -14,7 +14,7 @@ use App\Http\Controllers\RequestsRegistryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ 
 
 Route::get('/', function () {
 
@@ -83,6 +83,8 @@ Route::get('/historial/', 'HistoryController@showAll')->name('history')->middlew
 
 // Configuración
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
+Route::get('/carreras/crear/', 'SettingsController@createCareer')->middleware('auth');
+
 
 
 // A esta URL se enviaran los datos mediante POST para que se inicie la solicitud de registro.

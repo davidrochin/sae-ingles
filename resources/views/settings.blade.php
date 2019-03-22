@@ -64,6 +64,8 @@
 
     <!-- Tabpane de Carreras -->
     <div id="careers" aria-labelledby="careers-tab" role="tabpanel" class="tab-pane fade show active">
+    <!-- Tabpane de Aulas -->
+    <div id="classrooms" aria-labelledby="classrooms-tab" role="tabpanel" class="tab-pane fade show active">
 
       <!--Botones para manipular tabla-->
       <div class="btn-toolbar mb-3 w-100 form-inline" role="toolbar" aria-label="Toolbar with button groups">
@@ -77,14 +79,19 @@
 
       @include('tables.careers')
 
+
     </div>
 
     <!-- Tabpane de Salones -->
     <div id="classrooms" aria-labelledby="classrooms-tab" role="tabpanel" class="tab-pane fade">
       Salones
     </div>
+{{-- NO SE DONDE METER LA TABLA PARA QUE SE MUESTRE EN EL PANEL DE AULAS
+    @include('tables.classrooms')
 
+--}}
 
   </div>
+
 </div>
 @endsection
