@@ -82,10 +82,7 @@
 
     </div>
 
-    <!-- Tabpane de Salones -->
-    <div id="classrooms" aria-labelledby="classrooms-tab" role="tabpanel" class="tab-pane fade">
-      Salones
-    </div>
+   
 {{-- NO SE DONDE METER LA TABLA PARA QUE SE MUESTRE EN EL PANEL DE AULAS
     @include('tables.classrooms')
 

@@ -243,9 +243,7 @@ class GroupsController extends Controller
     }
 
     public function modify(ModifyGroupRequest $request){
-        /*dd("id: ",$request->input('idGroup')," name: ",$request->input('name'), " code ",$request->input('code')," level: ",$request->input('level'),
-        " period_id: ",$request->input('periodId')," year: ",$request->input('year')," user_id: ",$request->input('professorId')," schedule_start: ",$request->input('scheduleStart'),
-        " schedule_end: ",$request->input('scheduleEnd')," days: ",implode($request->input('days')));*/
+      
         Group::where('id',$request->input('idGroup'))
             ->update(['name' => $request->input('name'),
             'code' => $request->input('code'),
@@ -277,7 +275,7 @@ class GroupsController extends Controller
               // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha desactivado el grupo '.$request->input('groupId')
+            'description' => 'ha desactivado el grupo ID: '.$request->input('groupId')
         ]);
         } else {
             $group->active = 1;
@@ -285,7 +283,7 @@ class GroupsController extends Controller
               // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha activado al grupo '.$request->input('groupId')
+            'description' => 'ha activado al grupo ID: '.$request->input('groupId')
         ]);
         }
         $group->save();
@@ -322,6 +320,12 @@ class GroupsController extends Controller
         //Agregar el alumno al grupo
         $group->students()->attach($student);
 
+         // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha ingresado al alumno ID :'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+        ]);
+
         return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
     }
 
@@ -331,7 +335,11 @@ class GroupsController extends Controller
         $student = Student::findOrFail($request->input('studentId'));
 
         $group->students()->detach($student);
-
+                 // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+        ]);
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
     }
 

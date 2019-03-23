@@ -177,7 +177,7 @@ class StudentsController extends Controller
         // Registrar la acción en el historial
     	History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha modificado la información del estudiante '.$request->input('id')
+            'description' => 'ha modificado la información del estudiante ID: '.$request->input('id')
         ]);
 
         return redirect()->back()->with('success','El alumno ha sido modificado con éxito');
