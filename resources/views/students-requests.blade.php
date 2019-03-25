@@ -5,17 +5,11 @@
 @section('content')
 
 <div>
-
    
     <!--Botones para manipular tabla de estudiantes y buscador-->
     <div class="btn-toolbar mb-3 w-100 form-inline" role="toolbar" aria-label="Toolbar with button groups">
 
-        {{-- Botón de Nuevo --}}
-        @if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newStudentModal">Nuevo</button>
-            </div>
-        @endif
+<p class="text-muted">Se aceptaran a los alumnos que hayan hecho el pago de su ficha de inscripción.</p>
 
         <!-- Formulario para buscar -->
         <form class="form col-auto mr-0 ml-auto form-inline" action="{{ route('students') }}" method="get">
@@ -98,23 +92,6 @@
 
     }
 </script>
-
-<!-- Si hubo un error en el formulario de nuevo estudiante, abrir modal automaticamente -->
-@if($errors->any())
-    <script type="text/javascript">
-        var $errorMessage = '';
-        @foreach($errors->all() as $error)
-            $errorMessage = $errorMessage + ' {{ $error }}';
-        @endforeach
-        //alert($errorMessage);
-        
-        //Abrir modal de estudiante
-        $( document ).ready(function() {
-            $('#newStudentModal').modal('show');
-        });
-        
-    </script>
-@endif
 
 @endsection
 

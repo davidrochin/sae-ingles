@@ -7,7 +7,7 @@
                 <th>Apellido(s)</th>
                 <th>Nombre(s)</th>
                 <th>Carrera</th>
-                <th>Acreditado</th>
+                <th>Acreditación</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,8 +22,10 @@
                 <td>{{ $student->first_names }}</td>
                 <td>{{ !is_null($student->career) ? $student->career->short_name : '' }}</td>
 
-        <!--faltaria una columna que mencione el curso anterior o primera vez -->
-                <td><span class="badge badge-pill badge-{{ $student->isActive() ? 'primary' : 'secondary' }}">{{ $student->isActive() ? 'Acreditado' : 'Reprobado' }}</span></td>
+        <!--esta es una columna que mencione el curso anterior o primera vez
+            deben mostrarse solo inactivos
+         -->
+                <td><span class="badge badge-pill badge-{{ $student->isActive() ? 'primary' : 'secondary' }}">{{ $student->isActive() ? 'Aprobado' : 'Reprobado' }}</span></td>
                 <td><a href="{{ route('students') }}/{{ $student->id }}">Ver alumno</a></td>
             </tr>
         @endforeach

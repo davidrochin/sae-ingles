@@ -78,7 +78,7 @@ class RequestsRegistryController extends Controller
         return view('students-requests', [
             'students' => $students->paginate(12),
             'careers' => $careers,
-            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+            'parentRoute' => RequestsRegistryController::DEFAULT_PARENT_ROUTE,
             //'modalMessage' => 'Prueba de modal de mensajes',
         ]);
     }
