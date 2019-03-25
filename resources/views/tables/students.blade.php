@@ -1,6 +1,6 @@
     <table class="table table-hover">
         <thead class="thead-light">
-            <tr>
+            <tr> 
                 <!--<th></th>-->
                 <th>ID</th>
                 <th>No. control</th>

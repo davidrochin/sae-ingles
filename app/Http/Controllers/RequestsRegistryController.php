@@ -72,10 +72,14 @@ class RequestsRegistryController extends Controller
         if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
             return view('auth.nopermission');
         }
+          $careers = Career::all();
+          $students = Student::orderBy('id', 'DESC');
 
-        // Este metodo va en otro controlador que sea Solicitudescontroller
         return view('students-requests', [
-            'parentRoute' => RequestsRegistryController::DEFAULT_PARENT_ROUTE,
+            'students' => $students->paginate(12),
+            'careers' => $careers,
+            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
+            //'modalMessage' => 'Prueba de modal de mensajes',
         ]);
     }
 
