@@ -84,7 +84,7 @@ Route::get('/historial/', 'HistoryController@showAll')->name('history')->middlew
 // Configuración
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
 
-Route::get('/carreras/crear/', 'SettingsController@createCareer')->name('careers')->middleware('auth');
+Route::post('/carreras/crear', 'SettingsController@createCareer')->middleware('auth');
 
 
 

@@ -13,7 +13,7 @@
 @slot('body')
 
 <!-- Formulario de nueva carrera -->
-<form class="form" action="/carreras/crear/" method="post" id="createCareerForm">
+<form class="form" action="/carreras/crear" method="post" id="createCareerForm">
 
   <!-- Crear el token de seguridad -->
   {{ csrf_field() }}
@@ -34,7 +34,7 @@
 @endslot
 
 @slot('footer')
-<input type="submit" class="btn btn-primary" value="Crear"  form="createStudentForm">
+<input type="submit" class="btn btn-primary" value="Crear"  form="createCareerForm">
 @endslot
 @endcomponent
 

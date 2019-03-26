@@ -7,9 +7,6 @@ use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Career;
 use App\Classroom;
-use App\Http\Requests\CreateStudentRequest;
-use App\Http\Requests\DeleteStudentRequest;
-use App\Http\Requests\ModifyStudentRequest;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
@@ -35,7 +32,7 @@ class SettingsController extends Controller
        public function createCareer(Request $request){
 
 
-        $student = Career::create([
+      $career=  Career::create([
           
             'name' => $request->input('name'),
             'short_name' =>  $request->input('short_name'),
