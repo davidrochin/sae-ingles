@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Career;
 use App\Classroom;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCareerRequest;
 
 class SettingsController extends Controller
 {
@@ -29,7 +30,7 @@ class SettingsController extends Controller
         ]);
     }
 
-       public function createCareer(Request $request){
+       public function createCareer(CreateCareerRequest $request){
 
 
       $career=  Career::create([
