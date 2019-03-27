@@ -31,15 +31,23 @@ class SettingsController extends Controller
     }
 
        public function createCareer(CreateCareerRequest $request){
-
-
-      $career=  Career::create([
+       $career=  Career::create([
           
             'name' => $request->input('name'),
             'short_name' =>  $request->input('short_name'),
         ]);
        
        return redirect()->back()->with('success', 'La carrera ha sido creada con éxito.');
+    }
+
+      public function createClassroom(Request $request){
+      $classroom=  Classroom::create([
+          
+            'name' => $request->input('name'),
+           
+        ]);
+       
+       return redirect()->back()->with('success', 'El aula ha sido creada con éxito.');
     }
 
 }
