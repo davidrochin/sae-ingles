@@ -31,6 +31,9 @@
   @endcomponent
 
 </form>
+
+
+
 @endslot
 
 @slot('footer')
@@ -38,9 +41,37 @@
 @endslot
 @endcomponent
 
+
+<!-- Modal para agregar una aula-->
+@component('components.modal')
+@slot('id', 'newClassroomModal')
+@slot('title', 'Nueva aula')
+@slot('dismiss', 'Cancelar')
+
+@slot('body')
+
+<!-- Formulario de nueva carrera -->
+<form class="form" action="/aulas/crear" method="post" id="createClassroomForm">
+
+  <!-- Crear el token de seguridad -->
+  {{ csrf_field() }}
+
+  @component('components.form-input')
+  @slot('tag', 'Nombre')
+  @slot('name', 'name')
+  @slot('value', old('name'))
+  @endcomponent
+
+</form>
+@endslot
+
+@slot('footer')
+<input type="submit" class="btn btn-primary" value="Crear"  form="createClassroomForm">
+@endslot
+@endcomponent
+
 <div class="card text-center">
 
-  <!-- Header -->
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs" role="tablist">
 
@@ -60,35 +91,34 @@
     </ul>
   </div>
 
-  <div class="card-body">
 
-    <!-- Tabpane de Carreras -->
-    <div id="careers" aria-labelledby="careers-tab" role="tabpanel" class="tab-pane fade show active">
-    <!-- Tabpane de Aulas -->
-    <div id="classrooms" aria-labelledby="classrooms-tab" role="tabpanel" class="tab-pane fade show active">
 
-      <!--Botones para manipular tabla-->
-      <div class="btn-toolbar mb-3 w-100 form-inline" role="toolbar" aria-label="Toolbar with button groups">
-
-        {{-- Botón de Nuevo --}}
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+      <div class="tab-content ">
+        <div class="tab-pane active" id="careers">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal"
             data-target="#newCareerModal">Nueva</button>
+             </div>
+
+         @include('tables.careers')
+        </div>
+
+        <div class="tab-pane" id="classrooms">
+             <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+            data-target="#newClassroomModal">Nueva</button>
+             </div>
+         @include('tables.classrooms')
+        </div>
+
+        <div class="tab-pane" id="3">
+          <h3>otros</h3>
         </div>
       </div>
-
-      @include('tables.careers')
-
-
-    </div>
-
-   
-{{-- NO SE DONDE METER LA TABLA PARA QUE SE MUESTRE EN EL PANEL DE AULAS
-    @include('tables.classrooms')
-
---}}
-
   </div>
 
+
+
 </div>
+
 @endsection
