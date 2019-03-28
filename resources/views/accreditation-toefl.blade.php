@@ -17,17 +17,6 @@
 	<div class="contenido">
 
 
-	<div class="d-flex justify-content-between encabezado">
-<img height="200px" src="img/sep.jpg">
-<div class="col">
-	<img height="100px" src="img/tecnm.png">	
-	<p>Instituto Tecnológico de Los Mochis</p>
-</div>
-
-</div>
-
-
-	
 
 
 <p class="saludo"><b>A QUIEN CORRESPONDA: </b></p>
@@ -82,17 +71,6 @@
 
 
 
-<div class="d-flex justify-content-between piedepagina">
-<img  class="imagenes-pie" src="img/logo.png">
-<div>
-	<strong>
-	<p>Blvd. Juan de Dios Batiz y 20 de Noviembre</p>
-	<p>C.P. 81259  Los Mochis, Sin.Teléfonos:  (01-668) 812-58-58, 812-59-59 e-mail: <em class="correo">dir_mochis@tecnm.mx</em></p>
-	<p> www.itmochis.edu.mx</p>
-</strong>
-</div>
-<img class="imagenes-pie" src="img/toefl.png">	
-</div>
 
 </div>
 		@endsection

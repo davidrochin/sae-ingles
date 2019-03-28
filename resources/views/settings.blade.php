@@ -86,7 +86,7 @@
       </li>
 
       <li class="nav-item">
-        <a id="others-tab" role="tab" data-toggle="tab" class="nav-link" href="#">Otros</a>
+        <a id="others-tab" role="tab" data-toggle="tab" class="nav-link" href="#others">Otros</a>
       </li>
     </ul>
   </div>
@@ -111,8 +111,38 @@
          @include('tables.classrooms')
         </div>
 
-        <div class="tab-pane" id="3">
-          <h3>otros</h3>
+        <div class="tab-pane" id="others">
+       
+           <form class="form" action="/configuracion/rangos/" method="post" id="createOthersForm">
+                            {{ csrf_field() }}
+                               <p>Cantidad de parciales</p>
+                            <div class="form-group">
+                                <input type="number" name="parciales" min="0" class="form-control input-sm" placeholder="Parciales"
+                                    pattern="[0-9]">
+                            </div>
+
+                                <p>Puntos de acreditación TOEFL por año</p>
+                            <div class="row">
+
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="number" name="ano" min="0" class="form-control input-sm" placeholder="Año"
+                                    pattern="[0-9]">
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <input type="number" name="puntos" min="0" class="form-control input-sm" placeholder="Puntos minimos"
+                                    pattern="[0-9]">
+                                </div>
+
+                            </div> <!-- FIN DEL DIV ROW -->
+
+                                          
+     <input type="submit" class="btn btn-primary btn-block form-group" value="Guardar" form="createOthersForm">
+                      
+                        </form>
+               
+
+
         </div>
       </div>
   </div>
