@@ -19,7 +19,8 @@
                 <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
                 <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
                 <td>{{ $group->date }}</td>
-                <td>{{ $group->applied }}</td>
+                <td><span class="badge badge-pill badge-{{ $group->isActive() ? 'primary' : 'secondary' }}">{{ $group->isActive() ? 'Aplicado' : 'Sin aplicar' }}</span></td>
+                 <td>Ver grupo</td>
                
                
             </tr>

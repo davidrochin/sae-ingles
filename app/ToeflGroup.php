@@ -20,4 +20,18 @@ class ToeflGroup extends Model
     public function students(){
     	return $this->belongsToMany(Student::class, 'student_toefl_group')->orderBy('last_names');
     }
+
+
+    public function isActive(){
+         $groups = ToeflGroup::orderBy('id', 'DESC');
+        $isActive = false;
+        foreach ($groups as $group) {
+            if($group->active == 1){
+                $isActive = true;
+                break;
+            }
+        }
+
+        return $isActive;
+    }
 }
