@@ -94,8 +94,9 @@
 
 
       <div class="tab-content ">
+        
         <div class="tab-pane active" id="careers">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
+            <div class="btn-group mr-2 ml-auto" role="group" aria-label="First group">
             <button type="button" class="btn btn-outline-primary" data-toggle="modal"
             data-target="#newCareerModal">Nueva</button>
              </div>

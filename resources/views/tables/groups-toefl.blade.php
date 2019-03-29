@@ -7,6 +7,7 @@
                 <th>Responsable</th>
                 <th>Aplicador</th>
                 <th>Fecha</th>
+                <th>Aplicado</th>
                 <th></th>
             </tr>
         </thead>
@@ -15,9 +16,10 @@
         @foreach($groups as $group)
             <tr id="tableRow{{ $group->id }}" class="clickable-row">
                 <td>{{ $group->id }}</td>
-                <td>{{ $group->responsable_user_id }}</td>
-                <td>{{ $group->applicator_user_id }}</td>
+                <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
+                <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
                 <td>{{ $group->date }}</td>
+                <td>{{ $group->applied }}</td>
                
                
             </tr>

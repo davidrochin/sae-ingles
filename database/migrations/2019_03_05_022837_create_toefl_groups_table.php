@@ -18,6 +18,8 @@ class CreateToeflGroupsTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('responsable_user_id')->nullable();
             $table->unsignedInteger('applicator_user_id')->nullable();
+            $table->unsignedInteger('capacity')->default(40);
+            $table->boolean('applied')->default(true);
 
             $table->dateTime('date');
         });
