@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Career;
+use App\Setting;
+use App\History;
+use App\User;
 use App\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCareerRequest;
@@ -49,5 +52,21 @@ class SettingsController extends Controller
        
        return redirect()->back()->with('success', 'El aula ha sido creada con éxito.');
     }
+
+     public function rangosSetting(Request $request){
+            Setting::where('id',1)
+            ->update(['value' => $request->input('parciales')]);
+
+                     // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha cambiado la cantidad de parciales a '.$request->input('parciales')
+        ]);
+       
+       return redirect()->back()->with('success', 'Se guardaron los cambios exitosamente.');
+    }
+
+
+
 
 }

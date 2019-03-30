@@ -82,6 +82,7 @@ $factory->define(App\ToeflGroup::class, function (Faker $faker) {
 		'date' => $faker->date(),
 		'responsable_user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
 		'applicator_user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
+		'capacity' => $faker->randomElement([35, 40, 45]),
 	];
 
 });
