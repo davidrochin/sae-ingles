@@ -6,6 +6,7 @@ use App\Student;
 use App\Career;
 use App\ToeflGroup;
 use App\User;
+use App\Util;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateStudentRequest;
@@ -23,7 +24,11 @@ class ToeflGroupController extends Controller
     public function accreditationTOEFL(){
 setlocale(LC_ALL,"es_ES");
 date_default_timezone_set('America/Mazatlan');
-$fecha= strftime("%d días del mes de %B del año %Y");
+$numero=date('Y');
+$texto=Util::convertir($numero);
+$year = ucfirst($texto);
+  
+$fecha= strftime("%d días del mes de %B del año ".$year);
 
 
         return view('accreditation-toefl', [
