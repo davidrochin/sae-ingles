@@ -21,9 +21,16 @@ class ToeflGroupController extends Controller
 
 //se tiene que validar que se muestre si se cumplio con el requisito de puntos
     public function accreditationTOEFL(){
+setlocale(LC_ALL,"es_ES");
+date_default_timezone_set('America/Mazatlan');
+$fecha= strftime("%d días del mes de %B del año %Y");
 
- 
-        return view('accreditation-toefl'); 
+
+        return view('accreditation-toefl', [
+          'fecha' => $fecha,
+            'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
+           
+        ]);
     }
 
 
