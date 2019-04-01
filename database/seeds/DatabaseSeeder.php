@@ -6,6 +6,7 @@ use App\Role;
 use App\User;
 use App\Period;
 use App\Group;
+use App\Points;
 use App\ToeflGroup;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ClassroomTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
-
+        $this->call(PointsTableSeeder::class);
+      
         $this->command->info('Creating sample users...');
         factory(App\User::class)->times(30)->create();
 
@@ -34,6 +36,8 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Creating sample TOEFL groups...');
         factory(App\ToeflGroup::class)->times(50)->create();
+
+        
 
         //Para cada grupo, asignarle alumnos aleatorios
         $groups = Group::all();
