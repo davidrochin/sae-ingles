@@ -73,8 +73,7 @@
 	                </tr>
 	                </table>
 				</div>
-}
-}
+
 <p class="codigo">MFL/CAV/blga</p>
 
 
