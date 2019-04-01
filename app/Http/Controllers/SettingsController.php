@@ -53,7 +53,7 @@ class SettingsController extends Controller
        return redirect()->back()->with('success', 'El aula ha sido creada con éxito.');
     }
 
-     public function rangosSetting(Request $request){
+     public function rangesSetting(Request $request){
             Setting::where('id',1)
             ->update(['value' => $request->input('parciales')]);
 

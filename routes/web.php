@@ -83,10 +83,10 @@ Route::get('/historial/', 'HistoryController@showAll')->name('history')->middlew
 
 // Configuración
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
-Route::post('/configuracion/rangos/', 'SettingsController@rangosSetting')->name('rangos')->middleware('auth');
+Route::post('/configuracion/rangos-crear/', 'SettingsController@rangesSetting')->name('rangos')->middleware('auth');
 
-Route::post('/carreras/crear', 'SettingsController@createCareer')->middleware('auth');
-Route::post('/aulas/crear', 'SettingsController@createClassroom')->middleware('auth');
+Route::post('/configuracion/carreras-crear', 'SettingsController@createCareer')->middleware('auth');
+Route::post('/configuracion/aulas-crear', 'SettingsController@createClassroom')->middleware('auth');
 
 // A esta URL se enviaran los datos mediante POST para que se inicie la solicitud de registro.
 // Aquí tiene que caer la logica de registro. Osea, el "action" del <form> en el que te registras tiene que decir "alumnos/solicitar-registro"

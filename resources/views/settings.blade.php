@@ -13,7 +13,7 @@
 @slot('body')
 
 <!-- Formulario de nueva carrera -->
-<form class="form" action="/carreras/crear" method="post" id="createCareerForm">
+<form class="form" action="/configuracion/carreras-crear" method="post" id="createCareerForm">
 
   <!-- Crear el token de seguridad -->
   {{ csrf_field() }}
@@ -51,7 +51,7 @@
 @slot('body')
 
 <!-- Formulario de nueva carrera -->
-<form class="form" action="/aulas/crear" method="post" id="createClassroomForm">
+<form class="form" action="/configuracion/aulas-crear" method="post" id="createClassroomForm">
 
   <!-- Crear el token de seguridad -->
   {{ csrf_field() }}
@@ -114,7 +114,7 @@
 
         <div class="tab-pane" id="others">
        
-           <form class="form" action="/configuracion/rangos/" method="post" id="createOthersForm">
+           <form class="form" action="/configuracion/rangos-crear" method="post" id="createOthersForm">
                             {{ csrf_field() }}
                                <p>Cantidad de parciales</p>
                             <div class="form-group">
