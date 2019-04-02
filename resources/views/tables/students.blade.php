@@ -12,7 +12,7 @@
                 <th></th>
             </tr>
         </thead>
-
+ 
         <!--Imprimir un renglón dentro de la tabla para cada estudiante-->
         <tbody>
         @foreach($students as $student)

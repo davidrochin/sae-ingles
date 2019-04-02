@@ -9,6 +9,7 @@ use App\Career;
 use App\Setting;
 use App\History;
 use App\User;
+use App\Points;
 use App\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCareerRequest;
@@ -29,6 +30,7 @@ class SettingsController extends Controller
         return view('settings', [
             'careers' => Career::all(),
             'classrooms'=> Classroom::all(),
+            'grades' =>  Setting::findOrFail(1),
             'parentRoute' => SettingsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
@@ -54,13 +56,42 @@ class SettingsController extends Controller
     }
 
      public function rangesSetting(Request $request){
+          
             Setting::where('id',1)
             ->update(['value' => $request->input('parciales')]);
 
-                     // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
             'description' => 'ha cambiado la cantidad de parciales a '.$request->input('parciales')
+        ]);  
+                  
+            $year=$request->input('year');
+            $points=$request->input('points');
+            $credits= Points::where('year', $year);
+
+           
+                
+               //crea generacion
+                if(($credits)!=($year)){
+                    $credits = Points::create([
+                        'year' => $year,
+                        'points' => $points
+                        
+                    ]);
+                  
+                } 
+
+                //actualiza generacion
+                else {
+                    Points::where('year',$request->input('year'))->update(['year' => $year, 'points'=>$points]);
+                   
+                }
+                   
+
+
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha registrado que el año '.$request->input('year').' requiere '.$request->input('points').' puntos TOEFL.'
         ]);
        
        return redirect()->back()->with('success', 'Se guardaron los cambios exitosamente.');

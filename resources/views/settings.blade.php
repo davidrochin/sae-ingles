@@ -118,22 +118,22 @@
                             {{ csrf_field() }}
                                <p>Cantidad de parciales</p>
                             <div class="form-group">
-                                <input type="number" name="parciales" min="1" max="7" class="form-control input-sm" placeholder="Parciales"
+                                <input type="number" name="parciales" min="1" max="7" class="form-control input-sm" placeholder="{{$grades->value}}"
                                     pattern="[0-9]">
                             </div>
 
                                 <p>Puntos de acreditación TOEFL por año</p>
                             <div class="row">
 
-                            <!--    <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="number" name="ano" min="0" class="form-control input-sm" placeholder="Año"
+                             <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="number" name="year" min="0" class="form-control input-sm" placeholder="Año"
                                     pattern="[0-9]">
                                 </div>
                                 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                   <input type="number" name="puntos" min="0" class="form-control input-sm" placeholder="Puntos minimos"
+                                   <input type="number" name="points" min="0" class="form-control input-sm" placeholder="Puntos requeridos"
                                     pattern="[0-9]">
-                                </div> -->
+                                </div> 
 
                             </div> <!-- FIN DEL DIV ROW -->
 
