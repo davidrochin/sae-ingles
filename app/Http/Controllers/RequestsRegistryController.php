@@ -26,17 +26,15 @@ class RequestsRegistryController extends Controller
 
         $user = $request->user();
 
-        
         $now=date('Y');
         $year=substr($now, 2);
         $folioanterior= User::select('id')->orderby('created_at','DESC')->first(); //CONSULTA  ultimo id de tabla users 
         $folio=$folioanterior->id;
         $foliocompleto = str_pad($folio, 4, "0", STR_PAD_LEFT);
-                $numcontrol=$year.'00'.$foliocompleto;
-
-
-    
-        $student = Student::create([
+        $numcontrol=$year.'00'.$foliocompleto;
+        
+        if($request->input('origen')=='ext'){
+          $student = Student::create([
             'control_number' => $numcontrol,//$request->input('controlNumber'), //aqui solo guarda el num control que se genera para externos falta validar que cuando se seleccione internos se guarde el que se ingreso en el inputtext como estaba anteriormente
             'career_id' => $request->input('careerId') == 0 ? NULL : $request->input('careerId'),
             'first_names' => $request->input('firstNames'),
@@ -44,9 +42,26 @@ class RequestsRegistryController extends Controller
             'phone_number' => $request->input('phoneNumber'),
             'email' => $request->input('email'),
             'active' => false,
-            
            
         ]);
+        }else{
+          $student = Student::create([
+            'control_number' => $request->input('controlNumber'),//$request->input('controlNumber'), //aqui solo guarda el num control que se genera para externos falta validar que cuando se seleccione internos se guarde el que se ingreso en el inputtext como estaba anteriormente
+            'career_id' => $request->input('careerId') == 0 ? NULL : $request->input('careerId'),
+            'first_names' => $request->input('firstNames'),
+            'last_names' => $request->input('lastNames'),
+            'phone_number' => $request->input('phoneNumber'),
+            'email' => $request->input('email'),
+            'active' => false,
+           
+        ]);
+
+        }
+        
+
+
+    
+      
 
          User::create([
             'name' => $request->input('firstNames').' '.$request->input('lastNames'),

@@ -131,15 +131,15 @@
 
                                 
                                 <label class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender"
-                                        value="option1">
+                                    <input class="form-check-input" type="radio" name="origen"
+                                        value="ext">
                                     <span class="form-check-label">Externo</span>
                                 </label>
 
                                 
                                     <label class="form-check form-check-inline ">
                                         <input  class="form-check-input" type="radio"
-                                            name="gender" value="option2">
+                                            name="origen" value="int">
                                         <span class="form-check-label">Interno</span>
                                     </label>
                             </div> <!-- FIN DIV DE CONTENEDOR DE RADIOBUTTONS -->
