@@ -42,11 +42,14 @@
               <hr>
 
               <span class="sidebar-section text-muted">Coordinación</span>
-              <a href="{{ route('solicitudes') }}" class="{{ $parentRoute == 'students-requests' ? 'selected' : '' }}"><i data-feather="bookmark"></i>Solicitudes</a>
+             
               <a href="{{ route('students') }}" class="{{ $parentRoute == 'students' ? 'selected' : '' }}"><i data-feather="users"></i>Alumnos</a>
               <a href="{{ route('groups') }}" class="{{ $parentRoute == 'groups' ? 'selected' : '' }}"><i data-feather="calendar"></i>Grupos</a>
               <a href="{{ route('toefl') }}" class="{{ $parentRoute == 'toefl' ? 'selected' : '' }}"><i data-feather="file-text"></i>TOEFL</a>
               <hr>
+
+              <span class="sidebar-section text-muted">Estudiantes</span>
+              <a href="{{ route('kardex') }}" class="{{ $parentRoute == 'kardex' ? 'selected' : '' }}"><i data-feather="columns"></i>Kardex</a>
 
               <span class="sidebar-section text-muted">Sistema</span>
               <a href="{{ route('users') }}" class="{{ $parentRoute == 'users' ? 'selected' : '' }}"><i data-feather="users"></i>Usuarios</a>

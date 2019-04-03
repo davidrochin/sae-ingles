@@ -72,11 +72,12 @@ Auth::routes();
 
 Route::get('/inicio', 'PagesController@home')->name('home');
 Route::get('/test', 'PagesController@test')->name('test');
+Route::post('/alumnos/solicitar-registro', 'RequestsRegistryController@requestRegistry');
+
 
 // TOEFL
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
 Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
-
 
 // Historial
 Route::get('/historial/', 'HistoryController@showAll')->name('history')->middleware('auth');
@@ -88,9 +89,4 @@ Route::post('/configuracion/rangos-crear/', 'SettingsController@rangesSetting')-
 Route::post('/configuracion/carreras-crear', 'SettingsController@createCareer')->middleware('auth');
 Route::post('/configuracion/aulas-crear', 'SettingsController@createClassroom')->middleware('auth');
 
-// A esta URL se enviaran los datos mediante POST para que se inicie la solicitud de registro.
-// Aquí tiene que caer la logica de registro. Osea, el "action" del <form> en el que te registras tiene que decir "alumnos/solicitar-registro"
-Route::post('/alumnos/solicitar-registro', 'RequestsRegistryController@requestRegistry');
-
-// Solicitudes de alumnos
-Route::get('/solicitudes/', 'RequestsRegistryController@showStudentsRequests')->name('solicitudes')->middleware('auth');
+Route::get('/kardex/', 'KardexController@showMyKardex')->name('kardex')->middleware('auth');

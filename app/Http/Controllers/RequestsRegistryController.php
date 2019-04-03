@@ -80,24 +80,7 @@ class RequestsRegistryController extends Controller
      return redirect()->back()->with('success', 'La solicitud ha sido enviada con éxito.');
     }
  
-    // Muestra los alumnos con solicitud para ingresar al sistema
-    public function showStudentsRequests(Request $request){
-
-        //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
-            return view('auth.nopermission');
-        }
-          $careers = Career::all();
-          $students = Student::orderBy('id', 'DESC');
-
-        return view('students-requests', [
-            'students' => $students->paginate(12),
-            'careers' => $careers,
-            'parentRoute' => RequestsRegistryController::DEFAULT_PARENT_ROUTE,
-            //'modalMessage' => 'Prueba de modal de mensajes',
-        ]);
-    }
-
+  
 
  
 }
