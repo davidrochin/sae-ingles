@@ -27,9 +27,10 @@ class CreateToeflGroupsTable extends Migration
         Schema::create('student_toefl_group', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            
+             
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('toefl_group_id');
+            $table->integer('score')->default(0);
         });
 
         Schema::table('toefl_groups', function (Blueprint $table) {
