@@ -44,6 +44,7 @@ class RequestsRegistryController extends Controller
             'active' => false,
            
         ]);
+
         }else{
           $student = Student::create([
             'control_number' => $request->input('controlNumber'),//$request->input('controlNumber'), //aqui solo guarda el num control que se genera para externos falta validar que cuando se seleccione internos se guarde el que se ingreso en el inputtext como estaba anteriormente
@@ -76,13 +77,10 @@ class RequestsRegistryController extends Controller
         $request->flash();
 
 
-
      return redirect()->back()->with('success', 'La solicitud ha sido enviada con éxito.');
     }
  
-  
 
- 
 }
 
 
