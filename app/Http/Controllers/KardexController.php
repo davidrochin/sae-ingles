@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Student;
+use App\Career;
 use Illuminate\Http\Request;
 
 class KardexController extends Controller
@@ -18,9 +19,15 @@ class KardexController extends Controller
        if(!Auth::user()->hasAnyRole(['admin', 'student'])){ //es solo para alumnos por pero por pruebas se deja para admin tambien
             return view('auth.nopermission');
         }
-       
+        $student = Student::where('id',  Auth::user());
+        $nocontrol =Student::where('id',Auth::user());
+        $now=date('d-m-Y');
+        $careers = Career::all();
+
         return view('kardex', [
-    
+            'student' => $student,
+            'date' => $now,
+            'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,
         ]);
     }

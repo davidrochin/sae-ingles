@@ -30,7 +30,7 @@ class CreateToeflGroupsTable extends Migration
              
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('toefl_group_id');
-            $table->integer('score')->default(0);
+            $table->integer('score')->default(523);
         });
 
         Schema::table('toefl_groups', function (Blueprint $table) {

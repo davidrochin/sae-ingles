@@ -10,22 +10,21 @@
 
       
         <tbody>
-     
+    
             <tr>
-                <td>Alumno:<strong> Oswaldo Guevara Sanchez</strong></td>
-                <td>No. Control:<strong> 14440600</strong></td>
+                <td>Alumno: <strong>Oswaldo Guevara</strong></td>
+                <td>No. Control: <strong>9999999</strong></td>
                
             </tr>
             <tr>
-                <td>Carrera:<strong> Ing. Informatica</strong><strong></td>
-                <td>Fecha:<strong> 03/04/2019</strong></td>
+                <td>Carrera: <strong> Ing. Informatica</strong><strong></td>
+                <td>Fecha: <strong> {{$date}}</strong></td>
                
             </tr>
-           
      
         </tbody>
 
     </table>	
 
-  @include('tables.kardex')
+  @include('tables.kardex-history')
 @endsection

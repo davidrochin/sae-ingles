@@ -33,7 +33,7 @@
                                 @slot('value', $student->control_number)
                             @endcomponent
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="form-row">
                         <div class="col">

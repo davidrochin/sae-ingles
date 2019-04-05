@@ -14,7 +14,7 @@
      
             <tr>
                 <td>Nivel 1</td>
-                <td>90</td>
+                <td>85</td>
                
             </tr>
             <tr>
