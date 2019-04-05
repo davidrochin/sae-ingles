@@ -131,7 +131,7 @@
 
                                 
                                 <label class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="origen"
+                                    <input class="form-check-input" type="radio" name="origen" onclick="show1();"
                                         value="ext">
                                     <span class="form-check-label">Externo</span>
                                 </label>
@@ -139,13 +139,13 @@
                                 
                                     <label class="form-check form-check-inline ">
                                         <input  class="form-check-input" type="radio"
-                                            name="origen" value="int">
+                                            name="origen" value="int" onclick="show2();">
                                         <span class="form-check-label">Interno</span>
                                     </label>
                             </div> <!-- FIN DIV DE CONTENEDOR DE RADIOBUTTONS -->
 
 
-                                                       
+                       <div id="div1" class="hide">                                
                                 <div class="form-group ">
                                         <p><strong>LLena los campos con la carrera que cursas y tu No. Control de estudiante.</strong></p>
 
@@ -163,7 +163,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                                                   
+                </div>                                   
      <input type="submit" class="btn btn-primary btn-block form-group" value="Guardar" form="createStudentForm">
                       
                         </form>
@@ -186,6 +186,14 @@
             function showSignupForm(){
                 $("#signin-panel").removeClass("d-none");
                 $("#login-panel").addClass("d-none");
+            }
+
+            function show1(){
+             document.getElementById('div1').style.display ='none';
+            }
+
+            function show2(){
+             document.getElementById('div1').style.display = 'block';
             }
             
             </script>

@@ -11,6 +11,9 @@ body {
 /*
  * Sidebar
  */
+.hide {
+  display: none;
+}
 
 .sidebar {
   position: fixed;

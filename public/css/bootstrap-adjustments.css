@@ -3,7 +3,9 @@
   
 }
 
-
+.hide {
+  display: none;
+}
 
 .sidebar {
 	position: fixed;
