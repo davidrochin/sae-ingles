@@ -89,7 +89,7 @@
                                 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="lastNames2" id="last_name2 class="form-control input-sm"
+                                        <input type="text" name="lastNames2" id="last_name2" class="form-control input-sm"
                                             placeholder="Apellido materno">
                                     </div>
                                 </div>
