@@ -86,6 +86,8 @@
 
 			<div class="row">
 				<div class="col-12"><a class="btn btn-secondary w-100" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
+
+				<div class="col-12"><a class="btn btn-secondary w-100" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Cerrar grupo</a></div>
 			</div>
 		@endcomponent
 	</div>

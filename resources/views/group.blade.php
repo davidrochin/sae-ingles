@@ -169,9 +169,7 @@
 				{{-- Botón para imprimir la lista de asistencia del grupo --}}
 				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 
-				{{-- Botón para imprimir la lista de asistencia del grupo --}}
-				<div class="col-auto"><a class="btn btn-secondary"  target="_blank">Cerrar grupo</a></div>
-
+				
 
 				{{-- Botón para eliminar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
