@@ -6,6 +6,7 @@ use App\Student;
 use App\Career;
 use App\ToeflGroup;
 use App\User;
+use App\History;
 use App\Util;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +62,26 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
             'professors' => User::professors()->get(),
         ]);
     }
+   
+    public function createToeflGroup(Request $request){
 
+ ToeflGroup::create([
+            
+            'responsable_user_id' => $request->input('aplicadorId'),
+            'applicator_user_id' => $request->input('responsableId'),
+            'applicator_user_id' => $request->input('responsableId'),
+            'capacity' => $request->input('capacity'),
+            'applied' => false,
+            'date' => $request->input('date'),
+            
+        ]);
+          // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha creado el grupo TOEFL'
+        ]);
 
+        return redirect()->back()->with('success', 'El grupo TOEFL ha sido creado con éxito.');
+    }
 
 }

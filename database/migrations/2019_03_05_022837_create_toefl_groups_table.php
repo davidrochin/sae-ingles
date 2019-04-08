@@ -21,7 +21,10 @@ class CreateToeflGroupsTable extends Migration
             $table->unsignedInteger('capacity')->default(40);
             $table->boolean('applied')->default(true);
 
-            $table->dateTime('date');
+            $table->date('date');
+
+           // $table->time('hour');
+           
         });
 
         Schema::create('student_toefl_group', function (Blueprint $table) {

@@ -78,6 +78,8 @@ Route::post('/alumnos/solicitar-registro', 'RequestsRegistryController@requestRe
 // TOEFL
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
 Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
+Route::post('/grupos/crear-toefl', 'ToeflGroupController@createToeflGroup')->name('toefl-group')->middleware('auth');
+
 
 // Historial
 Route::get('/historial/', 'HistoryController@showAll')->name('history')->middleware('auth');
@@ -85,8 +87,9 @@ Route::get('/historial/', 'HistoryController@showAll')->name('history')->middlew
 // Configuración
 Route::get('/configuracion/', 'SettingsController@showSettings')->name('settings')->middleware('auth');
 Route::post('/configuracion/rangos-crear/', 'SettingsController@rangesSetting')->name('rangos')->middleware('auth');
-
 Route::post('/configuracion/carreras-crear', 'SettingsController@createCareer')->middleware('auth');
 Route::post('/configuracion/aulas-crear', 'SettingsController@createClassroom')->middleware('auth');
 
+
+//kardex
 Route::get('/kardex/', 'KardexController@showMyKardex')->name('kardex')->middleware('auth');
