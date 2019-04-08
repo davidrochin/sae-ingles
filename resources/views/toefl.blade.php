@@ -31,9 +31,9 @@
 					<div class="col">
 						@component('components.form-input')
 							@slot('tag', 'Hora de aplicación')
-							@slot('name', 'hour')
+							@slot('name', 'time')
 							@slot('type', 'time')
-							@slot('value', old('hour'))
+							@slot('value', old('time'))
 						@endcomponent
 					</div>
 				</div>

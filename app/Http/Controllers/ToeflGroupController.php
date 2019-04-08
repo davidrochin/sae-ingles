@@ -73,6 +73,7 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
             'capacity' => $request->input('capacity'),
             'applied' => false,
             'date' => $request->input('date'),
+            'time' => $request->input('time'),
             
         ]);
           // Registrar la acción en el historial

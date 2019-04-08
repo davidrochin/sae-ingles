@@ -22,6 +22,7 @@ class CreateToeflGroupsTable extends Migration
             $table->boolean('applied')->default(true);
 
             $table->date('date');
+            $table->time('time');
 
            // $table->time('hour');
            
