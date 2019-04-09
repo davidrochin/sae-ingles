@@ -55,11 +55,12 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
         $groups = ToeflGroup::orderBy('id', 'DESC');
 
 
-
+ 
 
          return view('toefl', [
           'groups' => $groups->paginate(12),
           'professors' => User::professors()->get(),
+          'classrooms' => Classroom::all(),
           'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
             
         ]);

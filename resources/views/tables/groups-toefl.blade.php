@@ -20,7 +20,7 @@
                 <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
                 <td>{{ !is_null($group->applicatorUser) ? $group->applicatorUser->name : '' }}</td>
                 <td>{{ $group->date }}</td>
-                <td>{{ $group->classroom->name }}</td>
+                <td>{{ !is_null($group->classroom) ? $group->classroom->name : ''}}</td>
                 <td>  @component('components.toefl-state-badge')
                         @slot('group', $group)
                     @endcomponent</td>
