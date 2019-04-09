@@ -89,6 +89,7 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
             'capacity' => $request->input('capacity'),
             'applied' => false,
             'date' => $request->input('date'),
+            'classroom_id' => $request->input('classroomId'),
             'time' => $request->input('time'),
             
         ]);
