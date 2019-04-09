@@ -169,7 +169,7 @@
 			@endif
 
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
-			@component('components.group-students')
+			@component('components.toefl-students')
 			{{--	@slot('group', $group)
 				@slot('grades', $grades)
 				@slot('averages', $averages)--}}
