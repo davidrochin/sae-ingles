@@ -7,6 +7,7 @@
                 <th>Responsable</th>
                 <th>Aplicador</th>
                 <th>Fecha</th>
+                <th>Aula</th>
                 <th>Aplicado</th>
                 <th></th>
             </tr>
@@ -19,6 +20,7 @@
                 <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
                 <td>{{ !is_null($group->applicatorUser) ? $group->applicatorUser->name : '' }}</td>
                 <td>{{ $group->date }}</td>
+                <td>{{ $group->classroom->name }}</td>
                 <td>  @component('components.toefl-state-badge')
                         @slot('group', $group)
                     @endcomponent</td>

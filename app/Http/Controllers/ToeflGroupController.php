@@ -6,6 +6,7 @@ use App\Student;
 use App\Career;
 use App\ToeflGroup;
 use App\User;
+use App\Classroom;
 use App\History;
 use App\Util;
 use function foo\func;
@@ -14,7 +15,7 @@ use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use Illuminate\Http\Request;
-
+ 
 class ToeflGroupController extends Controller
 {
 
@@ -64,13 +65,14 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
         ]);
     }
 
-
+ 
      public function showGroup(Request $request, $id){
         $group = ToeflGroup::where('id', $id)->first();
        
         return view('toefl-group', [
             'group' => $group,
             'professors' => User::all(),
+            'classrooms' => Classroom::all(),
             'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
         ]);
 

@@ -2,6 +2,7 @@
 
 namespace App;
 use App\User;
+use App\Classroom;
 use Illuminate\Database\Eloquent\Model;
 
 class ToeflGroup extends Model

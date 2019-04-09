@@ -16,6 +16,7 @@ class CreateClassroomIdForeignKeyOnGroups extends Migration
         Schema::table('groups', function(Blueprint $table){
             $table->foreign('classroom_id')->references('id')->on('classrooms');
         });
+
     }
 
     /**

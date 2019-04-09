@@ -77,12 +77,13 @@ $factory->define(App\Group::class, function (Faker $faker) {
 $factory->define(App\ToeflGroup::class, function (Faker $faker) {
 
 	$faker = Factory::create('es_ES');
-
+ 
 	return [
 		'date' => $faker->date(),
 		'time' => $faker->time(),
 		'responsable_user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
 		'applicator_user_id' => $faker->boolean(95) ? User::inRandomOrder()->whereNotIn('id', [1,2])->first()->id : NULL,
+		'classroom_id' => $faker->boolean(90) ? Classroom::inRandomOrder()->first()->id : NULL,
 		'capacity' => $faker->randomElement([35, 40, 45]),
 	];
 
