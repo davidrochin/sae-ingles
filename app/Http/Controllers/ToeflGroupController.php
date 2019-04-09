@@ -58,10 +58,23 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
 
          return view('toefl', [
           'groups' => $groups->paginate(12),
-            'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
-            'professors' => User::professors()->get(),
+          'professors' => User::professors()->get(),
+          'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
+            
         ]);
     }
+
+
+     public function showGroup(Request $request, $id){
+        $group = ToeflGroup::where('id', $id)->first();
+       
+        return view('toefl-group', [
+            'group' => $group,
+            'professors' => User::all(),
+            'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
+        ]);
+
+     }
    
     public function createToeflGroup(Request $request){
 

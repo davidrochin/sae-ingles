@@ -1,24 +1,22 @@
-@extends('layouts.app')
-@section('title', 'TOEFL')
-@section('section', 'TOEFL')
+@extends('layouts.app', ['background' => 'gray'])
+
+@section('title', 'TOEFL grupo')
 
 @section('content')
 
-<div class="">
-<!--Modal-->
-	@component('components.modal')
-		@slot('id', 'newGroupModal')
-		@slot('title', 'Nuevo grupo TOEFL')
-		@slot('dismiss', 'Cancelar')
+<div class="row">
+	<div class="col-xl">
 
-		@slot('body')
+		{{-- Card que muestra la información del grupo --}}
+		@component('components.card')
+			@slot('header', 'Información básica')
+			@slot('class', 'mb-4')
+			
+			<form action="{{ route('toefl') }}/modificar" method="post" name="editGroupForm">
 
-			<!-- Formulario de nuevo grupo -->
-			<form class="form" action="/toefl/crear-grupo" method="post" id="createGroupForm">
+				{{csrf_field()}}
 
-				{{ csrf_field() }}
-
-				<div class="form-row">
+			<div class="form-row">
 									
 					<div class="col">
 						@component('components.form-input')
@@ -82,37 +80,15 @@
 		                    <div class="invalid-feedback">{{ $errors->first('classroomId') }}</div>
 		                </div>
 					</div>
+					<input  name="idGroup" value={{$group->id}} hidden>
+
+				<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
 				</div>
 
 				
+				
 			</form>
-		@endslot
-
-		@slot('footer')
-			<input type="submit" class="btn btn-primary" value="Crear" form="createGroupForm">
-		@endslot
-	@endcomponent
-
-
-{{-- Botón de nuevo grupo --}}
-	
-			<div class="btn-group" role="group" aria-label="First group">
-				<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newGroupModal">Nuevo</button>
-			</div>
-
-
-	<!--Botones para manipular tabla y buscador-->
-	<div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
-    </div>
-
-<div class="">
-	@include('tables.groups-toefl')
-
-	<div class="row">
-	    <div class="mx-auto">
-	        {{ $groups->appends($_GET)->links('pagination::bootstrap-4') }}
-	    </div>
-	</div>
-</div>
-
+		@endcomponent
+		
+			
 @endsection

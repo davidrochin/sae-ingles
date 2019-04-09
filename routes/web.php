@@ -76,9 +76,12 @@ Route::post('/alumnos/solicitar-registro', 'RequestsRegistryController@requestRe
 
 
 // TOEFL
-Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
 Route::get('/toefl/', 'ToeflGroupController@showAll')->name('toefl');
-Route::post('/grupos/crear-toefl', 'ToeflGroupController@createToeflGroup')->name('toefl-group')->middleware('auth');
+Route::get('/toefl/{id}', 'ToeflGroupController@showGroup')->middleware('auth');
+Route::post('/toefl/crear-grupo', 'ToeflGroupController@createToeflGroup')->name('toefl-group')->middleware('auth');
+Route::post('/toefl/modificar', 'ToeflGroupController@updateToeflGroup')->middleware('auth');
+Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
+
 
 
 // Historial

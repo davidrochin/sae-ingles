@@ -1,0 +1,1 @@
+<span class="badge badge-pill badge-{{ $group->applied == 0 ? 'secondary' : 'primary' }}">{{ $group->applied == 0 ? 'Sin aplicar' : 'Aplicado' }}</span>

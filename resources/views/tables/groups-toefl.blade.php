@@ -17,12 +17,14 @@
             <tr id="tableRow{{ $group->id }}" class="clickable-row">
                 <td>{{ $group->id }}</td>
                 <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
-                <td>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : '' }}</td>
+                <td>{{ !is_null($group->applicatorUser) ? $group->applicatorUser->name : '' }}</td>
                 <td>{{ $group->date }}</td>
-                <td><span class="badge badge-pill badge-{{ $group->isActive() ? 'primary' : 'secondary' }}">{{ $group->isActive() ? 'Aplicado' : 'Sin aplicar' }}</span></td>
-                 <td href="">Ver grupo</td>
+                <td>  @component('components.toefl-state-badge')
+                        @slot('group', $group)
+                    @endcomponent</td>
+                 <td><a href="{{ route('toefl') }}/{{ $group->id }}">Ver grupo</a></td>
                
-               
+                
             </tr>
         @endforeach
         </tbody>
