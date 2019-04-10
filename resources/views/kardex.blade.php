@@ -12,12 +12,12 @@
         <tbody>
     
             <tr>
-                <td>Alumno: <strong>Oswaldo Guevara</strong></td>
-                <td>No. Control: <strong>9999999</strong></td>
+                <td>Alumno: <strong>{{Auth::user()->name}}</strong></td>
+                <td>No. Control: <strong>XXXXXXX</strong></td>
                
             </tr>
             <tr>
-                <td>Carrera: <strong> Ing. Informatica</strong><strong></td>
+                <td>Carrera: <strong>XXXXX</strong><strong></td>
                 <td>Fecha: <strong> {{$date}}</strong></td>
                
             </tr>

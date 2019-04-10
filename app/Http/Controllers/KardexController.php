@@ -21,7 +21,7 @@ class KardexController extends Controller
         }
         $student = Student::where('id',  Auth::user());
         $now=date('d-m-Y');
-        $careers = Career::all();
+        $careers = Career::all(); 
 
         return view('kardex', [
             'student' => $student,
