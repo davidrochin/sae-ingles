@@ -114,7 +114,7 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
         $group = ToeflGroup::findOrFail($id);
         $students = $group->students;
 
-        return view('attendance-list-toefl', [
+        return view('attendance-toefl-list', [
             'group' => $group,
             'students' => $students,
             'attendanceSlots' => 22,
