@@ -16,6 +16,7 @@ use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
 use App\Http\Requests\ModifyStudentRequest;
+use App\Http\Requests\ModifyToeflRequest;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -161,6 +162,46 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
     }
 
+ public function modify(Request $request){
+      
+        ToeflGroup::where('id',$request->input('idGroup'))
+            ->update(['date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'capacity' => $request->input('capacity'),
+            'classroom_id' => $request->input('classroomId'),
+            'responsable_user_id' => $request->input('responsableId'),
+            'applicator_user_id' => $request->input('applicatorId'),
+           
+            ]);
+  // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha modificado el grupo TOEFL'.$request->input('idGroup')
+        ]);
 
+        return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
+    }
 
+  public function delete(Request $request){
+
+        $group = ToeflGroup::findOrFail($request->input('idGroup'));
+        $students = $group->students;
+        $grades = $group->grades;
+
+       
+
+        //Desasignar todos los alumnos de este grupo
+        foreach ($students as $student){
+            $group->students()->detach($student);
+        }
+
+        $group->delete();
+          // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha eliminado el grupo TOEFL ID: '.$request->input('idGroup')
+        ]);
+
+        return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
+    }
 }

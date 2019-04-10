@@ -119,7 +119,7 @@
 				{{-- Botón para eliminar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
 					<div class="col-auto">
-						<form action="/grupos/eliminar" method="post" name="deleteGroupForm">
+						<form action="/toefl/eliminar" method="post" name="deleteGroupForm">
 							{{ csrf_field() }}
 							<input type="hidden" name="idGroup" value="{{ $group->id }}">
 							<!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->
