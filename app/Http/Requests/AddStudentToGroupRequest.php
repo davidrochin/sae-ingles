@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Group;
+use App\ToeflGroup;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;

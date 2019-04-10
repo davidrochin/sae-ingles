@@ -137,7 +137,7 @@
 				@slot('class', 'mb-4')
 
 				{{-- Input para agregar un nuevo alumno --}}
-				<form action="/grupos/agregar" method="post">
+				<form action="/toefl/agregar" method="post">
 					{{ csrf_field() }}
 					<input type="hidden" name="groupId" value="{{ $group->id }}">
 					<div class="input-group">
@@ -170,9 +170,10 @@
 
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.toefl-students')
-			{{--	@slot('group', $group)
-				@slot('grades', $grades)
-				@slot('averages', $averages)--}}
+				@slot('group', $group)
+			{{--	@slot('grades', $grades)
+			aqui se comparten las variables a las vistas internas dentro de esta vista que las utiliza
+				--}}
 			@endcomponent
 		@endcomponent
 	</div>

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Student;
 use App\Group;
+use App\ToeflGroup;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RemoveStudentFromGroupRequest extends FormRequest

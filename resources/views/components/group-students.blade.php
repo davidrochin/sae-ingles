@@ -14,7 +14,7 @@
 			@endif
 		</tr>
 	</thead>
-
+ 
 	<tbody>
 		@forelse($group->students as $key => $student)
 		<tr>

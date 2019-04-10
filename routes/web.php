@@ -81,6 +81,8 @@ Route::get('/toefl/{id}', 'ToeflGroupController@showGroup')->middleware('auth');
 Route::post('/toefl/crear-grupo', 'ToeflGroupController@createToeflGroup')->name('toefl-group')->middleware('auth');
 Route::post('/toefl/modificar', 'ToeflGroupController@updateToeflGroup')->middleware('auth');
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
+Route::post('/toefl/agregar', 'ToeflGroupController@addStudent')->middleware('auth');
+Route::post('/toefl/remover', 'ToeflGroupController@removeStudent')->middleware('auth');
 
 
 
