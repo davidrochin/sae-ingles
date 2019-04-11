@@ -29,7 +29,7 @@ class Student extends Model
     public function groups(){
         return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
     }
-
+    
     public function isActive(){
         $groups = $this->groups;
         $isActive = false;
