@@ -17,12 +17,12 @@ class KardexController extends Controller
 
        public function showMyKardex(Request $request){
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-       if(!Auth::user()->hasAnyRole(['admin', 'student'])){ //es solo para alumnos por pero por pruebas se deja para admin tambien
+       if(!Auth::user()->hasAnyRole(['student'])){ //es solo para alumnos por pero por pruebas se deja para admin tambien
             return view('auth.nopermission');
         }
 
-      // where('id',Auth::user()->id)
-        $student=Student::where('id',Auth::user()->id)->first();
+      
+        $student=Student::where('user_id',Auth::user()->id)->first();
         $now=date('d-m-Y');
         $careers = Career::all(); 
  

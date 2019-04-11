@@ -26,6 +26,7 @@ class RequestsRegistryController extends Controller
 
         $user = $request->user();
 
+        //creacion de numero de control para estudiante externo
         $now=date('Y');
         $year=substr($now, 2);
         $folioanterior= User::select('id')->orderby('created_at','DESC')->first(); //CONSULTA  ultimo id de tabla users 

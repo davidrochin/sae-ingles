@@ -5,7 +5,8 @@
 @section('content')
 
 		@slot('body')
-<h5>ID: {{$student->id}}</h5>
+
+<h5>Usuario ID: {{$student->id}}</h5>
 	 <table class="table table-hover text-left">
 
       
