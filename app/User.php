@@ -63,7 +63,7 @@ class User extends Authenticatable
             if($userRole == 'coordinator' && ($role == 'professor')){
                 return true;
             }
-            if($userRole == 'professor'){
+            if($userRole == 'student'){
                 return false;
             }
         }

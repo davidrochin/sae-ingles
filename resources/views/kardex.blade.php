@@ -10,14 +10,14 @@
 
       
         <tbody>
-    
+     
             <tr>
                 <td>Alumno: <strong>{{Auth::user()->name}}</strong></td>
-                <td>No. Control: <strong>xxx</strong></td>
+                <td>No. Control: <strong>{{$student}}</strong></td>
                
             </tr>
             <tr>
-                <td>Carrera: <strong>XXXXX</strong><strong></td>
+                <td>Carrera: <strong>{{--{{ !is_null($student->career) ? $student->career->short_name : 'Carrera no registrada' }} --}}</strong><strong></td>
                 <td>Fecha: <strong> {{$date}}</strong></td>
                
             </tr>

@@ -113,23 +113,6 @@ class StudentsController extends Controller
         ]);
     }
 
-    public function searchStudent(Request $request, $id){
-        $careers = Career::all();
-        $student = Student::where('control_number',$id);
-
-        //Revisar si se pidió en JSON
-        if($request->get('json') == 1){
-            return response()->json($student);
-        }
-
-        //if(!$student){abort(404);}
-
-        return view('student', [
-            'student' => $student,
-            'careers' => $careers,
-            'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
-        ]);
-    }
     public function create(CreateStudentRequest $request){
 
         $user = $request->user();
