@@ -32,8 +32,9 @@ Route::get('/acercade', 'PagesController@about')->name('about');
 
 //Alumnos
 
-Route::get('/alumnos/', 'StudentsController@showAll')->name('students')->middleware('auth');;
-Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');;
+Route::get('/alumnos/', 'StudentsController@showAll')->name('students')->middleware('auth');
+Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');
+Route::get('/alumnos/no-control/{id}', 'StudentsController@searchStudent')->middleware('auth');
 
 Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
 Route::post('/alumnos/eliminar', 'StudentsController@delete')->middleware('auth');

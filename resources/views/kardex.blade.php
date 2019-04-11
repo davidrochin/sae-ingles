@@ -13,7 +13,7 @@
     
             <tr>
                 <td>Alumno: <strong>{{Auth::user()->name}}</strong></td>
-                <td>No. Control: <strong>XXXXXXX</strong></td>
+                <td>No. Control: <strong>xxx</strong></td>
                
             </tr>
             <tr>

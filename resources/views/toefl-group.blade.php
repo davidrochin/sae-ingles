@@ -201,7 +201,7 @@
 		//Iniciar la petición con AJAX
 		$.ajax({
 			type : 'get',
-			url : '{{ route('students') }}/' + $value,
+			url : '{{ route('alumnos/no-control') }}/' + $value,
 			data:{ 'json':1, },
 
 			//Poner el nombre del alumno en el span
