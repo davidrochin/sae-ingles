@@ -21,8 +21,8 @@ class KardexController extends Controller
             return view('auth.nopermission');
         }
 
-      //  $student = Student::where('user_id',Auth::user()->id);
-        $student=Student::all()->first();
+      // where('id',Auth::user()->id)
+        $student=Student::where('id',Auth::user()->id)->first();
         $now=date('d-m-Y');
         $careers = Career::all(); 
  

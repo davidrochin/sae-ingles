@@ -5,14 +5,14 @@
 @section('content')
 
 		@slot('body')
-
+<h5>ID: {{$student->id}}</h5>
 	 <table class="table table-hover text-left">
 
       
         <tbody>
      
             <tr>
-                <td>Alumno: <strong>{{Auth::user()->name}}</strong></td>
+                <td>Alumno: <strong>{{$student->last_names}} {{ $student->first_names }}</strong></td>
                 <td>No. Control: <strong>{{$student->control_number}}</strong></td>
                
             </tr>
