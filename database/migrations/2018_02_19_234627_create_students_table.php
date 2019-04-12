@@ -30,11 +30,11 @@ class CreateStudentsTable extends Migration
 
             $table->boolean('active')->default(true);
 
-            //$table->boolean('active')->default(true);
-
-            //Faltan otros datos
+      
 
         });
+
+
     }
 
     /**
