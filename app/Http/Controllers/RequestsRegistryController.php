@@ -56,7 +56,7 @@ class RequestsRegistryController extends Controller
                    
                 ]);
                $student->user()->associate($user);
-$student->save();
+               $student->save();
 
 
         }else{
@@ -72,7 +72,7 @@ $student->save();
                    
                 ]);
                   $student->user()->associate($user);
-$student->save();
+                  $student->save();
 
         }
      
