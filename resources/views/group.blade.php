@@ -111,6 +111,17 @@
 						@endcomponent
 					</div>
 					<div class="col">
+						<div class="form-group">
+							<label for="classroomControlInput">Aula</label>
+							<select class="form-control bg-white" id="classroomControlInput" name="classroomId" disabled>
+								<option value="0" {{ is_null($group->classroom) ? 'selected' : '' }}>Aula no asignada</option>
+								@foreach($classrooms as $classroom)
+								<option value="{{$classroom->id}}" {{ !is_null($group->classroom) && $group->classroom->id == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="col">
 						@component('components.form-input')
 						@slot('tag', 'Estado')
 						@slot('name', '')

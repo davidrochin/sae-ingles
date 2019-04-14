@@ -8,6 +8,7 @@ use App\Http\Requests\ModifyGroupRequest;
 use App\User;
 use App\Role;
 use App\Student;
+use App\Classroom;
 use App\Grade;
 use App\History;
 
@@ -125,12 +126,12 @@ class GroupsController extends Controller
         $group = Group::where('id', $id)->first();
         $grades = $group->getGrades();
         $averages = $group->getAverages();
-
         //dd($grades);
 
         return view('group', [
             'group' => $group,
             'grades' => $grades,
+            'classrooms' => Classroom::all(),
             'averages' => $averages,
             'professors' => User::all(),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
@@ -254,6 +255,7 @@ class GroupsController extends Controller
             'user_id' => $request->input('professorId'),
             'schedule_start' => $request->input('scheduleStart'),
             'schedule_end' => $request->input('scheduleEnd'),
+            'classroom_id' => $request->input('classroomId'),
             'days' => implode($request->input('days'))
             ]);
   // Registrar la acción en el historial

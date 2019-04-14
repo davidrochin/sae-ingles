@@ -78,7 +78,7 @@
 							<select class="form-control bg-white" id="classroomControlInput" name="classroomId" disabled>
 								<option value="0" {{ is_null($group->classroom) ? 'selected' : '' }}>Aula no asignada</option>
 								@foreach($classrooms as $classroom)
-								<option value="{{$professor->id}}" {{ !is_null($group->classroom) && $group->classroom->id == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
+								<option value="{{$classroom->id}}" {{ !is_null($group->classroom) && $group->classroom->id == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
 								@endforeach
 							</select>
 						</div>
