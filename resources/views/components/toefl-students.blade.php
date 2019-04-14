@@ -18,7 +18,7 @@
 			<td>{{ $key + 1 }}</td>
 			<td><a href="{{ route('students') }}/{{ $student->id }}">{{ $student->last_names }} {{ $student->first_names }}</a></td>
 			<td>{{ $student->control_number or 'Alumno externo' }}</td>
-			<td>PENDIENTE MOSTRAR</td>
+			<td>{{$group->score }}</td>
 			<form action="/toefl/remover" method="post" id="removeForm{{ $student->id }}">
 				{{ csrf_field() }}
 				<input type="hidden" name="studentId" value="{{ $student->id }}"><input type="hidden" name="groupId" value="{{ $group->id }}">

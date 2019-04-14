@@ -38,7 +38,7 @@
    }
 
   .despedida {
- 	padding-top: 20%;
+ 	padding-top: 10%;
     text-align: center;
     line-height: 90%; 
 
@@ -58,6 +58,7 @@
    }
      .codigo{
  	padding-top: 2%;
+  margin-top: 20%;
  	font-size: 70%;
     text-align: justify;
     

@@ -29,13 +29,13 @@
 					
 					<table class="tabla-alumno">
 	 <tr>
-	  <td><b>NOMBRE:</b></td> <td><b>GUEVARA SÁNCHEZ OSWALDO</b></td>
+	  <td><b>NOMBRE:</b></td> <td><b>{{$student->last_names}} {{$student->first_names}}</b></td>
 	 </tr>
 	 <tr>
-	  <td><b>No. DE CONTROL:</b></td> <td><b>14440600</b></td>
+	  <td><b>No. DE CONTROL:</b></td> <td><b>{{$student->control_number}}</b></td>
 	 </tr>
 	 <tr>
-	  <td><b>CARRERA:</b></td> <td><b>INF. INFORMATICA</b></td>
+	  <td><b>CARRERA:</b></td> <td><b>{{ !is_null($student->career) ? $student->career->short_name : 'Carrera no registrada' }} </b></td>
 	 </tr>
 
 	  			</table> 
@@ -81,4 +81,27 @@
 
 </div>
 		@endsection
-		
+	
+@section('scripts')
+
+<script type="text/javascript">
+
+	//Abrir el documento en modo de impresión
+	$(document).ready( function(){
+		window.print();
+	});
+</script>
+
+<style type="text/css">
+	.table-attendance th {
+		font-size: 1.2rem;
+	}
+	.table-attendance td {
+		padding-bottom: 0.3rem;
+		padding-top: 0.3rem;
+		font-size: 1.2rem;
+	}
+</style>
+
+@endsection
+	

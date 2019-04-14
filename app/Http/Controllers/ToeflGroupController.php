@@ -39,10 +39,12 @@ $texto=Util::convertir($numero);
 $year = ucfirst($texto);
   
 $fecha= strftime("%d días del mes de %B del año ".$year);
-
-
+$student=Student::where('user_id',Auth::user()->id)->first();
+ $careers = Career::all();
         return view('accreditation-toefl', [
           'fecha' => $fecha,
+          'career' => $careers,
+          'student' => $student,
             'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
            
         ]);
@@ -77,7 +79,7 @@ $fecha= strftime("%d días del mes de %B del año ".$year);
  
      public function showGroup(Request $request, $id){
         $group = ToeflGroup::where('id', $id)->first();
-       
+      
         return view('toefl-group', [
             'group' => $group,
             'professors' => User::all(),
