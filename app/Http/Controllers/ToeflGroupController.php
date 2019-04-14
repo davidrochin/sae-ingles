@@ -188,9 +188,7 @@ $student=Student::where('user_id',Auth::user()->id)->first();
 
         $group = ToeflGroup::findOrFail($request->input('idGroup'));
         $students = $group->students;
-        $grades = $group->grades;
-
-       
+     
 
         //Desasignar todos los alumnos de este grupo
         foreach ($students as $student){
