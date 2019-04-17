@@ -244,27 +244,27 @@ class GroupsController extends Controller
     }
 
     public function modify(ModifyGroupRequest $request){
-      
-        Group::where('id',$request->input('idGroup'))
-            ->update(['name' => $request->input('name'),
-            'code' => $request->input('code'),
-            'capacity' => $request->input('capacity'),
-            'level' => $request->input('level'),
-            'period_id' => $request->input('periodId'),
-            'year' => $request->input('year'),
-            'user_id' => $request->input('professorId'),
-            'schedule_start' => $request->input('scheduleStart'),
-            'schedule_end' => $request->input('scheduleEnd'),
-            'classroom_id' => $request->input('classroomId'),
-            'days' => implode($request->input('days'))
-            ]);
-  // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha modificado el grupo '.$request->input('code')
-        ]);
+              
+                Group::where('id',$request->input('idGroup'))
+                    ->update(['name' => $request->input('name'),
+                    'code' => $request->input('code'),
+                    'capacity' => $request->input('capacity'),
+                    'level' => $request->input('level'),
+                    'period_id' => $request->input('periodId'),
+                    'year' => $request->input('year'),
+                    'user_id' => $request->input('professorId'),
+                    'schedule_start' => $request->input('scheduleStart'),
+                    'schedule_end' => $request->input('scheduleEnd'),
+                    'classroom_id' => $request->input('classroomId'),
+                    'days' => implode($request->input('days'))
+                    ]);
+                // Registrar la acción en el historial
+                History::create([
+                    'user_id' => Auth::user()->id,
+                    'description' => 'ha modificado el grupo '.$request->input('code')
+                ]);
 
-        return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
+                return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
     }
 
     public function toggle(ToggleGroupStateRequest $request){
@@ -307,8 +307,8 @@ class GroupsController extends Controller
     public function addStudent(AddStudentToGroupRequest $request){
         //dd($request);
         $group = Group::find($request->input('groupId'));
-        $student = Student::find($request->input('studentId'));
-
+         $student = Student::where('control_number',$request->input('studentId'))->first();
+         
         //Revisar que el grupo tenga capacidad para un nuevo alumno
         if(count($group->students)>=$group->capacity){
             return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
