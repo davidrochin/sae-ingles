@@ -32,66 +32,65 @@ class ToeflGroupController extends Controller
 
 //se tiene que validar que se muestre si se cumplio con el requisito de puntos
     public function accreditationTOEFL(){
-setlocale(LC_ALL,"es_ES");
-date_default_timezone_set('America/Mazatlan');
-$numero=date('Y');
-$texto=Util::convertir($numero);
-$year = ucfirst($texto);
-  
-$fecha= strftime("%d días del mes de %B del año ".$year);
-$student=Student::where('user_id',Auth::user()->id)->first();
- $careers = Career::all();
-        return view('accreditation-toefl', [
-          'fecha' => $fecha,
-          'career' => $careers,
-          'student' => $student,
-            'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
-           
-        ]);
-    }
+        setlocale(LC_ALL,"es_ES");
+        date_default_timezone_set('America/Mazatlan');
+        $numero=date('Y');
+        $texto=Util::convertir($numero);
+        $year = ucfirst($texto);
+          
+        $fecha= strftime("%d días del mes de %B del año ".$year);
+        $student=Student::where('user_id',Auth::user()->id)->first();
+         $careers = Career::all();
+                return view('accreditation-toefl', [
+                  'fecha' => $fecha,
+                  'career' => $careers,
+                  'student' => $student,
+                    'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
+                   
+                ]);
+            }
 
 
-    public function showAll(Request $request){
+  public function showAll(Request $request){
 
      
-        //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
-            return view('auth.nopermission', [
-                'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
+            //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
+            if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
+                return view('auth.nopermission', [
+                    'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
+                ]);
+            }
+
+            //$groups = Group::orderBy('active', 'DESC');
+            $groups = ToeflGroup::orderBy('id', 'DESC');
+
+
+     
+
+             return view('toefl', [
+              'groups' => $groups->paginate(12),
+              'professors' => User::professors()->get(),
+              'classrooms' => Classroom::all(),
+              'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
+                
             ]);
-        }
-
-        //$groups = Group::orderBy('active', 'DESC');
-        $groups = ToeflGroup::orderBy('id', 'DESC');
-
-
- 
-
-         return view('toefl', [
-          'groups' => $groups->paginate(12),
-          'professors' => User::professors()->get(),
-          'classrooms' => Classroom::all(),
-          'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
-            
-        ]);
     }
 
- 
-     public function showGroup(Request $request, $id){
-        $group = ToeflGroup::where('id', $id)->first();
+  public function showGroup(Request $request, $id){
+          $group = ToeflGroup::where('id', $id)->first();
       
-        return view('toefl-group', [
+          return view('toefl-group', [
             'group' => $group,
             'professors' => User::all(),
             'classrooms' => Classroom::all(),
             'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
-        ]);
+                 ]);
 
-     }
+    }
    
-    public function createToeflGroup(Request $request){
+  public function createToeflGroup(Request $request){
 
- ToeflGroup::create([
+        ToeflGroup::create([
             
             'responsable_user_id' => $request->input('aplicadorId'),
             'applicator_user_id' => $request->input('responsableId'),
@@ -123,10 +122,10 @@ $student=Student::where('user_id',Auth::user()->id)->first();
         ]);
     }
  
-    public function addStudent(AddStudentToGroupRequest $request){
+  public function addStudent(AddStudentToGroupRequest $request){
         //dd($request);
         $group = ToeflGroup::find($request->input('groupId'));
-        $student = Student::find($request->input('studentId'));
+        $student = Student::where('control_number',$request->input('studentId'))->first();
 
         //Revisar que el grupo tenga capacidad para un nuevo alumno
         if(count($group->students)>=$group->capacity){
@@ -150,7 +149,7 @@ $student=Student::where('user_id',Auth::user()->id)->first();
         return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
     }
 
-    public function removeStudent(RemoveStudentFromGroupRequest $request){
+  public function removeStudent(RemoveStudentFromGroupRequest $request){
 
         $group = ToeflGroup::findOrFail($request->input('groupId'));
         $student = Student::findOrFail($request->input('studentId'));
@@ -164,7 +163,7 @@ $student=Student::where('user_id',Auth::user()->id)->first();
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
     }
 
- public function modify(Request $request){
+  public function modify(Request $request){
       
         ToeflGroup::where('id',$request->input('idGroup'))
             ->update(['date' => $request->input('date'),

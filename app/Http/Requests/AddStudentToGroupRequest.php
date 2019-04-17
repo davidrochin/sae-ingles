@@ -36,7 +36,7 @@ class AddStudentToGroupRequest extends FormRequest
     {
         return [
             'groupId' => 'required|exists:groups,id',
-            'studentId' => 'required|exists:students,id',
+            'studentId' => 'required|exists:students,control_number',
         ];
     }
 
@@ -45,7 +45,7 @@ class AddStudentToGroupRequest extends FormRequest
             'groupId.required' => 'Es necesario especificar el grupo al cual se añadirá el alumno.',
             'groupId.exists' => 'No existe un grupo con ese ID.',
             'studentId.required' => 'Es necesario especificar el alumno a añadir.',
-            'studentId.exists' => 'No existe un alumno con ese ID.',
+            'studentId.exists' => 'No existe un alumno con ese número de control.',
         ];
     }
 }

@@ -32,10 +32,9 @@ Route::get('/acercade', 'PagesController@about')->name('about');
 
 //Alumnos
 
-Route::get('/alumnos/', 'StudentsController@showAll')->name('students')->middleware('auth');;
-Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');;
-Route::get('/matricula/', 'StudentsController@showControl')->name('matricula')->middleware('auth');;
-
+Route::get('/alumnos/', 'StudentsController@showAll')->name('students')->middleware('auth');
+Route::get('/alumnos/{id}', 'StudentsController@show')->middleware('auth');
+Route::get('/alumnos/control/{id}', 'StudentsController@showControlNumber')->name('matricula')->middleware('auth');
 
 
 Route::post('/alumnos/crear', 'StudentsController@create')->middleware('auth');
