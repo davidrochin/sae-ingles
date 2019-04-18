@@ -143,7 +143,7 @@ class ToeflGroupController extends Controller
          // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha ingresado al alumno ID :'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+            'description' => 'ha ingresado al alumno ID :'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
         ]);
 
         return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
@@ -158,7 +158,7 @@ class ToeflGroupController extends Controller
                  // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+            'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
         ]);
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
     }
@@ -174,13 +174,13 @@ class ToeflGroupController extends Controller
             'applicator_user_id' => $request->input('applicatorId'),
            
             ]);
-  // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha modificado el grupo TOEFL'.$request->input('idGroup')
-        ]);
+          // Registrar la acción en el historial
+                History::create([
+                    'user_id' => Auth::user()->id,
+                    'description' => 'ha modificado el grupo TOEFL'.$request->input('idGroup')
+                ]);
 
-        return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
+                return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
     }
 
   public function delete(Request $request){

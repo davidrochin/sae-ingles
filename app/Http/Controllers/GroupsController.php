@@ -273,7 +273,7 @@ class GroupsController extends Controller
 
         if($group->active == 1){
             $group->active = 0;
-            $successMessage = 'El grupo se ha desactivado con éxito.';
+            $successMessage = 'El grupo se ha cerrado con éxito.';
               // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
@@ -281,7 +281,7 @@ class GroupsController extends Controller
         ]);
         } else {
             $group->active = 1;
-            $successMessage = 'El grupo se ha activado con éxito.';
+            $successMessage = 'El grupo se ha abierto con éxito.';
               // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,

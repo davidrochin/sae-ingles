@@ -112,7 +112,7 @@
 				@endif
 
 				{{-- Botón para imprimir la lista de asistencia del grupo --}}
-				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceLists', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
+				<div class="col-auto"><a class="btn btn-secondary" href="{{ route('attendanceListsTOEFL', $group->id) }}" target="_blank">Imprimir lista de asistencia</a></div>
 
 				
 
@@ -127,6 +127,12 @@
 						</form>
 					</div>
 				@endif
+
+								{{-- Botón para cerrar el grupo --}}
+				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+					<div class="col-auto"><button id="closedGroupButton" class="btn btn-dark" onclick="formEditMode('closedGroupForm'); deleteById('closedGroupButton');">Cerrar grupo</button></div>
+				@endif
+
 			</div>
 		@endcomponent
 

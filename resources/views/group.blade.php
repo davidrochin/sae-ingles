@@ -163,14 +163,7 @@
 
 			<div class="form-row">
 
-				{{-- Boton para alternar el grupo --}}
-				<div class="col-auto">
-					<form action="/grupos/alternar" method="post" name="toggleGroupForm">
-						{{ csrf_field() }}
-						<input type="hidden" name="groupId" value="{{ $group->id }}">
-						<button class="btn btn-secondary">{{ $group->active ? 'Desactivar' : 'Activar' }} grupo</button>
-					</form>
-				</div>
+
 
 				{{-- Botón para modificar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
@@ -193,6 +186,17 @@
 						</form>
 					</div>
 				@endif
+
+				{{-- Boton para alternar el grupo --}}
+				<div class="col-auto">
+					<form action="/grupos/alternar" method="post" name="toggleGroupForm">
+						{{ csrf_field() }}
+						<input type="hidden" name="groupId" value="{{ $group->id }}">
+						<button class="btn btn-dark">{{ $group->active ? 'Cerrar' : 'Abrir' }} grupo</button>
+					</form>
+				</div>
+	
+
 			</div>
 		@endcomponent
 
