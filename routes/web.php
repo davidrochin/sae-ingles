@@ -83,7 +83,7 @@ Route::get('/toefl/{id}', 'ToeflGroupController@showGroup')->middleware('auth');
 Route::post('/toefl/crear-grupo', 'ToeflGroupController@createToeflGroup')->name('toefl-group')->middleware('auth');
 Route::get('/toefl/listas/{id}', 'ToeflGroupController@attendanceList')->middleware('auth')->name('attendanceListsTOEFL');
 Route::post('/toefl/modificar', 'ToeflGroupController@modify')->middleware('auth');
-Route::post('/toefl/alternar/{id}', 'ToeflGroupController@toggle')->middleware('auth');
+Route::post('/toefl/alternar', 'ToeflGroupController@toggle')->middleware('auth');
 
 Route::post('/toefl/eliminar', 'ToeflGroupController@delete')->middleware('auth');
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');

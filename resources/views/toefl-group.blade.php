@@ -83,6 +83,16 @@
 							</select>
 						</div>
 					</div>
+					<div class="col">
+						@component('components.form-input')
+						@slot('tag', 'Estado')
+						@slot('name', '')
+						@slot('disabled', 'true')
+						@slot('type', 'text')
+						@slot('class', 'bg-white '.($group->applied ? 'text-primary' : ''))
+						@slot('value', $group->applied ? 'Aplicado' : 'Sin aplicar')
+						@endcomponent
+					</div>
 				</div>
 
 				
@@ -128,7 +138,7 @@
 					</div>
 				@endif
 
-								{{-- Botón para cerrar el grupo --}}
+				{{-- Botón para cerrar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
 				{{-- Boton para alternar el grupo --}}
 				<div class="col-auto">

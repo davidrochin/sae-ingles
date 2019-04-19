@@ -30,7 +30,7 @@ class ToeflGroupController extends Controller
     const DEFAULT_PARENT_ROUTE = 'toefl';
 
 
-//se tiene que validar que se muestre si se cumplio con el requisito de puntos
+    //se tiene que validar que se muestre si se cumplio con el requisito de puntos
     public function accreditationTOEFL(){
         setlocale(LC_ALL,"es_ES");
         date_default_timezone_set('America/Mazatlan');
@@ -205,21 +205,28 @@ class ToeflGroupController extends Controller
     }
 
       public function toggle(Request $request){
-        $group = Group::find($request->input('idGroup'));
-       
+       $group = ToeflGroup::find($request->input('groupId'));
+        $successMessage = '';
 
         if($group->applied == 1){
             $group->applied = 0;
-            $successMessage = 'El grupo se ha cerrado con éxito.';
-        
+            $successMessage = 'El grupo TOEFL se ha cerrado con éxito.';
+              // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha cerrado el grupo TOEFL ID: '.$request->input('groupId')
+        ]);
         } else {
-            $group->active = 1;
-            $successMessage = 'El grupo se ha abierto con éxito.';
-    
+            $group->applied = 1;
+            $successMessage = 'El grupo TOEFL se ha abierto con éxito.';
+              // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha abier al grupo TOEFL ID: '.$request->input('groupId')
+        ]);
         }
-       
+        $group->save();
 
         return redirect()->back()->with('success', $successMessage);
-    }
-
+}
 }
