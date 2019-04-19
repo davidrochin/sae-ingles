@@ -22,7 +22,7 @@ class SettingsController extends Controller
 
        public function showSettings(Request $request){
         //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
-        if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
+        if(!Auth::user()->hasAnyRole(['admin'])){
             return view('auth.nopermission');
         }
 

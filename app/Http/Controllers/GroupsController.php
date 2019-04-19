@@ -305,44 +305,61 @@ class GroupsController extends Controller
     }
 
     public function addStudent(AddStudentToGroupRequest $request){
-        //dd($request);
-        $group = Group::find($request->input('groupId'));
-         $student = Student::where('control_number',$request->input('studentId'))->first();
-         
-        //Revisar que el grupo tenga capacidad para un nuevo alumno
-        if(count($group->students)>=$group->capacity){
-            return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
-        }
+            $group = Group::find($request->input('groupId'));
+            $student = Student::where('control_number',$request->input('studentId'))->first();
+             
+            if($group->active == 1){
+                    //Revisar que el grupo tenga capacidad para un nuevo alumno
+                if(count($group->students)>=$group->capacity){
+                    return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
+                }
 
-        //Revisar si el alumno ya está en el grupo
-        if($student->groups->find($group->id) != null){
-            return redirect()->back()->with('message', 'El alumno que usted intentó agregar ya estaba en el grupo.');
-        }
+                //Revisar si el alumno ya está en el grupo
+                if($student->groups->find($group->id) != null){
+                    return redirect()->back()->with('message', 'El alumno que usted intentó agregar ya estaba en el grupo.');
+                }
 
-        //Agregar el alumno al grupo
-        $group->students()->attach($student);
+                //Agregar el alumno al grupo
+                $group->students()->attach($student);
 
-         // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha ingresado al alumno ID :'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
-        ]);
+                 // Registrar la acción en el historial
+                History::create([
+                    'user_id' => Auth::user()->id,
+                    'description' => 'ha ingresado al alumno ID :'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+                ]);
 
-        return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
+                return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
+                  
+           
+            } else {
+                return redirect()->back()->with('success', 'El grupo se encuentra cerrado.');
+            
+            }
+            $group->save();  
+           
+       
     }
 
     public function removeStudent(RemoveStudentFromGroupRequest $request){
-
-        $group = Group::findOrFail($request->input('groupId'));
+        $group = Group::find($request->input('groupId'));
         $student = Student::findOrFail($request->input('studentId'));
-
-        $group->students()->detach($student);
-                 // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
-        ]);
+         
+        if($group->active == 1){
+            
+            $group->students()->detach($student);
+                     // Registrar la acción en el historial
+            History::create([
+                'user_id' => Auth::user()->id,
+                'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+            ]);
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
+       
+        } else {
+            return redirect()->back()->with('success', 'El grupo se encuentra cerrado.');
+        
+        }
+        $group->save();  
+       
     }
 
 }

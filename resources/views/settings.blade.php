@@ -138,7 +138,7 @@
                             </div> <!-- FIN DEL DIV ROW -->
 
                                           
-     <input type="submit" class="btn btn-primary btn-block form-group" value="Guardar" form="createOthersForm">
+     <input type="submit" class="btn btn-primary btn-block" value="Guardar" form="createOthersForm">
                       
                         </form>
                
