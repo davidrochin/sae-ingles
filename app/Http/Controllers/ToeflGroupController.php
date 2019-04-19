@@ -15,6 +15,7 @@ use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
+use App\Http\Requests\ToggleGroupTOEFLStateRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use App\Http\Requests\ModifyToeflRequest;
 use Illuminate\Http\Request;
@@ -123,9 +124,10 @@ class ToeflGroupController extends Controller
     }
  
   public function addStudent(AddStudentToGroupRequest $request){
-        //dd($request);
         $group = ToeflGroup::find($request->input('groupId'));
         $student = Student::where('control_number',$request->input('studentId'))->first();
+
+        if($group->applied == 1){
 
         //Revisar que el grupo tenga capacidad para un nuevo alumno
         if(count($group->students)>=$group->capacity){
@@ -139,28 +141,37 @@ class ToeflGroupController extends Controller
 
         //Agregar el alumno al grupo
         $group->students()->attach($student);
-
+        $group->save();
          // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha ingresado al alumno ID :'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
+            'description' => 'ha ingresado al alumno con No.Control :'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
         ]);
 
         return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
+        } else {
+           
+        return redirect()->back()->with('success','El grupo TOEFL se encuentra cerrado.');
+        }
     }
 
   public function removeStudent(RemoveStudentFromGroupRequest $request){
+      $group = ToeflGroup::find($request->input('groupId'));
+      $student = Student::findOrFail($request->input('studentId'));      
 
-        $group = ToeflGroup::findOrFail($request->input('groupId'));
-        $student = Student::findOrFail($request->input('studentId'));
-
-        $group->students()->detach($student);
-                 // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
-        ]);
-        return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
+            if($group->applied == 1){
+               
+            $group->students()->detach($student);
+                     // Registrar la acción en el historial
+            History::create([
+                'user_id' => Auth::user()->id,
+                'description' => 'ha eliminado al alumno ID:'.$student->control_number.' del grupo TOEFL ID: '.$request->input('groupId')
+            ]);
+            $group->save();
+            return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
+            } else {
+            return redirect()->back()->with('success', 'El alumno se encuentra cerrado.');
+            }
     }
 
   public function modify(Request $request){
@@ -204,7 +215,7 @@ class ToeflGroupController extends Controller
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
     }
 
-      public function toggle(Request $request){
+  public function toggle(ToggleGroupTOEFLStateRequest $request){
        $group = ToeflGroup::find($request->input('groupId'));
         $successMessage = '';
 
@@ -229,4 +240,6 @@ class ToeflGroupController extends Controller
 
         return redirect()->back()->with('success', $successMessage);
 }
+
+
 }
