@@ -1,4 +1,4 @@
-@extends('layouts.app', ['background' => 'gray'])
+ @extends('layouts.app', ['background' => 'gray'])
 
 @section('title', 'Grupo')
 
@@ -130,7 +130,14 @@
 
 								{{-- Botón para cerrar el grupo --}}
 				@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
-					<div class="col-auto"><button id="closedGroupButton" class="btn btn-dark" onclick="formEditMode('closedGroupForm'); deleteById('closedGroupButton');">Cerrar grupo</button></div>
+				{{-- Boton para alternar el grupo --}}
+				<div class="col-auto">
+					<form action="/toefl/alternar" method="post" name="toggleGroupForm">
+						{{ csrf_field() }}
+						<input type="hidden" name="groupId" value="{{ $group->id }}">
+						<button class="btn btn-dark">{{ $group->applied ? 'Cerrar' : 'Abrir' }} grupo</button>
+					</form>
+				</div>
 				@endif
 
 			</div>

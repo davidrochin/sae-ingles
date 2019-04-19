@@ -244,7 +244,10 @@ class GroupsController extends Controller
     }
 
     public function modify(ModifyGroupRequest $request){
-              
+        $group =  Group::where('id',$request->input('idGroup'))->first();
+       
+        if($group->active == 1){
+          
                 Group::where('id',$request->input('idGroup'))
                     ->update(['name' => $request->input('name'),
                     'code' => $request->input('code'),
@@ -263,8 +266,13 @@ class GroupsController extends Controller
                     'user_id' => Auth::user()->id,
                     'description' => 'ha modificado el grupo '.$request->input('code')
                 ]);
+                 $group->save();
 
                 return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
+        } else {
+                return redirect()->back()->with('success','El grupo se encuentra cerrado');
+        }
+       
     }
 
     public function toggle(ToggleGroupStateRequest $request){

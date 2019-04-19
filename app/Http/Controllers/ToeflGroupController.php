@@ -203,4 +203,23 @@ class ToeflGroupController extends Controller
 
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
     }
+
+      public function toggle(Request $request){
+        $group = Group::find($request->input('idGroup'));
+       
+
+        if($group->applied == 1){
+            $group->applied = 0;
+            $successMessage = 'El grupo se ha cerrado con éxito.';
+        
+        } else {
+            $group->active = 1;
+            $successMessage = 'El grupo se ha abierto con éxito.';
+    
+        }
+       
+
+        return redirect()->back()->with('success', $successMessage);
+    }
+
 }
