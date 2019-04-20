@@ -15,7 +15,6 @@ use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
-use App\Http\Requests\ToggleGroupTOEFLStateRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use App\Http\Requests\ModifyToeflRequest;
 use Illuminate\Http\Request;
@@ -229,7 +228,7 @@ class ToeflGroupController extends Controller
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
     }
 
-  public function toggle(ToggleGroupTOEFLStateRequest $request){
+  public function toggle(Request $request){
        $group = ToeflGroup::find($request->input('groupId'));
         $successMessage = '';
 

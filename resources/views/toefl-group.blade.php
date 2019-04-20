@@ -83,7 +83,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col">
+					<div class="col"> 
 						@component('components.form-input')
 						@slot('tag', 'Estado')
 						@slot('name', '')

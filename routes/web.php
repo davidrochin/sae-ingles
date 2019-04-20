@@ -15,7 +15,7 @@ use App\Http\Controllers\RequestsRegistryController;
 |
 */
  
-
+ 
 Route::get('/', function () {
 
 	//Si el usuario está autenticado redireccionarlo a la home
