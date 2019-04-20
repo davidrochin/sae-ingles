@@ -8,6 +8,7 @@ use App\ToeflGroup;
 use App\User;
 use App\Classroom;
 use App\History;
+use App\StudentToeflGroup;
 use App\Util;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
@@ -78,9 +79,10 @@ class ToeflGroupController extends Controller
 
   public function showGroup(Request $request, $id){
           $group = ToeflGroup::where('id', $id)->first();
-      
+      $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
           return view('toefl-group', [
             'group' => $group,
+            'score'=> $score,
             'professors' => User::all(),
             'classrooms' => Classroom::all(),
             'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
@@ -200,11 +202,6 @@ class ToeflGroupController extends Controller
                 return redirect()->back()->with('success','El grupo TOEFL se encuentra cerrado.');
         }
         $group->save();
-
- 
-
-
-       
     }
 
   public function delete(Request $request){

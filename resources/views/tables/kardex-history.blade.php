@@ -4,7 +4,7 @@
          
             <tr>
                 <!--<th></th>-->
-                
+                PRUEBA VISUAL DE LA TABLA
                 <th>Curso</th>
                 <th>Calificación</th>
             </tr>
@@ -28,7 +28,7 @@
                
             </tr>
             <tr>
-                <td>TOEFL Enero 2019</td>
+                <td>TOEFL 2019-03-02</td>
                 <td>587</td>
                
             </tr>

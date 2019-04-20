@@ -194,6 +194,7 @@
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.toefl-students')
 				@slot('group', $group)
+				@slot('score', $score)
 			{{--	@slot('grades', $grades)
 			aqui se comparten las variables a las vistas internas dentro de esta vista que las utiliza
 				--}}
