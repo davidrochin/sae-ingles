@@ -17,7 +17,7 @@ use App\Http\Requests\AddStudentToGroupRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
 use App\Http\Requests\ToggleGroupStateRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\Paginator; 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;

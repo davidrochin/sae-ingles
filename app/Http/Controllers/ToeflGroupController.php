@@ -53,8 +53,6 @@ class ToeflGroupController extends Controller
 
 
   public function showAll(Request $request){
-
-     
             //Si el usuario no tiene estos permisos, regresar una vista que le dice que no tiene los permisos necesarios.
             if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
                 return view('auth.nopermission', [
@@ -65,10 +63,7 @@ class ToeflGroupController extends Controller
             //$groups = Group::orderBy('active', 'DESC');
             $groups = ToeflGroup::orderBy('id', 'DESC');
 
-
-     
-
-             return view('toefl', [
+           return view('toefl', [
               'groups' => $groups->paginate(12),
               'professors' => User::professors()->get(),
               'classrooms' => Classroom::all(),
@@ -79,7 +74,9 @@ class ToeflGroupController extends Controller
 
   public function showGroup(Request $request, $id){
           $group = ToeflGroup::where('id', $id)->first();
-      $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
+          $score = $group->getScores();
+       
+      //    $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
           return view('toefl-group', [
             'group' => $group,
             'score'=> $score,

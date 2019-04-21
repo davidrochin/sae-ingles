@@ -26,7 +26,16 @@ class ToeflGroup extends Model
         return $this->belongsTo(Classroom::class);
     }
 
-   
+     public function getScores(){
+        $groupScores = StudentToeflGroup::where('toefl_group_id', $this->id)->get();
+        $gradesStructure = array();
+
+        foreach ($groupScores as $key => $score) {
+            $gradesStructure[$score->student_id] = $score->score;
+        }
+
+        return $gradesStructure;
+    }
  
 
    /* public function isActive(){
