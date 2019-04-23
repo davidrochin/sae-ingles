@@ -183,22 +183,22 @@
 		@component('components.card')
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
+				 
 				
-				<form method="POST" action="{{ route('my-groups') }}/actualizar"> {{--se debe cambiar y crear la ruta para actualizar los score de toefl--}}
-				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
-			
 			@if(count($group->students) > $group->capacity)
 				@component('components.alert')
 					@slot('type', 'danger')
 					El número de alumnos de este grupo es de {{ count($group->students) }} pero su capacidad es de {{ $group->capacity }}. Por favor, para evitar errores en el sistema, elimine al menos {{ count($group->students) - $group->capacity }} alumno(s) del grupo.
 				@endcomponent
 			@endif
-
+			<form method="POST" action="{{ route('toefl-results') }}"> {{--se debe cambiar y crear la ruta para actualizar los score de toefl--}}
+				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
+			
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.toefl-students')
 				@slot('group', $group)
 				@slot('score', $score)
-			
+
 			@endcomponent
 			
 			<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>

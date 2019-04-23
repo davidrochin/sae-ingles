@@ -75,15 +75,15 @@ class ToeflGroupController extends Controller
   public function showGroup(Request $request, $id){
           $group = ToeflGroup::where('id', $id)->first();
           $score = $group->getScores();
-       
-      //    $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
-          return view('toefl-group', [
-            'group' => $group,
-            'score'=> $score,
-            'professors' => User::all(),
-            'classrooms' => Classroom::all(),
-            'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
-                 ]);
+           
+          //    $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
+              return view('toefl-group', [
+                'group' => $group,
+                'score'=> $score,
+                'professors' => User::all(),
+                'classrooms' => Classroom::all(),
+                'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
+                     ]);
 
     }
    
@@ -246,7 +246,36 @@ class ToeflGroupController extends Controller
         $group->save();
 
         return redirect()->back()->with('success', $successMessage);
-}
+    }
 
+public function updateScores(Request $request){
+       
+        $scores_table = $request->input('score');
+        $groupId = $request->input('groupId');
+
+        foreach ($scores_table as $key => $score_data) {
+           
+
+                //Buscar un grade que cumpla
+                $grade = StudentToeflGroup::where('student_id', $key)->where('toefl_group_id', $groupId)->first();
+
+                //Si no existe crearlo
+                if(is_null($grade)){
+                    $grade = StudentToeflGroup::firstOrNew([
+                        'student_id' => $key,
+                        'toefl_group_id' => $groupId,
+                        'score' => (!isset($scores_table[$key]) ? 0 : $scores_table[$key])
+                    ]);
+                    $grade->save();
+                }  //fin if
+
+                //Si ya existe, actualizarlo
+                else {
+                    $grade->score = (!isset($scores_table[$key]) ? 0 : $scores_table[$key]);
+                    $grade->save();
+                }
+        } 
+         return redirect()->back()->with('success', 'Puntajes aplicados con éxito.');
+    }
 
 }
