@@ -21,7 +21,7 @@
 
 <p class="saludo"><b>A QUIEN CORRESPONDA: </b></p>
 				<div class="info-text">
-					<p>La que suscribe Jefa del Departamento de Gestión Tecnológica y Vinculación de este Instituto, hace constar que el (la) alumno (a):</p>
+					<p>La que suscribe Jefa del Departamento de Gestión Tecnológica y Vinculación de este Instituto, hace constar que el (la) alumno (a): </p>
 
 				</div>
 

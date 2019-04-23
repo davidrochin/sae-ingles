@@ -13,11 +13,11 @@
 <table class="table table-bordered text-nowrap table-attendance">
 	<tbody>
 		        <td>Grupo TOEFL ID: <b>{{ $group->id }}</b></td>
-                <td>Responsable <b>{{ $group->responsableUser->name }}</b></td>
-                <td>Aplicador <b>{{$group->applicatorUser->name}}</b></td>
-                <td>Fecha <b>{{ $group->date }}</b></td>
-                <td>Hora <b>{{ $group->time }}</b></td>
-                <td>Aula <b>{{ $group->classroom->name }}</b></td>
+                <td>Responsable: <b>{{ $group->responsableUser->name }}</b></td>
+                <td>Aplicador: <b>{{$group->applicatorUser->name}}</b></td>
+                <td>Fecha: <b>{{ $group->date }}</b></td>
+                <td>Hora: <b>{{ $group->time }}</b></td>
+                <td>Aula: <b>{{ $group->classroom->name }}</b></td>
               
 	
 	</tbody>

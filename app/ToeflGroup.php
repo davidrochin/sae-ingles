@@ -26,28 +26,21 @@ class ToeflGroup extends Model
         return $this->belongsTo(Classroom::class);
     }
 
-     public function getScores(){
+    public function getScores(){
+
         $groupScores = StudentToeflGroup::where('toefl_group_id', $this->id)->get();
-        $gradesStructure = array();
+        $scoresStructure = array();
 
         foreach ($groupScores as $key => $score) {
-            $gradesStructure[$score->student_id] = $score->score;
+            $scoresStructure[$score->student_id] = $score->score;
         }
 
-        return $gradesStructure;
+        return $scoresStructure;
     }
- 
 
-   /* public function isActive(){
-         $groups = ToeflGroup::orderBy('id', 'DESC');
-        $isActive = false;
-        foreach ($groups as $group) {
-            if($group->active == 1){
-                $isActive = true;
-                break;
-            }
-        }
 
-        return $isActive;
-    }*/
+
+   
+
+
 }

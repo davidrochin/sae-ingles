@@ -140,7 +140,7 @@ class GroupsController extends Controller
 
     public function showOwnedGroups(Request $request){
         $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
-        //dd($groups->get());
+        
 
         return view('my-groups', [
             'groups' => $groups->paginate(12),
@@ -186,8 +186,17 @@ class GroupsController extends Controller
             $averages[$key] = Student::find($key)->getAverage($group->id);
         }
 
+        $capture=true;
+        if($group->active == 1){
+             $capture=true;
+        }else{
+             $capture=false;
+        }
+
+
         return view('my-group', [
             'group' => $group,
+            'capture' => $capture,
             'professors' => User::all(),
             'parentRoute' => 'my-groups',
             'gradesTable' => $gradesTable,

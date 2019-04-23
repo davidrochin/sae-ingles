@@ -41,10 +41,10 @@ class ToeflGroupController extends Controller
           
         $fecha= strftime("%d días del mes de %B del año ".$year);
         $student=Student::where('user_id',Auth::user()->id)->first();
-         $careers = Career::all();
+       
                 return view('accreditation-toefl', [
                   'fecha' => $fecha,
-                  'career' => $careers,
+                  'career' => Career::all(),
                   'student' => $student,
                     'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
                    
