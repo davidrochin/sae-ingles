@@ -151,7 +151,7 @@
 				<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
 			</form>
 		@endcomponent
-		''
+		
 	</div>
 
 	<div class="col-12 col-xl-6">

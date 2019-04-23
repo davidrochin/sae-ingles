@@ -183,7 +183,10 @@
 		@component('components.card')
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
-
+				
+				<form method="POST" action="{{ route('my-groups') }}/actualizar"> {{--se debe cambiar y crear la ruta para actualizar los score de toefl--}}
+				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
+			
 			@if(count($group->students) > $group->capacity)
 				@component('components.alert')
 					@slot('type', 'danger')
@@ -195,10 +198,11 @@
 			@component('components.toefl-students')
 				@slot('group', $group)
 				@slot('score', $score)
-			{{--	@slot('grades', $grades)
-			aqui se comparten las variables a las vistas internas dentro de esta vista que las utiliza
-				--}}
+			
 			@endcomponent
+			
+			<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
+		</form>
 		@endcomponent
 	</div>
 </div>
