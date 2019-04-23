@@ -10,7 +10,7 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody> 
      
             <tr>
                 <td>Nivel 1</td>
@@ -28,7 +28,7 @@
                
             </tr>
             <tr>
-                <td>TOEFL 2019-03-02</td>
+                <td> <a href="{{ route('toefl-accreditation') }}" }}">TOEFL 2019-05-11</a></td>
                 <td>587</td>
                
             </tr>

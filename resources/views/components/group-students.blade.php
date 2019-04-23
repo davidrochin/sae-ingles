@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
  
-	<tbody>
+	<tbody> 
 		@forelse($group->students as $key => $student)
 		<tr>
 			<td>{{ $key + 1 }}</td>

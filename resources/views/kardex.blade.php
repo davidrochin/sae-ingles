@@ -11,7 +11,7 @@
 
       
         <tbody>
-     
+      
             <tr>
                 <td>Alumno: <strong>{{$student->last_names}} {{ $student->first_names }}</strong></td>
                 <td>No. Control: <strong>{{$student->control_number}}</strong></td>

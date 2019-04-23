@@ -18,7 +18,14 @@
 			<td>{{ $key + 1 }}</td>
 			<td><a href="{{ route('students') }}/{{ $student->id }}">{{ $student->last_names }} {{ $student->first_names }}</a></td> 
 			<td>{{ $student->control_number or 'Alumno externo' }}</td>
-			<td>{{isset($score[$student->id]) ? $score[$student->id] : 'N/A' }}</td> 
+			<td>
+
+<input type="number" name="score[{{ $student->id }}]" min="0"  value="{{ isset($score[$student->id]) ? $score[$student->id] :  ""}}" class="form-control score-data text-center">
+
+
+
+
+			</td> 
 			<form action="/toefl/remover" method="post" id="removeForm{{ $student->id }}">
 				{{ csrf_field() }}
 				<input type="hidden" name="studentId" value="{{ $student->id }}"><input type="hidden" name="groupId" value="{{ $group->id }}">
