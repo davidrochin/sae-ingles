@@ -170,7 +170,7 @@ class ToeflGroupController extends Controller
             History::create([
                 'user_id' => Auth::user()->id,
                 'description' => 'ha eliminado al alumno ID:'.$student->control_number.' del grupo TOEFL ID: '.$request->input('groupId')
-            ]);
+            ]); 
             $group->save();
             return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
             } else {
