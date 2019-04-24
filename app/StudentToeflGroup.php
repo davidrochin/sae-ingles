@@ -10,6 +10,9 @@ class StudentToeflGroup extends Model
 
  
 
-  
+    public function group(){
+    	//return Career::find($this->career_id);
+        return $this->belongsTo(ToeflGroup::class);
+    }
 
 }

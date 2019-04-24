@@ -6,7 +6,6 @@
 
 		@slot('body')
 
-<h5>Usuario ID: {{$student->id}}</h5>
 	 <table class="table table-hover text-left">
 
       
@@ -27,5 +26,32 @@
 
     </table>	
 
-  @include('tables.kardex-history')
+  <table class="table table-hover text-left">
+
+        <thead class="thead-light">
+         
+            <tr>
+                <!--<th></th>-->
+                PRUEBA VISUAL DE LA TABLA
+                <th>Curso</th>
+                <th>Calificación</th>
+            </tr>
+        </thead>
+
+        <tbody> 
+     @forelse($groupstoefl as $key => $group)
+            <tr>
+                <td> <a href="{{ route('toefl-accreditation') }}" }}">TOEFL {{ $group }}</a></td>
+                < <td> <a href="{{ route('toefl-accreditation') }}" }}">8854 {{ $group }}</a></td>
+               
+            </tr>
+           
+            @empty
+        <tr>
+            <td colspan="99" class="text-center text-muted">No hay grupos cursados.</td>
+        </tr>
+     @endforelse
+        </tbody>
+
+    </table>
 @endsection
