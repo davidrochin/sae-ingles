@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Student;
+use App\Group;
 use App\ToeflGroup;
 use App\StudentToeflGroup;
 use App\Career;
@@ -28,11 +29,13 @@ class KardexController extends Controller
         $now=date('d-m-Y');
         $careers = Career::all(); 
 
-        $groupstoefl = StudentToeflGroup::where('student_toefl_id',$student->id);
+        $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
+       
  
         return view('kardex', [
             'student' => $student,
             'groupstoefl' => $groupstoefl,
+            'groupsnormal' => $groupsnormal,
             'date' => $now,
             'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,
