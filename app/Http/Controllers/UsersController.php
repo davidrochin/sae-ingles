@@ -96,4 +96,25 @@ class UsersController extends Controller
 
     }
 
+    public function delete(Request $request){
+
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha eliminado al usario ID'.$request->input('id')
+        ]);
+
+       
+        return redirect()->back()->with('success', 'El usuario ha sido eliminado con éxito.');
+    }
+
+    public function modify(Request $request){
+
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha modificado al usario ID'.$request->input('id')
+        ]);
+
+       
+        return redirect()->back()->with('success', 'El usuario ha sido modificado con éxito.');
+    }
 }

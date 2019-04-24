@@ -26,7 +26,7 @@ Route::get('/', function () {
 			'careers' => App\Career::all()
 		]);
 	}
-}); // Ya cala eso, debe funcionar ya pa irme a dormir alv
+}); 
 
 Route::get('/acercade', 'PagesController@about')->name('about');
 
@@ -63,6 +63,8 @@ Route::get('/usuarios/{id}', 'UsersController@show')->middleware('auth');
 
 Route::post('/usuarios/crear','UsersController@create')->middleware('auth');
 Route::post('/usuario/modificarContraseña','UsersController@changePassword')->middleware('auth');
+Route::post('/usuarios/eliminar','UsersController@delete')->middleware('auth');
+Route::post('/usuarios/modificar','UsersController@modify')->middleware('auth');
 
 // Grupos para maestros
 
