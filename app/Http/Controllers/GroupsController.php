@@ -139,7 +139,7 @@ class GroupsController extends Controller
     }
 
     public function showOwnedGroups(Request $request){
-         if(!Auth::user()->hasAnyRole(['admin', 'coordinator'])){
+         if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
             return view('auth.nopermission', [
                 'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
             ]);
