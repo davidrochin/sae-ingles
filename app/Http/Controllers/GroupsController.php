@@ -279,7 +279,7 @@ class GroupsController extends Controller
 
                 return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
         } else {
-                return redirect()->back()->with('success','El grupo se encuentra cerrado');
+                return redirect()->back()->with('message','El grupo se encuentra cerrado');
         }
        
     }
@@ -349,12 +349,10 @@ class GroupsController extends Controller
                   
            
             } else {
-                return redirect()->back()->with('success', 'El grupo se encuentra cerrado.');
+                return redirect()->back()->with('message', 'El grupo se encuentra cerrado.');
             
             }
             $group->save();  
-           
-       
     }
 
     public function removeStudent(RemoveStudentFromGroupRequest $request){
@@ -372,7 +370,7 @@ class GroupsController extends Controller
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
        
         } else {
-            return redirect()->back()->with('success', 'El grupo se encuentra cerrado.');
+            return redirect()->back()->with('message', 'El grupo se encuentra cerrado.');
         
         }
         $group->save();  

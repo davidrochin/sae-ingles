@@ -192,16 +192,19 @@
 				@endcomponent
 			@endif
 			<form method="POST" action="{{ route('toefl-results') }}"> {{--se debe cambiar y crear la ruta para actualizar los score de toefl--}}
+				@if($capture == true)
 				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
-			
+				@endif
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.toefl-students')
 				@slot('group', $group)
 				@slot('score', $score)
+				@slot('capture', $capture)
 
 			@endcomponent
-			
+			@if($capture == true)
 			<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
+			@endif
 		</form>
 		@endcomponent
 	</div>

@@ -75,10 +75,16 @@ class ToeflGroupController extends Controller
   public function showGroup(Request $request, $id){
           $group = ToeflGroup::where('id', $id)->first();
           $score = $group->getScores();
-           
-          //    $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
+          $capture=true;
+            if($group->applied == 1){
+                 $capture=true;
+            }else{
+                 $capture=false;
+            }
+      
               return view('toefl-group', [
                 'group' => $group,
+                'capture' => $capture,
                 'score'=> $score,
                 'professors' => User::all(),
                 'classrooms' => Classroom::all(),
@@ -149,7 +155,7 @@ class ToeflGroupController extends Controller
         return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
         } else {
            
-        return redirect()->back()->with('success','El grupo TOEFL se encuentra cerrado.');
+        return redirect()->back()->with('message','El grupo TOEFL se encuentra cerrado.');
         }
     }
 
@@ -168,7 +174,7 @@ class ToeflGroupController extends Controller
             $group->save();
             return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
             } else {
-            return redirect()->back()->with('success', 'El alumno se encuentra cerrado.');
+            return redirect()->back()->with('message', 'El alumno se encuentra cerrado.');
             }
     }
 
@@ -196,7 +202,7 @@ class ToeflGroupController extends Controller
 
                 return redirect()->back()->with('success','El grupo TOEFL ha sido modificado con éxito');
         } else {
-                return redirect()->back()->with('success','El grupo TOEFL se encuentra cerrado.');
+                return redirect()->back()->with('message','El grupo TOEFL se encuentra cerrado.');
         }
         $group->save();
     }
@@ -253,7 +259,11 @@ public function updateScores(Request $request){
         $scores_table = $request->input('score');
         $groupId = $request->input('groupId');
 
-        foreach ($scores_table as $key => $score_data) {
+        $group = ToeflGroup::find($groupId);
+       
+        if($group->applied == 1){
+
+             foreach ($scores_table as $key => $score_data) {
            
 
                 //Buscar un grade que cumpla
@@ -276,6 +286,10 @@ public function updateScores(Request $request){
                 }
         } 
          return redirect()->back()->with('success', 'Puntajes aplicados con éxito.');
+        } else {
+         return redirect()->back()->with('message', 'Grupo cerrado.');
+       
+        }
     }
 
 }
