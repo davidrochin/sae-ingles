@@ -30,7 +30,7 @@ class KardexController extends Controller
         $careers = Career::all(); 
 
         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
-        $groupsnormal = Group::all();
+       
  
         return view('kardex', [
             'student' => $student,

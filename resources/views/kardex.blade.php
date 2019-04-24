@@ -50,10 +50,10 @@
         </tr>
      @endforelse
 
-     @forelse($groupsnormal as $key => $group->student)
+     @forelse($groupsnormal as $key => $group)
             <tr>
-                <td>Nivel 1: ID: {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
-                 <td>{{ $group->student->code }}</td>
+                <td>TOEFL No. {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
+                 <td>{{ $group }}</td>
                
             </tr>
            
