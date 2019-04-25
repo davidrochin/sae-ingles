@@ -139,19 +139,19 @@ class GroupsController extends Controller
     }
 
     public function showOwnedGroups(Request $request){
-         if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
-            return view('auth.nopermission', [
-                'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
-            ]);
-        }
-        $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
-        
+             if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
+                return view('auth.nopermission', [
+                    'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
+                ]);
+            }
+            $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
+            
 
-        return view('my-groups', [
-            'groups' => $groups->paginate(12),
-            'parentRoute' => 'my-groups',
-            'professors' => User::professors()->get()
-        ]);
+            return view('my-groups', [
+                'groups' => $groups->paginate(12),
+                'parentRoute' => 'my-groups',
+                'professors' => User::professors()->get()
+            ]);
     }
 
     public function showOwnedGroup(Request $request, $id){

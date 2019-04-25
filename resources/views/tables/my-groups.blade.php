@@ -19,8 +19,8 @@
             <tr id="tableRow{{ $group->id }}" class="clickable-row">
                 <td>{{ $group->id }}</td>
                 <td>{{ Carbon\Carbon::parse($group->schedule_start)->format('H:i') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('H:i') }}</td>
-                <td>{{ $group->classroom->name }}</td>
-                <td>{{-- $group->days --}}
+               
+                <td>
                     @component('components.days-badges')
                         @slot('days', $group->days)
                     @endcomponent

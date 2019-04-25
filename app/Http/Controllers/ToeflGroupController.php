@@ -153,24 +153,25 @@ class ToeflGroupController extends Controller
         ]);
 
         return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
-     
-    }
+       
+    } 
 
-  public function removeStudent(Request $request){
-      $group = ToeflGroup::find($request->input('groupId'));
-      $student = Student::findOrFail($request->input('studentId'));      
-
-          
-               
+    public function removeStudent(Request $request){
+        $group = ToeflGroup::find($request->input('groupId'));
+        $student = Student::findOrFail($request->input('studentId'));
+         
+ 
+            
             $group->students()->detach($student);
                      // Registrar la acción en el historial
             History::create([
                 'user_id' => Auth::user()->id,
-                'description' => 'ha eliminado al alumno ID:'.$student->control_number.' del grupo TOEFL ID: '.$request->input('groupId')
-            ]); 
-            $group->save();
-            return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
-          
+                'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')
+            ]);
+        return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
+       
+        $group->save();  
+       
     }
 
   public function modify(Request $request){
