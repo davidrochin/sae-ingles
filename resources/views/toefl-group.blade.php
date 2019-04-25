@@ -160,7 +160,7 @@
 				@slot('class', 'mb-4')
 
 				{{-- Input para agregar un nuevo alumno --}}
-				<form action="/toefl/agregar" method="post">
+				<form action="/toefl/agregar" method="post"> 
 					{{ csrf_field() }}
 					<input type="hidden" name="groupId" value="{{ $group->id }}">
 					<div class="input-group">
@@ -190,11 +190,11 @@
 					@slot('type', 'danger')
 					El número de alumnos de este grupo es de {{ count($group->students) }} pero su capacidad es de {{ $group->capacity }}. Por favor, para evitar errores en el sistema, elimine al menos {{ count($group->students) - $group->capacity }} alumno(s) del grupo.
 				@endcomponent
-			@endif
+			@endif 
 			<form method="POST" action="{{ route('toefl-results') }}"> {{--se debe cambiar y crear la ruta para actualizar los score de toefl--}}
-				@if($capture == true)
+				
 				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
-				@endif
+			
 			{{-- Tabla que muestra que alumnos están en este grupo --}}
 			@component('components.toefl-students')
 				@slot('group', $group)
@@ -202,9 +202,9 @@
 				@slot('capture', $capture)
 
 			@endcomponent
-			@if($capture == true)
+		
 			<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
-			@endif
+		
 		</form>
 		@endcomponent
 	</div>

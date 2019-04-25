@@ -5,11 +5,10 @@
 			<th>No.</th>
 			<th>Nombre</th>
 			<th>No. control</th>
-			@if($capture == true)
+			
 			<th>Resultado</th>
 			@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
 				<th>Acciones</th>
-			@endif
 			@endif
 		</tr>
 	</thead>
@@ -20,7 +19,7 @@
 			<td>{{ $key + 1 }}</td>
 			<td><a href="{{ route('students') }}/{{ $student->id }}">{{ $student->last_names }} {{ $student->first_names }}</a></td> 
 			<td>{{ $student->control_number or 'Alumno externo' }}</td>
-			@if($capture == true)
+		
 			<td>
 				<input type="number" name="score[{{ $student->id }}]" min="0"  value="{{ isset($score[$student->id]) ? $score[$student->id] :  ""}}" class="form-control score-data text-center">
      		</td> 
@@ -33,7 +32,7 @@
 				@endif
 			</form>
 		</tr>
-		@endif
+	
 		@empty
 		<tr>
 			<td colspan="99" class="text-center text-muted">No hay alumnos asignados a este grupo.</td>
