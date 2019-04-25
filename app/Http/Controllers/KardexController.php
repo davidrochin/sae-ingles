@@ -12,7 +12,7 @@ use App\StudentToeflGroup;
 use App\Career;
 use App\User;
 use Illuminate\Http\Request;
-
+ 
 class KardexController extends Controller
 {
 
@@ -23,7 +23,7 @@ class KardexController extends Controller
        if(!Auth::user()->hasAnyRole(['student'])){ //es solo para alumnos por pero por pruebas se deja para admin tambien
             return view('auth.nopermission');
         }
-
+ 
       
         $student=Student::where('user_id',Auth::user()->id)->first();
         $now=date('d-m-Y');
@@ -35,7 +35,6 @@ class KardexController extends Controller
         return view('kardex', [
             'student' => $student,
             'groupstoefl' => $groupstoefl,
-            'groupsnormal' => $groupsnormal,
             'date' => $now,
             'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,

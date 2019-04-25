@@ -3,7 +3,7 @@
 @section('section', 'Kardex')
 
 @section('content')
-
+ 
 		@slot('body')
 
 	 <table class="table table-hover text-left">
@@ -37,10 +37,10 @@
         </thead>
 
         <tbody> 
-     @forelse($groupstoefl as $key => $group)
+     @forelse($student->toefls as $key => $group)
             <tr>
-                <td> <a href="{{ route('toefl-accreditation') }}">TOEFL No. {{ $group->id}} </a></td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
-                 <td>{{ $group->score }}</td>
+                <td> <a href="{{ route('toefl-accreditation') }}">TOEFL No.{{$group->id}}:  {{$group->date}}</a></td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
+                 <td> falta obtener el score</td>
                
             </tr>
            
@@ -50,18 +50,20 @@
         </tr>
      @endforelse
 
-     @forelse($groupsnormal as $key => $group)
+      @forelse($student->groups as $group)
             <tr>
-                <td>TOEFL No. {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
-                 <td>{{ $group }}</td>
+                <td>Nivel {{$group->level}}: {{ $group->code}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
+                 <td> falta obtener promedio</td>
                
             </tr>
            
             @empty
         <tr>
-            <td colspan="99" class="text-center text-muted">No hay grupos cursados.</td>
+            <td colspan="99" class="text-center text-muted">No hay TOEFL aplicado.</td>
         </tr>
      @endforelse
+
+    
         </tbody>
 
     </table>

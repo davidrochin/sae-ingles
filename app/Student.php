@@ -29,6 +29,11 @@ class Student extends Model
     public function groups(){
         return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
     }
+
+    public function toefls(){
+        return $this->belongsToMany(ToeflGroup::class, 'student_toefl_group')->orderBy('applied', 'desc');
+    }
+
     
     public function isActive(){
         $groups = $this->groups;
