@@ -89,7 +89,7 @@ Route::post('/toefl/eliminar', 'ToeflGroupController@delete')->middleware('auth'
 Route::get('/carta-liberacion-toefl/', 'ToeflGroupController@accreditationTOEFL')->name('toefl-accreditation')->middleware('auth');
 Route::post('/toefl/agregar', 'ToeflGroupController@addStudent')->middleware('auth');
 Route::post('/toefl/remover', 'ToeflGroupController@removeStudent')->middleware('auth');
-
+Route::post('/toefl/resultados', 'ToeflGroupController@updateScores')->name('toefl-results')->middleware('auth');
 
 
 // Historial

@@ -38,6 +38,9 @@ class ToeflGroup extends Model
         return $scoresStructure;
     }
 
+    public function group(){
+       return $this->belongsTo(ToeflGroup::class);
+    }
 
 
    
