@@ -100,7 +100,7 @@
 		@component('components.card')
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
-		@if($capture == true)
+	
 				<form method="POST" action="{{ route('my-groups') }}/actualizar">
 				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
 				
@@ -117,7 +117,7 @@
 				  </div>
 				</div>
 
-	    @endif
+	 
 			
 				{{ csrf_field() }}
 				<input type="hidden" name="groupId" value="{{ $group->id }}">
@@ -129,9 +129,9 @@
 					@slot('capture', $capture)
 					@slot('averages', $averages)
 				@endcomponent
-	@if($capture == true)
+	
 			<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
-    @endif
+
 				
 			</form>
 		@endcomponent

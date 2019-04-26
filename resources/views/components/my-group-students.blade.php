@@ -24,7 +24,7 @@
 					@for($i = 1; $i <= ((int)App\Setting::where('name', 'partial_count')->first()->value); $i++)
 						<td>
 							<input type="number" name="grades[{{ $student->id }}][{{ $i }}]" min="0" max="100" value="{{ isset($gradesTable[$student->id][$i]) ? $gradesTable[$student->id][$i] : ""}}" class="form-control score-data">
-						</td>
+						</td> 
 					@endfor
 					<td>{{ array_key_exists($student->id, $averages) ? $averages[$student->id] : 'Indefinido' }}</td>
 				</tr>

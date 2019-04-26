@@ -20,7 +20,7 @@
 			<td>{{ $student->control_number or 'Alumno externo' }}</td>
 			<td>
 
-<input type="number" name="score[{{ $student->id }}]" min="0"  value="{{ isset($score[$student->id]) ? $score[$student->id] :  ""}}" class="form-control score-data text-center">
+			<input type="number" name="score[{{ $student->id }}]" min="0"  value="{{ isset($score[$student->id]) ? $score[$student->id] :  ""}}" class="form-control score-data text-center">
 
 
 

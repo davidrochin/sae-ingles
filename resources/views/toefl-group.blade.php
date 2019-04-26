@@ -16,7 +16,7 @@
 
 				{{csrf_field()}}
 
-				<div class="form-row">
+				<div class="form-row"> {{--fecha y hora --}}
 					<div class="col">
 						@component('components.form-input')
 						@slot('tag', 'Fecha de aplicación')
@@ -29,7 +29,7 @@
 					</div>
 					<div class="col">
 						@component('components.form-input')
-						@slot('tag', 'Fecha de aplicación')
+						@slot('tag', 'Hora de aplicación')
 						@slot('name', 'time')
 						@slot('disabled', 'true')
 						@slot('type', 'time')
@@ -40,7 +40,7 @@
 					
 				</div>
 
-				<div class="form-row">
+				<div class="form-row"> {{--responsable y aplicador--}}
 					<div class="col">
 						<div class="form-group">
 							<label for="responsableControlInput">Responsable</label>
@@ -62,10 +62,10 @@
 								@endforeach
 							</select>
 						</div>
-					</div>
+					</div>{{--fecha de --}}
 				</div>
  
-				<div class="form-row">
+				<div class="form-row">  {{--capacidad, aula, estado--}}
 				
 					<div class="form-group col-3">			
 							<label for="capacityControlInput">Capacidad</label>
@@ -95,14 +95,12 @@
 					</div>
 				</div>
 
-				
-
-				
-
-				<input  name="idGroup" value={{$group->id}} hidden>
+			<input  name="idGroup" value={{$group->id}} hidden>
 
 				<input type="submit" id="submitFormButton" class="btn btn-primary float-right" value="Aplicar cambios" hidden>
 			</form>
+
+
 		@endcomponent
 		
 	</div>
@@ -195,13 +193,11 @@
 			@component('components.toefl-students')
 				@slot('group', $group)
 				@slot('score', $score)
-			{{--	@slot('grades', $grades)
-			aqui se comparten las variables a las vistas internas dentro de esta vista que las utiliza
-				--}}
+			 
 			@endcomponent
 		@endcomponent
 	</div>
-</div>
+
 
 @endsection
 

@@ -277,7 +277,7 @@ public function updateScores(Request $request){
                             $grade->save();
                        }
                 } 
-                 return redirect()->back()->with('success', 'Puntajes aplicados con Ã©xito.');
+                 return redirect()->back()->with('success', 'Puntajes aplicados con éxito.');
     }
 
 
