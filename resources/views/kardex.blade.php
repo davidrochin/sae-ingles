@@ -35,7 +35,7 @@
                 <!--<th></th>-->
                 PRUEBA VISUAL DE LA TABLA
                 <th>Curso</th>
-                <th>CalificaciÃ³n</th>
+                <th>Calificación</th>
             </tr>
         </thead>
 
