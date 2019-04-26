@@ -6,6 +6,8 @@ use App\Career;
 use App\Grade;
 use App\Group;
 use App\Setting;
+use App\ToeflGroup;
+use App\StudentToeflGroup;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +30,9 @@ class Student extends Model
 
     public function groups(){
         return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
+    }
+    public function toefls(){
+        return $this->belongsToMany(ToeflGroup::class, 'student_toefl_group')->orderBy('applied', 'desc');
     }
     
     public function isActive(){

@@ -140,7 +140,11 @@ class GroupsController extends Controller
 
     public function showOwnedGroups(Request $request){
         $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
-        
+         if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
+            return view('auth.nopermission', [
+                'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
+            ]);
+        }
 
         return view('my-groups', [
             'groups' => $groups->paginate(12),
@@ -231,7 +235,8 @@ class GroupsController extends Controller
         $group = Group::findOrFail($request->input('idGroup'));
         $students = $group->students;
         $grades = $group->grades;
-
+          
+          if($group->active == 0){
         //Borrar todas las calificaciones de este grupo
         foreach ($grades as $grade) {
             $grade->delete();
@@ -250,6 +255,9 @@ class GroupsController extends Controller
         ]);
 
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
+       } else{
+        return redirect()->back()->with('message','El grupo se encuentra abierto');
+        }
     }
 
     public function modify(ModifyGroupRequest $request){
@@ -279,7 +287,7 @@ class GroupsController extends Controller
 
                 return redirect()->back()->with('success','El grupo ha sido modificado con éxito');
         } else {
-                return redirect()->back()->with('success','El grupo se encuentra cerrado');
+                return redirect()->back()->with('message','El grupo se encuentra cerrado');
         }
        
     }
@@ -338,7 +346,7 @@ class GroupsController extends Controller
 
                 //Agregar el alumno al grupo
                 $group->students()->attach($student);
-
+                $group->save(); 
                  // Registrar la acción en el historial
                 History::create([
                     'user_id' => Auth::user()->id,
@@ -349,12 +357,9 @@ class GroupsController extends Controller
                   
            
             } else {
-                return redirect()->back()->with('success', 'El grupo se encuentra cerrado.');
+                return redirect()->back()->with('message', 'El grupo se encuentra cerrado.');
             
             }
-            $group->save();  
-           
-       
     }
 
     public function removeStudent(RemoveStudentFromGroupRequest $request){
@@ -372,7 +377,7 @@ class GroupsController extends Controller
         return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
        
         } else {
-            return redirect()->back()->with('success', 'El grupo se encuentra cerrado.');
+            return redirect()->back()->with('message', 'El grupo se encuentra cerrado.');
         
         }
         $group->save();  

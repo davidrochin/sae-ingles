@@ -89,8 +89,8 @@
 						@slot('name', '')
 						@slot('disabled', 'true')
 						@slot('type', 'text')
-						@slot('class', 'bg-white '.($group->applied ? 'text-primary' : ''))
-						@slot('value', $group->applied ? 'Aplicado' : 'Sin aplicar')
+						@slot('class', 'bg-white '.($group->applied ? '' : 'text-primary'))
+						@slot('value', $group->applied ? 'Cerrado' : 'Abierto')
 						@endcomponent
 					</div>
 				</div>
@@ -145,7 +145,7 @@
 					<form action="/toefl/alternar" method="post" name="toggleGroupForm">
 						{{ csrf_field() }}
 						<input type="hidden" name="groupId" value="{{ $group->id }}">
-						<button class="btn btn-dark">{{ $group->applied ? 'Cerrar' : 'Abrir' }} grupo</button>
+						<button class="btn btn-dark">{{ $group->applied ? 'Abrir' : 'Cerrar' }} grupo</button>
 					</form>
 				</div>
 				@endif

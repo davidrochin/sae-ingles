@@ -76,7 +76,7 @@ class ToeflGroupController extends Controller
           $group = ToeflGroup::where('id', $id)->first();
           $score = $group->getScores();
        
-      //    $score = StudentToeflGroup::where('toefl_group_id',$id)->get();
+     
           return view('toefl-group', [
             'group' => $group,
             'score'=> $score,
@@ -84,7 +84,6 @@ class ToeflGroupController extends Controller
             'classrooms' => Classroom::all(),
             'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
                  ]);
-
     }
    
   public function createToeflGroup(Request $request){
@@ -124,36 +123,40 @@ class ToeflGroupController extends Controller
   public function addStudent(Request $request){
         $group = ToeflGroup::find($request->input('groupId'));
         $student = Student::where('control_number',$request->input('studentId'))->first();
+    
+          if($group->applied == 0){
+   
+            //Revisar que el grupo tenga capacidad para un nuevo alumno
+            if(count($group->students)>=$group->capacity){
+                return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
+            }
 
-     
+            //Revisar si el alumno ya está en el grupo
+           
+            if($student->toefls->find($group->id) != null){
+                return redirect()->back()->with('message', 'El alumno que usted intentó agregar ya estaba en el grupo.');
+            }
 
-        //Revisar que el grupo tenga capacidad para un nuevo alumno
-        if(count($group->students)>=$group->capacity){
-            return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
+            //Agregar el alumno al grupo
+            $group->students()->attach($student);
+            $group->save();
+             // Registrar la acción en el historial
+            History::create([
+                'user_id' => Auth::user()->id,
+                'description' => 'ha ingresado al alumno con No.Control :'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
+            ]);
+
+            return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
+        } else {
+           
+           return redirect()->back()->with('message','El grupo TOEFL se encuentra cerrado.');
         }
-
-        //Revisar si el alumno ya está en el grupo
-        if($student->groups->find($group->id) != null){
-            return redirect()->back()->with('message', 'El alumno que usted intentó agregar ya estaba en el grupo.');
-        }
-
-        //Agregar el alumno al grupo
-        $group->students()->attach($student);
-        $group->save();
-         // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha ingresado al alumno con No.Control :'.$request->input('studentId').' al grupo TOEFL ID: '.$request->input('groupId')
-        ]);
-
-        return redirect()->back()->with('success', $student->last_names.' '.$student->first_names.' fue agregado(a) con éxito al grupo.');
-       
     }
 
   public function removeStudent(Request $request){
       $group = ToeflGroup::find($request->input('groupId'));
       $student = Student::findOrFail($request->input('studentId'));      
-
+      if($group->applied == 0){
                
             $group->students()->detach($student);
                      // Registrar la acción en el historial
@@ -163,14 +166,16 @@ class ToeflGroupController extends Controller
             ]);
             $group->save();
             return redirect()->back()->with('success', 'El alumno se eliminó del grupo con éxito.');
-           
+         }else{
+             return redirect()->back()->with('message', 'El grupo TOEFL se encuentra cerrado.');
+         }  
     }
 
   public function modify(Request $request){
        $group =  ToeflGroup::where('id',$request->input('idGroup'))->first();
   
 
-        if($group->applied == 1){
+        if($group->applied == 0){
           ToeflGroup::where('id',$request->input('idGroup'))
             ->update(['date' => $request->input('date'),
             'time' => $request->input('time'),
@@ -190,16 +195,16 @@ class ToeflGroupController extends Controller
 
                 return redirect()->back()->with('success','El grupo TOEFL ha sido modificado con éxito');
         } else {
-                return redirect()->back()->with('success','El grupo TOEFL se encuentra cerrado.');
+                return redirect()->back()->with('message','El grupo TOEFL se encuentra cerrado.');
         }
-        $group->save();
+      
     }
 
   public function delete(Request $request){
 
         $group = ToeflGroup::findOrFail($request->input('idGroup'));
         $students = $group->students;
-     
+        if($group->applied == 1){
 
         //Desasignar todos los alumnos de este grupo
         foreach ($students as $student){
@@ -214,6 +219,9 @@ class ToeflGroupController extends Controller
         ]);
 
         return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
+      } else {
+        return redirect()->back()->with('message', 'El grupo TOEFL se encuentra abierto.');
+      }
     }
 
   public function toggle(Request $request){
@@ -222,19 +230,19 @@ class ToeflGroupController extends Controller
 
         if($group->applied == 1){
             $group->applied = 0;
-            $successMessage = 'El grupo TOEFL se ha cerrado con éxito.';
-              // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha cerrado el grupo TOEFL ID: '.$request->input('groupId')
-        ]);
-        } else {
-            $group->applied = 1;
             $successMessage = 'El grupo TOEFL se ha abierto con éxito.';
               // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
             'description' => 'ha abierto el grupo TOEFL ID: '.$request->input('groupId')
+        ]);
+        } else {
+            $group->applied = 1;
+            $successMessage = 'El grupo TOEFL se ha cerrado con éxito.';
+              // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha cerrado el grupo TOEFL ID: '.$request->input('groupId')
         ]);
         }
         $group->save();
