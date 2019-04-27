@@ -102,6 +102,7 @@
 			@slot('class', 'mb-3')
 	
 				<form method="POST" action="{{ route('my-groups') }}/actualizar">
+			@if($capture==true)
 				<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
 				
 				{{-- Dropdown para poner la misma calificacion a todos --}}
@@ -121,7 +122,7 @@
 			
 				{{ csrf_field() }}
 				<input type="hidden" name="groupId" value="{{ $group->id }}">
-
+			@endif
 				{{-- Tabla que muestra que alumnos están en este grupo --}}
 				@component('components.my-group-students')
 					@slot('group', $group)
@@ -129,10 +130,9 @@
 					@slot('capture', $capture)
 					@slot('averages', $averages)
 				@endcomponent
-	
+		@if($capture==true)
 			<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
-
-				
+		@endif		
 			</form>
 		@endcomponent
 

@@ -17,7 +17,7 @@
                 <td>No. Control: <strong>{{$student->control_number}}</strong></td>
                
             </tr>
-            <tr>
+            <tr> 
                 <td>Carrera: <strong>{{ !is_null($student->career) ? $student->career->short_name : 'Carrera no registrada' }} </strong><strong></td>
                 <td>Fecha: <strong> {{$date}}</strong></td>
                
@@ -32,8 +32,7 @@
         <thead class="thead-light">
          
             <tr>
-                <!--<th></th>-->
-                PRUEBA VISUAL DE LA TABLA
+               
                 <th>Curso</th>
                 <th>Calificación</th>
             </tr>
@@ -53,10 +52,10 @@
         </tr>
      @endforelse
 
-     @forelse($groupsnormal as $key => $group->student)
+    @forelse($student->groups as $group)
             <tr>
-                <td>Nivel 1: ID: {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
-                 <td>{{ $group->student->code }}</td>
+                <td>Curso: ID: {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
+                 <td>CALIFICACION PENDIENTE</td>
             </tr>
            
             @empty

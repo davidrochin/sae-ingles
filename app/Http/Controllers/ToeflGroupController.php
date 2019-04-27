@@ -33,22 +33,33 @@ class ToeflGroupController extends Controller
 
     //se tiene que validar que se muestre si se cumplio con el requisito de puntos
     public function accreditationTOEFL(){
-        setlocale(LC_ALL,"es_ES");
-        date_default_timezone_set('America/Mazatlan');
-        $numero=date('Y');
-        $texto=Util::convertir($numero);
-        $year = ucfirst($texto);
-          
-        $fecha= strftime("%d días del mes de %B del año ".$year);
-        $student=Student::where('user_id',Auth::user()->id)->first();
-       
+         $student=Student::where('user_id',Auth::user()->id)->first();
+         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
+        
+
+           setlocale(LC_ALL,"es_ES");
+                    date_default_timezone_set('America/Mazatlan');
+                    $numero=date('Y');
+                    $texto=Util::convertir($numero);
+                    $year = ucfirst($texto);
+                      
+                    $fecha= strftime("%d días del mes de %B del año ".$year);
+                   
+      
+
                 return view('accreditation-toefl', [
                   'fecha' => $fecha,
+                  'groupstoefl' => $groupstoefl,
                   'career' => Career::all(),
                   'student' => $student,
                     'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
                    
                 ]);
+        
+            //  return redirect()->back()->with('message', 'No tiene ningún test TOEFL aplicado, o no lo pudo acreditar. Comunicarse con algún coordinador.');
+         
+
+      
             }
 
 

@@ -182,6 +182,12 @@
 			@slot('header', 'Alumnos del grupo')
 			@slot('class', 'mb-3')
 
+<form method="post" action="{{ route('toefl-results')}}">
+	<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
+
+	{{ csrf_field() }}
+	<input type="hidden" name="groupId" value="{{ $group->id }}">
+
 			@if(count($group->students) > $group->capacity)
 				@component('components.alert')
 					@slot('type', 'danger')
@@ -195,6 +201,10 @@
 				@slot('score', $score)
 			 
 			@endcomponent
+
+<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
+		
+			</form>
 		@endcomponent
 	</div>
 

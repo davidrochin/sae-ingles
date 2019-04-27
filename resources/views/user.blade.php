@@ -12,7 +12,7 @@
         @component('components.card')
             @slot('header', 'Información del usuario')
 
-            <form class="form" action="/usuarios/modificar" method="post" name="editUserForm">
+            <form class="form" action="/usuario/modificar" method="post" name="editUserForm">
 
                     {{ csrf_field() }}
 
@@ -35,18 +35,19 @@
                                 @slot('value', $user->name)
                             @endcomponent
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="form-row">
                         <div class="col">
-                            @component('components.form-input')
-                                @slot('tag', 'Rol')
-                                @slot('name', 'role')
-                                @slot('disabled', 'true')
-                                @slot('class', 'bg-white')
-                                @slot('value', $user->role->description)
-                            @endcomponent
+                        <div class="form-group">
+                            <label for="periodControlInput">Periodo</label>
+                            <select class="form-control bg-white" id="roleControlInput" name="role" disabled>
+                                @foreach(App\Role::all() as $role)
+                                <option value="{{$role->id}}" {{ $user->role->id == $role->id ? 'selected' : '' }}>{{ $role->description }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
                         <div class="col">
                             @component('components.form-input')
                                 @slot('tag', 'Correo electrónico')
@@ -77,9 +78,10 @@
                             <button type="submit" class="btn btn-danger" data-toggle="confirmation">Eliminar usuario</button>
                         </form>
                     </div>
+                    
                     <div class="col-auto">
                         <button id="editUserButton" class="btn btn-secondary" onclick="formEditMode('editUserForm'); deleteById('editUserButton')">Modificar datos</button>
-                    </div>
+                    </div> 
                 </div>
             @endcomponent
         @endif

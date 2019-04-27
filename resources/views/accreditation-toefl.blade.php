@@ -39,8 +39,17 @@
 	 </tr>
 
 	  			</table> 
+	  	
+	  		{{--	@forelse($groupstoefl as $key => $group)
+<p>{{ $group->score}}</p>
+            @empty
+        <tr>
+            <p class="text-center text-muted">No hay TOEFL aplicado.</p>
+        </tr>
+     @endforelse--}}
 
-				</div>{{--fin del div de tabla--}}
+
+		      </div>{{--fin del div de tabla--}}
 
 				<div class="info-text">
 				
@@ -81,7 +90,7 @@
 
 </div>
 		@endsection
-	
+{{--	
 @section('scripts')
 
 <script type="text/javascript">
@@ -103,5 +112,5 @@
 	}
 </style>
 
-@endsection
+@endsection --}}
 	

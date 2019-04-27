@@ -41,9 +41,7 @@
 			else if(mes == 12){              //solo diciembre
                 periodo.value = 4;           //invierno
 			}
-			else if(mes >= 1 && mes <=12){  //todo el año
-                periodo.value = 5;          //toefl
-			}
+		
         }
 	</script>
 

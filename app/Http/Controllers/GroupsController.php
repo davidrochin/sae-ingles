@@ -126,7 +126,7 @@ class GroupsController extends Controller
         $group = Group::where('id', $id)->first();
         $grades = $group->getGrades();
         $averages = $group->getAverages();
-        //dd($grades);
+        
 
         return view('group', [
             'group' => $group,
@@ -139,16 +139,20 @@ class GroupsController extends Controller
     }
 
     public function showOwnedGroups(Request $request){
-        $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
+       
+ $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
          if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
             return view('auth.nopermission', [
                 'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
             ]);
         }
-
+  
+  
+  
         return view('my-groups', [
             'groups' => $groups->paginate(12),
             'parentRoute' => 'my-groups',
+           
             'professors' => User::professors()->get()
         ]);
     }
@@ -334,6 +338,11 @@ class GroupsController extends Controller
             $student = Student::where('control_number',$request->input('studentId'))->first();
              
             if($group->active == 1){
+                //si el alumno aprobo el nivel anterior
+                foreach ($group as $key => $group) {
+                    
+                }
+               
                     //Revisar que el grupo tenga capacidad para un nuevo alumno
                 if(count($group->students)>=$group->capacity){
                     return redirect()->back()->with('message','El grupo ya se encuentra lleno.');

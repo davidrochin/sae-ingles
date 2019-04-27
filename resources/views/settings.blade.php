@@ -34,10 +34,10 @@
 
 
 
-@endslot
+@endslot {{--slot de body--}}
 
 @slot('footer')
-<input type="submit" class="btn btn-primary" value="Crear"  form="createCareerForm">
+<input type="submit" class="btn btn-primary " value="Crear"  form="createCareerForm">
 @endslot
 @endcomponent
 

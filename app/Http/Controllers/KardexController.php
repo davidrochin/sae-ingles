@@ -10,6 +10,7 @@ use App\ToeflGroup;
 use App\StudentToeflGroup;
 use App\User;
 use App\Career;
+use App\Period;
 use App\Group;
 use Illuminate\Http\Request;
 
@@ -29,11 +30,10 @@ class KardexController extends Controller
         $now=date('d-m-Y');
         $careers = Career::all(); 
         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
-        $groupsnormal = Group::all();
+       
 
         return view('kardex', [
             'groupstoefl' => $groupstoefl,
-            'groupsnormal' => $groupsnormal,
             'student' => $student,
             'date' => $now,
             'career' => $careers,

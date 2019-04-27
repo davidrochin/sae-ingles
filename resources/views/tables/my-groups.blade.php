@@ -10,6 +10,7 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Nivel</th>
+                <th>Estado</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,6 +29,15 @@
                 <td>{{ $group->code }}</td>
                 <td>{{ $group->name }}</td>
                 <td>{{ $group->level }}</td>
+                <td>   
+                 @component('components.group-state-badge')
+                 @slot('group', $group)
+                 @endcomponent </td>
+
+
+ 
+                   
+
                 <td><a href="{{ route('my-groups') }}/{{ $group->id }}">Ver grupo</a></td>
             </tr>
         @empty

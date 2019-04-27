@@ -96,4 +96,30 @@ class UsersController extends Controller
 
     }
 
+    public function modify(Request $request){
+    
+  /*  $this->validate($request,[
+        'name' => 'required',
+        'email' => 'required'
+        'role' => 'required'
+    ]);*/
+      
+        User::where('id',$request->input('id'))
+        ->update([
+            'name' => $request->input('name'),
+            'role_id' => $request->input('role'),
+            'email' => $request->input('email')
+        ]);
+
+    
+        // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha modificado al usario '.$request->input('name')
+        ]);
+ 
+          
+        return redirect()->back()->with('success', 'El usuario ha sido modificado con éxito.');
+    }
+
 }
