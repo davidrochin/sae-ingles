@@ -40,7 +40,7 @@
                     <div class="form-row">
                         <div class="col">
                         <div class="form-group">
-                            <label for="periodControlInput">Periodo</label>
+                            <label for="roleControlInput">Rol</label>
                             <select class="form-control bg-white" id="roleControlInput" name="role" disabled>
                                 @foreach(App\Role::all() as $role)
                                 <option value="{{$role->id}}" {{ $user->role->id == $role->id ? 'selected' : '' }}>{{ $role->description }}</option>

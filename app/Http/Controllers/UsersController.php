@@ -9,6 +9,7 @@ use App\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
+use function foo\func;
 
 
 class UsersController extends Controller
@@ -98,28 +99,24 @@ class UsersController extends Controller
 
     public function modify(Request $request){
     
-  /*  $this->validate($request,[
-        'name' => 'required',
-        'email' => 'required'
-        'role' => 'required'
-    ]);*/
-      
-        User::where('id',$request->input('id'))
-        ->update([
-            'name' => $request->input('name'),
-            'role_id' => $request->input('role'),
-            'email' => $request->input('email')
-        ]);
-
+   $user =  User::where('id',$request->input('iduser'))->first();
+       
     
-        // Registrar la acción en el historial
-        History::create([
-            'user_id' => Auth::user()->id,
-            'description' => 'ha modificado al usario '.$request->input('name')
-        ]);
- 
           
-        return redirect()->back()->with('success', 'El usuario ha sido modificado con éxito.');
-    }
+                User::where('id',$request->input('iduser'))
+                    ->update(['name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'role_id' => $request->input('role')
+                    ]); 
+                $user->save();
+                // Registrar la acción en el historial
+                History::create([
+                    'user_id' => Auth::user()->id,
+                    'description' => 'ha modificado el usuario ID: '.$request->input('code')
+                ]);
+            
+
+        return redirect()->back()->with('success','El usuario ha sido modificado con éxito');
+     }
 
 }
