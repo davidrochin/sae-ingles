@@ -30,11 +30,14 @@ class KardexController extends Controller
         $now=date('d-m-Y');
         $careers = Career::all(); 
         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
-       
+        
+        $group = Group::where('id', $id)->first(); //$id falta obtener los id de los grupos que esta el alumno
+        $averages = $group->getAverages();
 
         return view('kardex', [
             'groupstoefl' => $groupstoefl,
             'student' => $student,
+            'averages' => $averages,
             'date' => $now,
             'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,

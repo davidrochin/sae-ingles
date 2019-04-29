@@ -123,9 +123,11 @@ class ToeflGroupController extends Controller
   public function attendanceList(Request $request, $id){
         $group = ToeflGroup::findOrFail($id);
         $students = $group->students;
+       $score = $group->getScores();
 
         return view('attendance-toefl-list', [
             'group' => $group,
+            'score'=> $score,
             'students' => $students,
             'attendanceSlots' => 22,
         ]);
@@ -229,7 +231,7 @@ class ToeflGroupController extends Controller
             'description' => 'ha eliminado el grupo TOEFL ID: '.$request->input('idGroup')
         ]);
 
-        return redirect('/grupos/')->with('success', 'El grupo ha sido eliminado con éxito.');
+        return redirect('/toefl/')->with('success', 'El grupo ha sido eliminado con éxito.');
       } else {
         return redirect()->back()->with('message', 'El grupo TOEFL se encuentra abierto.');
       }
@@ -270,7 +272,7 @@ public function updateScores(Request $request){
            
 
                         //Buscar un grade que cumpla
-            $grade = StudentToeflGroup::where('student_id', $key)->where('toefl_group_id', $groupId)->first();
+          $grade = StudentToeflGroup::where('student_id', $key)->where('toefl_group_id', $groupId)->first();
 
                         //Si no existe crearlo
                         if(is_null($grade)){

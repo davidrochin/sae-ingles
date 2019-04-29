@@ -101,23 +101,18 @@
                                     placeholder="Correo electrónico">
                             </div>
 
-                            <div class="row"> <!-- CONTENEDOR DE PASSWORDS -->
+                           
 
-                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
                                     <div class="form-group">
                                         <input type="password" name="password" id="password" class="form-control input-sm"
                                             placeholder="Contraseña">
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" name="password_confirmation" id="password_confirmation"
-                                            class="form-control input-sm" placeholder="Confirmar contraseña">
-                                    </div>
-                                </div>
+                               
 
-                            </div>
+                       
 
 
                             <div class="form-group">

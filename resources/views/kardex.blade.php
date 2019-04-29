@@ -55,7 +55,7 @@
     @forelse($student->groups as $group)
             <tr>
                 <td>Curso: ID: {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
-                 <td>CALIFICACION PENDIENTE</td>
+                 <td>{{isset($averages[$student->id]) ? $averages[$student->id] : 'Indefinido' }}</td>
             </tr>
            
             @empty

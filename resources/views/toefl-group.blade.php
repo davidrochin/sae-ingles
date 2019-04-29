@@ -183,8 +183,10 @@
 			@slot('class', 'mb-3')
 
 <form method="post" action="{{ route('toefl-results')}}">
-	<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
 
+	@if($group->applied==false)
+	<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
+	@endif
 	{{ csrf_field() }}
 	<input type="hidden" name="groupId" value="{{ $group->id }}">
 
@@ -202,8 +204,9 @@
 			 
 			@endcomponent
 
-<button class="btn btn-primary float-right" type="submit">Aplicar calificaciones</button>
-		
+	@if($group->applied==false)
+	<button class="btn btn-primary mb-3 float-right" type="submit">Aplicar calificaciones</button>
+	@endif	
 			</form>
 		@endcomponent
 	</div>

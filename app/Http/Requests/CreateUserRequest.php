@@ -36,7 +36,7 @@ class CreateUserRequest extends FormRequest
             'name' => 'required',
             'email' => 'unique:users,email|email',
             'password' => 'required|max:30|min:6',
-            'roleId' => 'required',            
+            'roleId' => 'required',           
         ];
     }
     public function messages(){

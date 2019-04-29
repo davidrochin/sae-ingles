@@ -41,7 +41,7 @@
 				<td>{{ !is_null($student->career) ? $student->career->short_name : 'Carrera no registrada' }}</td>
 				
 					<th></th>
-				<td></td>
+				<td>{{ isset($score[$student->id]) ? $score[$student->id] :  ""}}</td>
 			</tr>
 		@endforeach
 	</tbody>

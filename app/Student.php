@@ -58,6 +58,7 @@ class Student extends Model
         }
         return $sum / $partialCount;
     }
+ 
 
     //Falta probar esta función con Student::like('control_number', '14440590')->get();
     public function scopeLike($query, $field, $value){
