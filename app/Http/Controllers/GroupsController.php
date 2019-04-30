@@ -338,11 +338,7 @@ class GroupsController extends Controller
             $student = Student::where('control_number',$request->input('studentId'))->first();
              
             if($group->active == 1){
-                //si el alumno aprobo el nivel anterior
-                foreach ($group as $key => $group) {
-                    
-                }
-               
+             
                     //Revisar que el grupo tenga capacidad para un nuevo alumno
                 if(count($group->students)>=$group->capacity){
                     return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
