@@ -53,7 +53,7 @@ class UsersController extends Controller
         //dd(User::where('id', $id)->first());
 
         $user = User::findOrFail($id);
-
+   
         return view('user', [
             'user' => $user,
             'parentRoute' => UsersController::DEFAULT_PARENT_ROUTE,
@@ -99,8 +99,7 @@ class UsersController extends Controller
 
     public function modify(Request $request){
     
-   $user =  User::where('id',$request->input('iduser'))->first();
-       
+       $user = User::where('id', $request->input('iduser'))->first();
     
           
                 User::where('id',$request->input('iduser'))
@@ -118,5 +117,24 @@ class UsersController extends Controller
 
         return redirect()->back()->with('success','El usuario ha sido modificado con éxito');
      }
+
+    
+    public function delete(Request $request){
+
+        $users = User::where('id',$request->input('iduser'))->first();
+     
+       
+       // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha eliminado al usuario ID: '.$request->input('iduser')
+        ]);
+
+       $users->delete();
+
+      
+
+        return redirect('/alumnos')->with('success', 'El usuario ha sido eliminado con éxito.');
+    }
 
 }

@@ -118,7 +118,7 @@
                             {{ csrf_field() }}
                                <p>Cantidad de parciales</p>
                             <div class="form-group">
-                                <input type="number" name="parciales" min="1" max="7" class="form-control input-sm" placeholder="{{$grades->value}}"
+                                <input type="number" name="parciales" min="1" max="7" class="form-control input-sm text-center" value="{{$grades->value}}"
                                     pattern="[0-9]">
                             </div>
 
@@ -126,12 +126,14 @@
                             <div class="row">
 
                              <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="number" name="year" min="0" class="form-control input-sm" placeholder="Año"
+                               <p>Año</p>
+                                    <input type="number" name="year" min="0" class="form-control input-sm text-center" value="{{$points->year}}" 
                                     pattern="[0-9]">
                                 </div>
                                 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                   <input type="number" name="points" min="0" class="form-control input-sm" placeholder="Puntos requeridos"
+                                  <p>Puntos requeridos</p>
+                                   <input type="number" name="points" min="0" class="form-control input-sm text-center" value="{{$points->points}}"
                                     pattern="[0-9]">
                                 </div> 
 

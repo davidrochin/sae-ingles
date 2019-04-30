@@ -71,7 +71,7 @@
 
                 <div class="form-row">
                     <div class="col-auto">
-                        <form action="/usuarios/eliminar" method="post" name="deleteUserForm">
+                        <form action="/usuario/eliminar" method="post" name="deleteUserForm">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{ $user->id }}">
                             <!--<button type="submit" class="btn btn-danger">Eliminar alumno</button>-->

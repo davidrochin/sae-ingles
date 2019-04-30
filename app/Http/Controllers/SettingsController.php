@@ -9,7 +9,7 @@ use App\Career;
 use App\Setting;
 use App\History;
 use App\User;
-use App\Points;
+use App\Point;
 use App\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCareerRequest;
@@ -26,14 +26,19 @@ class SettingsController extends Controller
             return view('auth.nopermission');
         }
 
-       
+        $points= Point::all()->last();
+       $pointstable= Point::all();
         return view('settings', [
             'careers' => Career::all(),
+            'pointstable' => $pointstable,
             'classrooms'=> Classroom::all(),
+            'points' => $points,
             'grades' =>  Setting::findOrFail(1),
             'parentRoute' => SettingsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
+
+
 
        public function createCareer(CreateCareerRequest $request){
        $career=  Career::create([
@@ -67,13 +72,13 @@ class SettingsController extends Controller
                   
             $year=$request->input('year');
             $points=$request->input('points');
-            $credits= Points::where('year', $year);
+            $credits= Point::where('year', $year);
 
            
                 
                //crea generacion
                 if(($credits)!=($year)){
-                    $credits = Points::create([
+                    $credits = Point::create([
                         'year' => $year,
                         'points' => $points
                         
@@ -83,7 +88,7 @@ class SettingsController extends Controller
 
                 //actualiza generacion
                 else {
-                    Points::where('year',$request->input('year'))->update(['year' => $year, 'points'=>$points]);
+                    Point::where('year',$request->input('year'))->update(['year' => $year, 'points'=>$points]);
                    
                 }
                    
