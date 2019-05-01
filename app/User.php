@@ -87,6 +87,8 @@ class User extends Authenticatable
         return User::where('role_id', $professorRoleId);
     }
 
+
+
     //Para buscar en los nombres
     public function scopeSearchName($query, $keyword){
         return $query->where('name', 'LIKE', '%'.$keyword.'%');

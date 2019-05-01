@@ -34,13 +34,13 @@ class CreateGroupRequest extends FormRequest
             'name' => 'required',
             'code' => 'required',
             'level' => 'required',
-            'professorId' => 'sometimes|nullable|exists:users,id',
+            'professorId' => 'required|nullable|exists:users,id',
             'scheduleStart' => 'required',
             'scheduleEnd' => 'required',
             'days' => 'required',
             'year' => 'required',
             'periodId' => 'required|exists:periods,id',
-            'classroomId' => 'sometimes|nullable|exists:classrooms,id',
+            'classroomId' => 'required|nullable|exists:classrooms,id',
         ];
     }
 
@@ -51,7 +51,9 @@ class CreateGroupRequest extends FormRequest
             'code.required' => 'No puede estar vacío.',
             'level.required' => 'No puede estar vacío.',
             'professorId.exists' => 'Ese profesor no existe.',
+            'professorId.required' => 'Asigna a un profesor.',
             'classroomId.exists' => 'Esa aula no existe.',
+            'classroomId.required' => 'Asigna un aula.',
             'scheduleStart.required' => 'No puede estar vacío.',
             'scheduleEnd.required' => 'No puede estar vacío.',
         ];

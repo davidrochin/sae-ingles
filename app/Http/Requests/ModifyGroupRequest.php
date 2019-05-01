@@ -35,13 +35,13 @@ class ModifyGroupRequest extends FormRequest
             'name' => 'required',
             'code' => 'required',
             'level' => 'required',
-            'professorId' => 'sometimes|nullable|exists:users,id',
+            'professorId' => 'required|nullable|exists:users,id',
             'scheduleStart' => 'required',
             'scheduleEnd' => 'required',
             'days' => 'required',
             'year' => 'required',
             'periodId' => 'sometimes|nullable|exists:periods,id',
-           // 'classroomId' => 'required|exists:classrooms,id',
+            'classroomId' => 'required|exists:classrooms,id',
         ];
     }
 
@@ -53,6 +53,7 @@ class ModifyGroupRequest extends FormRequest
             'level.required' => 'No puede estar vacío.',
             'scheduleStart.required' => 'No puede estar vacío.',
             'scheduleEnd.required' => 'No puede estar vacío.',
+            'professorId.required' => 'Asigna a un profesor.'
         ];
     }
 }

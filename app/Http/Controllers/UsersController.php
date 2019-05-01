@@ -99,10 +99,10 @@ class UsersController extends Controller
 
     public function modify(Request $request){
     
-       $user = User::where('id', $request->input('iduser'))->first();
+       $user = User::where('id', $request->input('id'))->first();
     
           
-                User::where('id',$request->input('iduser'))
+                User::where('id',$request->input('id'))
                     ->update(['name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'role_id' => $request->input('role')
@@ -121,13 +121,13 @@ class UsersController extends Controller
     
     public function delete(Request $request){
 
-        $users = User::where('id',$request->input('iduser'))->first();
+        $users = User::where('id',$request->input('id'))->first();
      
        
        // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al usuario ID: '.$request->input('iduser')
+            'description' => 'ha eliminado al usuario ID: '.$request->input('id')
         ]);
 
        $users->delete();
