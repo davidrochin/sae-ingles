@@ -11,6 +11,7 @@ use App\StudentToeflGroup;
 use App\User;
 use App\Career;
 use App\Period;
+use App\Point;
 use App\Group;
 use Illuminate\Http\Request;
 
@@ -30,14 +31,21 @@ class KardexController extends Controller
         $now=date('d-m-Y');
         $careers = Career::all(); 
         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
+      
+        $matricula=$student->control_number;
+        $dig=substr($matricula, 0, -6);
+        $year='20'.$dig;
+        $requiredcredits = Point::where('year',$year)->first();
         
-        $group = Group::where('id', $id)->first(); //$id falta obtener los id de los grupos que esta el alumno
-        $averages = $group->getAverages();
+       // dd($requiredcredits->points);
+      //  $group = Group::where('id', $id)->first(); //$id falta obtener los id de los grupos que esta el alumno
+        //$averages = $group->getAverages();
 
         return view('kardex', [
             'groupstoefl' => $groupstoefl,
             'student' => $student,
-            'averages' => $averages,
+            'requiredcredits' => $requiredcredits,
+       //     'averages' => $averages,
             'date' => $now,
             'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,
