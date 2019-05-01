@@ -41,11 +41,11 @@
         <tbody> 
      @forelse($groupstoefl as $key => $group)
             <tr>
-                <td>TOEFL @if($group->score>=$requiredcredits->points) {{--aqui va el valor de creditos por año y num control--}}
+                <td>TOEFL {{$group->toefl_group_id}}@if($group->score>=$requiredcredits->points) 
                      <a href="{{ route('toefl-accreditation') }}">Carta de liberación</a>
                         @endif
 
-                 </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
+                 </td> {{--falta los atributos del grupo TOEFL--}}
                  <td>{{ $group->score }}</td>
                
             </tr>
@@ -58,8 +58,8 @@
 
     @forelse($student->groups as $group)
             <tr>
-                <td>Curso: ID: {{ $group->id}} </td> {{--estoy obteniendo el id de la tabla STUDENTS_TOEFL_GROUP.  falta relacionarla con la TOEFLGROUP para obtener el ID y DATE del grupo--}}
-                 <td>{{isset($averages[$student->id]) ? $averages[$student->id] : 'Indefinido' }}</td>
+                <td>Curso: ID: {{ $group->id}} </td> 
+                 <td>{{isset($averages[$group->id]) ? $averages[$group->id] : 'Indefinido' }}</td>{{--falta el promedio--}}
             </tr>
            
             @empty

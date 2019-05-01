@@ -29,23 +29,22 @@ class KardexController extends Controller
       
         $student=Student::where('user_id',Auth::user()->id)->first();
         $now=date('d-m-Y');
-        $careers = Career::all(); 
+        $careers = Career::all();
+
         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
       
         $matricula=$student->control_number;
         $dig=substr($matricula, 0, -6);
         $year='20'.$dig;
         $requiredcredits = Point::where('year',$year)->first();
-        
-       // dd($requiredcredits->points);
-      //  $group = Group::where('id', $id)->first(); //$id falta obtener los id de los grupos que esta el alumno
-        //$averages = $group->getAverages();
+
+    
 
         return view('kardex', [
             'groupstoefl' => $groupstoefl,
             'student' => $student,
             'requiredcredits' => $requiredcredits,
-       //     'averages' => $averages,
+          //  'averages' => $averages,
             'date' => $now,
             'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,
