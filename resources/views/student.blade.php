@@ -114,7 +114,8 @@
         
         @component('components.card')
             @slot('header', 'Grupos a los que pertenece el alumno')
-
+            @slot('class', 'mb-3')
+            
             @component('components.student-groups')
                 @slot('student', $student)
                 @slot('groupstoefl', $groupstoefl)

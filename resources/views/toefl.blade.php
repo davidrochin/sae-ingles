@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'TOEFL')
+@section('title', ' Grupos TOEFL')
 @section('section', 'TOEFL')
 
 @section('content')

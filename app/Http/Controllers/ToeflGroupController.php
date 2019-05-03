@@ -32,8 +32,8 @@ class ToeflGroupController extends Controller
 
 
     //se tiene que validar que se muestre si se cumplio con el requisito de puntos
-    public function accreditationTOEFL(){
-         $student=Student::where('user_id',Auth::user()->id)->first();
+    public function accreditationTOEFL(Request $request){
+         $student=Student::where('user_id',$request->input('id'))->first();
          $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
         
 

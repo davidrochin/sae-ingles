@@ -5,7 +5,7 @@
                 <th>ID</th>
                 <th>No. control</th>
                 <th>Apellido(s)</th>
-                <th>Nombre(s)</th>
+                <th>Nombre(s)</th> 
                 <th>Carrera</th>
                 <th>Teléfono</th>
                 <th>Estado</th>
@@ -21,7 +21,7 @@
                 <td>{{ $student->control_number }}</td>
                 <td>{{ $student->last_names }}</td>
                 <td>{{ $student->first_names }}</td>
-                <td>{{ !is_null($student->career) ? $student->career->short_name : '' }}</td>
+                <td>{{ !is_null($student->career) ? $student->career->short_name : 'Sin carrera registrada' }}</td>
                 <td>{{ $student->phone_number }}</td>
                 <td><span class="badge badge-pill badge-{{ $student->isActive() ? 'primary' : 'secondary' }}">{{ $student->isActive() ? 'Activo' : 'Inactivo' }}</span></td>
                 <td><a href="{{ route('students') }}/{{ $student->id }}">Ver alumno</a></td>
