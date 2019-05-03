@@ -8,7 +8,7 @@
                 <th>Aplicador</th>
                 <th>Fecha</th>
                 <th>Aula</th>
-                <th>Aplicado</th>
+                <th>Estado</th>
                 <th></th>
             </tr>
         </thead>

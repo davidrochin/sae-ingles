@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Point;
+use App\StudentToeflGroup;
 use App\Career;
 use App\History;
 use function foo\func;
@@ -98,6 +100,13 @@ class StudentsController extends Controller
     public function show(Request $request, $id){
         $careers = Career::all();
         $student = Student::findOrFail($id);
+        $groupstoefl = StudentToeflGroup::where('student_id',$id)->get();
+
+         $matricula=$student->control_number;
+        $dig=substr($matricula, 0, -6);
+        $year='20'.$dig;
+        $requiredcredits = Point::where('year',$year)->first();
+ 
 
         //Revisar si se pidió en JSON
         if($request->get('json') == 1){
@@ -107,6 +116,8 @@ class StudentsController extends Controller
         //if(!$student){abort(404);}
 
         return view('student', [
+            'groupstoefl' => $groupstoefl,
+            'requiredcredits' => $requiredcredits,
             'student' => $student,
             'careers' => $careers,
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,

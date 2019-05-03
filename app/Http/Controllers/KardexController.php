@@ -38,18 +38,18 @@ class KardexController extends Controller
         $year='20'.$dig;
         $requiredcredits = Point::where('year',$year)->first();
 
-        $groupnormal = Group::where('id', Auth::user()->id)->first();
-        $averages = $groupnormal->getAverages();
-        
+        $group = $student->groups->first();
+        $averages = $group->getAverages();
 
+      
+//dd($averages);
 
         return view('kardex', [
             'groupstoefl' => $groupstoefl,
-            'groupnormal' => $groupnormal,
+           // 'groupnormal' => $groupnormal,
             'averages' => $averages,
             'student' => $student,
             'requiredcredits' => $requiredcredits,
-
             'date' => $now,
             'career' => $careers,
             'parentRoute' => KardexController::DEFAULT_PARENT_ROUTE,

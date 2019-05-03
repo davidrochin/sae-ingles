@@ -26,6 +26,7 @@
 		</tr>
 		@empty
 		@endforelse
+
 	</tbody>
 
 </table>

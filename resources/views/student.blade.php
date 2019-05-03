@@ -117,11 +117,27 @@
 
             @component('components.student-groups')
                 @slot('student', $student)
+                @slot('groupstoefl', $groupstoefl)
+                @slot('requiredcredits', $requiredcredits)
+                
+            @endcomponent
+
+        @endcomponent
+
+         @component('components.card')
+            @slot('header', 'TOEFL aplicados')
+
+            @component('components.student-toefls')
+                @slot('student', $student)
+                @slot('groupstoefl', $groupstoefl)
+                @slot('requiredcredits', $requiredcredits)
+                
             @endcomponent
 
         @endcomponent
 
     </div>
+
 </div>
 
 

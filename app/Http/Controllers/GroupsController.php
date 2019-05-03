@@ -133,7 +133,7 @@ class GroupsController extends Controller
             'grades' => $grades,
             'classrooms' => Classroom::all(),
             'averages' => $averages,
-            'professors' => User::professors()->get(),
+            'professors' => User::professors()->get(), //spñp 
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
