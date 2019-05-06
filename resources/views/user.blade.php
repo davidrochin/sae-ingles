@@ -16,16 +16,6 @@
 
                     {{ csrf_field() }}
 
-                    <div class="form-row">
-                        <div class="col-2">
-                             @component('components.form-input')
-                                @slot('tag', 'ID')
-                                @slot('name', 'iduser')
-                                @slot('disabled', 'true')
-                                @slot('class', 'bg-white')
-                                @slot('value', $user->id)
-                            @endcomponent
-                        </div>
                         <div class="col">
                             @component('components.form-input')
                                 @slot('tag', 'Nombre')
@@ -35,7 +25,6 @@
                                 @slot('value', $user->name)
                             @endcomponent
                         </div>
-                    </div> 
 
                     <div class="form-row">
                         <div class="col">
@@ -58,7 +47,7 @@
                             @endcomponent
                         </div>
                     </div>
-
+                <input  name="iduser" value={{$user->id}} hidden>
                     <input type="submit" class="btn btn-primary float-right" id="sendFormButton" value="Aplicar cambios" hidden>
                 </form>
         @endcomponent
