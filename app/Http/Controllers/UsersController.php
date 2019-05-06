@@ -109,7 +109,7 @@ class UsersController extends Controller
                     'role_id' => $request->input('role')
                     ]); 
                 ;
-         $user->save();
+         
                 // Registrar la acción en el historial
                 History::create([
                     'user_id' => Auth::user()->id,
@@ -123,13 +123,13 @@ class UsersController extends Controller
     
     public function delete(Request $request){
 
-        $users = User::where('id',$request->input('id'))->first();
+        $users = User::where('id',$request->input('iduser'))->first();
      
        
        // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al usuario ID: '.$request->input('id')
+            'description' => 'ha eliminado al usuario ID: '.$request->input('iduser')
         ]);
 
        $users->delete();

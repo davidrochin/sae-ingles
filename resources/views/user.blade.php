@@ -106,7 +106,7 @@
         //Activar los elementos de la Form
         var formElements = document.forms[formName].elements;
         for(var i = 0; i < formElements.length; i++){
-            if(formElements[i].name != 'iduser'){
+            if(formElements[i].name != 'id'){
                 formElements[i].readOnly = false;
                 formElements[i].disabled = false;
             }
