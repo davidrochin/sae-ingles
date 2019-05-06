@@ -19,7 +19,7 @@
 				<div class="form-row"> {{--fecha y hora --}}
 					<div class="col">
 						@component('components.form-input')
-						@slot('tag', 'Fecha de aplicación')
+						@slot('tag', 'Fecha de aplicación dd/mm/aaaa')
 						@slot('name', 'date')
 						@slot('disabled', 'true')
 						@slot('type', 'date')

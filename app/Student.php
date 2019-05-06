@@ -92,4 +92,23 @@ class Student extends Model
         return $query;
     }
 
+    public function getAveragesIndividual(){
+
+        $partialCount = (int)Setting::where('name', 'partial_count')->first()->value;
+
+        $averagesStructure = array();
+
+        foreach ($this->groups as $key => $group) {
+            $average = 0;
+            $studentGrades = Grade::where('group_id', $group->id)->where('student_id', $this->id)->get();
+  //dd($studentGrades);
+            foreach ($studentGrades as $grade) {
+                $average = $average + $grade->score;
+            }
+            $averagesStructure[$this->id] = $average / $partialCount;
+        }
+//dd($averagesStructure);
+        return $averagesStructure;
+    }
+
 }

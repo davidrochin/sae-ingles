@@ -11,6 +11,8 @@ use App\StudentToeflGroup;
 use App\User;
 use App\Career;
 use App\Period;
+use App\Grade;
+use App\Setting;
 use App\Point;
 use App\Group;
 use Illuminate\Http\Request;
@@ -38,8 +40,27 @@ class KardexController extends Controller
         $year='20'.$dig;
         $requiredcredits = Point::where('year',$year)->first();
 
-        $group = $student->groups->first();
-        $averages = $group->getAverages();
+       // $group = $student->groups->first();
+
+        $partialCount = (int)Setting::where('name', 'partial_count')->first()->value;
+        $averagesStructure = array();   
+        $groups= $student->groups;
+
+    foreach ($groups as $group) {
+
+                 foreach (Student::all() as $student) {
+                    $average = 0;
+                    $studentGrades = Grade::where('group_id', $group->id)->where('student_id', $student->id)->get();
+                    foreach ($studentGrades as $grade) {
+                        $average = $average + $grade->score;
+                    }
+                    $averagesStructure[$student->id] = $average / $partialCount;
+                }
+
+        $averages= $averagesStructure;
+    }
+
+     
 
       
 //dd($averages);

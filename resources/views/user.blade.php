@@ -20,7 +20,7 @@
                         <div class="col-2">
                              @component('components.form-input')
                                 @slot('tag', 'ID')
-                                @slot('name', 'id')
+                                @slot('name', 'iduser')
                                 @slot('disabled', 'true')
                                 @slot('class', 'bg-white')
                                 @slot('value', $user->id)
@@ -106,7 +106,7 @@
         //Activar los elementos de la Form
         var formElements = document.forms[formName].elements;
         for(var i = 0; i < formElements.length; i++){
-            if(formElements[i].name != 'id'){
+            if(formElements[i].name != 'iduser'){
                 formElements[i].readOnly = false;
                 formElements[i].disabled = false;
             }

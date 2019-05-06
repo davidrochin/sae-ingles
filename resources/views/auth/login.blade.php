@@ -160,9 +160,12 @@
                             </div>
                 </div>                                   
      <input type="submit" class="btn btn-primary btn-block form-group" value="Guardar" form="createStudentForm">
+
+
                       
                         </form>
                
+     <input type="submit" value="Cancelar" class="btn btn-secundary btn-block form-group" onclick="showSigninForm()">
                     </div>
                 </div>
 
@@ -181,6 +184,10 @@
             function showSignupForm(){
                 $("#signin-panel").removeClass("d-none");
                 $("#login-panel").addClass("d-none");
+            }
+            function showSigninForm(){
+                $("#signin-panel").addClass("d-none");
+                $("#login-panel").removeClass("d-none");
             }
 
             function show1(){
