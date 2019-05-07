@@ -123,10 +123,10 @@ class UsersController extends Controller
     
     public function delete(Request $request){
 
-        $user = User::where('id',$request->input('iduserdelete'))->first();
+        $user = User::where('id',$request->input('iduser'))->first();
         $groups = $user->groups->first();
        
-        dd($grupos);
+
         //Desasignar el alumno de todos los grupos
      /*   foreach ($groups as $group) {
             $user->groups()->detach($group);
@@ -135,7 +135,7 @@ class UsersController extends Controller
        // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al usuario ID: '.$request->input('iduserdelete')
+            'description' => 'ha eliminado al usuario ID: '.$request->input('iduser')
         ]);
 
        $user->delete();

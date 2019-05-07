@@ -175,7 +175,12 @@ class StudentsController extends Controller
 
         $student = Student::find($request->input('id'));
         $groups = $student->groups;
+        $toefls = $student->toefls;
 
+        //Desasignar el alumno de todos los grupos
+        foreach ($toefls as $toefl) {
+            $student->toefls()->detach($toefl);
+        }
         //Desasignar el alumno de todos los grupos
         foreach ($groups as $group) {
             $student->groups()->detach($group);

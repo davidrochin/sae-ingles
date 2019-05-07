@@ -32,8 +32,11 @@ class Student extends Model
         return $this->belongsToMany(Group::class, 'student_group')->orderBy('active', 'desc');
     }
     public function toefls(){
-        return $this->belongsToMany(ToeflGroup::class, 'student_toefl_group')->orderBy('applied', 'desc');
+        return $this->belongsToMany(ToeflGroup::class, 'student_toefl_group')->orderBy('id', 'desc');;
     }
+  /*  public function toefls(){
+        return $this->belongsToMany(ToeflGroup::class, 'student_toefl_group')->orderBy('applied', 'desc');
+    }*/
     
     public function isActive(){
         $groups = $this->groups;
@@ -46,7 +49,7 @@ class Student extends Model
         }
 
         return $isActive;
-    }
+    } 
 
     public function getAverage($groupId){
         $grades = Grade::where('student_id', $this->id)->where('group_id', $groupId)->get();
