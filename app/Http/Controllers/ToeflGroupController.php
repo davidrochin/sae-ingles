@@ -76,7 +76,7 @@ class ToeflGroupController extends Controller
 
            return view('toefl', [
               'groups' => $groups->paginate(12),
-              'professors' => User::professors()->get(),
+              'professors' => User::authorities()->get(),
               'classrooms' => Classroom::all(),
               'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
                 
@@ -91,7 +91,7 @@ class ToeflGroupController extends Controller
           return view('toefl-group', [
             'group' => $group,
             'score'=> $score,
-            'professors' => User::all(),
+            'professors' => User::authorities()->get(),
             'classrooms' => Classroom::all(),
             'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
                  ]);

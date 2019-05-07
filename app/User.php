@@ -88,10 +88,9 @@ class User extends Authenticatable
     }
 
     public static function authorities(){
-        $professorRoleId = Role::where('name', 'professor')->first()->id;
-        $adminRoleId = Role::where('name', 'admin')->first()->id;
-        $coordinatorRoleId = Role::where('name', 'coordinator')->first()->id;
-        return User::where('role_id', $professorRoleId)->where('role_id',$adminRoleId)->where('role_id',$coordinatorRoleId);
+     $users = User::whereIn('role_id', [3,2,4]);
+  
+    return $users;
     }
 
 

@@ -117,7 +117,7 @@ class GroupsController extends Controller
         return view('groups', [
             'groups' => $groups->paginate(12),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
-            'professors' => User::professors()->get(),
+            'professors' => User::authorities()->get(),
         ]);
     }
 
@@ -133,7 +133,7 @@ class GroupsController extends Controller
             'grades' => $grades,
             'classrooms' => Classroom::all(),
             'averages' => $averages,
-            'professors' => User::professors()->get(), //spñp 
+            'professors' => User::authorities()->get(),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
         ]);
     }
