@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Point;
+
 class PointTableSeeder extends Seeder
 {
     /**

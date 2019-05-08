@@ -49,9 +49,9 @@ class RegistryRequest extends FormRequest
             'lastNames.required' => 'Es necesario proporcionar los apellidos.',
             'phoneNumber.required' => 'Es necesario especificar un número de telefono.',
             'phoneNumber.digits_between' => 'Necesita ser un número de entre 0 y 30 dígitos.',
-            'email.email' => 'No es un correo electrónico válido.'
-            'email.required' => 'Es necesario un correo electrónico válido.'
-            'password.required' => 'Es necesario proporcionar una contraseña.'
+            'email.email' => 'No es un correo electrónico válido.',
+            'email.required' => 'Es necesario un correo electrónico válido.',
+            'password.required' => 'Es necesario proporcionar una contraseña.',
           /*  'rpassword_confirmation.required' => 'Es necesario confirmar la contraseña.',
             'rpassword_confirmation.same:rpassword' => 'No coincide.',*/
         ];
