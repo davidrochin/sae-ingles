@@ -24,7 +24,7 @@ class PagesController extends Controller
             'parentRoute' => 'home',
         ]);
         }else{
-            return view('layouts/auth', [
+            return view('layouts/inactivo', [
             'parentRoute' => 'home',
              ]);
         }

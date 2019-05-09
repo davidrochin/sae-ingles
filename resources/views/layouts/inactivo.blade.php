@@ -28,9 +28,14 @@
         </div>
         <div class="card-body">
 
-          @yield('content', 'Error plantilla')
-
-
+          @yield('content', 'Lo sentimos, tu cuenta se encuentra inactiva en el sistema. En caso de dudas, comunícate con el personal de Vinculación')
+          
+        </div>
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+            
+            {{-- Boton para cerrar sesión --}}
+            <a class="text-center" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+      </div>
     </div>
 
     @include('parts.scripts')
