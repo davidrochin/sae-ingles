@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -18,9 +19,16 @@ class PagesController extends Controller
     }*/
 
     public function home(){
-    	return view('home', [
+        if( (Auth::user()->active)==1){
+            return view('home', [
             'parentRoute' => 'home',
         ]);
+        }else{
+            return view('layouts/auth', [
+            'parentRoute' => 'home',
+             ]);
+        }
+    	
     }
 
     public function about(){

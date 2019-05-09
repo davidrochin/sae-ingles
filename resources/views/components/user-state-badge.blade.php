@@ -1,0 +1,1 @@
+<span class="badge badge-pill badge-{{ $user->active == 0 ? 'secondary' : 'primary' }}">{{ $user->active == 0 ? 'Inactivo' : 'Activo' }}</span>

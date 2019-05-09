@@ -122,27 +122,29 @@ class UsersController extends Controller
 
     
     public function delete(Request $request){
-
-        $user = User::where('id',$request->input('iduser'))->first();
-        $groups = $user->groups->first();
-       
-
-        //Desasignar el alumno de todos los grupos
-     /*   foreach ($groups as $group) {
-            $user->groups()->detach($group);
-        }
-     */  
-       // Registrar la acción en el historial
+ $user = User::where('id', $request->input('iduser'))->first();
+  
+   if($user->active == 1){
+            $user->active = 0;
+            $successMessage = 'El usuario se ha desactivado con éxito.';
+              // Registrar la acción en el historial
         History::create([
             'user_id' => Auth::user()->id,
-            'description' => 'ha eliminado al usuario ID: '.$request->input('iduser')
+            'description' => 'ha desactivado el usuario ID: '.$request->input('iduser')
         ]);
+        } else {
+            $user->active = 1;
+            $successMessage = 'El usuario se ha abierto con éxito.';
+              // Registrar la acción en el historial
+        History::create([
+            'user_id' => Auth::user()->id,
+            'description' => 'ha activado al grupo ID: '.$request->input('iduser')
+        ]);
+        }
+        $user->save();
 
-       $user->delete();
-
-      
-
-        return redirect('/alumnos')->with('success', 'El usuario ha sido eliminado con éxito.');
+        return redirect()->back()->with('success', $successMessage);
+       
     }
 
 }

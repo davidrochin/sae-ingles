@@ -57,6 +57,16 @@
                                 @slot('value', $user->email)
                             @endcomponent
                         </div>
+                        <div class="col">
+                            @component('components.form-input')
+                            @slot('tag', 'Estado')
+                            @slot('name', '')
+                            @slot('disabled', 'true')
+                            @slot('type', 'text')
+                            @slot('class', 'bg-white '.($user->active ? 'text-primary' : ''))
+                            @slot('value', $user->active ? 'Activo' : 'Inactivo')
+                            @endcomponent
+                        </div>
                     </div>
                     <input  name="iduser" value="{{$user->id}}" hidden>
                     <input type="submit" class="btn btn-primary float-right" id="sendFormButton" value="Aplicar cambios" hidden>
@@ -70,13 +80,14 @@
                 @slot('class', 'mt-3')
 
                 <div class="form-row">
-                    <div class="col-auto">
-                        <form action="/usuario/eliminar" method="post" name="deleteUserForm">
-                            {{ csrf_field() }}
-                            <input  name="iduserdelete" value="{{$user->id}}" hidden>
-                            <button type="submit" class="btn btn-danger" data-toggle="confirmation">Eliminar usuario</button>
-                        </form>
-                    </div>
+                    {{-- Boton para alternar el usuario --}}
+                <div class="col-auto">
+                    <form action="/usuario/eliminar" method="post" name="toggleUserForm">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="iduser" value="{{ $user->id }}">
+                        <button class="btn btn-outline-secondary">{{ $user->active ? 'Desactivar' : 'Activar' }} usuario</button>
+                    </form>
+                </div>
                     
                     <div class="col-auto">
                         <button id="editUserButton" class="btn btn-secondary" onclick="formEditMode('editUserForm'); deleteById('editUserButton')">Modificar datos</button>
