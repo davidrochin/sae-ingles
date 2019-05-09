@@ -58,7 +58,7 @@
                             @endcomponent
                         </div>
                     </div>
-                    <input  name="iduser" value={{$user->id}} hidden>
+                    <input  name="iduser" value="{{$user->id}}" hidden>
                     <input type="submit" class="btn btn-primary float-right" id="sendFormButton" value="Aplicar cambios" hidden>
                 </form>
         @endcomponent
@@ -73,7 +73,7 @@
                     <div class="col-auto">
                         <form action="/usuario/eliminar" method="post" name="deleteUserForm">
                             {{ csrf_field() }}
-                            <input  name="iduserdelete" value={{$user->id}} hidden>
+                            <input  name="iduserdelete" value="{{$user->id}}" hidden>
                             <button type="submit" class="btn btn-danger" data-toggle="confirmation">Eliminar usuario</button>
                         </form>
                     </div>

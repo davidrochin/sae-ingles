@@ -56,7 +56,7 @@
         @forelse($student->groups as $group)
         <tr>
             <td>Curso Nivel {{$group->level}} ID: {{ $group->id}}</td>
-            <!--<td>{{ isset($averages[$student->id]) ? $averages[$student->id] : 'Indefinido' }}</td>-->
+           {{--<td>{{ isset($averages[$student->id]) ? $averages[$student->id] : 'Indefinido' }}</td> --}}
             <td>{{ $group->getAverages()[$student->id] }}</td>
             {{--falta el promedio--}}
         </tr>
