@@ -107,10 +107,17 @@
 		@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
 			<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newUserModal">Nuevo</button>
 		@endif
+  <!-- Formulario para buscar -->
+        <form class="form col-auto mr-0 ml-auto form-inline" action="{{ route('users') }}" method="get">
 
-		{{-- Botón invisible para conservar el espacio superior a la tabla --}}
-		<button type="button" class="btn btn-outline-primary" style="background:transparent; border:none; color:transparent;">Este boton no deberia de estar aquí</button>
-
+            {{-- Buscador --}}
+            <div class="input-group ">
+                <input type="text" class="form-control w-auto" placeholder="Escriba algún nombre..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary" type="button">Buscar</button>
+                </div>
+            </div>
+        </form>
 	</div>
 
 	<div>

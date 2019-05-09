@@ -27,10 +27,10 @@ class UsersController extends Controller
         if(!Auth::user()->hasAnyRole(['admin','coordinator'])){
             return view('auth.nopermission');
         }
-
+ 
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
-            $users = User::search($keyword)->paginate(12);
+            $users = User::searchName($keyword)->paginate(12);
         } else {
             $users = User::orderBy('id', 'ASC')->paginate(12);
         }
