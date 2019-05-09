@@ -20,7 +20,7 @@
                  <td>{{isset($group->score) ? $group->score : 'Sin resultados registrados aún'}}</td>
                  <td>{{$requiredcredits->points}}</td>
                  <td>@if($group->score>=$requiredcredits->points) 
-                     <a href="{{ route('toefl-accreditation') }}">Carta de liberación</a>
+                     <a href="{{ route('toefl-accreditation', $student->id) }}">Carta de liberación</a>
                     @else
                      No se acreditó
                      @endif

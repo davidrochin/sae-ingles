@@ -30,11 +30,10 @@ class ToeflGroupController extends Controller
 
     const DEFAULT_PARENT_ROUTE = 'toefl';
 
-
-    //se tiene que validar que se muestre si se cumplio con el requisito de puntos
-    public function accreditationTOEFL(Request $request){
-         $student=Student::where('user_id',$request->input('id'))->first();
-         $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
+    public function accreditationTOEFL(Request $request,$id){
+      
+         $student = Student::findOrFail($id);
+       //  $groupstoefl = StudentToeflGroup::where('student_id',$student->id)->get();
         
 
            setlocale(LC_ALL,"es_ES");
@@ -49,7 +48,7 @@ class ToeflGroupController extends Controller
 
                 return view('accreditation-toefl', [
                   'fecha' => $fecha,
-                  'groupstoefl' => $groupstoefl,
+              //    'groupstoefl' => $groupstoefl,
                   'career' => Career::all(),
                   'student' => $student,
                     'parentRoute' => ToeflGroupController::DEFAULT_PARENT_ROUTE,
