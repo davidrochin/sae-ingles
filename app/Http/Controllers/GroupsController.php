@@ -29,7 +29,7 @@ class GroupsController extends Controller
 
     const DEFAULT_PARENT_ROUTE = 'groups';
    
-
+ 
 
     public function showAll(Request $request){
 
@@ -116,6 +116,8 @@ class GroupsController extends Controller
 
         return view('groups', [
             'groups' => $groups->paginate(12),
+            'count' => $groups->count(),
+            'total' => Group::count(),
             'parentRoute' => GroupsController::DEFAULT_PARENT_ROUTE,
             'professors' => User::authorities()->get(),
         ]);

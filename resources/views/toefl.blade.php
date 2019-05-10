@@ -94,16 +94,51 @@
 	@endcomponent
 
 
-{{-- Botón de nuevo grupo --}}
-	
-			<div class="btn-group" role="group" aria-label="First group">
-				<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newGroupModal">Nuevo</button>
-			</div>
-
-
 	<!--Botones para manipular tabla y buscador-->
 	<div class="btn-toolbar mb-3 w-100" role="toolbar" aria-label="Toolbar with button groups">
-    </div>
+
+		{{-- Botón de nuevo grupo --}}
+		@if(Auth::user()->hasAnyRole(['admin', 'coordinator']))
+			<div class="btn-group" role="group" aria-label="First group">
+				<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newGroupModal" onclick="ajustaFechas()">Nuevo</button>
+			</div>
+		@endif
+
+		<!-- Formulario para buscar -->
+		<form class="form col-auto mr-0 ml-auto form-inline" action="{{ route('toefl') }}" method="get">
+
+             <h5 class="mr-3">{{$count}}/{{$total}} Grupos TOEFL</h5>
+
+			{{-- Orden --}}
+            <select class="form-control mr-3 ml-auto" name="order" onchange="this.form.submit()">
+                <option value="1">Ordenar por ID</option>
+                <option value="2" {{ app('request')->input('order') == 2 ? 'selected' : '' }}>Ordenar por estado</option>
+                <option value="3" {{ app('request')->input('order') == 3 ? 'selected' : '' }}>Ordenar por año</option>
+
+            </select>
+
+			{{-- Filtros --}}
+            <select class="form-control mr-3 ml-auto" name="filter" onchange="this.form.submit()">
+                <option value="1" >Todos los grupos</option>
+                <option value="2" {{ app('request')->input('filter') == 2 ? 'selected' : '' }}>Grupos abiertos</option>
+                <option value="3"  {{ app('request')->input('filter') == 3 ? 'selected' : '' }}>Grupos cerrados</option>
+                <option value="4"  {{ app('request')->input('filter') == 4 ? 'selected' : '' }}>Grupos con cupo disponible</option>
+                <option value="5"  {{ app('request')->input('filter') == 5 ? 'selected' : '' }}>Grupos llenos</option>
+                <option value="6"  {{ app('request')->input('filter') == 6 ? 'selected' : '' }}>Grupos llenos</option>
+
+            </select>
+
+			{{-- Buscador --}}
+			<div class="input-group ">
+				<input type="text" class="form-control w-auto" placeholder="Escriba algo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn-outline-secondary" type="button">Buscar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>
 
 <div class="">
 	@include('tables.groups-toefl')
@@ -115,4 +150,41 @@
 	</div>
 </div>
 
+@endsection
+
+@section('scripts')
+	<script type="text/javascript">
+		function ajustaFechas() {
+            var periodo = createGroupForm.periodControlInput;
+            var currentdate = new Date();
+            var mes = currentdate.getMonth()+1;
+            if(mes >= 1 && mes <=6){         //de enero a junio
+                periodo.value = 1;           //ene-jun
+
+			}else if(mes == 7){              //solo julio
+                periodo.value = 2;           //verano
+                
+			}else if(mes >= 8 && mes <= 12){ //de agosto a diciembre 
+                periodo.value = 3;           //ago-dic
+			}
+			else if(mes == 12){              //solo diciembre
+                periodo.value = 4;           //invierno
+			}
+			
+        }
+	</script>
+
+	@if($errors->any())
+		<script type="text/javascript">
+            var $errorMessage = '';
+			@foreach($errors->createUser->all() as $error)
+                $errorMessage = $errorMessage + ' {{ $error }}';
+			@endforeach
+            //alert($errorMessage);
+            //Abrir modal de crear nuevo usuario
+            $( document ).ready(function() {
+                $('#newGroupModal').modal('show');
+            });
+		</script>
+	@endif
 @endsection

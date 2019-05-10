@@ -92,6 +92,8 @@ class StudentsController extends Controller
         return view('students', [
             'students' => $students->paginate(12),
             'careers' => $careers,
+            'count' => $students->count(),
+            'total' => Student::count(),
             'parentRoute' => StudentsController::DEFAULT_PARENT_ROUTE,
             //'modalMessage' => 'Prueba de modal de mensajes',
         ]);

@@ -151,6 +151,8 @@
 		<!-- Formulario para buscar -->
 		<form class="form col-auto mr-0 ml-auto form-inline" action="{{ route('groups') }}" method="get">
 
+             <h5 class="mr-3">{{$count}}/{{$total}} Grupos</h5>
+
 			{{-- Orden --}}
             <select class="form-control mr-3 ml-auto" name="order" onchange="this.form.submit()">
                 <option value="1">Ordenar por ID</option>
