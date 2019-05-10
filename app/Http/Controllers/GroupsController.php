@@ -9,7 +9,7 @@ use App\User;
 use App\Role;
 use App\Student;
 use App\Classroom;
-use App\Grade;
+use App\Grade; 
 use App\History;
 
 use App\Http\Requests\CreateGroupRequest;
@@ -110,10 +110,8 @@ class GroupsController extends Controller
         //Si hay una palabra clave de busqueda, buscar con ella
         if($keyword){
             $groups = $groups->search($keyword);
-        } /*else {
-            $groups = $groups->orderBy('active', 'DESC');
-        }*/
-
+        } 
+        
         return view('groups', [
             'groups' => $groups->paginate(12),
             'count' => $groups->count(),

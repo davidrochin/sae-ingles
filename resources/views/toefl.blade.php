@@ -124,13 +124,13 @@
                 <option value="3"  {{ app('request')->input('filter') == 3 ? 'selected' : '' }}>Grupos cerrados</option>
                 <option value="4"  {{ app('request')->input('filter') == 4 ? 'selected' : '' }}>Grupos con cupo disponible</option>
                 <option value="5"  {{ app('request')->input('filter') == 5 ? 'selected' : '' }}>Grupos llenos</option>
-                <option value="6"  {{ app('request')->input('filter') == 6 ? 'selected' : '' }}>Grupos llenos</option>
+
 
             </select>
 
 			{{-- Buscador --}}
 			<div class="input-group ">
-				<input type="text" class="form-control w-auto" placeholder="Escriba algo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
+				<input type="text" class="form-control w-auto" placeholder="Escriba el ID de un grupo..." value="{{ app('request')->input('keyword') }}" aria-describedby="btnGroupAddon" name="keyword">
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-outline-secondary" type="button">Buscar</button>
 				</div>

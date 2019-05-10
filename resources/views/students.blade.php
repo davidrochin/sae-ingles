@@ -109,6 +109,7 @@
             <select class="form-control mr-3 ml-auto" name="filter" onchange="this.form.submit()">
                 <option value="1">Todos los alumnos</option>
                 <option value="2" {{ app('request')->input('filter') == 2 ? 'selected' : '' }}>Alumnos activos</option>
+                <option value="3" {{ app('request')->input('filter') == 3 ? 'selected' : '' }}>Alumnos inactivos</option>
             </select>
 
             {{-- Buscador --}}

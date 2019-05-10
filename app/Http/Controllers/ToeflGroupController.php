@@ -8,7 +8,7 @@ use App\ToeflGroup;
 use App\User;
 use App\Classroom;
 use App\History;
-use App\StudentToeflGroup;
+use App\StudentToeflGroup; 
 use App\Util;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
@@ -124,13 +124,10 @@ class ToeflGroupController extends Controller
                       break;
               }
 
-              //Si hay una palabra clave de busqueda, buscar con ella
-              if($keyword){
-                  $groups = $groups->search($keyword);
-              } /*else {
-                  $groups = $groups->orderBy('active', 'DESC');
-              }*/
-
+          //Si hay una palabra clave de busqueda, buscar con ella
+        if($keyword){
+            $groups = $groups->search($keyword);
+        }
 
            return view('toefl', [
               'groups' => $groups->paginate(12),
@@ -303,6 +300,7 @@ class ToeflGroupController extends Controller
 
         if($group->applied == 1){
             $group->applied = 0;
+          
             $successMessage = 'El grupo TOEFL se ha abierto con éxito.';
               // Registrar la acción en el historial
         History::create([
