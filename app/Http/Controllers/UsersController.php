@@ -34,9 +34,9 @@ class UsersController extends Controller
         } else {
             $users = User::orderBy('id', 'ASC')->paginate(12);
         }
-
+ 
         if (Auth::user()->hasRole('admin')) {
-            $roles = Role::all();
+            $roles = Role::whereIn('id', [3,2,4])->get();
         }else{
             $roles = Role::where('name','professor')->get();
         }
