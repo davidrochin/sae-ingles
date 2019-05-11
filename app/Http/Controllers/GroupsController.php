@@ -8,7 +8,6 @@ use App\Http\Requests\ModifyGroupRequest;
 use App\User;
 use App\Role;
 use App\Student;
-use App\Setting;
 use App\Classroom;
 use App\Grade; 
 use App\History;
@@ -141,11 +140,11 @@ class GroupsController extends Controller
 
     public function showOwnedGroups(Request $request){
        
-     $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
-             if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
-                return view('auth.nopermission', [
-                    'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
-                ]);
+ $groups = Group::where('user_id', Auth::user()->id)->orderBy('period_id', 'ASC');
+         if(!Auth::user()->hasAnyRole(['admin', 'coordinator','professor'])){
+            return view('auth.nopermission', [
+                'permissionMessage' => 'Para consultar grupos usted necesita ser administrador o coordinador.',
+            ]);
         }
   
   
@@ -329,7 +328,7 @@ class GroupsController extends Controller
             'description' => 'ha desactivado el grupo ID: '.$request->input('groupId')
         ]);
         } else {
-             //reactiva los estudiantes
+             //inctiva los estudiantes
            foreach ($students as $student){
             $student->active=1;
             $student->save();
@@ -355,28 +354,23 @@ class GroupsController extends Controller
         return view('attendance-list', [
             'group' => $group,
             'students' => $students,
-            'attendanceSlots' => 22, 
+            'attendanceSlots' => 22,
         ]);
     }
 
     public function addStudent(AddStudentToGroupRequest $request){
             $group = Group::find($request->input('groupId'));
             $student = Student::where('control_number',$request->input('studentId'))->first();
-            $partialCount = (int)Setting::where('name', 'partial_count')->first()->value;
-            $pas= true;
-
-                foreach ($student->groups as $group) {
-                  
-                    if(($group->getAverages()[$student->id]) <= 69){
-                        $pas=false;
-                    }else{
-                        $pas=true;
-                    }
-                }
-              
-     
-            
-            //si el grupo se encuentra activo
+             
+      
+          $pase=true;
+             foreach ($student->groups as $group) {
+            $res=  $group->getAverages()[$student->id];
+               if($res<70){
+                $pase=false;
+               }
+             }
+          dd($pase);
             if($group->active == 1){
              
                     //Revisar que el grupo tenga capacidad para un nuevo alumno
@@ -388,13 +382,8 @@ class GroupsController extends Controller
                 if($student->groups->find($group->id) != null){
                     return redirect()->back()->with('message', 'El alumno que usted intentó agregar ya estaba en el grupo.');
                 }
-                
-          /*   //si el alumno acreditó los niveles anteriores
-                if($pas==false){
-                  return redirect()->back()->with('message', 'El alumno no acreditó el curso anterior.');
-                } 
-              
-*/
+            
+
                 //Agregar el alumno al grupo
                 $group->students()->attach($student);
                 $student->active=1;

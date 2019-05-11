@@ -113,7 +113,7 @@ class StudentsController extends Controller
         $year='20'.$dig;
         $requiredcredits = Point::where('year',$year)->first();
  
-        $averagesStructure = array();   
+  
         $groups= $student->groups;
 
 
