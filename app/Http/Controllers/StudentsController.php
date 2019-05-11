@@ -113,7 +113,11 @@ class StudentsController extends Controller
         $year='20'.$dig;
         $requiredcredits = Point::where('year',$year)->first();
  
+        $averagesStructure = array();   
+        $groups= $student->groups;
 
+
+ 
         //Revisar si se pidió en JSON
         if($request->get('json') == 1){
             return response()->json($student);
