@@ -362,15 +362,17 @@ class GroupsController extends Controller
             $group = Group::find($request->input('groupId'));
             $student = Student::where('control_number',$request->input('studentId'))->first();
              
-      
-          $pase=true;
-             foreach ($student->groups as $group) {
-            $res=  $group->getAverages()[$student->id];
-               if($res<70){
-                $pase=false;
-               }
+       //revisar si el alumno acredito los cursos anteiores
+            $pase=true;
+             foreach ($student->groups as $exgroup) {
+                $res=  $exgroup->getAverages()[$student->id];
+                   if($res<70){
+                    $pase=false;
+                   }
              }
-          dd($pase);
+  
+
+            //si el grupo esta abierto
             if($group->active == 1){
              
                     //Revisar que el grupo tenga capacidad para un nuevo alumno
@@ -378,11 +380,18 @@ class GroupsController extends Controller
                     return redirect()->back()->with('message','El grupo ya se encuentra lleno.');
                 }
 
+           
+
                 //Revisar si el alumno ya está en el grupo
                 if($student->groups->find($group->id) != null){
                     return redirect()->back()->with('message', 'El alumno que usted intentó agregar ya estaba en el grupo.');
                 }
-            
+
+               //Revisar si el alumno ya está en el grupo
+                if($pase==false){
+                    return redirect()->back()->with('message', 'El alumno no acreditó el curso anterior.');
+                }
+          
 
                 //Agregar el alumno al grupo
                 $group->students()->attach($student);
