@@ -38,6 +38,7 @@
           <div class="p-0 d-none d-xl-block" style="" id="menu">
               <span class="sidebar-section text-muted">General</span>
               <a href="{{ route('home') }}" class="{{ $parentRoute == 'home' ? 'selected' : '' }}"><i data-feather="home"></i>Inicio</a>
+              <span class="sidebar-section text-muted">Profesores</span>
               <a href="{{ route('my-groups') }}" class="{{ $parentRoute == 'my-groups' ? 'selected' : '' }}"><i data-feather="grid"></i>Mis grupos</a>
               <hr>
 
