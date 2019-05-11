@@ -69,12 +69,13 @@ class StudentsController extends Controller
                 break;
             case 2:
                 //Mandar solo alumnos sin grupos activos
-                $students = $students->where('active',1);
- 
+                $students = $students->where('active', 1);
+              
                 break;
             case 3:
                 //Mandar solo alumnos sin grupos activos
-                $students = $students->where('active',0);
+                $students = $students->where('active', 0);
+              
                 break;
             default:
                 //$students = $students->orderBy('id', 'DESC');

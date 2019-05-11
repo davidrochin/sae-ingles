@@ -24,6 +24,7 @@
                                  <div class="invalid-feedback"></div>
                              </div>
                         </div>
+
                         <div class="col">
                             @component('components.form-input')
                                 @slot('tag', 'Número de control')
@@ -31,6 +32,17 @@
                                 @slot('disabled', 'true')
                                 @slot('class', 'bg-white')
                                 @slot('value', $student->control_number)
+                            @endcomponent
+                        </div>
+
+                         <div class="col">
+                            @component('components.form-input')
+                            @slot('tag', 'Estado')
+                            @slot('name', '')
+                            @slot('disabled', 'true')
+                            @slot('type', 'text')
+                            @slot('class', 'bg-white '.($student->active ? 'text-primary' : ''))
+                            @slot('value', $student->active ? 'Activo' : 'Inactivo')
                             @endcomponent
                         </div>
                     </div> 

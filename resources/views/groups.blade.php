@@ -18,7 +18,7 @@
 			<form class="form" action="/grupos/crear" method="post" id="createGroupForm">
 
 				{{ csrf_field() }}
-
+				<p>Llena todos los campos.</p>
 				<div class="form-row">
 					<div class="col">
 						@component('components.form-input')

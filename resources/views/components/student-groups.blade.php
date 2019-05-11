@@ -4,9 +4,11 @@
 	<thead>
 		<tr>
 			<th>Nombre</th>
+			<th>Nivel</th>
+			<th>Periodo</th>
 			<th>Horario</th>
-			<th>Profesor</th>
 			<th>Estado</th>
+
 			<th></th>
 		</tr>
 	</thead>
@@ -16,12 +18,14 @@
 		@forelse($student->groups as $group)
 		<tr>
 			<td>{{ $group->name }}</td>
+			<td>{{ $group->level }}</td>
+			<td>{{ $group->period->short_name }}</td>
 			<td>{{ Carbon\Carbon::parse($group->schedule_start)->format('g:i A') }} - {{ Carbon\Carbon::parse($group->schedule_end)->format('g:i A') }}</td>
-			<td>{{ !is_null($group->user) ? $group->user->name : '' }}</td>
 			<td>
 				@component('components.group-state-badge', ['group' => $group])
 				@endcomponent
 			</td>
+
 			<td><a href="{{ route('groups') }}/{{ $group->id }}">Ver más</a></td>
 		</tr>
 		@empty

@@ -213,10 +213,16 @@ class GroupsController extends Controller
     }
  
     public function create(CreateGroupRequest $request){
+
+        $level= $request->input('level');
+        if(($request->input('periodId')==2)||($request->input('periodId')==4)){
+          $level= 0;
+        }
+
         Group::create([
             'name' => $request->input('name'),
             'code' => $request->input('code'),
-            'level' => $request->input('level'),
+            'level' => $level,
             'user_id' => $request->input('professorId'),
             'schedule_start' => $request->input('scheduleStart'),
             'schedule_end' => $request->input('scheduleEnd'),
@@ -249,6 +255,8 @@ class GroupsController extends Controller
         //Desasignar todos los alumnos de este grupo
         foreach ($students as $student){
             $group->students()->detach($student);
+            $student->active=0;
+            $student->save();
         }
 
         $group->delete();
@@ -299,9 +307,20 @@ class GroupsController extends Controller
     public function toggle(ToggleGroupStateRequest $request){
         $group = Group::find($request->input('groupId'));
         $successMessage = '';
+        $students = $group->students;
+    
+  
 
         if($group->active == 1){
+            //inactiva los estudiantes
+           foreach ($students as $student){
+            $student->active=0;
+            $student->save();
+           }
+
             $group->active = 0;
+
+
             $successMessage = 'El grupo se ha cerrado con éxito.';
               // Registrar la acción en el historial
         History::create([
@@ -309,7 +328,13 @@ class GroupsController extends Controller
             'description' => 'ha desactivado el grupo ID: '.$request->input('groupId')
         ]);
         } else {
+             //reactiva los estudiantes
+           foreach ($students as $student){
+            $student->active=1;
+            $student->save();
+           }
             $group->active = 1;
+
             $successMessage = 'El grupo se ha abierto con éxito.';
               // Registrar la acción en el historial
         History::create([
@@ -351,6 +376,8 @@ class GroupsController extends Controller
 
                 //Agregar el alumno al grupo
                 $group->students()->attach($student);
+                $student->active=1;
+                $student->save();
                 $group->save(); 
                  // Registrar la acción en el historial
                 History::create([
@@ -375,6 +402,8 @@ class GroupsController extends Controller
             
             $group->students()->detach($student);
                      // Registrar la acción en el historial
+                    $student->active=0;
+                $student->save();
             History::create([
                 'user_id' => Auth::user()->id,
                 'description' => 'ha eliminado al alumno ID:'.$request->input('studentId').' al grupo ID: '.$request->input('groupId')

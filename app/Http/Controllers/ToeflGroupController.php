@@ -300,7 +300,6 @@ class ToeflGroupController extends Controller
 
         if($group->applied == 1){
             $group->applied = 0;
-          
             $successMessage = 'El grupo TOEFL se ha abierto con éxito.';
               // Registrar la acción en el historial
         History::create([
