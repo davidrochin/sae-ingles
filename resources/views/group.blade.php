@@ -211,7 +211,7 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="groupId" value="{{ $group->id }}">
 					<div class="input-group">
-					  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="ID del alumno..." autocomplete="off">
+					  <input id="studentAddInput" type="text" class="form-control" name="studentId" placeholder="No. Control del alumno..." autocomplete="off">
 					  <div class="input-group-append">
 					    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
 					  </div>
