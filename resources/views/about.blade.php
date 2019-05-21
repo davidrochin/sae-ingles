@@ -28,6 +28,12 @@
 <hr>
 
 <p class="text-center">Hecho con Laravel 5.5, Bootstrap 4 y jQuery.</p>
+{{-- Botón de nuevo grupo --}}
+		@if(Auth::user()->hasAnyRole(['admin', 'coordinator','professor']))
+	<p class="text-center"><a href="https://drive.google.com/open?id=1H-3FvXtS7ue-thnbgnaK11OwnPw4dASk" target="_blank">Manual de usuario</a></p>		
+		@endif
+
+
 
 <div class="text-center">
 	<button class="btn btn-primary" onclick="window.history.back();">Volver</button>
