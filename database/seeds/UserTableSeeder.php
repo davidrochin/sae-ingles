@@ -26,12 +26,6 @@ class UserTableSeeder extends Seeder
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
 
-        User::create([
-            'name' => 'David Rochín',
-            'email' => 'jdrc8@hotmail.com',
-            'password' => '$2y$10$oi8KHrjGhmZ8qWAMizspMOwBm2WurYBV3sqQTBuLgWfz8JCg1R.9m',
-            'role_id' => Role::where('name', 'admin')->first()->id,
-        ]);
                 User::create([
             'name' => 'Oswaldo Guevara',
             'email' => 'oswaldoguevaras@hotmail.com',
@@ -39,20 +33,7 @@ class UserTableSeeder extends Seeder
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
 
-        User::create([
-            'name' => 'Christian Lugo',
-            'email' => 'christianrlugo5@gmail.com',
-            'password' => bcrypt('asd987fgh'),
-            'role_id' => Role::where('name', 'admin')->first()->id,
-        ]);
-
-        //Servicios Escolares por defecto =======================
-        /*User::create([
-            'name' => 'Servicios Escolares',
-            'email' => 'serviciosescolares@gmail.com',
-            'password' => bcrypt('sae'),
-            'role_id' => $role_schoolserv->id
-        ]);*/
+   
 
         //Coordinadores por defecto =============================
         User::create([
@@ -69,7 +50,7 @@ class UserTableSeeder extends Seeder
             'role_id' => $role_coordinator->id
         ]); 
 
-        //Profesores por defecto =============================
+      /*  //Profesores por defecto =============================
         $user = new User();
         $user->name = 'Luis López';
         $user->email = 'luis@hotmail.com';
@@ -84,6 +65,6 @@ class UserTableSeeder extends Seeder
             'display_name' => 'Cantidad de parciales',
             'description' => 'Define la cantidad de parciales que el profesor debe calificar en un grupo.'
         ]);
-
+*/
     }
 }
