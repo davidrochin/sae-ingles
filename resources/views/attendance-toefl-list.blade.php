@@ -13,8 +13,8 @@
 <table class="table table-bordered text-nowrap table-attendance">
 	<tbody>
 		        <td>Grupo TOEFL ID: <b>{{ $group->id }}</b></td>
-                <td>Responsable: <b>{{ $group->responsableUser->name }}</b></td>
-                <td>Aplicador: <b>{{$group->applicatorUser->name}}</b></td>
+                <td>Responsable: <b>{{ !is_null($group->responsableUser) ? $group->responsableUser->name : 'Sin responsable'}}</b></td>
+                <td>Aplicador: <b>{{!is_null($group->applicatorUser) ? $group->applicatorUser->name : 'Sin aplicador'}}</b></td>
                 <td>Fecha: <b>{{ $group->date }}</b></td>
                 <td>Hora: <b>{{ $group->time }}</b></td>
                 <td>Aula: <b>{{ $group->classroom->name }}</b></td>

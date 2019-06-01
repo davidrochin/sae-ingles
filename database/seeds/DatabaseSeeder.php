@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Creating sample TOEFL groups...');
         factory(App\ToeflGroup::class)->times(50)->create();
 
-        
+       
 
         //Para cada grupo, asignarle alumnos aleatorios
         $groups = Group::all();
