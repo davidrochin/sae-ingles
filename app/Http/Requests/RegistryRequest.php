@@ -29,11 +29,11 @@ class RegistryRequest extends FormRequest
     {
         return [
 
-            'controlNumber' => 'unique:students,control_number',
-            'careerId' => 'sometimes|nullable|exists:careers,id',
+            'controlNumber' => 'required|unique:students,control_number',
+            'careerControlInput' => 'required|nullable|exists:careers,id',
             'firstNames' => 'required',
-            'lastNames' => 'required',
-            'phoneNumber' => 'sometimes|digits_between:0,30',
+            'lastNames1' => 'required',
+            'lastNames2' => 'required',
             'email' => 'required|email',
             'password' => 'required|max:30|min:6'
           //  'rpassword_confirmation' => 'required|max:30|min:6|same:rpassword'
@@ -43,11 +43,12 @@ class RegistryRequest extends FormRequest
     public function messages(){
         return [
 
-            'controlNumber.required' => 'No puede estar vacío.',
+            'controlNumber.required' => 'Proporciona un número de control.',
             'controlNumber.unique' => 'Ya existe un alumno con ese número de control.',
+            'careerControlInput.required' => 'Selecciona una carrera.',
             'firstNames.required' => 'Es necesario proporcionar un nombre.',
-            'lastNames.required' => 'Es necesario proporcionar los apellidos.',
-            'phoneNumber.required' => 'Es necesario especificar un número de telefono.',
+            'lastNames1.required' => 'Es necesario proporcionar apellido paterno.',
+            'lastNames2.required' => 'Es necesario proporcionar apellido materno.',
             'phoneNumber.digits_between' => 'Necesita ser un número de entre 0 y 30 dígitos.',
             'email.email' => 'No es un correo electrónico válido.',
             'email.required' => 'Es necesario un correo electrónico válido.',

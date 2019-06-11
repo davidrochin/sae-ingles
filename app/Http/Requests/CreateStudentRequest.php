@@ -20,7 +20,7 @@ class CreateStudentRequest extends FormRequest
             return true;
         } else {
             return false;
-        }
+        } 
     }
 
     /**

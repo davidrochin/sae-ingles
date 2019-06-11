@@ -8,6 +8,7 @@ use App\History;
 use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateStudentRequest;
+use App\Http\Requests\RegistryRequest;
 use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class RequestsRegistryController extends Controller
 
     const DEFAULT_PARENT_ROUTE = 'students-requests';
    // Falta crear un request personalizado para que se valide sin tanta lógica
-    public function requestRegistry(Request $request) {
+    public function requestRegistry(RegistryRequest $request) {
 
+      
         $user = $request->user();
 
             $user= User::create([
@@ -33,7 +35,7 @@ class RequestsRegistryController extends Controller
                     'role_id' => 1,
                  
                 ]);
-
+ 
 
         $now=date('Y');
         $year=substr($now, 2);

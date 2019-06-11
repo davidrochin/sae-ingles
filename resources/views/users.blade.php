@@ -58,7 +58,7 @@
 	                document.getElementById('emailControlInput').setAttribute("autocomplete","nope");
 	            </script>
 
-			</form>
+			</form> 
 
 		@endslot
 

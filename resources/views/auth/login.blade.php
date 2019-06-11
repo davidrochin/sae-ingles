@@ -62,6 +62,8 @@
                             <!-- Botón para mostrar el formulario de registro -->
                             <div class="form-group">
                                 <a href="#" class="ForgetPwd" value="SignUp" onclick="showSignupForm()">Inscribirse</a>
+                               
+                                
                             </div>
                         </form>
                     </div>
@@ -70,12 +72,19 @@
                     <div id="signin-panel" class="col-12 col-lg-6 login-form-1 p-4 d-none">
                       
                         <h3>Registro para alumnos</h3>
+                          @if(count($errors)>0)
+                                    @foreach ($errors->all() as $error) 
+                                        <p class="alert alert-danger">{{$error}}</p>
+                                    @endforeach
+                                    
+                                   @endif
                         <p><strong>Datos personales</strong></p>
                          <form class="form" action="/alumnos/solicitar-registro" method="post" id="createStudentForm">
                             {{ csrf_field() }}
                             <div class="form-group">
 
                                 <input type="text" name="firstNames" id="email" class="form-control input-sm" placeholder="Nombre">
+                                
                             </div>
 
                             <div class="row">
@@ -191,11 +200,15 @@
             }
 
             function show1(){
+                
              document.getElementById('div1').style.display ='none';
+             
             }
 
             function show2(){
+              
              document.getElementById('div1').style.display = 'block';
+
             }
             
             </script>
