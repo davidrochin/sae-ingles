@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\DeleteStudentRequest;
 use App\Http\Requests\AddStudentToGroupRequest;
+use App\Http\Requests\CreateToeflRequest;
 use App\Http\Requests\RemoveStudentFromGroupRequest;
 use App\Http\Requests\ModifyStudentRequest;
 use App\Http\Requests\ModifyToeflRequest;
@@ -154,7 +155,7 @@ class ToeflGroupController extends Controller
                  ]);
     }
    
-  public function createToeflGroup(Request $request){
+  public function createToeflGroup(CreateToeflRequest $request){
 
         ToeflGroup::create([
             

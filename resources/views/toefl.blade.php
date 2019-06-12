@@ -40,18 +40,18 @@
 				<div class="form-row">
 					<div class="form-group col">
 	                    <label for="professorControlInput">Aplicador</label>
-	                    <select class="form-control" id="professorControlInput" name="aplicadorId">
+	                    <select class="form-control" id="aplicadorId" name="aplicadorId">
 	                    	<option value="" {{ old('aplicadorId') == 0 ? 'selected' : '' }}></option>
 	                        @foreach($professors as $professor)
 	                        <option value="{{$professor->id}}" {{ old('aplicadorId') == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
 	                        @endforeach
 	                    </select>
-	                    <div class="invalid-feedback">{{ $errors->first('aplicadorId') }}</div>
+	                   <div class="invalid-feedback">{{ $errors->first('aplicadorId') }}</div>
                		</div>
 
                		<div class="form-group col">
 	                    <label for="professorControlInput">Responsable</label>
-	                    <select class="form-control" id="professorControlInput" name="responsableId">
+	                    <select class="form-control" id="responsableId" name="responsableId">
 	                    	<option value="" {{ old('responsableId') == 0 ? 'selected' : '' }}></option>
 	                        @foreach($professors as $professor)
 	                        <option value="{{$professor->id}}" {{ old('responsableId') == $professor->id ? 'selected' : '' }}>{{ $professor->name }}</option>
@@ -68,7 +68,7 @@
 					<div class="form-group col-4">						
 							<label for="capacityControlInput">Capacidad</label>
 							<input id="capacityControlInput" name="capacity" type="number" class="form-control  " min="1" max="50" value={{old('capacity') != null ? old('capacity') : '40'}}>
-							<div class="invalid-feedback"></div>						
+							 <div class="invalid-feedback">{{ $errors->first('capacity') }}</div>						
 					</div>
 					<div class="col">
 						<div class="form-group">
